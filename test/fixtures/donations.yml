@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  food_name: MyString
+  measurement: MyString
+  per_person: 1
+  total_servings: 1
+  store_id: 1
+  start_time: 2019-10-08 19:53:15
+  duration_minutes: 1
+  image_url: MyString
+  pickup_location: MyString
+
+two:
+  food_name: MyString
+  measurement: MyString
+  per_person: 1
+  total_servings: 1
+  store_id: 1
+  start_time: 2019-10-08 19:53:15
+  duration_minutes: 1
+  image_url: MyString
+  pickup_location: MyString
