@@ -5,7 +5,9 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "lint": "eslint --ext .tsx,.ts,.js .",
+    "typechecking": "tsc --noEmit"
   },
   "dependencies": {
     "@react-native-community/eslint-config": "0.0.5",
