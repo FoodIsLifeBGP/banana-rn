@@ -5,17 +5,30 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "lint": "eslint --ext .tsx,.ts,.js .",
+    "typechecking": "tsc --noEmit"
   },
   "dependencies": {
+    "@react-native-community/eslint-config": "0.0.5",
+    "axios": "^0.19.0",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb": "^18.0.1",
     "expo": "^35.0.0",
     "react": "16.8.3",
     "react-dom": "16.8.3",
     "react-native": "https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz",
-    "react-native-web": "^0.11.7"
+    "react-native-camera": "^3.9.0",
+    "react-native-geolocation-service": "^3.1.0",
+    "react-native-gesture-handler": "^1.5.0",
+    "react-native-maps": "^0.26.1",
+    "react-native-web": "^0.11.7",
+    "react-navigation": "^4.0.10",
+    "react-navigation-hooks": "^1.1.0",
+    "react-navigation-stack": "^1.10.3"
   },
   "devDependencies": {
-    "@types/react": "^16.8.23",
+    "@types/react": "^16.9.11",
     "@types/react-native": "^0.57.65",
     "babel-preset-expo": "^7.1.0",
     "typescript": "^3.6.3"
