@@ -1,13 +1,16 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import NavigationService from './src/util/NavigationService';
+import Route from './src/routes/Route';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </View>
+  return(
+    <Route ref={navigatorRef => {
+      NavigationService.setTopLevelNavigator(navigatorRef);
+    }}
+    />
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
