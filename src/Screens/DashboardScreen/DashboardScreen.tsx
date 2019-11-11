@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigation } from 'react-navigation-hooks';
 import { View, Text, Button } from 'react-native';
-import styles from './Dashboard.styles';
+import styles from './DashboardScreen.styles';
 
 export default () => {
 	const { navigate } = useNavigation();
