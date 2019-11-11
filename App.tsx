@@ -12,6 +12,7 @@ export default function App() {
     await Font.loadAsync({
       'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
       'open-sans-regular': require('./assets/fonts/OpenSans-Regular.ttf'),
+      'open-sans-light': require('./assets/fonts/OpenSans-Light.ttf'),
     });
     setFontsLoaded(true);
   }
