@@ -1,17 +1,17 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import LoginScreen from '../Screens/LoginScreen';
-import Dashboard from '../Screens/Dashboard';
+import DashboardScreen from '../Screens/DashboardScreen';
 
 const MainStack = createStackNavigator({
 	LoginScreen,
-	Dashboard,
+	DashboardScreen,
 }, {
 	defaultNavigationOptions: {
 		header: null,
 		gesturesEnabled: false,
 	},
-	initialRouteName: 'Dashboard',
+	initialRouteName: 'LoginScreen',
 });
 
 const App = createAppContainer(MainStack);
