@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Vendor.destroy_all
+
+puts "Seeding Vendors..."
+v1 = Vendor.create(organization_name: "QFC", admin_email: "admin@qfc.com" password: "plaintext")
