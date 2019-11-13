@@ -3,5 +3,5 @@ class Vendor < ApplicationRecord
 	has_many :donations, through: :stores
 
 	has_secure_password
-	validates :username, uniqueness: { case_sensitive: false }
+	validates :admin_email, uniqueness: { case_sensitive: false }
 end
