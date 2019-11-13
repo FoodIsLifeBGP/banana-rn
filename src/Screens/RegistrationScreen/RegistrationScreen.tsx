@@ -82,7 +82,7 @@ export default () => {
 			<View style={{ height: 40 }} />
 			<LinkButton
 				text="Register"
-				destination="DashboardScreen"
+				destination="TermsScreen"
 			/>
 		</ScrollView>
 	);
