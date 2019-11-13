@@ -29,17 +29,17 @@ class ApplicationController < ActionController::API
       end
     end
 
-    def current_user
+    def current_vendor
       if decoded_token
-        user_id = decoded_token[0]['user_id']
-        puts "found user:", User.find_by(id: user_id)
-        @user = User.find_by(id: user_id)
+        vendor_id = decoded_token[0]['vendor_id']
+        puts "found vendor:", Vendor.find_by(id: vendor_id)
+        @vendor = Vendor.find_by(id: vendor_id)
       end
     end
 
     def logged_in?
-        puts "logged in?:", !!current_user
-      !!current_user
+        puts "logged in?:", !!current_vendor
+      !!current_vendor
     end
 
     def authorized
