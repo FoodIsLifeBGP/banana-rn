@@ -2,9 +2,13 @@ class VendorsController < ApplicationController
 	skip_before_action :authorized, only: [:create]
 
 	def index
+		@vendors = Vendor.all
 	end
 
 	def show
+	end
+
+	def new
 	end
 
 	def create
@@ -21,9 +25,19 @@ class VendorsController < ApplicationController
 	end
 
 	def update
+		if @vendor.update(vendor_params)
+			redirect_to vendor_path(@vendor)
+		else
+			flash[:errors] = @vendor.errors.full_messages
+			redirect_to edit_vendor_path
+		end
 	end
 
 	def destroy
+		@vendor.destroy
+		flash[:message] = "Successfully Deleted Vendor Profile"
+
+		# place redirect to home page here
 	end
 
 	private
