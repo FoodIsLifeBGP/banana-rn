@@ -1,4 +1,6 @@
 class DonationsController < ApplicationController
+	skip_before_action :authorized
+
 	def index
 		@donations = Donation.all
 	end

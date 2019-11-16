@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_16_021823) do
+ActiveRecord::Schema.define(version: 2019_11_16_031656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2019_11_16_021823) do
 
   create_table "clients", force: :cascade do |t|
     t.string "email"
-    t.string "password_hash"
+    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "first_name"
@@ -41,11 +41,10 @@ ActiveRecord::Schema.define(version: 2019_11_16_021823) do
     t.string "measurement"
     t.integer "per_person"
     t.integer "total_servings"
-    t.integer "store_id"
+    t.integer "donor_id"
     t.datetime "start_time"
     t.integer "duration_minutes"
     t.string "image_url"
-    t.string "pickup_location"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "canceled", default: false
@@ -53,7 +52,7 @@ ActiveRecord::Schema.define(version: 2019_11_16_021823) do
 
   create_table "donors", force: :cascade do |t|
     t.string "organization_name"
-    t.string "admin_email"
+    t.string "email"
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -63,6 +62,7 @@ ActiveRecord::Schema.define(version: 2019_11_16_021823) do
     t.integer "address_zip"
     t.string "business_license"
     t.string "account_status"
+    t.string "pickup_location"
   end
 
 end
