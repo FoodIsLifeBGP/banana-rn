@@ -8,4 +8,4 @@
 Donor.destroy_all
 
 puts "Seeding Donors..."
-v1 = Donor.create(organization_name: "QFC", admin_email: "admin@qfc.com" password: "plaintext")
+donor1 = Donor.create(organization_name: "QFC", admin_email: "admin@qfc.com", password: "plaintext")
