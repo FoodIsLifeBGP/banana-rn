@@ -1,6 +1,6 @@
 class ClaimsController < ApplicationController
 	def index
-		@claims = CLaim.all
+		@claims = Claim.all
 	end
 
 	def show
