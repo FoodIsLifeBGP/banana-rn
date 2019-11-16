@@ -34,7 +34,7 @@ class ClaimsController < ApplicationController
 	private
 
 	def claim_params
-		params.require(:claim).permit(:organization_name, :admin_email, :password_hash)
+		params.require(:claim).permit(:completed)
 	endoy
 	end
 end
