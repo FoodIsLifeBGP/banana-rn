@@ -33,13 +33,6 @@ class VendorsController < ApplicationController
 		end
 	end
 
-	def destroy
-		@vendor.destroy
-		flash[:message] = "Successfully Deleted Vendor Profile"
-
-		# place redirect to home page here
-	end
-
 	private
 
 	def vendor_params
