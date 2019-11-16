@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   root 'donations#active'
-  resources :vendors
-  resources :stores
-  resources :donations
-  resources :claims
-  resources :clients
+  resources :donors, except: [:delete]
+  resources :donations, except: [:delete]
+  resources :claims, except: [:delete]
+  resources :clients, except: [:delete]
 end
