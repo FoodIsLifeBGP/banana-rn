@@ -10,7 +10,7 @@ class ApplicationController < ActionController::API
 
     def auth_header
       # { Authorization: 'Bearer <token>' }
-    #   puts "request.headers:", request.headers['Authorization']
+      # puts "request.headers:", request.headers['Authorization']
       request.headers['Authorization']
     end
 
@@ -29,17 +29,17 @@ class ApplicationController < ActionController::API
       end
     end
 
-    def current_vendor
+    def current_donor
       if decoded_token
-        vendor_id = decoded_token[0]['vendor_id']
-        puts "found vendor:", Vendor.find_by(id: vendor_id)
-        @vendor = Vendor.find_by(id: vendor_id)
+        donor_id = decoded_token[0]['donor_id']
+        puts "found donor:", Donor.find_by(id: donor_id)
+        @donor = Donor.find_by(id: donor_id)
       end
     end
 
     def logged_in?
-        puts "logged in?:", !!current_vendor
-      !!current_vendor
+        puts "logged in?:", !!current_donor
+      !!current_donor
     end
 
     def authorized
