@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_09_150636) do
+ActiveRecord::Schema.define(version: 2019_11_16_020418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -51,20 +51,18 @@ ActiveRecord::Schema.define(version: 2019_10_09_150636) do
     t.boolean "canceled", default: false
   end
 
-  create_table "stores", force: :cascade do |t|
-    t.string "name"
-    t.hstore "address"
-    t.integer "vendor_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "vendors", force: :cascade do |t|
+  create_table "donors", force: :cascade do |t|
     t.string "organization_name"
     t.string "admin_email"
     t.string "password_hash"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "address_street"
+    t.string "address_city"
+    t.string "address_state"
+    t.integer "address_zip"
+    t.string "business_license"
+    t.string "account_status"
   end
 
 end
