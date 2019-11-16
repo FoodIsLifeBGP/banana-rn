@@ -8,4 +8,14 @@
 Donor.destroy_all
 
 puts "Seeding Donors..."
-v1 = Donor.create(organization_name: "QFC", admin_email: "admin@qfc.com" password: "plaintext")
+donor1 = Donor.create(
+	organization_name: "QFC",
+	admin_email: "admin@qfc.com",
+	password: "plaintext",
+	address_street: "101 Main St",
+	address_city: "Seattle",
+	address_state: "WA",
+	address_zip: 98101,
+	business_license: "9198DD435AS3456",
+	account_status: "active",
+)

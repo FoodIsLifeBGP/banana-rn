@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_16_020418) do
+ActiveRecord::Schema.define(version: 2019_11_16_021823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2019_11_16_020418) do
   create_table "donors", force: :cascade do |t|
     t.string "organization_name"
     t.string "admin_email"
-    t.string "password_hash"
+    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "address_street"
