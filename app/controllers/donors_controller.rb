@@ -36,6 +36,6 @@ class DonorsController < ApplicationController
 	private
 
 	def donor_params
-		params.require(:donor).permit(:organization_name, :admin_email, :password_hash)
+		params.require(:donor).permit(:organization_name, :email, :password_hash)
 	end
 end

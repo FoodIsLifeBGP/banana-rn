@@ -4,5 +4,5 @@ class Donor < ApplicationRecord
 	has_many :donations
 	has_many :claims, through: :donations
 	
-	validates :admin_email, uniqueness: { case_sensitive: false }
+	validates :email, uniqueness: { case_sensitive: false }
 end
