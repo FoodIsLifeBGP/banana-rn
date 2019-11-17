@@ -14,7 +14,37 @@ donor1 = Donor.create!(
 	address_zip: 98101,
 	business_license: "9198DD435AS3456",
 	account_status: "active",
-	pickup_location: "Front desk"
+	pickup_location: "Front desk",
+	has_applied: true,
+	is_approved: true
+)
+donor2 = Donor.create!(
+	organization_name: "Unapproved",
+	email: "approve@me.com",
+	password: "approve",
+	address_street: "202 Main St",
+	address_city: "Seattle",
+	address_state: "WA",
+	address_zip: 98101,
+	business_license: "DSJ0984DFGK32",
+	account_status: "pending",
+	pickup_location: nil,
+	has_applied: true,
+	is_approved: false
+)
+donor3 = Donor.create!(
+	organization_name: "Hasn't Applied",
+	email: "please@apply.com",
+	password: "apply",
+	address_street: nil,
+	address_city: nil,
+	address_state: nil,
+	address_zip: nil,
+	business_license: nil,
+	account_status: "pending",
+	pickup_location: nil,
+	has_applied: false,
+	is_approved: false
 )
 
 puts "Seeding Donations..."
@@ -27,6 +57,7 @@ donation1 = Donation.create!(
 	duration_minutes: 60,
 	image_url: "",
 	donor_id: donor1.id,
+	pickup_location: donor1.pickup_location,
 	canceled: false
 )
 donation2 = Donation.create!(
@@ -38,6 +69,7 @@ donation2 = Donation.create!(
 	duration_minutes: 30,
 	image_url: "",
 	donor_id: donor1.id,
+	pickup_location: donor1.pickup_location,
 	canceled: true
 )
 
@@ -74,3 +106,5 @@ claim3 = Claim.create!(
 	time_claimed: nil,
 	canceled: true,
 )
+
+puts "Finished with no errors"
