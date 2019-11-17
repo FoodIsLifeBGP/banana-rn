@@ -5,14 +5,20 @@ export default StyleSheet.create({
 	outerContainer: {
 		flex: 1,
     backgroundColor: colors.BANANA_YELLOW,
-		paddingHorizontal: '15%',
+		paddingHorizontal: '10%',
 	},
 	input: {
 		height: 50,
 		marginBottom: 15,
+	},
+	documentContainer: {
 		backgroundColor: 'white',
-		borderRadius: 0,
-		borderTopLeftRadius: 0,
-		borderTopRightRadius: 0,
-	}
+		paddingHorizontal: '5%',
+	},
+	documentText: {
+		fontFamily: 'open-sans-regular',
+		color: colors.NAVY_BLUE,
+		fontSize: 13,
+		textAlign: 'justify',
+	},
 });
