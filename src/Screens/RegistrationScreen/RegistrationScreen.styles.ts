@@ -1,19 +1,16 @@
 import { StyleSheet } from 'react-native';
-import * as colors from '../../../src/util/colors';
+import * as colors from '../../util/colors';
 
 export default StyleSheet.create({
 	outerContainer: {
 		flex: 1,
     backgroundColor: colors.BANANA_YELLOW,
 		paddingHorizontal: '10%',
+		justifyContent: 'space-between',
 	},
 	input: {
 		height: 28,
-		marginBottom: 15,
-		backgroundColor: 'white',
-		borderRadius: 0,
-		borderTopLeftRadius: 0,
-		borderTopRightRadius: 0,
+		marginBottom: 14,
 		paddingLeft: 10,
 	},
 	text: {

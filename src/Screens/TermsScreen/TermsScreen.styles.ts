@@ -1,26 +1,24 @@
 import { StyleSheet } from 'react-native';
-import * as colors from '../../../src/util/colors';
+import * as colors from '../../util/colors';
 
 export default StyleSheet.create({
 	outerContainer: {
 		flex: 1,
     backgroundColor: colors.BANANA_YELLOW,
-		paddingHorizontal: '15%',
+		paddingHorizontal: '10%',
 	},
 	input: {
 		height: 50,
 		marginBottom: 15,
-		backgroundColor: 'white',
-		borderRadius: 0,
-		borderTopLeftRadius: 0,
-		borderTopRightRadius: 0,
 	},
 	documentContainer: {
-		width: '90%',
-		height: '50%',
+		backgroundColor: 'white',
+		paddingHorizontal: '5%',
 	},
 	documentText: {
+		fontFamily: 'open-sans-regular',
 		color: colors.NAVY_BLUE,
 		fontSize: 13,
+		textAlign: 'justify',
 	},
 });

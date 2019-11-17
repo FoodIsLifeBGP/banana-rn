@@ -8,35 +8,29 @@ import {
 import * as colors from '../../util/colors';
 
 export default StyleSheet.create({
-	container: {
-		width: Dimensions.get('window').width,
-	},
 	contentContainer: {
-		flexDirection: 'row',
+		marginTop: Platform.OS === 'ios' ? 40 : 10,
 		backgroundColor: colors.BANANA_YELLOW,
-		marginTop: Platform.OS === 'android' ? (StatusBar.currentHeight || 0) : 0,
-		height: 50 + (Platform.OS === 'ios' ? StatusBar.currentHeight || 0 : 0),
-		alignItems: 'center',
-	},
-	titleTextContainer: {
-		flex: 0.5,
-	},
-	backButtonContainer: {
-		flex: 0.25,
-	},
-	backButtonInnerContainer: {
+		height: 75,
 		flexDirection: 'row',
+		justifyContent: 'space-between',
 	},
-	backButtonIcon: {
-		color: colors.WHITE,
-		fontSize: 18,
-		marginLeft: 10,
-		marginRight: 8,
-		alignSelf: 'center',
+	backContainer: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'flex-start',
+		left: -15,
+	},
+	menuContainer: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'flex-end',
+		right: -5,
 	},
 	backButtonLabel: {
+		fontFamily: 'open-sans-light',
 		fontWeight: '300',
 		fontSize: 17,
-		alignSelf: 'center',
+		color: colors.NAVY_BLUE,
 	},
 });

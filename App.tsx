@@ -13,6 +13,7 @@ export default function App() {
       'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
       'open-sans-regular': require('./assets/fonts/OpenSans-Regular.ttf'),
       'open-sans-light': require('./assets/fonts/OpenSans-Light.ttf'),
+      'elegant-icons': require('./assets/fonts/ElegantIcons.ttf')
     });
     setFontsLoaded(true);
   }

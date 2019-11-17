@@ -1,4 +1,5 @@
 export { FormTextInput } from './FormTextInput';
-export { InputLabel } from './InputLabel';
+export { Header } from './Header';
 export { LinkButton } from './LinkButton';
+export { SpacerInline } from './SpacerInline';
 export { Title } from './Title';

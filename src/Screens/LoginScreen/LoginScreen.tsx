@@ -1,18 +1,31 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { View, Alert } from 'react-native';
 import { TextInput } from 'react-native-paper';
-import { Title, InputLabel, LinkButton } from '../../Elements';
+import login from '../../util/login';
+import { Title, LinkButton, SpacerInline } from '../../elements';
+import InputLabel from '../../elements/FormTextInput/InputLabel';
 import styles from './LoginScreen.styles';
+import { useNavigation } from 'react-navigation-hooks';
 
 export default () => {
+	const { navigate } = useNavigation();
 	const [ email, setEmail ] = useState();
 	const [ password, setPassword ] = useState();
 
+	const handleLogin = async () => {
+		const responseStatus = await login({ email, password });
+		switch(responseStatus) {
+			case 202: navigate('DashboardScreen'); break;
+			case 401: Alert.alert('Incorrect email or password'); break;
+			default: Alert.alert(responseStatus); break;
+		}
+	}
+
 	return (
 		<View style={styles.outerContainer}>
-			<View style={{ height: 140 }} />
+			<SpacerInline height={140} />
 			<Title text="I am a donor." />
-			<View style={{ height: 40 }} />
+			<SpacerInline height={40} />
 
 			<InputLabel text="Email Address" />
 			<TextInput 
@@ -35,14 +48,13 @@ export default () => {
 			
 			<LinkButton
 				text="Log In"
-				destination="DashboardScreen"
+				onPress={() => handleLogin()}
 			/>
-			<View style={{ height: 40 }} />
+			<SpacerInline height={40} />
 			<LinkButton
-				text="Create New Account"
+				text="Register"
 				destination="RegistrationScreen"
 			/>
 		</View>
 	);
 };
-

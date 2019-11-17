@@ -1,23 +1,31 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import { Title, LinkButton } from '../../Elements';
-import styles from './TermsScreen.styles';
+import { TextInput, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import { Title, LinkButton, SpacerInline, Header } from '../../elements';
+import Terms from '../../../assets/documents/SampleToS'
+import styles from './TermsScreen.styles';
 
 export default () => {
-	// TODO: get document
-	const document = null; // axios.get()
 	return (
 		<View style={styles.outerContainer}>
-			<View style={{ height: 140 }} />
+			<Header showMenu={false} />
 			<Title text="Terms and conditions" />
-			<View style={{ height: 40 }} />
-			<ScrollView style={styles.documentContainer}>
-				<Text style={styles.document}>
-					{document}
-				</Text>
+			<SpacerInline height={20} />
+			<ScrollView contentContainerStyle={{ justifyContent: 'space-between' }}>
+				<View style={styles.documentContainer}>
+					<TextInput
+						style={styles.documentText}
+						multiline={true}
+						editable={false}
+						scrollEnabled={true}
+					>
+						{Terms}
+					</TextInput>
+				</View>
 			</ScrollView>
+			<SpacerInline height={20} />
 			<LinkButton text="Accept" destination="PendingScreen" />
+			<SpacerInline height={40} />
 		</View>
 	);
 };
