@@ -10,14 +10,12 @@ class ApplicationController < ActionController::API
 
     def auth_header
       # { Authorization: 'Bearer <token>' }
-      # puts "request.headers:", request.headers['Authorization']
       request.headers['Authorization']
     end
 
     def decoded_token
       if auth_header
         token = auth_header.split(' ')[1]
-        # puts "token from headers:", token
         # header: { 'Authorization': 'Bearer <token>' }
         begin
           puts "decoded token:", JWT.decode(token, 'my_s3cr3t', true, algorithm: 'HS256')
@@ -38,7 +36,7 @@ class ApplicationController < ActionController::API
     end
 
     def logged_in?
-        puts "logged in?:", !!current_donor
+      puts "logged in?:", !!current_donor
       !!current_donor
     end
 

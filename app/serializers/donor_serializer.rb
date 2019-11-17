@@ -6,8 +6,8 @@ class DonorSerializer < ActiveModel::Serializer
     :address_state,
     :address_zip,
     :business_license,
+    :donations,
     :email,
     :organization_name,
-    :password_digest,
     :pickup_location
 end
