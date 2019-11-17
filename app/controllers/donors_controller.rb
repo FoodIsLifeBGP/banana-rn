@@ -12,8 +12,10 @@ class DonorsController < ApplicationController
 	end
 
 	def create
-		@donor = Donor.create(donor_params)
+		@donor = Donor.new(donor_params)
 		if @donor.valid?
+				@donor.has_applied = true
+				@donor.save
 				@token = encode_token(donor_id: @donor.id)
 				render json: { donor: DonorSerializer.new(@donor), jwt: @token }, status: :created
 		else
@@ -36,6 +38,19 @@ class DonorsController < ApplicationController
 	private
 
 	def donor_params
-		params.require(:donor).permit(:organization_name, :email, :password_hash)
+		params.require(:donor).permit(
+			:organization_name,
+			:email,
+			:password,
+			:address_street,
+			:address_city,
+			:address_state,
+			:address_zip,
+			:business_license,
+			:account_status,
+			:pickup_location,
+			:has_applied,
+			:is_approved,
+		)
 	end
 end
