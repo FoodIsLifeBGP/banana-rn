@@ -16,7 +16,7 @@ donor1 = Donor.create!(
 	account_status: "active",
 	pickup_location: "Front desk",
 	has_applied: true,
-	is_approved: true
+	is_approved: true,
 )
 donor2 = Donor.create!(
 	organization_name: "Unapproved",
@@ -30,7 +30,7 @@ donor2 = Donor.create!(
 	account_status: "pending",
 	pickup_location: nil,
 	has_applied: true,
-	is_approved: false
+	is_approved: false,
 )
 donor3 = Donor.create!(
 	organization_name: "Hasn't Applied",
@@ -44,7 +44,7 @@ donor3 = Donor.create!(
 	account_status: "pending",
 	pickup_location: nil,
 	has_applied: false,
-	is_approved: false
+	is_approved: false,
 )
 
 puts "Seeding Donations..."
@@ -58,7 +58,7 @@ donation1 = Donation.create!(
 	image_url: "",
 	donor_id: donor1.id,
 	pickup_location: donor1.pickup_location,
-	canceled: false
+	canceled: false,
 )
 donation2 = Donation.create!(
 	food_name: "Apples",
@@ -70,7 +70,7 @@ donation2 = Donation.create!(
 	image_url: "",
 	donor_id: donor1.id,
 	pickup_location: donor1.pickup_location,
-	canceled: true
+	canceled: true,
 )
 
 puts "Seeding Clients..."
@@ -78,7 +78,7 @@ client1 = Client.create!(
 	email: "client@example.com",
 	password: "password",
 	first_name: "Example",
-	last_name: "Client"
+	last_name: "Client",
 )
 
 puts "Seeding Claims..."
