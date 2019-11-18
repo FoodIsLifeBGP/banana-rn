@@ -23,9 +23,7 @@ export default () => {
 					</TextInput>
 				</View>
 			</ScrollView>
-			<SpacerInline height={20} />
-			<LinkButton text="Accept" destination="PendingScreen" />
-			<SpacerInline height={40} />
+			<SpacerInline height={80} />
 		</View>
 	);
 };

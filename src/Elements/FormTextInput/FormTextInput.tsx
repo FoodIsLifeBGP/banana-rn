@@ -14,7 +14,7 @@ export default ({
 	value: any;
 	setValue: any;
 	width?: number | string;
-	autoCapitalize?: 'words' | 'sentences' | 'none';
+	autoCapitalize?: 'words' | 'sentences' | 'none' | 'characters';
 }) => {
 		return (
 		<View style={{ ...styles.container, width }}>
