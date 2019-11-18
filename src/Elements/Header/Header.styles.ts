@@ -12,7 +12,7 @@ export default StyleSheet.create({
 		marginTop: Platform.OS === 'ios' ? 40 : 10,
 		marginHorizontal: '-5%',
 		backgroundColor: colors.BANANA_YELLOW,
-		height: 65,
+		height: 60,
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 	},

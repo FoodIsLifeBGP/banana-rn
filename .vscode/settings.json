@@ -1,0 +1,24 @@
+{
+	"eslint.validate": [
+		{
+			"language": "javascript",
+			"autoFix": false
+		},
+		{
+			"language": "javascriptreact",
+			"autoFix": false
+		},
+		{
+			"language": "typescript",
+			"autoFix": false
+		},
+		{
+			"language": "typescriptreact",
+			"autoFix": false
+		}
+	],
+	"cSpell.words": [
+		"dismissable",
+	],
+	"editor.insertSpaces": false,
+}

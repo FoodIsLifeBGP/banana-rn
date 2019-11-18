@@ -6,6 +6,23 @@
     "moduleResolution": "node",
     "noEmit": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "noUnusedParameters": true,
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "paths": {
+      "@assets/*": ["assets/*"],
+      "@screens/*": ["./src/screens/*"],
+      "@elements": ["./src/elements"],
+      "@util/*": ["./src/util/*"]
+    },
+    "removeComments": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "esnext"
   }
 }

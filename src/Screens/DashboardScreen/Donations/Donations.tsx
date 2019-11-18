@@ -2,14 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, View, Text } from 'react-native';
 import { Divider } from 'react-native-paper';
 import getDonations from '../../../util/getDonations';
-import Donation from './Donation/Donation';
+import DonationListItem from './DonationListItem';
+import { SpacerInline } from '@elements';
 
-export default ({ jwt, id }) => {
+interface Donations {
+	jwt: string;
+	id: number;
+}
+
+export default ({ jwt, id }: Donations) => {
 	const [ donations, setDonations ] = useState();
 
 	const loadDonations = async () => {
-		const dons = await getDonations({ jwt, id });
-		await setDonations(dons);
+		await setDonations(await getDonations({ jwt, id }));
 	};
 
 	useEffect(() => {
@@ -18,19 +23,18 @@ export default ({ jwt, id }) => {
 
 	return Array.isArray(donations)
 		? (
-				<ScrollView>
-					{
-						donations.map((donation, i) => {
-							return (
-								<View key={donation.id}>
-									<Divider style={{ backgroundColor: 'blue' }} />
-									<Donation donation={donation} key={donation.id} />
-									{ i === donations.length - 1 && <Divider style={{ backgroundColor: 'blue' }} /> }
-								</View>
-							)
-						})
-					}
-				</ScrollView>
-			)
-		: <Text>No donations</Text>;
+			<ScrollView>
+				{
+					donations.map((donation, i) => (
+						<View key={donation.id}>
+							<Divider style={{ backgroundColor: 'blue' }} />
+							<DonationListItem donation={donation} key={donation.id} />
+							{ i === donations.length - 1 && <Divider style={{ backgroundColor: 'blue' }} /> }
+						</View>
+					))
+				}
+				<SpacerInline height={200} />
+			</ScrollView>
+		)
+		: <Text>No donations to display</Text>;
 };
