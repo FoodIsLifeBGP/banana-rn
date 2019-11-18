@@ -5,19 +5,20 @@ import login from '../../util/login';
 import { Title, LinkButton, SpacerInline } from '../../elements';
 import InputLabel from '../../elements/FormTextInput/InputLabel';
 import styles from './LoginScreen.styles';
-import { useNavigation } from 'react-navigation-hooks';
+import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
 
 export default () => {
 	const { navigate } = useNavigation();
-	const [ email, setEmail ] = useState();
-	const [ password, setPassword ] = useState();
+	const [ email, setEmail ] = useState(useNavigationParam('email') || '');
+	const [ password, setPassword ] = useState(useNavigationParam('password') || '')
 
 	const handleLogin = async () => {
-		const responseStatus = await login({ email, password });
-		switch(responseStatus) {
-			case 202: navigate('DashboardScreen'); break;
+		const statusCode = await login({ email, password });
+		switch(statusCode) {
+			case 202: navigate('LoginSuccessScreen'); break;
 			case 401: Alert.alert('Incorrect email or password'); break;
-			default: Alert.alert(responseStatus); break;
+			case 500: Alert.alert('Network error - please try again'); break;
+			default: Alert.alert(statusCode); break;
 		}
 	}
 

@@ -10,8 +10,9 @@ import * as colors from '../../util/colors';
 export default StyleSheet.create({
 	contentContainer: {
 		marginTop: Platform.OS === 'ios' ? 40 : 10,
+		marginHorizontal: '-5%',
 		backgroundColor: colors.BANANA_YELLOW,
-		height: 75,
+		height: 65,
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 	},
@@ -26,6 +27,10 @@ export default StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'flex-end',
 		right: -5,
+	},
+	menu: {
+		fontSize: 55,
+		color: 'white',
 	},
 	backButtonLabel: {
 		fontFamily: 'open-sans-light',

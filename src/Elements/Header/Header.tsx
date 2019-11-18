@@ -1,7 +1,8 @@
 import React from 'react';
-import { Button, View, Text } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from 'react-navigation-hooks';
+import { View, Text } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Divider } from 'react-native-paper';
 import Icon from '../Icon';
 import styles from './Header.styles';
 
@@ -42,11 +43,10 @@ export default ({
 							<TouchableOpacity
 								onPress={() => {}}
 							>
-								<Icon name="menu" style={{fontSize: 65}} />
+								<Icon name="menu" style={styles.menu} />
 							</TouchableOpacity>
 					)}
 				</View>
-
 			</View>
 		</View>
 	);

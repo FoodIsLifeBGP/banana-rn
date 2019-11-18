@@ -1,15 +1,23 @@
 import React from 'react';
-import { useNavigation } from 'react-navigation-hooks';
-import { View, Text, Button } from 'react-native';
-import { Header, Title } from '../../elements';
+import { View } from 'react-native';
+import { Title, SpacerInline, Header } from '../../elements';
+import Donations from './Donations';
 import styles from './DashboardScreen.styles';
 
-export default () => {
-	const { navigate } = useNavigation();
-	return (
-		<View style={styles.container}>
+const DashboardScreen = ({ jwt, id }) => (
+	<View style={styles.outerContainer}>
+		<View>
 			<Header showBackButton={false} />
-			<Title text="Welcome Back!" />
+			<Title text="Donations" />
+			<SpacerInline height={20} />
 		</View>
-	);
-};
+
+		<Donations jwt={jwt} id={id} />
+
+		<View>
+			<SpacerInline height={40} />
+		</View>
+	</View>
+);
+
+export default DashboardScreen;

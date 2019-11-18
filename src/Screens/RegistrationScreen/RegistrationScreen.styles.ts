@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import * as colors from '../../util/colors';
 
 export default StyleSheet.create({
@@ -17,5 +17,14 @@ export default StyleSheet.create({
 		fontFamily: 'open-sans-light',
 		fontSize: 14,
 		color: colors.NAVY_BLUE,
-	}
+	},
+	checkboxRow: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	checkBox: {
+		backgroundColor: 'white',
+		borderRadius: Dimensions.get('window').width / 2,
+	},
 });

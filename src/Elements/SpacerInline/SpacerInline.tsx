@@ -2,7 +2,8 @@ import React from 'react';
 import { View } from 'react-native';
 
 interface Spacer {
-	height: number;
+	height?: number;
+	width?: number;
 }
 
-export default ({ height }: Spacer) => <View style={{ height }} />;
+export default ({ height, width }: Spacer) => <View style={{ height, width }} />;
