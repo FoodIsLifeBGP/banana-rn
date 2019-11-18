@@ -15,8 +15,6 @@ donor1 = Donor.create!(
 	business_license: "9198DD435AS3456",
 	account_status: "active",
 	pickup_location: "Front desk",
-	has_applied: true,
-	is_approved: true,
 )
 donor2 = Donor.create!(
 	organization_name: "Unapproved",
@@ -29,22 +27,18 @@ donor2 = Donor.create!(
 	business_license: "DSJ0984DFGK32",
 	account_status: "pending",
 	pickup_location: nil,
-	has_applied: true,
-	is_approved: false,
 )
 donor3 = Donor.create!(
-	organization_name: "Hasn't Applied",
-	email: "please@apply.com",
-	password: "apply",
-	address_street: nil,
-	address_city: nil,
-	address_state: nil,
-	address_zip: nil,
-	business_license: nil,
+	organization_name: "Approved",
+	email: "donor@2.com",
+	password: "donor",
+	address_street: '111 Egg Ct',
+	address_city: 'Seattle',
+	address_state: 'WA',
+	address_zip: 98312,
+	business_license: "111222333",
 	account_status: "pending",
 	pickup_location: nil,
-	has_applied: false,
-	is_approved: false,
 )
 
 puts "Seeding Donations..."

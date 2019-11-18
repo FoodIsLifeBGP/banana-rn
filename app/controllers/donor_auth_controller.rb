@@ -6,6 +6,7 @@ class DonorAuthController < ApplicationController
 		#User#authenticate comes from BCrypt
 		if @donor && @donor.authenticate(donor_login_params[:password])
 			# encode token comes from ApplicationController
+			session[:donor_id] = @donor.id
 			token = encode_token({ donor_id: @donor.id })
 			render json: { donor: DonorSerializer.new(@donor), jwt: token }, status: :accepted
 		else

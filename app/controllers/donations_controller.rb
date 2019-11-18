@@ -43,7 +43,13 @@ class DonationsController < ApplicationController
 	private
 
 	def donations_params
-		params.requier(:donations).permit(:food_name, :measurement, :per_person, :total_servings, :start_time, :duration_minutes, :image_url, :canceled)
+		params.requier(:donations).permit(:food_name,
+			:measurement,
+			:per_person,
+			:total_servings,
+			:start_time,
+			:duration_minutes,
+			:image_url,
+			:canceled
 	end
-
 end
