@@ -23,7 +23,6 @@ class DonorsController < ApplicationController
 	def create
 		@donor = Donor.new(donor_params)
 		if @donor.valid?
-			@donor.has_applied = true
 			@donor.account_status = 'pending'
 			@donor.save
 			@token = encode_token(donor_id: @donor.id)

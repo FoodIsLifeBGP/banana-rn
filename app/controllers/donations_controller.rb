@@ -1,5 +1,4 @@
 class DonationsController < ApplicationController
-	skip_before_action :authorized
 
 	def index
 		render json: Donation.all
@@ -19,10 +18,10 @@ class DonationsController < ApplicationController
 	end
 
 	def create
-		@donation = Donation.create(donation_params)
+		@donation = Donation.new(donation_params)
 		if @donation.valid?
-			@token = encode_token(donation_id: @donation.id)
-			render json: { donation: DonationSerializer.new(@donation), jwt: @donation }, status: :created_at
+			@donation.save
+			render json: { donation: DonationSerializer.new(@donation) }, status: :created
 		else
 			render json: { error: 'failed to create donation' }, status: :not_acceptable
 		end
@@ -32,24 +31,35 @@ class DonationsController < ApplicationController
 	end
 
 	def update
-		if @doantion.update(donation_params)
-			redirect_to donation_path(@donation)
+		id = params[:donation_id].to_i
+		puts "-"*50, id
+		@existing_donation = Donation.find(id)
+		puts @existing_donation
+		@donation = Donation.new(donation_params)
+		if @donation.valid?
+			@existing_donation.update(donation_params)
+			render json: { donation: DonationSerializer.new(@donation) }, status: :updated
 		else
-			flash[:errors] = @donation.errors.full_messages
-			redirect_to edit_donation_path
+			render json: { error: 'failed to create donation' }, status: :not_acceptable
 		end
 	end
 
 	private
 
-	def donations_params
-		params.requier(:donations).permit(:food_name,
+	def donation_params
+		params.require(:donation).permit(:food_name,
 			:measurement,
 			:per_person,
 			:total_servings,
 			:start_time,
 			:duration_minutes,
 			:image_url,
-			:canceled
+			:canceled,
+			:donor_id,
+			:canceled,
+			:pickup_location,
+			:id,
+			:donation_id,
+		)
 	end
 end
