@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigation } from 'react-navigation-hooks';
-import { View, Text, TouchableOpacity, Image, AsyncStorage } from 'react-native';
+import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
+import { View, Text, TouchableOpacity, Image, AsyncStorage, Alert } from 'react-native';
+import { Switch } from 'react-native-paper';
 import { Header, SpacerInline, FormTextInput, LinkButton } from '../../../elements';
 import InputLabel from '../../../elements/FormTextInput/InputLabel';
 import * as colors from '../../../util/colors';
 import createDonation from '../../../util/createDonation';
-import { Donation } from './DonationScreen.type';
+import updateDonation from '../../../util/updateDonation';
 import styles from './DonationScreen.styles';
 
 /* eslint-disable camelcase */
 
-export default ({ donation }: Donation) => {
+export default () => {
 	const { navigate } = useNavigation();
-	
+	const donation = useNavigationParam('donation');
+	const edit = useNavigationParam('edit');
+	const id = useNavigationParam('id');
+
 	const {
 		claims = '',
 		created_at = new Date,
@@ -24,7 +28,7 @@ export default ({ donation }: Donation) => {
 		pickup_location = '',
 		total_servings = '',
 	} = donation || {};
-	
+
 	const [ donor, setDonor ] = useState({} as any);
 	const [ jwt, setJwt ] = useState({} as any);
 	const [ name, setName ] = useState(food_name);
@@ -34,13 +38,30 @@ export default ({ donation }: Donation) => {
 	const [ perPerson, setPerPerson ] = useState(per_person);
 	const [ pickupLocation, setPickupLocation ] = useState(pickup_location);
 	const [ loaded, setLoaded ] = useState(false);
+	const [ cancel, setCancel ] = useState(false);
+	const [ stop, setStop ] = useState(false);
 
 	const icon = require('../../../../assets/images/banana-icon.png');
 
-	const submitDonation = () => {
-		createDonation({
-			id: donor.id, jwt, name, sixtyMinuteLimit, totalServings, servingName, perPerson, pickupLocation,
-		})
+	const submitDonation = async () => {
+		const statusCode = id 
+			? (
+				await updateDonation({
+					id, donorId: donor.id, jwt, name, sixtyMinuteLimit, totalServings, servingName, perPerson, pickupLocation,
+			}))
+			: (
+				await createDonation({
+					donorId: donor.id, jwt, name, sixtyMinuteLimit, totalServings, servingName, perPerson, pickupLocation,
+			}))
+		switch (statusCode) {
+			case 201: Alert.alert('Donation created!'); navigate('DashboardScreen'); return;
+			case 202: Alert.alert('Donation updated!'); navigate('DashboardScreen'); return;
+			case (400 || 406): Alert.alert('Bad data - sorry, please try again!'); return;
+			case (401 || 403): Alert.alert('Authentication error - please log in again.'); return;
+			case 404: Alert.alert('Network error - sorry, please try again!'); return;
+			case 500: Alert.alert('Server problem - sorry, please try again!'); return;
+			default: Alert.alert('Sorry, something went wrong. Please try again.'); return;
+		}
 	};
 
 	const getDonorAndJwt = async () => {
@@ -56,6 +77,13 @@ export default ({ donation }: Donation) => {
 		getDonorAndJwt();
 	}, [loaded]);
 
+	// Stop and cancel are exclusive, so only one can be true at a time.
+	const toggleCancel = () => {
+		setCancel(!cancel); setStop(false);
+	};
+	const toggleStop = () => {
+		setStop(!stop); setCancel(false);
+	};
 
 	return (
 		<View style={styles.outerContainer}>
@@ -76,27 +104,21 @@ export default ({ donation }: Donation) => {
 				</View>
 				
 				<SpacerInline height={40} />
-				<View style={{  }}>
+				<View>
 					<InputLabel text="Time limit" />
-					<View style={{ flexDirection: 'row'}}>
+					<View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
 						<TouchableOpacity
 							onPress={() => setSixtyMinuteLimit(false)}
-							style={{ ...styles.timeLimitButton, borderColor:
-								!sixtyMinuteLimit 
-									? 'white'
-									: colors.BANANA_YELLOW
+							style={{ ...styles.timeLimitButton,
+								borderColor: !sixtyMinuteLimit ? 'white' : colors.BANANA_YELLOW
 						}}>
 							<Text style={styles.buttonText}>30 MIN</Text>
 						</TouchableOpacity>
 
-						<SpacerInline width="5%" />
-
 						<TouchableOpacity
 							onPress={() => setSixtyMinuteLimit(true)}
-							style={{ ...styles.timeLimitButton, borderColor:
-								sixtyMinuteLimit
-									? 'white'
-									: colors.BANANA_YELLOW
+							style={{ ...styles.timeLimitButton,
+								borderColor: sixtyMinuteLimit? 'white' : colors.BANANA_YELLOW
 						}}>
 							<Text style={styles.buttonText}>60 MIN</Text>
 						</TouchableOpacity>
@@ -118,7 +140,7 @@ export default ({ donation }: Donation) => {
 
 					<FormTextInput 
 						text="# per person"
-						value={perPerson}
+						value={perPerson && perPerson.toString()}
 						setValue={setPerPerson}
 						inline={true}
 						width="20%"
@@ -127,7 +149,7 @@ export default ({ donation }: Donation) => {
 
 					<FormTextInput 
 						text="Total # of servings"
-						value={totalServings}
+						value={totalServings && totalServings.toString()}
 						setValue={setTotalServings}
 						inline={true}
 						width="20%"
@@ -143,14 +165,43 @@ export default ({ donation }: Donation) => {
 						upperCase={false}
 						/>
 				</View>
-
-
 			</View>
+
+			{ edit && (<>
+				<View style={{flexDirection: 'column'}}>
+					<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+						<InputLabel text="Cancel donation?"/>
+						<Switch value={cancel} onValueChange={toggleCancel} color="blue" />
+					</View>
+					<Text style={styles.infoText}>Any outstanding claims will also be canceled.</Text>
+				</View>
+
+				<View>
+					<View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'  }}>
+						<InputLabel text="Stop donation?"/>
+						<Switch value={stop} onValueChange={toggleStop} color="blue" />
+					</View>
+					<Text style={styles.infoText}>Existing claims will still be fulfilled, but the donation will become inactive.</Text>
+				</View>
+			</>)}
+
 			<View style={styles.createContainer}>
-				<LinkButton
-					text="Create"
-					onPress={submitDonation}
-				/>
+				{
+					edit
+						? (
+							<LinkButton
+								text="Save Changes"
+								onPress={submitDonation}
+							/>
+						)
+						: (
+							<LinkButton
+								text="Create"
+								onPress={submitDonation}
+							/>
+						)
+				}
+
 				<SpacerInline height={40} />
 			</View>
 		</View>

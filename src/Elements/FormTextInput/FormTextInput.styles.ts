@@ -5,7 +5,6 @@ export default StyleSheet.create({
 	container: {
 	},
 	inlineContainer: {
-		overflow: 'hidden',
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'space-between',

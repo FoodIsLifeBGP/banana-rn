@@ -14,7 +14,7 @@ export default StyleSheet.create({
 		width: iconSize,
 		borderRadius: iconSize / 2,
 		backgroundColor: 'blue',
-		marginRight: 10,
+		marginHorizontal: 10,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},

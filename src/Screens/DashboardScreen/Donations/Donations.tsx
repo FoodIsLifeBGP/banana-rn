@@ -36,5 +36,11 @@ export default ({ jwt, id }: Donations) => {
 				<SpacerInline height={200} />
 			</ScrollView>
 		)
-		: <Text>No donations to display</Text>;
+		: (
+			<View style={{ height: '100%', justifyContent: 'center', alignItems: 'center', backgroundColor: 'green' }}>
+				<View>
+					<Text>No donations to display</Text>
+				</View>
+			</View>	
+		);
 };
