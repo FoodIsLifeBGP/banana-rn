@@ -74,38 +74,17 @@ class DonorsController < ApplicationController
 
 	def donor_params
 		params.require(:donor).permit(
-			:organization_name,
-			:email,
-			:password,
+			:id,
+			:account_status,
 			:address_street,
 			:address_city,
 			:address_state,
 			:address_zip,
 			:business_license,
-			:account_status,
-			:pickup_location,
-			:has_applied,
-			:is_approved,
-			:terms_of_service,
-			claims_attributes: [
-				:id,
-				:donation_id,
-				:client_id,
-				:qr_code,
-				:completed,
-				:canceled
-			],
-			donations_attributes: [
-				:canceled,
-				:claims,
-				:donor_id,
-				:food_name,
-				:image_url,
-				:measurement,
-				:per_person,
-				:pickup_location,
-				:total_servings
-			],
+			:email,
+			:organization_name,
+			:password,
+			:pickup_location
 		)
 	end
 end

@@ -2,6 +2,7 @@ class DonationSerializer < ActiveModel::Serializer
   attributes :id,
     :canceled,
     :created_at,
+    :updated_at,
     :donor_id,
     :duration_minutes,
     :food_name,

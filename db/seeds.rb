@@ -6,8 +6,8 @@ Donor.destroy_all
 puts "Seeding Donors..."
 donor1 = Donor.create!(
 	organization_name: "Example",
-	email: "donor@example.com",
-	password: "password",
+	email: "donor@donor.com",
+	password: "donor",
 	address_street: "101 Main St",
 	address_city: "Seattle",
 	address_state: "WA",
@@ -47,7 +47,6 @@ donation1 = Donation.create!(
 	measurement: "bunch",
 	per_person: 1,
 	total_servings: 20,
-	start_time: Time.now,
 	duration_minutes: 60,
 	image_url: "",
 	donor_id: donor1.id,

@@ -31,15 +31,13 @@ class DonationsController < ApplicationController
 	end
 
 	def update
-		id = params[:donation_id].to_i
-		puts "-"*50, id
-		@existing_donation = Donation.find(id)
-		puts @existing_donation
-		@donation = Donation.new(donation_params)
-		if @donation.valid?
-			@existing_donation.update(donation_params)
-			render json: { donation: DonationSerializer.new(@donation) }, status: :updated
+		id = params[:id].to_i
+		@donation = Donation.find(id)
+		if Donation.new(donation_params).valid?
+			@donation.update(donation_params)
+			render json: { donation: DonationSerializer.new(@donation) }, status: :accepted
 		else
+			puts "invalid"
 			render json: { error: 'failed to create donation' }, status: :not_acceptable
 		end
 	end
@@ -47,19 +45,18 @@ class DonationsController < ApplicationController
 	private
 
 	def donation_params
-		params.require(:donation).permit(:food_name,
-			:measurement,
-			:per_person,
-			:total_servings,
-			:start_time,
-			:duration_minutes,
-			:image_url,
+		params.require(:donation).permit(
+			:id,
 			:canceled,
 			:donor_id,
-			:canceled,
+			:duration_minutes,
+			:food_name,
+			:image_url,
+			:measurement,
+			:per_person,
 			:pickup_location,
-			:id,
-			:donation_id,
+			:start_time,
+			:total_servings
 		)
 	end
 end

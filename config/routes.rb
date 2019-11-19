@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   post 'donor_auth', to: 'donor_auth#create'
   get 'donors/:id/donations', to: 'donors#show'
   post 'donors/create', to: 'donors#create'
-  post 'donors/:id/:status', to: 'donors#account_status'
+  get 'donors/:id/:status', to: 'donors#account_status'
   
   post 'donations/create', to: 'donations#create'
   post 'donations/:id/update', to: 'donations#update'
