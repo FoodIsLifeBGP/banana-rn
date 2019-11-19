@@ -12,7 +12,7 @@ const DashboardScreen = ({ jwt, id }) => {
 		<View style={styles.outerContainer}>
 			<View>
 				<Header showBackButton={false} />
-				<Title text="Donations" />
+				<Title text="My Donations." />
 				<SpacerInline height={20} />
 			</View>
 

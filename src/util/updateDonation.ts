@@ -5,17 +5,16 @@ interface DonationProps {
 	donorId: number;
 	jwt: string;
 	name: string;
-	perPerson: string | number;
+	perPerson: number;
 	servingName: string;
 	sixtyMinuteLimit: boolean;
 	pickupLocation: string;
-	totalServings: string | number;
+	totalServings: number;
 	}
 
 export default async ({
 	id, donorId, jwt, name, sixtyMinuteLimit, totalServings, servingName, perPerson, pickupLocation,
 }: DonationProps) => {
-	console.log({id, donorId, jwt})
 	const response = await railsAxiosAuth(jwt).post(`/donations/${id}/update`, JSON.stringify({
 		donation: {
 			donor_id: donorId,

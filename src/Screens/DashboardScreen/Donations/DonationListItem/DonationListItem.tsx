@@ -3,7 +3,6 @@ import { useNavigation } from 'react-navigation-hooks';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { Donation } from './DonationListItem.type';
 import styles from './DonationListItem.styles';
-import * as colors from '../../../../util/colors';
 
 /* eslint-disable camelcase */
 
@@ -25,9 +24,9 @@ export default ({ donation }: Donation) => {
 	
 	const startTime = new Date(created_at);
 	const now = new Date;
-	const minutesElapsedFromDonationStart = Math.round((now.getTime() - startTime.getTime()) / 1000 / 60);
-	const timeLeft = minutesElapsedFromDonationStart < duration_minutes
-		? minutesElapsedFromDonationStart
+	const minutesElapsed = Math.round((startTime.getTime() - now.getTime()) / 1000 / 60);
+	const timeLeft = minutesElapsed < duration_minutes
+		? duration_minutes - minutesElapsed
 		: 0;
 
 	return (
@@ -46,7 +45,7 @@ export default ({ donation }: Donation) => {
 					</View>
 					<Text style={styles.infoText}>{(claims && claims.length) || 0}/{total_servings} servings claimed</Text>
 					<Text style={styles.infoText}>{timeLeft} min. remaining</Text>
-					<Text style={styles.infoText}>Pickup: {pickup_location}</Text>
+					<Text style={styles.infoText} numberOfLines={1}>Pickup: {pickup_location}</Text>
 				</View>
 			</View>
 		</TouchableOpacity>

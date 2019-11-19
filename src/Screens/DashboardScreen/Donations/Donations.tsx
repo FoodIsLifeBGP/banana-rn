@@ -14,12 +14,14 @@ export default ({ jwt, id }: Donations) => {
 	const [ donations, setDonations ] = useState();
 
 	const loadDonations = async () => {
-		await setDonations(await getDonations({ jwt, id }));
+		const donationsJson = await getDonations({ jwt, id })
+		const sortedDonations = donationsJson && donationsJson.sort((a, b) => a.created_at < b.created_at);
+		await setDonations(sortedDonations);
 	};
 
 	useEffect(() => {
 		loadDonations();
-	}, []);
+	}, [donations]);
 
 	return Array.isArray(donations)
 		? (
@@ -37,7 +39,7 @@ export default ({ jwt, id }: Donations) => {
 			</ScrollView>
 		)
 		: (
-			<View style={{ height: '100%', justifyContent: 'center', alignItems: 'center', backgroundColor: 'green' }}>
+			<View style={{ height: '100%', justifyContent: 'center', alignItems: 'center'}}>
 				<View>
 					<Text>No donations to display</Text>
 				</View>

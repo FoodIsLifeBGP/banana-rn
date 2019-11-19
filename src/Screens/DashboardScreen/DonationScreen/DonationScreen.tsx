@@ -54,8 +54,8 @@ export default () => {
 					donorId: donor.id, jwt, name, sixtyMinuteLimit, totalServings, servingName, perPerson, pickupLocation,
 			}))
 		switch (statusCode) {
-			case 201: Alert.alert('Donation created!'); navigate('DashboardScreen'); return;
-			case 202: Alert.alert('Donation updated!'); navigate('DashboardScreen'); return;
+			case 201: Alert.alert('Donation created!'); navigate('LoginSuccessScreen'); return;
+			case 202: Alert.alert('Donation updated!'); navigate('LoginSuccessScreen'); return;
 			case (400 || 406): Alert.alert('Bad data - sorry, please try again!'); return;
 			case (401 || 403): Alert.alert('Authentication error - please log in again.'); return;
 			case 404: Alert.alert('Network error - sorry, please try again!'); return;
@@ -171,7 +171,7 @@ export default () => {
 				<View style={{flexDirection: 'column'}}>
 					<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
 						<InputLabel text="Cancel donation?"/>
-						<Switch value={cancel} onValueChange={toggleCancel} color="blue" />
+						<Switch value={cancel} onValueChange={toggleCancel} color={colors.NAVY_BLUE} />
 					</View>
 					<Text style={styles.infoText}>Any outstanding claims will also be canceled.</Text>
 				</View>
@@ -179,7 +179,7 @@ export default () => {
 				<View>
 					<View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'  }}>
 						<InputLabel text="Stop donation?"/>
-						<Switch value={stop} onValueChange={toggleStop} color="blue" />
+						<Switch value={stop} onValueChange={toggleStop} color={colors.NAVY_BLUE} />
 					</View>
 					<Text style={styles.infoText}>Existing claims will still be fulfilled, but the donation will become inactive.</Text>
 				</View>

@@ -25,7 +25,7 @@ const MainStack = createStackNavigator({
 		header: null,
 		gesturesEnabled: false,
 	},
-	initialRouteName: 'LoginSuccessScreen',
+	initialRouteName: 'LoginScreen',
 });
 
 const App = createAppContainer(MainStack);

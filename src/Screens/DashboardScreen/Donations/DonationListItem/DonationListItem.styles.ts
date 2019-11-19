@@ -17,6 +17,8 @@ export default StyleSheet.create({
 		marginHorizontal: 10,
 		justifyContent: 'center',
 		alignItems: 'center',
+		borderColor: 'white',
+		borderWidth: 1,
 	},
 	icon: {
 		height: (iconSize * 0.64),
@@ -24,6 +26,7 @@ export default StyleSheet.create({
 	},
 	infoContainer: {
 		flexDirection: 'column',
+		justifyContent: 'center',
 	},
 	infoText: {
 		fontFamily: 'open-sans-regular',

@@ -24,7 +24,7 @@ export default StyleSheet.create({
 		height: iconSize,
 		width: iconSize,
 		borderRadius: iconSize / 2,
-		backgroundColor: 'blue',
+		backgroundColor: colors.NAVY_BLUE,
 		marginRight: 10,
 		justifyContent: 'center',
 		alignItems: 'center',
