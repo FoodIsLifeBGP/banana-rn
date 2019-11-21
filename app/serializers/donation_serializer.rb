@@ -1,8 +1,10 @@
 class DonationSerializer < ActiveModel::Serializer
   attributes :id,
     :canceled,
-    :claims,
+    :created_at,
+    :updated_at,
     :donor_id,
+    :duration_minutes,
     :food_name,
     :image_url,
     :measurement,
@@ -10,7 +12,4 @@ class DonationSerializer < ActiveModel::Serializer
     :pickup_location,
     :total_servings
 
-  def claims
-    ActiveModel::SerializableResource.new(object.claims, each_serializer: ClaimSerializer)
-  end
 end
