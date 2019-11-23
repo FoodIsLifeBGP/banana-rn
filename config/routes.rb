@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   post 'donations/create', to: 'donations#create'
   post 'donations/:id/update', to: 'donations#update'
 
+  get 'clients/:id/donations', to: 'clients#get_donations'
+
   resources :donors, except: [:delete]
   resources :donations, except: [:delete]
   resources :claims, except: [:delete]

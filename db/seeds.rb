@@ -8,7 +8,7 @@ donor1 = Donor.create!(
 	organization_name: "Example",
 	email: "donor@donor.com",
 	password: "donor",
-	address_street: "101 Main St",
+	address_street: "101 S Main St",
 	address_city: "Seattle",
 	address_state: "WA",
 	address_zip: 98101,
@@ -20,7 +20,7 @@ donor2 = Donor.create!(
 	organization_name: "Unapproved",
 	email: "approve@me.com",
 	password: "approve",
-	address_street: "202 Main St",
+	address_street: "202 S Main St",
 	address_city: "Seattle",
 	address_state: "WA",
 	address_zip: 98101,
@@ -100,41 +100,6 @@ donation5 = Donation.create!(
 
 puts "Seeding Clients..."
 client1 = Client.create!(
-	email: "client@example.com",
-	password: "password",
-	first_name: "Example",
-	last_name: "Client",
-)
-
-puts "Seeding Claims..."
-claim1 = Claim.create!(
-	client_id: client1.id,
-	donation_id: donation1.id,
-	qr_code: "qrcode",
-	completed: false,
-	time_claimed: Time.now,
-	canceled: false,
-)
-claim2 = Claim.create!(
-	client_id: client1.id,
-	donation_id: donation2.id,
-	qr_code: "qrcode",
-	completed: false,
-	time_claimed: nil,
-	canceled: true,
-)
-claim3 = Claim.create!(
-	client_id: client1.id,
-	donation_id: donation2.id,
-	qr_code: "qrcode",
-	completed: false,
-	time_claimed: nil,
-	canceled: true,
-)
-
-puts "Seeding Clients..."
-
-client1 = Client.create!(
 	email: "c1@me.com",
 	password: "password1",
 	address_street: "1411 4th Ave",
@@ -173,5 +138,30 @@ client3 = Client.create!(
 	gender: "Male"
 )
 
+puts "Seeding Claims..."
+claim1 = Claim.create!(
+	client_id: client1.id,
+	donation_id: donation1.id,
+	qr_code: "qrcode",
+	completed: false,
+	time_claimed: Time.now,
+	canceled: false,
+)
+claim2 = Claim.create!(
+	client_id: client1.id,
+	donation_id: donation2.id,
+	qr_code: "qrcode",
+	completed: false,
+	time_claimed: nil,
+	canceled: true,
+)
+claim3 = Claim.create!(
+	client_id: client1.id,
+	donation_id: donation2.id,
+	qr_code: "qrcode",
+	completed: false,
+	time_claimed: nil,
+	canceled: true,
+)
 
 puts "Finished with no errors"

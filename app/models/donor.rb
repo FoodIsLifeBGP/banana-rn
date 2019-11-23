@@ -13,4 +13,10 @@ class Donor < ApplicationRecord
 	validates :address_city, presence: true
 	validates :address_state, presence: true
 	validates :address_zip, presence: true
+
+	geocoded_by :address
+	after_validation :geocode
+	def address
+		[address_street, address_city, address_state, "US"].compact.join(', ')
+	end
 end

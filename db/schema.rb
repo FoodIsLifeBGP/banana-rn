@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_23_195521) do
+ActiveRecord::Schema.define(version: 2019_11_23_221334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -71,6 +71,8 @@ ActiveRecord::Schema.define(version: 2019_11_23_195521) do
     t.string "business_license"
     t.string "account_status"
     t.string "pickup_location"
+    t.decimal "latitude", precision: 10, scale: 6
+    t.decimal "longitude", precision: 10, scale: 6
   end
 
 end
