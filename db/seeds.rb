@@ -132,4 +132,46 @@ claim3 = Claim.create!(
 	canceled: true,
 )
 
+puts "Seeding Clients..."
+
+client1 = Client.create!(
+	email: "c1@me.com",
+	password: "password1",
+	address_street: "1411 4th Ave",
+	address_city: "Seattle",
+	address_state: "Washington",
+	address_zip: "98101",
+	account_status: "Active",
+	transportation_method: "car",
+	ethnicity: "Black or African American",
+	gender: "Prefer Not to Answer",
+)
+
+client2 = Client.create!(
+	email: "c2@me.com",
+	password: "password2",
+	address_street: "2901 3rd Ave",
+	address_city: "Seattle",
+	address_state: "Washington",
+	address_zip: "98121"
+	account_status: "Active"
+	transportation_method: "walk",
+	ethnicity: "White",
+	gender: "Female"
+)
+
+client3 = Client.create!(
+	email: "c3@me.com",
+	password: "password3",
+	address_street: "111 S Jackson St",
+	address_city: "Seattle",
+	address_state: "Washington",
+	address_zip: "98104"
+	account_status: "Not Active"
+	transportation_method: "bike",
+	ethnicity: "Hispanic or Latino",
+	gender: "Male"
+)
+
+
 puts "Finished with no errors"
