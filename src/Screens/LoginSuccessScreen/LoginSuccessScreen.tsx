@@ -12,9 +12,9 @@ export default () => {
 	const [ loaded, setLoaded ] = useState(false);
 
 	const getDonorAndJwt = async () => {
-		await setDonor(JSON.parse(await AsyncStorage.getItem('donor')));
+		await setDonor(JSON.parse(await AsyncStorage.getItem('donor') || ''));
 		await setJwt(await AsyncStorage.getItem('jwt'));
-		setLoaded(donor && jwt);
+		setLoaded(![donor, jwt].includes(''));
 	};
 
 	useEffect(() => {

@@ -3,7 +3,12 @@ import * as colors from '../../util/colors';
 
 export default StyleSheet.create({
 	container: {
-		marginRight: '5%',
+	},
+	inlineContainer: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'space-between',
+		marginBottom: 10,
 	},
 	text: {
 		fontFamily: 'open-sans-regular',
@@ -14,6 +19,7 @@ export default StyleSheet.create({
 		height: 28,
 		marginBottom: 14,
 		backgroundColor: 'white',
-		paddingLeft: 10,
+		paddingHorizontal: 8,
+		width: '100%',
 	},
 });

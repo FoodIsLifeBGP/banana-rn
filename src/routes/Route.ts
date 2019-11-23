@@ -8,6 +8,7 @@ import ApplicationApprovedScreen from '../screens/ApplicationApprovedScreen';
 import ApplicationPendingScreen from '../screens/ApplicationPendingScreen';
 import ContactScreen from '../screens/ContactScreen';
 import LoginSuccessScreen from '../screens/LoginSuccessScreen';
+import DonationScreen from '../screens/DashboardScreen/DonationScreen';
 
 const MainStack = createStackNavigator({
 	LoginScreen,
@@ -18,12 +19,13 @@ const MainStack = createStackNavigator({
 	ApplicationPendingScreen,
 	ContactScreen,
 	LoginSuccessScreen,
+	DonationScreen,
 }, {
 	defaultNavigationOptions: {
 		header: null,
 		gesturesEnabled: false,
 	},
-	initialRouteName: 'LoginSuccessScreen',
+	initialRouteName: 'LoginScreen',
 });
 
 const App = createAppContainer(MainStack);

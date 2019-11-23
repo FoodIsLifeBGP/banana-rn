@@ -9,18 +9,31 @@ export default StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 	},
-	icon: {
+	iconContainer: {
 		height: iconSize,
 		width: iconSize,
 		borderRadius: iconSize / 2,
 		backgroundColor: 'blue',
-		marginRight: 10,
+		marginHorizontal: 10,
+		justifyContent: 'center',
+		alignItems: 'center',
+		borderColor: 'white',
+		borderWidth: 1,
+	},
+	icon: {
+		height: (iconSize * 0.64),
+		width: (iconSize * 0.8),
 	},
 	infoContainer: {
 		flexDirection: 'column',
+		justifyContent: 'center',
 	},
 	infoText: {
 		fontFamily: 'open-sans-regular',
+		color: colors.NAVY_BLUE,
+	},
+	infoTextBold: {
+		fontFamily: 'open-sans-bold',
 		color: colors.NAVY_BLUE,
 	},
 });
