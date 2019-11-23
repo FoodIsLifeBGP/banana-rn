@@ -153,8 +153,8 @@ client2 = Client.create!(
 	address_street: "2901 3rd Ave",
 	address_city: "Seattle",
 	address_state: "Washington",
-	address_zip: "98121"
-	account_status: "pending"
+	address_zip: "98121",
+	account_status: "pending",
 	transportation_method: "walk",
 	ethnicity: "White",
 	gender: "Female"
@@ -166,8 +166,8 @@ client3 = Client.create!(
 	address_street: "111 S Jackson St",
 	address_city: "Seattle",
 	address_state: "Washington",
-	address_zip: "98104"
-	account_status: "susppended"
+	address_zip: "98104",
+	account_status: "suspended",
 	transportation_method: "bike",
 	ethnicity: "Hispanic or Latino",
 	gender: "Male"
