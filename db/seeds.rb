@@ -141,7 +141,7 @@ client1 = Client.create!(
 	address_city: "Seattle",
 	address_state: "Washington",
 	address_zip: "98101",
-	account_status: "Active",
+	account_status: "active",
 	transportation_method: "car",
 	ethnicity: "Black or African American",
 	gender: "Prefer Not to Answer",
@@ -154,7 +154,7 @@ client2 = Client.create!(
 	address_city: "Seattle",
 	address_state: "Washington",
 	address_zip: "98121"
-	account_status: "Active"
+	account_status: "pending"
 	transportation_method: "walk",
 	ethnicity: "White",
 	gender: "Female"
@@ -167,7 +167,7 @@ client3 = Client.create!(
 	address_city: "Seattle",
 	address_state: "Washington",
 	address_zip: "98104"
-	account_status: "Not Active"
+	account_status: "susppended"
 	transportation_method: "bike",
 	ethnicity: "Hispanic or Latino",
 	gender: "Male"
