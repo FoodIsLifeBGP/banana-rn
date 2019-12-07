@@ -8,7 +8,7 @@ class DonationsController < ApplicationController
 		@active = Donation.all.select do |d|
 			# Check if each donation is still active based on the time it was created and its duration.
 			# Time.now comes back in seconds, so we divide by 60 to compare in minutes.
-			(Time.now - d.start_time) / 60 < d.duration_minutes
+			(Time.now - d.created_at) / 60 < d.duration_minutes
 		end
 		render json: @active
 	end

@@ -10,10 +10,10 @@ class ClaimsController < ApplicationController
 	end
 
 	def create
-		@claim = CLaim.create(claim_params)
+		@claim = Claim.create(claim_params)
 		if @claim.valid?
 				@token = encode_token(claim_id: @claim.id)
-				render json: { claim: CLaimSerializer.new(@claim), jwt: @token }, status: :created
+				render json: { claim: ClaimSerializer.new(@claim), jwt: @token }, status: :created
 		else
 			render json: { error: 'failed to create claim' }, status: :not_acceptable
 		end

@@ -1,4 +1,6 @@
 class ClientsController < ApplicationController
+  skip_before_action :authorized, only: [:create]
+
   def index
     @clients = Client.all
   end
@@ -29,6 +31,34 @@ class ClientsController < ApplicationController
       flash[:errors] = @client.errors.full_messages
       redirect_to edit_client_path
     end
+  end
+
+  def get_donations
+    # hardcoded for now, will be passed in from front end later
+    client_lat = 47.618249
+    client_long = -122.3520729
+    mode = Client.find(params[:id].to_i).transportation_method
+
+    case mode
+    when 'walk'
+      distance = 1.0
+    when 'bike'
+      distance = 5.0
+    when 'car'
+      distance = 20.0
+    end
+
+    @available = Donation.all.select do |d|
+      # Check if each donation is still active based on the time it was created and its duration.
+      # Time.now comes back in seconds, so we divide by 60 to compare in minutes.
+      (Time.now - d.created_at) / 60 < d.duration_minutes
+    end
+
+    @reachable = @available.select do |donation|
+      # Check distance from client to donor of donation
+      Donor.find(donation.donor_id).distance_from([client_lat,client_long]) <= distance
+    end
+    render json: @reachable, include: 'claims', status: :ok
   end
 
   private
