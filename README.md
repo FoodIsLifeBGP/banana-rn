@@ -7,4 +7,4 @@ To run the Rails server:
 3. Install Rails: `gem install rails`
 4. Install Postgres: `brew install postgresql`
 5. From the project root, install the dependencies: `bundle install`
-6. Start the server: `rails s`
+6. Start the server: `rails s -b 0.0.0.0 -p 3000`
