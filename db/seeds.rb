@@ -1,3 +1,4 @@
+Admin.destroy_all
 Claim.destroy_all
 Donation.destroy_all
 Client.destroy_all
@@ -162,6 +163,12 @@ claim3 = Claim.create!(
 	completed: false,
 	time_claimed: nil,
 	canceled: true,
+)
+
+puts "Seeding Admins..."
+Admin.create!(
+	email: 'admin@admin.com',
+	password: 'admin',
 )
 
 puts "Finished with no errors"
