@@ -16,6 +16,13 @@ ActiveRecord::Schema.define(version: 2019_12_13_210446) do
   enable_extension "hstore"
   enable_extension "plpgsql"
 
+  create_table "admins", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "claims", force: :cascade do |t|
     t.integer "client_id"
     t.integer "donation_id"
@@ -78,8 +85,15 @@ ActiveRecord::Schema.define(version: 2019_12_13_210446) do
     t.string "business_license"
     t.string "account_status"
     t.string "pickup_location"
-    t.decimal "latitude", precision: 10, scale: 6
-    t.decimal "longitude", precision: 10, scale: 6
+    t.decimal "latitude"
+    t.decimal "longitude"
+  end
+
+  create_table "tests", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "blah"
+    t.integer "something"
   end
 
   create_table "rpush_apps", force: :cascade do |t|
