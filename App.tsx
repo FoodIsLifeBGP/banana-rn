@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet } from 'react-native';
+import { Provider } from 'react-native-paper';
 import * as Font from 'expo-font';
 import NavigationService from './src/util/NavigationService';
 import * as colors from './src/util/colors';
@@ -23,12 +24,14 @@ export default function App() {
   }, [])
 
   return fontsLoaded && (
-    <View style={styles.container}>
-      <Route ref={navigatorRef => {
-        NavigationService.setTopLevelNavigator(navigatorRef);
-      }}
-      />
-    </View>
+    <Provider>
+      <View style={styles.container}>
+        <Route ref={navigatorRef => {
+          NavigationService.setTopLevelNavigator(navigatorRef);
+        }}
+        />
+      </View>
+    </Provider>
   );
 };
 
