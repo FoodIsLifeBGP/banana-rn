@@ -9,6 +9,7 @@ import ApplicationPendingScreen from '../screens/ApplicationPendingScreen';
 import ContactScreen from '../screens/ContactScreen';
 import LoginSuccessScreen from '../screens/LoginSuccessScreen';
 import DonationScreen from '../screens/DashboardScreen/DonationScreen';
+import QRCodeScannerScreen from '../screens/QRCodeScannerScreen/QRCodeScannerScreen';
 
 const MainStack = createStackNavigator({
 	LoginScreen,
@@ -20,6 +21,7 @@ const MainStack = createStackNavigator({
 	ContactScreen,
 	LoginSuccessScreen,
 	DonationScreen,
+	QRCodeScannerScreen,
 }, {
 	defaultNavigationOptions: {
 		header: null,
