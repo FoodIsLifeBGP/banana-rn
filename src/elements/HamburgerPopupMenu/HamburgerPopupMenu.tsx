@@ -30,13 +30,13 @@ export default () => {
 						{strings.SCAN_QR_CODE}
 					</Text>
 				} />
-				<Divider />
+				<Divider style={styles.divider} />
 				<Menu.Item onPress={() => {}} style={styles.menuItem} title={
 					<Text style={styles.menuItemText}>
 						{strings.MY_PROFILE}
 					</Text>
 				} />
-				<Divider />
+				<Divider style={styles.divider} />
 				<Menu.Item onPress={() => {}} style={styles.menuItem} title={
 					<Text style={styles.menuItemText}>
 						{strings.LOG_OUT}
