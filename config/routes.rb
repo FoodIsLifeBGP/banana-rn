@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post 'donations/create', to: 'donations#create'
   post 'donations/:id/update', to: 'donations#update'
   
+  post 'client_auth', to: 'client_auth#create'
   get 'clients/:id/donations', to: 'clients#get_donations'
 
   post 'admin_auth', to: 'admin_auth#create'
