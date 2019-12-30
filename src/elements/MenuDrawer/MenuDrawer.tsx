@@ -5,7 +5,7 @@ import { DrawerItems } from 'react-navigation-drawer';
 import styles from './MenuDrawer.styles'
 
 const MenuDrawer = props => (
-  <ScrollView style = {styles.drawer}>
+  <ScrollView>
     <View style={styles.drawerHeader}>
       <View style={styles.avatar}>
         <Avatar.Image size={100} 
@@ -18,8 +18,9 @@ const MenuDrawer = props => (
     <SafeAreaView
       style={styles.container}
     >
-      <DrawerItems {...props} labelStyle={styles.labelText} />
+      <DrawerItems {...props} labelStyle={styles.labelText} itemStyle={styles.menuItem} />
     </SafeAreaView>
+    <View style={styles.drawerBottomBuffer} />
   </ScrollView>
 );
 

@@ -1,3 +1,4 @@
+import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
@@ -14,6 +15,7 @@ import DonationScreen from '../screens/DashboardScreen/DonationScreen';
 import QRCodeScannerScreen from '../screens/QRCodeScannerScreen/QRCodeScannerScreen';
 
 import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
+import SvgImage from '../elements/SvgImage/SvgImage';
 
 // Logged-In Screens for Drawer Navigator
 export const MainStack = createStackNavigator(
@@ -34,17 +36,30 @@ export const Drawer = createDrawerNavigator(
 	{
 		'Scan QR Code': {
 			screen: QRCodeScannerScreen,
+			navigationOptions: {
+				drawerLabel: "Scan QR Code",
+				drawerIcon: <SvgImage source={require('../../assets/icons/ICON_QR_CODE(WHITE).svg')}/>
+			}
 		},
 		'My Donations': {
-			screen: MainStack
+			screen: MainStack,
+			navigationOptions: {
+				drawerLabel: "My Donations",
+				drawerIcon: <SvgImage source={require('../../assets/icons/ICON_DONATION(WHITE).svg')}/>
+			}
 		},
 		'Log Out': {
-			screen: LoginScreen // not a real log out yet
+			screen: LoginScreen, // not a real log out yet
+			navigationOptions: {
+				drawerLabel: "Log Out",
+				drawerIcon: <SvgImage source={require('../../assets/icons/ICON_LOGOUT(WHITE).svg')}/>
+			}
 		},
 	},
 	{
 		contentComponent: MenuDrawer,
 		drawerPosition: 'right',
+		drawerBackgroundColor: "transparent ",
 	}
 );
 
