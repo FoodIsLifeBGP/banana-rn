@@ -44,4 +44,4 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: colors.BANANA_YELLOW,
 	},
-});
+})
