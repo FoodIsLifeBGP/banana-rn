@@ -2,7 +2,7 @@ import React from 'react';
 import { TextInput, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Title, SpacerInline, Header } from '@elements';
-import Terms from '../../../assets/documents/SampleToS';
+import Terms from '@assets/documents/SampleToS';
 import styles from './TermsScreen.styles';
 
 export default () => (

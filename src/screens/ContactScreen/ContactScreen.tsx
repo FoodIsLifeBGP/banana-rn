@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text } from 'react-native';
+import { SpacerInline } from '@elements';
 import InfoScreen from '../InfoScreen';
-import { SpacerInline } from '../../elements';
 import styles from './ContactScreen.styles';
 
 export default () => (

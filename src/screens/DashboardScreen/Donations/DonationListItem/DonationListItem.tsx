@@ -25,7 +25,7 @@ export default ({ donation }: Donation) => {
 		total_servings,
 		id,
 	} = donation;
-	const icon = require('../../../../../assets/images/banana-icon.png');
+	const icon = require('@assets/images/banana-icon.png');
 
 	const startTime = new Date(created_at);
 	const now = new Date();

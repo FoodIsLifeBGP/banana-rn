@@ -2,8 +2,8 @@ import React from 'react';
 import { useNavigation } from 'react-navigation-hooks';
 import { View, Text } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import styles from './BarCodeMask.styles';
 import Icon from '../../elements/Icon';
+import styles from './BarCodeMask.styles';
 
 export default () => {
 	const { navigate } = useNavigation();

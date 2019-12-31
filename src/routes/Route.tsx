@@ -38,21 +38,21 @@ export const Drawer = createDrawerNavigator(
 			screen: QRCodeScannerScreen,
 			navigationOptions: {
 				drawerLabel: 'Scan QR Code',
-				drawerIcon: <SvgImage source={require('../../assets/icons/ICON_QR_CODE(WHITE).svg')} />,
+				drawerIcon: <SvgImage source={require('@assets/icons/ICON_QR_CODE(WHITE).svg')} />,
 			},
 		},
 		'My Donations': {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: 'My Donations',
-				drawerIcon: <SvgImage source={require('../../assets/icons/ICON_DONATION(WHITE).svg')} />,
+				drawerIcon: <SvgImage source={require('@assets/icons/ICON_DONATION(WHITE).svg')} />,
 			},
 		},
 		'Log Out': {
 			screen: LoginScreen, // not a real log out yet
 			navigationOptions: {
 				drawerLabel: 'Log Out',
-				drawerIcon: <SvgImage source={require('../../assets/icons/ICON_LOGOUT(WHITE).svg')} />,
+				drawerIcon: <SvgImage source={require('@assets/icons/ICON_LOGOUT(WHITE).svg')} />,
 			},
 		},
 	},

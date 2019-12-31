@@ -51,7 +51,7 @@ export default () => {
 	const [ cancel, setCancel ] = useState(false);
 	const [ stop, setStop ] = useState(false);
 
-	const icon = require('../../../../assets/images/banana-icon.png');
+	const icon = require('@assets/images/banana-icon.png');
 
 	const submitDonation = async () => {
 		const statusCode = id

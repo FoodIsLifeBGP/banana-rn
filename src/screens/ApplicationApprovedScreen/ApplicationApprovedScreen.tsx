@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text } from 'react-native';
-import setAccountToActive from '../../util/setAccountToActive';
+import setAccountToActive from '@util/setAccountToActive';
 import InfoScreen from '../InfoScreen';
 import styles from './ApplicationPendingScreen.styles';
 

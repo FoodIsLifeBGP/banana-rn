@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
-import platformShadow from '../../util/platformShadow';
-import * as colors from '../../util/colors';
+import platformShadow from '@util/platformShadow';
+import * as colors from '@util/colors';
 
 const addButtonSize = 110;
 

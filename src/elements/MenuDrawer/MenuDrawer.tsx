@@ -16,7 +16,7 @@ const MenuDrawer = props => (
 			<View style={styles.avatar}>
 				<Avatar.Image
 					size={100}
-					source={require('../../../assets/images/banana-icon.png')}
+					source={require('@assets/images/banana-icon.png')}
 				/>
 			</View>
 			<View style={styles.drawerHeaderBuffer}>
