@@ -8,6 +8,7 @@ import {
 import { Avatar } from 'react-native-paper';
 import { DrawerItems } from 'react-navigation-drawer';
 import styles from './MenuDrawer.styles';
+import { SpacerInline } from '../SpacerInline';
 
 const MenuDrawer = props => (
 	<ScrollView>
@@ -30,8 +31,8 @@ const MenuDrawer = props => (
 				labelStyle={styles.labelText}
 				itemStyle={styles.menuItem}
 			/>
+			<SpacerInline height={20} />
 		</SafeAreaView>
-		<View style={styles.drawerBottomBuffer} />
 	</ScrollView>
 );
 

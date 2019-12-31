@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, YellowBox } from 'react-native';
 import { Provider } from 'react-native-paper';
 import * as Font from 'expo-font';
 import NavigationService from './src/util/NavigationService';
 import * as colors from './src/util/colors';
 import Route from './src/routes/Route';
+
+YellowBox.ignoreWarnings([
+	'Warning: componentWillReceiveProps has been renamed',
+]);
 
 export default function App() {
 	const [ fontsLoaded, setFontsLoaded ] = useState(false);

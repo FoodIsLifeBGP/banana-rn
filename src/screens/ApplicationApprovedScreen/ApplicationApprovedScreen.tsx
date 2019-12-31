@@ -4,8 +4,8 @@ import setAccountToActive from '../../util/setAccountToActive';
 import InfoScreen from '../InfoScreen';
 import styles from './ApplicationPendingScreen.styles';
 
-export default ({ id, jwt }: {id: string; jwt: string}) => {
-	setAccountToActive({ id, jwt });
+export default ({ id }: {id: string}) => {
+	setAccountToActive({ id });
 
 	return (
 		<InfoScreen

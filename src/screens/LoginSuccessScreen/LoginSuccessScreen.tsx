@@ -27,7 +27,7 @@ export default () => {
 
 	if (donor?.account_status === 'suspended') { return <AccountSuspendedScreen />; }
 	if (donor?.account_status === 'pending') { return <ApplicationPendingScreen />; }
-	if (donor?.account_status === 'approved') { return <ApplicationApprovedScreen jwt={jwt} id={id} />; }
+	if (donor?.account_status === 'approved') { return <ApplicationApprovedScreen id={id} />; }
 	if (donor?.account_status === 'active') { return <DashboardScreen jwt={jwt} id={id} />; }
 
 	return <InfoScreen title="Login error" nextScreenDestination="LoginScreen" nextScreenTitle="Login" />;
