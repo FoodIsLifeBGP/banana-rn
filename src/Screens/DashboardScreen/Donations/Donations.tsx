@@ -21,7 +21,7 @@ export default ({ jwt, id }: Donations) => {
 
 	useEffect(() => {
 		loadDonations();
-	}, [donations]);
+	}, []);
 
 	return Array.isArray(donations)
 		? (
