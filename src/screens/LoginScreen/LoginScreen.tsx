@@ -1,18 +1,16 @@
-import React, { useState } from "react";
-import { View, Alert, Button } from "react-native";
-import { TextInput } from "react-native-paper";
-import login from "../../util/login";
-import { Title, LinkButton, SpacerInline } from "../../elements";
-import InputLabel from "../../elements/FormTextInput/InputLabel";
-import styles from "./LoginScreen.styles";
-import { useNavigation, useNavigationParam } from "react-navigation-hooks";
+import React, { useState } from 'react';
+import { View, Alert, Button } from 'react-native';
+import { TextInput } from 'react-native-paper';
+import login from '../../util/login';
+import { Title, LinkButton, SpacerInline } from '../../elements';
+import InputLabel from '../../elements/FormTextInput/InputLabel';
+import styles from './LoginScreen.styles';
+import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
 
 export default () => {
   const { navigate } = useNavigation();
   const [email, setEmail] = useState(useNavigationParam("email") || "");
-  const [password, setPassword] = useState(
-    useNavigationParam("password") || ""
-  );
+  const [password, setPassword] = useState(useNavigationParam("password") || "");
   const [hidePwd, setHidePwd] = useState(true);
   const handleLogin = async () => {
     const statusCode = await login({ email, password });
@@ -62,7 +60,6 @@ export default () => {
           />
         </View>
         <View style={{ flex: 2, marginBottom: 15 }}>
-          {/* <Button title="Show" onPress={() => Alert.alert("Button")} /> */}
           <Button
             onPress={() => setHidePwd(!hidePwd)}
             title={hidePwd ? "show" : "hide"}
