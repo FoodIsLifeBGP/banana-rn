@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import * as colors from '../../../util/colors';
+import * as colors from '@util/colors';
 
 export default StyleSheet.create({
 	container: {
@@ -9,5 +9,5 @@ export default StyleSheet.create({
 		fontFamily: 'open-sans-regular',
 		fontSize: 14,
 		color: colors.NAVY_BLUE,
-	}
+	},
 });

@@ -23,12 +23,12 @@ export const MainStack = createStackNavigator(
 		DashboardScreen,
 		LoginSuccessScreen,
 		DonationScreen,
-		QRCodeScannerScreen
+		QRCodeScannerScreen,
 	},
 	{
 		headerMode: 'none',
 		initialRouteName: 'DashboardScreen',
-	}
+	},
 );
 
 // Drawer Navigator
@@ -37,30 +37,30 @@ export const Drawer = createDrawerNavigator(
 		'Scan QR Code': {
 			screen: QRCodeScannerScreen,
 			navigationOptions: {
-				drawerLabel: "Scan QR Code",
-				drawerIcon: <SvgImage source={require('../../assets/icons/ICON_QR_CODE(WHITE).svg')}/>
-			}
+				drawerLabel: 'Scan QR Code',
+				drawerIcon: <SvgImage source={require('@assets/icons/ICON_QR_CODE(WHITE).svg')} />,
+			},
 		},
 		'My Donations': {
 			screen: MainStack,
 			navigationOptions: {
-				drawerLabel: "My Donations",
-				drawerIcon: <SvgImage source={require('../../assets/icons/ICON_DONATION(WHITE).svg')}/>
-			}
+				drawerLabel: 'My Donations',
+				drawerIcon: <SvgImage source={require('@assets/icons/ICON_DONATION(WHITE).svg')} />,
+			},
 		},
 		'Log Out': {
 			screen: LoginScreen, // not a real log out yet
 			navigationOptions: {
-				drawerLabel: "Log Out",
-				drawerIcon: <SvgImage source={require('../../assets/icons/ICON_LOGOUT(WHITE).svg')}/>
-			}
+				drawerLabel: 'Log Out',
+				drawerIcon: <SvgImage source={require('@assets/icons/ICON_LOGOUT(WHITE).svg')} />,
+			},
 		},
 	},
 	{
 		contentComponent: MenuDrawer,
 		drawerPosition: 'right',
-		drawerBackgroundColor: "transparent ",
-	}
+		drawerBackgroundColor: 'transparent ',
+	},
 );
 
 // Full App Navigation - Includes Non-Logged in Screens
@@ -72,7 +72,7 @@ export const FullAppStack = createStackNavigator(
 		ApplicationApprovedScreen,
 		ApplicationPendingScreen,
 		ContactScreen,
-		Drawer
+		Drawer,
 	},
 	{
 		defaultNavigationOptions: {
@@ -81,7 +81,7 @@ export const FullAppStack = createStackNavigator(
 		},
 		headerMode: 'none',
 		initialRouteName: 'LoginScreen',
-	}
+	},
 );
 
 const Route = createAppContainer(FullAppStack);

@@ -1,15 +1,9 @@
-import { StyleSheet, Dimensions } from 'react-native';
-
-const { width: winWidth, height: winHeight } = Dimensions.get('window');
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-    preview: {
-        height: winHeight,
-        width: winWidth,
-        position: 'absolute',
-        left: 0,
-        top: 0,
-        right: 0,
-        bottom: 0,
-    },
+	container: {
+		flex: 1,
+		justifyContent: 'flex-end',
+		backgroundColor: 'white',
+	},
 });

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, View, Text } from 'react-native';
 import { Divider } from 'react-native-paper';
-import getDonations from '../../../util/getDonations';
-import DonationListItem from './DonationListItem';
 import { SpacerInline } from '@elements';
+import getDonations from '@util/getDonations';
+import DonationListItem from './DonationListItem';
 
 interface Donations {
 	jwt: string;
@@ -14,7 +14,7 @@ export default ({ jwt, id }: Donations) => {
 	const [ donations, setDonations ] = useState();
 
 	const loadDonations = async () => {
-		const donationsJson = await getDonations({ jwt, id })
+		const donationsJson = await getDonations({ jwt, id });
 		const sortedDonations = donationsJson && donationsJson.sort((a, b) => a.created_at < b.created_at);
 		await setDonations(sortedDonations);
 	};
@@ -39,10 +39,10 @@ export default ({ jwt, id }: Donations) => {
 			</ScrollView>
 		)
 		: (
-			<View style={{ height: '100%', justifyContent: 'center', alignItems: 'center'}}>
+			<View style={{ height: '100%', justifyContent: 'center', alignItems: 'center' }}>
 				<View>
 					<Text>No donations to display</Text>
 				</View>
-			</View>	
+			</View>
 		);
 };

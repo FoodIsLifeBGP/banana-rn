@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
-import * as colors from '../../../util/colors';
-import platformShadow from '../../../util/platformShadow';
+import * as colors from '@util/colors';
+import platformShadow from '@util/platformShadow';
 
 const iconSize = 90;
 
@@ -8,7 +8,7 @@ export default StyleSheet.create({
 	outerContainer: {
 		flex: 1,
 		justifyContent: 'space-between',
-    backgroundColor: colors.BANANA_YELLOW,
+		backgroundColor: colors.BANANA_YELLOW,
 		paddingHorizontal: '11%',
 	},
 	card: {

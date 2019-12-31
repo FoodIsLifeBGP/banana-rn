@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
-import { View, Text, Alert } from 'react-native';
-import { Checkbox } from 'react-native-paper'
-import register from '../../util/register';
-import * as colors from '../../util/colors';
-import { Title, LinkButton, FormTextInput, SpacerInline, Header } from '../../elements';
-import styles from './RegistrationScreen.styles';
 import { useNavigation } from 'react-navigation-hooks';
+import { View, Text, Alert } from 'react-native';
+import { Checkbox } from 'react-native-paper';
+import register from '@util/register';
+import * as colors from '@util/colors';
+import {
+	Title,
+	LinkButton,
+	FormTextInput,
+	SpacerInline,
+	Header,
+} from '@elements';
+import styles from './RegistrationScreen.styles';
 
 export default () => {
 	const { navigate } = useNavigation();
@@ -19,9 +25,7 @@ export default () => {
 	const [ zip, setZip ] = useState();
 	const [ termsOfService, setTermsOfService ] = useState(false);
 
-	const toggleTermsOfService = () => {
-		setTermsOfService(!termsOfService);
-	}
+	const toggleTermsOfService = () => setTermsOfService(!termsOfService);
 
 	const validateInputs = async () => {
 		if (organizationName === '') { Alert.alert("Please add your organization's name."); return; }
@@ -37,12 +41,12 @@ export default () => {
 			organizationName, email, password, license, street, city, state, zip, termsOfService,
 		});
 		switch (response) {
-			case (201 || 202): Alert.alert('Registration complete! Please log in to continue.'); return navigate('LoginScreen', { email, password });
+			case (201 || 202): Alert.alert('Registration complete! Please log in to continue.'); navigate('LoginScreen', { email, password }); return;
 			case 406: Alert.alert('Error: not accepted'); return;
 			case 500: Alert.alert('Internal server error, please try again later.'); return;
-			default: Alert.alert("Sorry, that didn't work, please try again later."); console.log(response); return;
+			default: Alert.alert("Sorry, that didn't work, please try again later."); console.log(response);
 		}
-	}
+	};
 
 	return (
 		<View style={styles.outerContainer}>
@@ -89,21 +93,21 @@ export default () => {
 						text="City"
 						value={city}
 						setValue={setCity}
-						width='40%'
+						width="40%"
 						autoCapitalize="words"
 					/>
 					<FormTextInput
 						text="State"
 						value={state}
 						setValue={() => {}}
-						width='15%'
+						width="15%"
 						autoCapitalize="words"
-						/>
+					/>
 					<FormTextInput
 						text="Zip"
 						value={zip}
 						setValue={setZip}
-						width='35%'
+						width="35%"
 						autoCapitalize="words"
 					/>
 				</View>

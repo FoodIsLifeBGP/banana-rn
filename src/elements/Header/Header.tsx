@@ -15,7 +15,7 @@ interface HeaderProps {
 }
 
 export default ({
-	backButtonText = "Back",
+	backButtonText = 'Back',
 	backDestination,
 	showBackButton = true,
 	showMenu = true,
@@ -27,7 +27,7 @@ export default ({
 			<View style={styles.backContainer}>
 				{ showBackButton && (
 					<TouchableOpacity
-						onPress={() => backDestination ? navigate(backDestination) : goBack()}
+						onPress={backDestination ? () => navigate(backDestination) : () => goBack()}
 						style={{ flexDirection: 'row', alignItems: 'center' }}
 					>
 						<Icon name="chevron-left" />

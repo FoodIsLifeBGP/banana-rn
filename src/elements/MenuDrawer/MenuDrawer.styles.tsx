@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import * as colors from '../../util/colors';
+import * as colors from '@util/colors';
 
 export default StyleSheet.create({
 	avatar: {
@@ -52,5 +52,5 @@ export default StyleSheet.create({
 		textAlign: 'center',
 		marginTop: 60,
 		fontWeight: '700',
-	}
+	},
 });

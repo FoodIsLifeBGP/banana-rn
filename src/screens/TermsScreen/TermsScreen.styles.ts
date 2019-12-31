@@ -1,10 +1,10 @@
 import { StyleSheet } from 'react-native';
-import * as colors from '../../util/colors';
+import * as colors from '@util/colors';
 
 export default StyleSheet.create({
 	outerContainer: {
 		flex: 1,
-    backgroundColor: colors.BANANA_YELLOW,
+		backgroundColor: colors.BANANA_YELLOW,
 		paddingHorizontal: '10%',
 	},
 	input: {

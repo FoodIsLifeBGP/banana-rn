@@ -1,7 +1,7 @@
 import React from 'react';
+import { useNavigation } from 'react-navigation-hooks';
 import { TouchableOpacity } from 'react-native';
 import Icon from '../Icon';
-import { useNavigation } from 'react-navigation-hooks';
 
 
 export default () => {
@@ -12,4 +12,4 @@ export default () => {
 			<Icon name="menu" />
 		</TouchableOpacity>
 	);
-}
+};

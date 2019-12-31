@@ -15,7 +15,7 @@
     "experimentalDecorators": true,
     "baseUrl": ".",
     "paths": {
-      "@assets/*": ["assets/*"],
+      "@assets/*": ["./assets/*"],
       "@screens/*": ["./src/screens/*"],
       "@elements": ["./src/elements"],
       "@util/*": ["./src/util/*"]

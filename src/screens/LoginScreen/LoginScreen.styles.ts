@@ -1,25 +1,34 @@
-import { StyleSheet } from "react-native";
-import * as colors from "../../util/colors";
-import { white } from "react-native-paper/lib/typescript/src/styles/colors";
+import { StyleSheet } from 'react-native';
+import * as colors from '@util/colors';
 
 export default StyleSheet.create({
-  outerContainer: {
-    flex: 1,
-    backgroundColor: colors.BANANA_YELLOW,
-    paddingHorizontal: "15%"
-  },
-  input: {
-    height: 50,
-    marginBottom: 15,
-    backgroundColor: "white",
-    borderRadius: 0,
-    borderTopLeftRadius: 0,
-    borderTopRightRadius: 0
-  },
-  passwordContainer: {
-    height: 50,
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    backgroundColor: "white"
-  }
+	outerContainer: {
+		flex: 1,
+		backgroundColor: colors.BANANA_YELLOW,
+		paddingHorizontal: '15%',
+	},
+	input: {
+		height: 50,
+		marginBottom: 15,
+		backgroundColor: 'white',
+		borderRadius: 0,
+		borderTopLeftRadius: 0,
+		borderTopRightRadius: 0,
+		textDecorationLine: 'none',
+	},
+	passwordContainer: {
+		height: 50,
+		flexDirection: 'row',
+		justifyContent: 'flex-start',
+		backgroundColor: 'white',
+	},
+	iconContainer: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		width: 50,
+	},
+	hideIcon: {
+		fontSize: 26,
+		color: colors.NAVY_BLUE,
+	},
 });

@@ -5,7 +5,7 @@ import {
 	StyleSheet,
 } from 'react-native';
 // import { material } from 'react-native-typography';
-import * as colors from '../../util/colors';
+import * as colors from '@util/colors';
 
 export default StyleSheet.create({
 	contentContainer: {

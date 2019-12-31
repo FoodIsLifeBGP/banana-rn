@@ -1,15 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
-import { View, Text, TouchableOpacity, Image, AsyncStorage, Alert } from 'react-native';
+import {
+	View,
+	Text,
+	TouchableOpacity,
+	Image,
+	AsyncStorage,
+	Alert,
+} from 'react-native';
 import { Switch } from 'react-native-paper';
-import { Header, SpacerInline, FormTextInput, LinkButton } from '../../../elements';
+import {
+	Header,
+	SpacerInline,
+	FormTextInput,
+	LinkButton,
+} from '@elements';
+import * as colors from '@util/colors';
+import createDonation from '@util/createDonation';
+import updateDonation from '@util/updateDonation';
 import InputLabel from '../../../elements/FormTextInput/InputLabel';
-import * as colors from '../../../util/colors';
-import createDonation from '../../../util/createDonation';
-import updateDonation from '../../../util/updateDonation';
 import styles from './DonationScreen.styles';
-
-/* eslint-disable camelcase */
 
 export default () => {
 	const { navigate } = useNavigation();
@@ -19,7 +29,7 @@ export default () => {
 
 	const {
 		claims = '',
-		created_at = new Date,
+		created_at = new Date(),
 		duration_minutes = 60,
 		food_name = '',
 		image_url = '',
@@ -41,18 +51,18 @@ export default () => {
 	const [ cancel, setCancel ] = useState(false);
 	const [ stop, setStop ] = useState(false);
 
-	const icon = require('../../../../assets/images/banana-icon.png');
+	const icon = require('@assets/images/banana-icon.png');
 
 	const submitDonation = async () => {
-		const statusCode = id 
+		const statusCode = id
 			? (
 				await updateDonation({
 					id, donorId: donor.id, jwt, name, sixtyMinuteLimit, totalServings, servingName, perPerson, pickupLocation,
-			}))
+				}))
 			: (
 				await createDonation({
 					donorId: donor.id, jwt, name, sixtyMinuteLimit, totalServings, servingName, perPerson, pickupLocation,
-			}))
+				}));
 		switch (statusCode) {
 			case 201: Alert.alert('Donation created!'); navigate('LoginSuccessScreen'); return;
 			case 202: Alert.alert('Donation updated!'); navigate('LoginSuccessScreen'); return;
@@ -60,7 +70,7 @@ export default () => {
 			case (401 || 403): Alert.alert('Authentication error - please log in again.'); return;
 			case 404: Alert.alert('Network error - sorry, please try again!'); return;
 			case 500: Alert.alert('Server problem - sorry, please try again!'); return;
-			default: Alert.alert('Sorry, something went wrong. Please try again.'); return;
+			default: Alert.alert('Sorry, something went wrong. Please try again.');
 		}
 	};
 
@@ -75,7 +85,7 @@ export default () => {
 
 	useEffect(() => {
 		getDonorAndJwt();
-	}, [loaded]);
+	}, [ loaded ]);
 
 	// Stop and cancel are exclusive, so only one can be true at a time.
 	const toggleCancel = () => {
@@ -102,34 +112,38 @@ export default () => {
 						width="50%"
 					/>
 				</View>
-				
+
 				<SpacerInline height={40} />
 				<View>
 					<InputLabel text="Time limit" />
 					<View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
 						<TouchableOpacity
 							onPress={() => setSixtyMinuteLimit(false)}
-							style={{ ...styles.timeLimitButton,
-								borderColor: !sixtyMinuteLimit ? 'white' : colors.BANANA_YELLOW
-						}}>
+							style={{
+								...styles.timeLimitButton,
+								borderColor: !sixtyMinuteLimit ? 'white' : colors.BANANA_YELLOW,
+							}}
+						>
 							<Text style={styles.buttonText}>30 MIN</Text>
 						</TouchableOpacity>
 
 						<TouchableOpacity
 							onPress={() => setSixtyMinuteLimit(true)}
-							style={{ ...styles.timeLimitButton,
-								borderColor: sixtyMinuteLimit? 'white' : colors.BANANA_YELLOW
-						}}>
+							style={{
+								...styles.timeLimitButton,
+								borderColor: sixtyMinuteLimit ? 'white' : colors.BANANA_YELLOW,
+							}}
+						>
 							<Text style={styles.buttonText}>60 MIN</Text>
 						</TouchableOpacity>
 					</View>
-						<SpacerInline height={20} />
+					<SpacerInline height={20} />
 
 					<Text style={styles.infoText}>
 						How are they divided up?
 					</Text>
 
-					<FormTextInput 
+					<FormTextInput
 						text="Serving name (bunch, etc.)"
 						value={servingName}
 						setValue={setServingName}
@@ -138,52 +152,54 @@ export default () => {
 						upperCase={false}
 					/>
 
-					<FormTextInput 
+					<FormTextInput
 						text="# per person"
 						value={perPerson && perPerson.toString()}
 						setValue={setPerPerson}
 						inline={true}
 						width="20%"
 						upperCase={false}
-						/>
+					/>
 
-					<FormTextInput 
+					<FormTextInput
 						text="Total # of servings"
 						value={totalServings && totalServings.toString()}
 						setValue={setTotalServings}
 						inline={true}
 						width="20%"
 						upperCase={false}
-						/>
+					/>
 
-					<FormTextInput 
+					<FormTextInput
 						text="Pickup spot"
 						value={pickupLocation}
 						setValue={setPickupLocation}
 						inline={true}
 						width="60%"
 						upperCase={false}
-						/>
+					/>
 				</View>
 			</View>
 
-			{ edit && (<>
-				<View style={{flexDirection: 'column'}}>
-					<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-						<InputLabel text="Cancel donation?"/>
-						<Switch value={cancel} onValueChange={toggleCancel} color={colors.NAVY_BLUE} />
+			{ edit && (
+				<>
+					<View style={{ flexDirection: 'column' }}>
+						<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+							<InputLabel text="Cancel donation?" />
+							<Switch value={cancel} onValueChange={toggleCancel} color={colors.NAVY_BLUE} />
+						</View>
+						<Text style={styles.infoText}>Any outstanding claims will also be canceled.</Text>
 					</View>
-					<Text style={styles.infoText}>Any outstanding claims will also be canceled.</Text>
-				</View>
 
-				<View>
-					<View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'  }}>
-						<InputLabel text="Stop donation?"/>
-						<Switch value={stop} onValueChange={toggleStop} color={colors.NAVY_BLUE} />
+					<View>
+						<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+							<InputLabel text="Stop donation?" />
+							<Switch value={stop} onValueChange={toggleStop} color={colors.NAVY_BLUE} />
+						</View>
+						<Text style={styles.infoText}>Existing claims will still be fulfilled, but the donation will become inactive.</Text>
 					</View>
-					<Text style={styles.infoText}>Existing claims will still be fulfilled, but the donation will become inactive.</Text>
-				</View>
-			</>)}
+				</>
+			)}
 
 			<View style={styles.createContainer}>
 				{

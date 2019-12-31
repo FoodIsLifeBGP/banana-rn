@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TextInput, Dimensions } from 'react-native';
+import { View, TextInput } from 'react-native';
 import InputLabel from './InputLabel';
 import styles from './FormTextInput.styles';
 
@@ -28,7 +28,7 @@ export default ({
 				<InputLabel text={text} upperCase={upperCase} />
 				<View style={{ width: 8 }} />
 				<View style={{ width, top: 5 }}>
-					<TextInput 
+					<TextInput
 						value={value}
 						onChangeText={setValue}
 						style={{ ...styles.input, textAlign: 'right' }}
@@ -40,7 +40,7 @@ export default ({
 		: (
 			<View style={{ ...styles.container, width }}>
 				<InputLabel text={text} upperCase={upperCase} />
-				<TextInput 
+				<TextInput
 					value={value}
 					onChangeText={setValue}
 					style={styles.input}
@@ -48,5 +48,5 @@ export default ({
 				/>
 			</View>
 		)
-	);
+);
 

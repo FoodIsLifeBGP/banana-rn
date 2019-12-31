@@ -5,7 +5,7 @@ export default (jwt: string) => (
 		headers: {
 			Accept: 'application/json',
 			'Content-Type': 'application/json',
-			'Authorization': `Bearer ${jwt}`
+			Authorization: `Bearer ${jwt}`,
 		},
 		baseURL: 'http://localhost:3000',
 	})

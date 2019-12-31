@@ -13,7 +13,7 @@ export default ({ text, destination, onPress }: LinkButtonProps) => {
 	const { navigate } = useNavigation();
 	const buttonFunction = destination
 		? () => navigate(destination)
-		: func => onPress(func);
+		: onPress && (func => onPress(func));
 
 	return (
 		<View style={styles.container}>
@@ -26,5 +26,5 @@ export default ({ text, destination, onPress }: LinkButtonProps) => {
 				</Text>
 			</View>
 		</View>
-	)
+	);
 };

@@ -24,7 +24,7 @@ function goBack() {
 
 function toggleDrawer() {
 	navigator.dispatch(
-		DrawerActions.toggleDrawer()
+		DrawerActions.toggleDrawer(),
 	);
 }
 

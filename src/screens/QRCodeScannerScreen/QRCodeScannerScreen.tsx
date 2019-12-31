@@ -1,48 +1,50 @@
-import * as React from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { useNavigation } from 'react-navigation-hooks';
+import { Text, View, StyleSheet } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import BarCodeMask from './BarCodeMask';
+import styles from './QRCodeScannerScreen.styles';
 
-export default class BarcodeScannerExample extends React.Component {
-  state = {
-    hasCameraPermission: null,
-    scanned: false,
-  };
+export default () => {
+	const { goBack } = useNavigation();
+	const [ hasCameraPermission, setHasCameraPermission ] = useState(false);
+	const [ scanned, setScanned ] = useState(null);
 
-  async componentDidMount() {
-    this.getPermissionsAsync();
-  }
+	const getPermissions = async () => {
+		const { status } = await Permissions.askAsync(Permissions.CAMERA);
+		setHasCameraPermission(status === 'granted');
+	};
 
-  getPermissionsAsync = async () => {
-    const { status } = await Permissions.askAsync(Permissions.CAMERA);
-    this.setState({ hasCameraPermission: status === 'granted' });
-  };
+	const handleBarCodeScanned = barcode => {
+		setScanned(barcode);
+		console.log(scanned);
+		goBack();
+	};
 
-  render() {
-    const { hasCameraPermission, scanned } = this.state;
+	const ScannerContent = () => {
+		switch (hasCameraPermission) {
+			case true: return (
+				<>
+					<BarCodeScanner
+						onBarCodeScanned={handleBarCodeScanned}
+						style={StyleSheet.absoluteFillObject}
+					/>
+					<BarCodeMask />
+				</>
+			);
+			case false: return <Text>No access to camera</Text>;
+			default: return <Text>Requesting permission to access camera</Text>;
+		}
+	};
 
-    if (hasCameraPermission === null) {
-      return <Text>Requesting permission to access camera</Text>;
-    }
-    if (hasCameraPermission === false) {
-      return <Text>No access to camera</Text>;
-    }
-    return (
-      <View
-        style={{
-          flex: 1,
-          flexDirection: 'column',
-          justifyContent: 'flex-end',
-        }}>
-        <BarCodeScanner
-          onBarCodeScanned={this.handleBarCodeScanned}
-          style={StyleSheet.absoluteFillObject}
-        />
-      </View>
-    );
-  }
+	useEffect(() => {
+		getPermissions();
+	}, []);
 
-  handleBarCodeScanned = () => {
-    alert(`Bar code scanned!`);
-  };
-}
+	return (
+		<View style={styles.container}>
+			<ScannerContent />
+		</View>
+	);
+};
