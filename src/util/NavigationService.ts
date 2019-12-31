@@ -1,4 +1,5 @@
 import { NavigationActions } from 'react-navigation';
+import { DrawerActions } from 'react-navigation-drawer';
 
 let navigator;
 
@@ -21,8 +22,15 @@ function goBack() {
 	);
 }
 
+function toggleDrawer() {
+	navigator.dispatch(
+		DrawerActions.toggleDrawer()
+	);
+}
+
 export default {
 	navigate,
 	setTopLevelNavigator,
 	goBack,
+	toggleDrawer,
 };

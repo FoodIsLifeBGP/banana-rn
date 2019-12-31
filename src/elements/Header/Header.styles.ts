@@ -22,16 +22,6 @@ export default StyleSheet.create({
 		justifyContent: 'flex-start',
 		left: -15,
 	},
-	menuContainer: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'flex-end',
-		right: -5,
-	},
-	menu: {
-		fontSize: 55,
-		color: 'white',
-	},
 	backButtonLabel: {
 		fontFamily: 'open-sans-light',
 		fontWeight: '300',
