@@ -17,8 +17,9 @@ export default class BarcodeScannerExample extends React.Component {
 	}
 
 	getPermissionsAsync = async () => {
-		const { status } = await Permissions.askAsync(Permissions.CAMERA);
-		this.setState({ hasCameraPermission: status === 'granted' });
+		const response = await Permissions.askAsync(Permissions.CAMERA);
+		console.log(response)
+		this.setState({ hasCameraPermission: response.status === 'granted' });
 	};
 
 	handleBarCodeScanned = () => {
@@ -38,7 +39,6 @@ export default class BarcodeScannerExample extends React.Component {
 			<View
 				style={{
 					flex: 1,
-					flexDirection: 'column',
 					justifyContent: 'flex-end',
 				}}
 			>

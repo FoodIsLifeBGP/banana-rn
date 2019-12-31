@@ -13,7 +13,7 @@ type InfoScreenProps = {
 	nextScreenTitle?: string;
 	nextScreenDestination?: string;
 	backDestination?: string;
-	children: ReactChild | ReactChild[];
+	children?: ReactChild | ReactChild[];
 };
 
 const InfoScreen: FunctionComponent<InfoScreenProps> = ({
