@@ -4,7 +4,7 @@ import * as colors from '../../util/colors';
 export default StyleSheet.create({
 	outerContainer: {
 		flex: 1,
-    backgroundColor: colors.BANANA_YELLOW,
+		backgroundColor: colors.BANANA_YELLOW,
 		paddingHorizontal: '15%',
 	},
 	input: {
@@ -14,5 +14,5 @@ export default StyleSheet.create({
 		borderRadius: 0,
 		borderTopLeftRadius: 0,
 		borderTopRightRadius: 0,
-	}
+	},
 });

@@ -5,7 +5,7 @@ interface SvgImageProps {
 	source: string;
 }
 
-export default ({source}: SvgImageProps) => (
+export default ({ source }: SvgImageProps) => (
 	<Image
 		source={source}
 	/>

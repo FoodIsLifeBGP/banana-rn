@@ -23,85 +23,15 @@ module.exports = {
   plugins: [
     'react',
 		'@typescript-eslint',
-		'@babel-plugin-module-resolver',
   ],
   rules: {
-    'indent': 'off',
-    'linebreak-style': [
-			'error',
-			'unix'
-		],
-		'quotes': [
-			2,
-			'single',
-			'avoid-escape'
-		],
-		'semi': [
-			'error',
-			'always'
-		],
-		'@typescript-eslint/indent': [
-			'error',
-			'tab',
-			{
-				'SwitchCase': 1
-			}
-    ],
-    '@typescript-eslint/explicit-function-return-type': [
-			0
-		],
-		'@typescript-eslint/no-use-before-define': [
-			0
-		],
-		'@typescript-eslint/explicit-member-accessibility': [
-			0
-		],
+		'array-bracket-spacing': [ 1, 'always' ],
+		'arrow-parens': [ 1, 'as-needed' ],
+		'class-methods-use-this': 0,
+		'eol-last': [ 1, 'always'],
 		'func-call-spacing': 'off',
-		'@typescript-eslint/func-call-spacing': [
-			1
-		],
-		'array-bracket-spacing': [
-			1,
-			'always'
-		],
-		'eol-last': [
-			1,
-			'always'
-		],
-		'@typescript-eslint/semi': [
-			1
-		],
-		'no-empty-function': 'off',
-		'@typescript-eslint/no-empty-function': 'error',
-		'react/jsx-filename-extension': [
-			1,
-			{
-				'extensions': [
-					'.ts',
-					'.tsx'
-				]
-			}
-		],
-		'react/jsx-indent': [
-			1,
-			'tab'
-		],
-		'react/jsx-indent-props': [
-			1,
-			'tab'
-		],
-		'react/jsx-boolean-value': [
-			1,
-			'always'
-		],
-		'no-multiple-empty-lines': [
-			'error',
-			{
-				'max': 2,
-				'maxEOF': 1,
-				'maxBOF': 1
-			}
-		],
+		'global-require': 0,
+		'import/extensions': [ 0, 'never' ],
 		'import/no-unresolved': [
 			2,
 			{
@@ -116,24 +46,47 @@ module.exports = {
 				]
 			}
 		],
-		'arrow-parens': [
-			1,
-			'as-needed'
+		'import/prefer-default-export': 0,
+		'indent': 'off',
+		'lines-between-class-members': 0,
+		'linebreak-style': [ 'error', 'unix' ],
+		'max-len': [ 1, 120 ],
+		'no-async-promise-executor': 1,
+		'no-confusing-arrow': [
+			'error',
+			{
+				'allowParens': true
+			}
 		],
-		'global-require': 0,
+		'no-empty-function': 'warn',
+		'no-multiple-empty-lines': [
+			'error',
+			{
+				'max': 2,
+				'maxEOF': 1,
+				'maxBOF': 1
+			}
+		],
 		'no-tabs': [
 			'error',
 			{
 				'allowIndentationTabs': true
 			}
 		],
-		'react/destructuring-assignment': [
-			1
-		],
-		'no-confusing-arrow': [
-			'error',
+		'no-unused-expressions': 0,
+		'prefer-object-spread': 1,
+		'quotes': [ 2, 'single', 'avoid-escape'	],
+		'react/destructuring-assignment': [ 1 ],
+		'react/jsx-indent': [ 1, 'tab' ],
+		'react/jsx-indent-props': [ 1, 'tab' ],
+		'react/jsx-boolean-value': [ 1, 'always' ],
+		'react/jsx-filename-extension': [
+			1,
 			{
-				'allowParens': true
+				'extensions': [
+					'.ts',
+					'.tsx'
+				]
 			}
 		],
 		'react/no-unescaped-entities': [
@@ -145,19 +98,23 @@ module.exports = {
 				]
 			}
 		],
-		'import/prefer-default-export': 0,
-		'no-unused-expressions': 0,
+		'react/jsx-props-no-spreading': 1,
+		'semi': [ 'error', 'always' ],
+		'@typescript-eslint/camelcase': 'off',
+    '@typescript-eslint/explicit-function-return-type': [ 0 ],
+		'@typescript-eslint/explicit-member-accessibility': [ 0 ],
+		'@typescript-eslint/func-call-spacing': [ 1 ],
+		'@typescript-eslint/indent': ['error', 'tab'],
 		'@typescript-eslint/interface-name-prefix': 0,
-		'lines-between-class-members': 0,
+		'@typescript-eslint/no-empty-function': 'warn',
 		'@typescript-eslint/no-unused-vars': [
 			1, 
 			{
 				'argsIgnorePattern': '^_'
 			}
 		],
-		'prefer-object-spread': 1,
-		'no-async-promise-executor': 1,
-		'react/jsx-props-no-spreading': 1,
-		'class-methods-use-this': 0
+		'@typescript-eslint/no-use-before-define': [ 0 ],
+		'@typescript-eslint/no-var-requires': 'off',
+		'@typescript-eslint/semi': [ 1 ],
 	}
 };

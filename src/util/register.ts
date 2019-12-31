@@ -1,5 +1,5 @@
-import railsAxios from './railsAxios';
 import { AsyncStorage } from 'react-native';
+import railsAxios from './railsAxios';
 
 interface RegisterProps {
 	organizationName: string;
@@ -10,6 +10,7 @@ interface RegisterProps {
 	city: string;
 	state: string;
 	zip: number;
+	termsOfService: boolean;
 }
 
 export default async ({
@@ -27,7 +28,7 @@ export default async ({
 			address_state: state,
 		},
 	}));
-	
+
 	response.data
 		? await AsyncStorage.setItem('jwt', response.data.jwt)
 		: await AsyncStorage.removeItem('jwt');

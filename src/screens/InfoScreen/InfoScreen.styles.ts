@@ -5,7 +5,7 @@ export default StyleSheet.create({
 	outerContainer: {
 		flex: 1,
 		justifyContent: 'space-between',
-    backgroundColor: colors.BANANA_YELLOW,
+		backgroundColor: colors.BANANA_YELLOW,
 		paddingHorizontal: '11%',
 	},
 	input: {

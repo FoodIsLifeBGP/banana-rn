@@ -9,7 +9,7 @@ interface DonationProps {
 	sixtyMinuteLimit: boolean;
 	pickupLocation: string;
 	totalServings: string | number;
-	}
+}
 
 export default async ({
 	donorId, jwt, name, sixtyMinuteLimit, totalServings, servingName, perPerson, pickupLocation,

@@ -14,21 +14,21 @@ export default () => {
 	const getDonorAndJwt = async () => {
 		await setDonor(JSON.parse(await AsyncStorage.getItem('donor') || ''));
 		await setJwt(await AsyncStorage.getItem('jwt'));
-		setLoaded(![donor, jwt].includes(''));
+		setLoaded(!([ donor, jwt ].includes('')));
 	};
 
 	useEffect(() => {
 		getDonorAndJwt();
-	}, [loaded]);
+	}, [ loaded ]);
 
-	if (!loaded) { return <Text>Loading...</Text> }
+	if (!loaded) { return <Text>Loading...</Text>; }
 
 	const { id } = donor;
-	
-	if (donor && donor.account_status === 'suspended') { return <AccountSuspendedScreen />; }
-	if (donor && donor.account_status === 'pending') { return <ApplicationPendingScreen />; }
-	if (donor && donor.account_status === 'approved') { return <ApplicationApprovedScreen jwt={jwt} id={id} />; }
-	if (donor && donor.account_status === 'active') { return <DashboardScreen jwt={jwt} id={id} />; }
-	
+
+	if (donor?.account_status === 'suspended') { return <AccountSuspendedScreen />; }
+	if (donor?.account_status === 'pending') { return <ApplicationPendingScreen />; }
+	if (donor?.account_status === 'approved') { return <ApplicationApprovedScreen jwt={jwt} id={id} />; }
+	if (donor?.account_status === 'active') { return <DashboardScreen jwt={jwt} id={id} />; }
+
 	return <InfoScreen title="Login error" nextScreenDestination="LoginScreen" nextScreenTitle="Login" />;
 };

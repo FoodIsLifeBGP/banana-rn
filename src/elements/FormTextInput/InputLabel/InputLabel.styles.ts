@@ -9,5 +9,5 @@ export default StyleSheet.create({
 		fontFamily: 'open-sans-regular',
 		fontSize: 14,
 		color: colors.NAVY_BLUE,
-	}
+	},
 });

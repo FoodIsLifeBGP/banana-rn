@@ -52,5 +52,5 @@ export default StyleSheet.create({
 		textAlign: 'center',
 		marginTop: 60,
 		fontWeight: '700',
-	}
+	},
 });

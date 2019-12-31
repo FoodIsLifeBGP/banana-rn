@@ -2,9 +2,9 @@ import React from 'react';
 import { Text } from 'react-native';
 import InfoScreen from '../InfoScreen';
 import { SpacerInline } from '../../elements';
-import styles from './ContactScreen.styles'
+import styles from './ContactScreen.styles';
 
-export default () =>  (
+export default () => (
 	<InfoScreen
 		title="Contact."
 		backDestination="ApplicationPendingScreen"

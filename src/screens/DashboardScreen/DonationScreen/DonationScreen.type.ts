@@ -1,10 +1,10 @@
 export type Claim = {
-	canceled: boolean,
-	client_id: number,
-	completed: boolean,
-	donation_id: number,
-	id: number,
-	qr_code: string,
+	canceled: boolean;
+	client_id: number;
+	completed: boolean;
+	donation_id: number;
+	id: number;
+	qr_code: string;
 };
 
 export interface Donation {

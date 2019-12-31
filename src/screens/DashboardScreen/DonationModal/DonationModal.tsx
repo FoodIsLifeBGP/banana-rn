@@ -1,16 +1,12 @@
 import React from 'react';
 import { Modal } from 'react-native-paper';
-import { View, Text, TouchableWithoutFeedback } from 'react-native';
+import { View } from 'react-native';
 
-export default ({ donation }) => {
-	return (
-		<Modal
-			visible={true}
-			dismissable={true}
-		>
-			<View>
-				
-			</View>
-		</Modal>
-	);
-};
+export default ({ donation }: { donation: string }) => (
+	<Modal
+		visible={true}
+		dismissable={true}
+	>
+		<View />
+	</Modal>
+);
