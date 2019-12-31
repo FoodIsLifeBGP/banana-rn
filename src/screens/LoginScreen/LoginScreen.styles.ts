@@ -14,5 +14,21 @@ export default StyleSheet.create({
 		borderRadius: 0,
 		borderTopLeftRadius: 0,
 		borderTopRightRadius: 0,
+		textDecorationLine: 'none',
+	},
+	passwordContainer: {
+		height: 50,
+		flexDirection: 'row',
+		justifyContent: 'flex-start',
+		backgroundColor: 'white',
+	},
+	iconContainer: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		width: 50,
+	},
+	hideIcon: {
+		fontSize: 26,
+		color: colors.NAVY_BLUE,
 	},
 });
