@@ -44,8 +44,8 @@ Once you see that, open a web browser, and navigate to `http://localhost:3000/do
 
 You're done!  You can now move on to installing the Donor, Client, or Admin apps at the following URLs:
 
-[Donor](https://github.com/FoodIsLifeBGP/banana-rn)
+#### [Donor](https://github.com/FoodIsLifeBGP/banana-rn)
 
-[Client](https://github.com/FoodIsLifeBGP/banana-rn-client)
+#### [Client](https://github.com/FoodIsLifeBGP/banana-rn-client)
 
-Admin: TBD
+#### Admin: TBD
