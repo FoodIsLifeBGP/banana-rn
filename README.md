@@ -1,6 +1,6 @@
-# THE BANANA APP
+# THE BANANA APP: Ruby on Rails/Postgres backend
 
-## Ruby on Rails/Postgres backend: Installation
+## Installation
 
 All of The Banana App family (Donor, Client, & Admin) runs off of this backend.  Install this first.
 
@@ -45,5 +45,7 @@ Once you see that, open a web browser, and navigate to `http://localhost:3000/do
 You're done!  You can now move on to installing the Donor, Client, or Admin apps at the following URLs:
 
 [Donor](https://github.com/FoodIsLifeBGP/banana-rn)
+
 [Client](https://github.com/FoodIsLifeBGP/banana-rn-client)
+
 Admin: TBD
