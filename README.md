@@ -1,9 +1,33 @@
-# Get started testing the app
+# THE BANANA APP: Donor App (React Native/Typescript)
 
-1. [Install VS Code](https://code.visualstudio.com/download) or use another code editor
-2. Install Node.js: `brew install node`
-3. Install the expo command line tool: `npm install expo-cli --global`
-4. From the project root, install dependencies: `npm install`
-5. Download the Expo Client app: [iOS](https://apps.apple.com/app/apple-store/id982107779) or [Android](https://play.google.com/store/apps/details?id=host.exp.exponent&referrer=www)
-6. Start up the simulator: `expo start`
-7. Scan the QR code with your device (inside Expo Client on Android, or just with the camera on iOS) 
+## Installation (Mac/OSX)
+
+Step 0 is to [install the backend](https://github.com/FoodIsLifeBGP/banana-rails).  Follow those instructions to make sure you have everything needed to install this repo (like the Xcode command line tools).
+
+First we install NVM, Node, and the Expo CLI.
+
+Go to your project's root folder in Terminal (`cd ~/Desktop/the-banana-app`) and run:
+
+- `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash`
+- `nvm --version` (if this doesn't give an error, the previous command worked)
+- `nvm install node`
+- `npm i -g expo-cli`
+
+Once those are complete, run:
+
+- `git clone https://github.com/FoodIsLifeBGP/banana-rn && cd banana-rn`
+
+From inside `banana-rn`, run:
+
+- `npm i` (package installer)
+- `expo start`
+
+A tab in your web browser will open showing the Expo dashboard.  To open the app in the iOS Simulator, hit the link button marked `open in iOS Simulator`, on the left-hand side of the dashboard.  You can also follow the [Expo docs](https://docs.expo.io/versions/v33.0.0/workflow/up-and-running/#open-the-app-on-your-phone-or) to open the app on your phone, or the Android simulator.
+
+When the app opens, you will see the login screen.  Assuming you are still running the [Rails server](https://github.com/FoodIsLifeBGP/banana-rails) in the background, you can log in as the sample donor (`donor@donor.com`, password: `donor`), or create a new account.
+
+### The rest of The Banana App family:
+
+#### [Backend](https://github.com/FoodIsLifeBGP/banana-rails)
+#### [Client](https://github.com/FoodIsLifeBGP/banana-rn-client)
+#### Admin (TBD)
