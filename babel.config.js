@@ -9,6 +9,8 @@ module.exports = function (api) {
 				'module-resolver',
 				{
 					extensions: [
+						'.js',
+						'.jsx',
 						'.ts',
 						'.tsx',
 						'.json',
@@ -18,6 +20,7 @@ module.exports = function (api) {
 						'@assets': './assets/',
 						'@components': './src/components/',
 						'@elements': './src/elements/',
+						'@state': './src/state/',
 						'@util': './src/util/',
 					},
 					cwd: 'packagejson',

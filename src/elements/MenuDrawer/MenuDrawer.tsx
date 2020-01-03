@@ -7,8 +7,8 @@ import {
 } from 'react-native';
 import { Avatar } from 'react-native-paper';
 import { DrawerItems } from 'react-navigation-drawer';
+import { SpacerInline } from '@elements';
 import styles from './MenuDrawer.styles';
-import { SpacerInline } from '../SpacerInline';
 
 const MenuDrawer = props => (
 	<ScrollView>

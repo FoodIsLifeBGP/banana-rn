@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigation } from 'react-navigation-hooks';
 import { View, Text, Alert } from 'react-native';
 import { Checkbox } from 'react-native-paper';
-import register from '@util/register';
+import useGlobal from '@state';
 import * as colors from '@util/colors';
 import {
 	Title,
@@ -15,6 +15,8 @@ import styles from './RegistrationScreen.styles';
 
 export default () => {
 	const { navigate } = useNavigation();
+	const [ _globalState, globalActions ] = useGlobal();
+	const { register } = globalActions;
 	const [ organizationName, setOrganizationName ] = useState('');
 	const [ email, setEmail ] = useState('');
 	const [ password, setPassword ] = useState('');

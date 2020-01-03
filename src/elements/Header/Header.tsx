@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigation } from 'react-navigation-hooks';
 import { View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import Icon from '../Icon';
+import { Icon } from '@elements';
 import HamburgerPopupMenu from '../HamburgerPopupMenu';
 
 import styles from './Header.styles';

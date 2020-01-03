@@ -8,7 +8,8 @@ const CLIENT = {
 	LOGIN_URL: '/client_auth',
 };
 
-const getEnv = (variant = Constants.manifest.extra.variant) => {
+const getEnv = () => {
+	const { variant } = Constants.manifest.extra;
 	const variantSpecificProperties = variant === 'donor'
 		? DONOR
 		: CLIENT;

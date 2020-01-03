@@ -3,16 +3,23 @@ import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
 import { View, Alert } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { TextInput } from 'react-native-paper';
-import login from '@util/login';
+import useGlobal from '@state';
 import getEnv from '@util/environment';
-import { Title, LinkButton, SpacerInline } from '@elements';
-import InputLabel from '../../elements/FormTextInput/InputLabel';
-import Icon from '../../elements/Icon';
+import {
+	Title,
+	LinkButton,
+	SpacerInline,
+	InputLabel,
+	Icon,
+} from '@elements';
 import styles from './LoginScreen.styles';
 
 export default () => {
 	const { navigate } = useNavigation();
 	const { USER_IDENTITY } = getEnv();
+	const [ _globalState, globalActions ] = useGlobal();
+	const { login } = globalActions;
+
 	const [ email, setEmail ] = useState(useNavigationParam('email') || '');
 	const [ password, setPassword ] = useState(useNavigationParam('password') || '');
 	const [ hidePwd, setHidePwd ] = useState(true);

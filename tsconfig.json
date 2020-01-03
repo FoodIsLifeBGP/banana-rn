@@ -16,8 +16,11 @@
     "baseUrl": ".",
     "paths": {
       "@assets/*": ["./assets/*"],
-      "@screens/*": ["./src/screens/*"],
-      "@elements": ["./src/elements"],
+			"@elements": ["./src/elements"],
+			"@elements/*": ["./src/elements/*"],
+			"@screens/*": ["./src/screens/*"],
+			"@state": ["./src/state/"],
+			"@state/*": ["./src/state/*"],
       "@util/*": ["./src/util/*"]
     },
     "removeComments": true,

@@ -14,11 +14,11 @@ import {
 	SpacerInline,
 	FormTextInput,
 	LinkButton,
+	InputLabel,
 } from '@elements';
 import * as colors from '@util/colors';
 import createDonation from '@util/createDonation';
 import updateDonation from '@util/updateDonation';
-import InputLabel from '../../../elements/FormTextInput/InputLabel';
 import styles from './DonationScreen.styles';
 
 export default () => {

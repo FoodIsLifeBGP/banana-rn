@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, TextInput } from 'react-native';
-import InputLabel from './InputLabel';
+import { InputLabel } from '@elements';
 import styles from './FormTextInput.styles';
 
 interface FormTextInputProps {
