@@ -25,6 +25,7 @@ module.exports = {
 		'@typescript-eslint',
   ],
   rules: {
+		// These rules are in alphabetical order, minus any symbols (i.e. @typescript goes under T).  Please preserve this when adding.
 		'array-bracket-spacing': [ 1, 'always' ],
 		'arrow-parens': [ 1, 'as-needed' ],
 		'class-methods-use-this': 0,
