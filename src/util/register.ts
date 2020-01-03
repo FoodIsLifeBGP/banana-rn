@@ -16,7 +16,7 @@ interface RegisterProps {
 export default async ({
 	organizationName, email, password, license, street, city, state, zip,
 }: RegisterProps) => {
-	const response = await railsAxios.post('/donors/create', JSON.stringify({
+	const response = await railsAxios().post('/donors/create', JSON.stringify({
 		donor: {
 			email,
 			password,

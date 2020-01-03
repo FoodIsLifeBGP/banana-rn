@@ -49,6 +49,8 @@ Warnings will not prevent a merge.
 
 ### Dev notes
 
+#### Editor
+
 If using VS Code, we recommend the following extensions:
 - ESLint
 - TSLint
@@ -60,6 +62,8 @@ If you are ever having trouble running the app after pulling an update, try
 from root.  This will delete `/node_modules` and `package-lock.json`, and run `npm install` again.  Also try uninstalling the Expo app from your device, and running
 - `expo start --clear`
 to clear the Expo cache.
+
+#### Icons
 
 We are using the [Elegant Icon Font](https://www.elegantthemes.com/blog/resources/elegant-icon-font) set of icons in this project.  Use this through the `elements/Icon` component.  To add a new icon, go to the link above, and find its HTML code - something i.e. `&#x6a;`.  Open `elements/Icon/fontMap.ts`.  This is a hash in the format `'icon name': <unicode values>`.  Give your icon a name for a key.  Next convert the HTML character to Unicode - from `&#x6a;` to `\u006a`.  To get the unicode value for your character:
 
@@ -83,4 +87,4 @@ Now when you want to use this icon, you can do so by importing the Icon componen
 
 `<Icon name="lock">`
 
-which defaults to a fontSize of 50, but can also be passed a custom `style` prop from your component.
+which defaults to a fontSize of 50, but can be passed a custom `style` prop from your component.

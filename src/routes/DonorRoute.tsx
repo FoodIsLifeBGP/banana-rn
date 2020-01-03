@@ -84,6 +84,6 @@ export const FullAppStack = createStackNavigator(
 	},
 );
 
-const Route = createAppContainer(FullAppStack);
+const DonorRoute = createAppContainer(FullAppStack);
 
-export default Route;
+export default DonorRoute;

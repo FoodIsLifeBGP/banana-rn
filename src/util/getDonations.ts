@@ -1,7 +1,7 @@
-import railsAxiosAuth from './railsAxiosAuth';
+import railsAxios from './railsAxios';
 
 export default ({ jwt, id }) => (
-	railsAxiosAuth(jwt).get(`/donors/${id}/donations`)
+	railsAxios(jwt).get(`/donors/${id}/donations`)
 		.then(response => response && response.data)
 		.catch(error => console.log(error))
 );

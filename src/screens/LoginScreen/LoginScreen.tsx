@@ -4,6 +4,7 @@ import { View, Alert } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { TextInput } from 'react-native-paper';
 import login from '@util/login';
+import getEnv from '@util/environment';
 import { Title, LinkButton, SpacerInline } from '@elements';
 import InputLabel from '../../elements/FormTextInput/InputLabel';
 import Icon from '../../elements/Icon';
@@ -11,9 +12,11 @@ import styles from './LoginScreen.styles';
 
 export default () => {
 	const { navigate } = useNavigation();
+	const { USER_IDENTITY } = getEnv();
 	const [ email, setEmail ] = useState(useNavigationParam('email') || '');
 	const [ password, setPassword ] = useState(useNavigationParam('password') || '');
 	const [ hidePwd, setHidePwd ] = useState(true);
+
 	const handleLogin = async () => {
 		const statusCode = await login({ email, password });
 		switch (statusCode) {
@@ -27,7 +30,7 @@ export default () => {
 	return (
 		<View style={styles.outerContainer}>
 			<SpacerInline height={140} />
-			<Title text="I am a donor." />
+			<Title text={`I am a ${USER_IDENTITY}.`} />
 			<SpacerInline height={40} />
 			<InputLabel text="Email Address" />
 			<TextInput
