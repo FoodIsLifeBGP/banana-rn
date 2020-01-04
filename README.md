@@ -50,3 +50,28 @@ You're done!  You can now move on to installing the Donor, Client, or Admin apps
 #### [Client](https://github.com/FoodIsLifeBGP/banana-rn-client)
 
 #### Admin: TBD
+
+
+
+## Endpoints
+
+### Complete:
+admin_auth/create
+donor_auth/create
+client_auth/create
+client/create
+client/update
+donor/create
+donor/get
+
+claims/update -- client cancels donation, or donor marks as claimed
+client/get_donations (by location) -- client searching for nearby donations, and getting donation detail (should be donations controller)
+donations/create -- donor listing a donation
+donations/update -- donor updating donation info
+donations/get_donations (active, by user) -- donor seeing their donation list
+
+### To do:
+donor/account_status --> donor/update
+claims/create -- client puts in claim for donation with UUID
+client/get_claims -- client pulling up their current claims and QR code info
+push notification
