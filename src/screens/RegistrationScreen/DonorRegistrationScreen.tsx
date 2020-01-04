@@ -15,7 +15,7 @@ import styles from './RegistrationScreen.styles';
 
 export default () => {
 	const { navigate } = useNavigation();
-	const [ _globalState, globalActions ] = useGlobal();
+	const [ _globalState, globalActions ] = useGlobal() as any;
 	const { register } = globalActions;
 	const [ organizationName, setOrganizationName ] = useState('');
 	const [ email, setEmail ] = useState('');
@@ -29,7 +29,7 @@ export default () => {
 
 	const toggleTermsOfService = () => setTermsOfService(!termsOfService);
 
-	const validateInputs = async () => {
+	const validateAndSubmit = async () => {
 		if (organizationName === '') { Alert.alert("Please add your organization's name."); return; }
 		if (!email.includes('@') || !email.includes('.')) { Alert.alert('Please enter a valid email address.'); return; }
 		if (password.length < 8) { Alert.alert('Please enter a password at least 8 characters long.'); return; }
@@ -39,14 +39,14 @@ export default () => {
 		if (zip.toString().length !== 5) { Alert.alert('Please enter your 5-digit zip code.'); return; }
 		if (!termsOfService) { Alert.alert('Please read and accept the terms of service to complete your registration.'); return; }
 
-		const response = await register({
+		const statusCode = await register({
 			organizationName, email, password, license, street, city, state, zip, termsOfService,
 		});
-		switch (response) {
+		switch (statusCode) {
 			case (201 || 202): Alert.alert('Registration complete! Please log in to continue.'); navigate('LoginScreen', { email, password }); return;
 			case 406: Alert.alert('Error: not accepted'); return;
 			case 500: Alert.alert('Internal server error, please try again later.'); return;
-			default: Alert.alert("Sorry, that didn't work, please try again later."); console.log(response);
+			default: Alert.alert("Sorry, that didn't work, please try again later."); console.log(statusCode);
 		}
 	};
 
@@ -90,7 +90,7 @@ export default () => {
 					autoCapitalize="words"
 				/>
 
-				<View style={{ flexDirection: 'row' }}>
+				<View style={styles.row}>
 					<FormTextInput
 						text="City"
 						value={city}
@@ -141,7 +141,7 @@ export default () => {
 			<View>
 				<LinkButton
 					text="Register"
-					onPress={validateInputs}
+					onPress={validateAndSubmit}
 				/>
 				<SpacerInline height={40} />
 			</View>

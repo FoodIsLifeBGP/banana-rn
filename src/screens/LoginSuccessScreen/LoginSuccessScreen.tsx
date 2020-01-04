@@ -9,7 +9,7 @@ import DashboardScreen from '../DashboardScreen';
 
 export default () => {
 	const [ globalState ] = useGlobal();
-	const { user = {}, jwt = '' } = globalState;
+	const { user = {} as any, jwt = '' } = globalState;
 	const { id } = user;
 
 	if (!jwt || !user) { return <Text>Loading...</Text>; }

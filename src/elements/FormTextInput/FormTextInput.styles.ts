@@ -12,14 +12,17 @@ export default StyleSheet.create({
 	},
 	text: {
 		fontFamily: 'open-sans-regular',
-		fontSize: 14,
+		fontSize: 18,
 		color: colors.NAVY_BLUE,
 	},
 	input: {
-		height: 28,
+		height: 40,
 		marginBottom: 14,
 		backgroundColor: 'white',
 		paddingHorizontal: 8,
 		width: '100%',
+	},
+	disabled: {
+		backgroundColor: colors.LIGHT_GRAY_DISABLED,
 	},
 });

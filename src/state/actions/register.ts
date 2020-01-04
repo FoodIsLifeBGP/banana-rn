@@ -42,6 +42,7 @@ export const registerDonor = async (store, donor: DonorRegisterProps) => {
 				address_city: city,
 				address_zip: zip,
 				address_state: state,
+				account_status: 'pending',
 			},
 		}));
 
@@ -49,7 +50,7 @@ export const registerDonor = async (store, donor: DonorRegisterProps) => {
 			jwt: response.data?.jwt || '',
 			user: donor,
 		});
-		return response.request.status || 'Error';
+		return response.status || 'Error';
 	} catch (error) {
 		await store.setState({
 			jwt: '',
@@ -75,14 +76,16 @@ export const registerClient = async (store, client: ClientRegisterProps) => {
 				transportation_method: transportationMethod,
 				ethnicity,
 				gender,
+				account_status: 'pending',
 			},
 		}));
-
+		// console.log(JSON.stringify(response))
 		await store.setState({
 			jwt: response.data?.jwt || '',
 			user: client,
 		});
-		return response.request.status || 'Error';
+		const { status } = response;
+		return status || 'Error';
 	} catch (error) {
 		await store.setState({
 			jwt: '',
@@ -92,10 +95,11 @@ export const registerClient = async (store, client: ClientRegisterProps) => {
 	}
 };
 
-export default (store, user) => {
-	switch (USER_IDENTITY) {
-		case 'donor': registerDonor(store, user); break;
-		case 'client':
-		default: registerClient(store, user); break;
-	}
+const register = async (store, user) => {
+	const statusCode = USER_IDENTITY === 'donor'
+		? await registerDonor(store, user)
+		: await registerClient(store, user);
+	return statusCode;
 };
+
+export { register };

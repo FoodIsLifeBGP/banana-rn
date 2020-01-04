@@ -1,4 +1,5 @@
 const fontMap = {
+	'chevron-down': '\u0033',
 	'chevron-left': '\u0034',
 	close: '\u004d',
 	lock: '\u007e',

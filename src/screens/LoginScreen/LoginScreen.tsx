@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
-import { View, Alert } from 'react-native';
+import { View, Alert, TextInput } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import { TextInput } from 'react-native-paper';
 import useGlobal from '@state';
 import getEnv from '@util/environment';
 import {
@@ -17,7 +16,7 @@ import styles from './LoginScreen.styles';
 export default () => {
 	const { navigate } = useNavigation();
 	const { USER_IDENTITY } = getEnv();
-	const [ _globalState, globalActions ] = useGlobal();
+	const [ _globalState, globalActions ] = useGlobal() as any;
 	const { login } = globalActions;
 
 	const [ email, setEmail ] = useState(useNavigationParam('email') || '');
@@ -41,11 +40,9 @@ export default () => {
 			<SpacerInline height={40} />
 			<InputLabel text="Email Address" />
 			<TextInput
-				label=""
 				value={email}
-				onChangeText={text => setEmail(text)}
+				onChangeText={setEmail}
 				style={styles.input}
-				underlineColor="white"
 				autoCapitalize="none"
 				autoCorrect={false}
 			/>
@@ -53,13 +50,11 @@ export default () => {
 			<View style={styles.passwordContainer}>
 				<View style={{ flex: 8 }}>
 					<TextInput
-						label=""
 						textContentType="password"
 						value={password}
 						secureTextEntry={hidePwd}
-						onChangeText={text => setPassword(text)}
+						onChangeText={setPassword}
 						style={styles.input}
-						underlineColor="gray"
 						autoCapitalize="none"
 						autoCorrect={false}
 					/>
