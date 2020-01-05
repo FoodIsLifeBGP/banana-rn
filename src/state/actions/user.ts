@@ -1,17 +1,16 @@
-import getEnv from '@util/environment';
 import railsAxios from '@util/railsAxios';
 
 export const login = async (store, { email, password }) => {
-	const { LOGIN_URL, USER_IDENTITY } = getEnv();
+	const { loginUrl, userIdentity } = store.state;
 
 	try {
 		const response = await railsAxios().post(
-			LOGIN_URL,
-			JSON.stringify({ [USER_IDENTITY]: { email, password } }),
+			loginUrl,
+			JSON.stringify({ [userIdentity]: { email, password } }),
 		);
 		await store.setState({
 			jwt: response.data?.jwt || '',
-			user: response.data?.[USER_IDENTITY] || {},
+			user: response.data?.[userIdentity] || {},
 		});
 		return response.request.status;
 	} catch (error) {

@@ -15,7 +15,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#FEDF36"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -27,7 +27,7 @@
       "supportsTablet": true
 		},
 		"extra": {
-			"variant": "client"
+			"variant": "donor"
 		}
   }
 }

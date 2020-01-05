@@ -18,7 +18,7 @@ export default () => {
 		case 'suspended': return <AccountSuspendedScreen />;
 		case 'pending': return <ApplicationPendingScreen />;
 		case 'approved': return <ApplicationApprovedScreen id={id} />;
-		case 'active': return <DashboardScreen jwt={jwt} id={id} />;
+		case 'active': return <DashboardScreen />;
 		default: return <InfoScreen title="Login error" nextScreenDestination="LoginScreen" nextScreenTitle="Login" />;
 	}
 };

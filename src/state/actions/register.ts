@@ -1,5 +1,4 @@
 import railsAxios from '@util/railsAxios';
-import getEnv from '@util/environment';
 
 interface DonorRegisterProps {
 	organizationName: string;
@@ -24,16 +23,14 @@ interface ClientRegisterProps {
 	gender: string;
 }
 
-const { USER_IDENTITY } = getEnv();
-const CREATE_URL = `/${USER_IDENTITY}s/create`;
-
 export const registerDonor = async (store, donor: DonorRegisterProps) => {
+	const { createUrl, userIdentity } = store.state;
 	const {
 		organizationName, email, password, license, street, city, state, zip,
 	} = donor;
 	try {
-		const response = await railsAxios().post(CREATE_URL, JSON.stringify({
-			[USER_IDENTITY]: {
+		const response = await railsAxios().post(createUrl, JSON.stringify({
+			[userIdentity]: {
 				email,
 				password,
 				organization_name: organizationName,
@@ -61,12 +58,13 @@ export const registerDonor = async (store, donor: DonorRegisterProps) => {
 };
 
 export const registerClient = async (store, client: ClientRegisterProps) => {
+	const { createUrl, userIdentity } = store.state;
 	const {
 		email, password, street, city, state, zip, transportationMethod, ethnicity, gender,
 	} = client;
 	try {
-		const response = await railsAxios().post(CREATE_URL, JSON.stringify({
-			[USER_IDENTITY]: {
+		const response = await railsAxios().post(createUrl, JSON.stringify({
+			[userIdentity]: {
 				email,
 				password,
 				address_street: street,
@@ -79,7 +77,6 @@ export const registerClient = async (store, client: ClientRegisterProps) => {
 				account_status: 'pending',
 			},
 		}));
-		// console.log(JSON.stringify(response))
 		await store.setState({
 			jwt: response.data?.jwt || '',
 			user: client,
@@ -96,7 +93,8 @@ export const registerClient = async (store, client: ClientRegisterProps) => {
 };
 
 const register = async (store, user) => {
-	const statusCode = USER_IDENTITY === 'donor'
+	const { userIdentity } = store.state;
+	const statusCode = userIdentity === 'donor'
 		? await registerDonor(store, user)
 		: await registerClient(store, user);
 	return statusCode;

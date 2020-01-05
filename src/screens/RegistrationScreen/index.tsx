@@ -1,11 +1,12 @@
 import React from 'react';
-import getEnv from '@util/environment';
+import useGlobal from '@state';
 import DonorRegistrationScreen from './DonorRegistrationScreen';
 import ClientRegistrationScreen from './ClientRegistrationScreen';
 
 export default () => {
-	const { USER_IDENTITY } = getEnv();
-	switch (USER_IDENTITY) {
+	const [ globalState ] = useGlobal();
+	const { userIdentity } = globalState;
+	switch (userIdentity) {
 		case 'donor': return <DonorRegistrationScreen />;
 		case 'client':
 		default: return <ClientRegistrationScreen />;

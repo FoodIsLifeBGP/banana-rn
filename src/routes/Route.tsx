@@ -80,7 +80,7 @@ export const FullAppStack = createStackNavigator(
 			gesturesEnabled: false,
 		},
 		headerMode: 'none',
-		initialRouteName: 'RegistrationScreen',
+		initialRouteName: 'LoginScreen',
 	},
 );
 

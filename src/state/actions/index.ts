@@ -5,3 +5,6 @@ export {
 export {
 	register,
 } from './register';
+export {
+	getDonationsOrClaims,
+} from './getDonationsOrClaims';

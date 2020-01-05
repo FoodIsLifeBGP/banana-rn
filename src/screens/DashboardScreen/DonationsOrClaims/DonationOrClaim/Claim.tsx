@@ -6,30 +6,35 @@ import {
 	TouchableOpacity,
 	Image,
 } from 'react-native';
-import { Donation } from './DonationListItem.type';
-import styles from './DonationListItem.styles';
+import { Claim } from './DonationOrClaim.type';
+import styles from './DonationOrClaim.styles';
 
-/* eslint-disable camelcase */
-
-export default ({ donation }: Donation) => {
+export default ({ claim }: Claim) => {
 	const { navigate } = useNavigation();
 	const {
-		claims,
+		address,
+		canceled,
+		client_id,
+		completed,
 		created_at,
+		donation,
+		donor,
+		id,
+		qr_code,
+	} = claim;
+	const {
 		duration_minutes,
 		food_name,
-		image_url,
-		measurement,
 		per_person,
+		measurement,
 		pickup_location,
-		total_servings,
-		id,
 	} = donation;
+
 	const icon = require('@assets/images/banana-icon.png');
 
 	const startTime = new Date(created_at);
 	const now = new Date();
-	const minutesElapsed = Math.round((startTime.getTime() - now.getTime()) / 1000 / 60);
+	const minutesElapsed = Math.round((now.getTime() - startTime.getTime()) / 1000 / 60);
 	const timeLeft = minutesElapsed < duration_minutes
 		? duration_minutes - minutesElapsed
 		: 0;
@@ -38,8 +43,8 @@ export default ({ donation }: Donation) => {
 		<TouchableOpacity
 			onPress={() => navigate('DonationScreen', { donation, id, edit: true })}
 		>
-			<View style={{ ...styles.card }}>
-				<View style={{ ...styles.iconContainer, backgroundColor: timeLeft > 0 ? 'blue' : 'gray' }}>
+			<View style={styles.card}>
+				<View style={[ styles.iconContainer, { backgroundColor: timeLeft > 0 ? 'blue' : 'gray' } ]}>
 					<Image source={icon} style={styles.icon} />
 				</View>
 				<View style={styles.infoContainer}>
@@ -48,11 +53,11 @@ export default ({ donation }: Donation) => {
 						<Text style={styles.infoText}>{food_name}</Text>
 						<Text style={styles.infoText} numberOfLines={1}>{`: ${per_person} ${measurement}/person`}</Text>
 					</View>
-					<Text style={styles.infoText}>{`${(claims && claims.length) || 0}/${total_servings} servings claimed`}</Text>
 					<Text style={styles.infoText}>{`${timeLeft} min. remaining`}</Text>
 					<Text style={styles.infoText} numberOfLines={1}>{`Pickup: ${pickup_location}`}</Text>
 				</View>
 			</View>
+
 		</TouchableOpacity>
 	);
 };

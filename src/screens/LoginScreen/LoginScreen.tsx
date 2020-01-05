@@ -3,7 +3,6 @@ import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
 import { View, Alert, TextInput } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import useGlobal from '@state';
-import getEnv from '@util/environment';
 import {
 	Title,
 	LinkButton,
@@ -15,8 +14,8 @@ import styles from './LoginScreen.styles';
 
 export default () => {
 	const { navigate } = useNavigation();
-	const { USER_IDENTITY } = getEnv();
-	const [ _globalState, globalActions ] = useGlobal() as any;
+	const [ globalState, globalActions ] = useGlobal() as any;
+	const { userIdentity } = globalState;
 	const { login } = globalActions;
 
 	const [ email, setEmail ] = useState(useNavigationParam('email') || '');
@@ -36,7 +35,7 @@ export default () => {
 	return (
 		<View style={styles.outerContainer}>
 			<SpacerInline height={140} />
-			<Title text={`I am a ${USER_IDENTITY}.`} />
+			<Title text={`I am a ${userIdentity}.`} />
 			<SpacerInline height={40} />
 			<InputLabel text="Email Address" />
 			<TextInput
