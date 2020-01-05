@@ -1,6 +1,5 @@
 class ClaimsController < ApplicationController
 	def index
-		@claims = Claim.all
 	end
 
 	def show
@@ -12,8 +11,8 @@ class ClaimsController < ApplicationController
 	def create
 		@claim = Claim.create(claim_params)
 		if @claim.valid?
-				@token = encode_token(claim_id: @claim.id)
-				render json: { claim: ClaimSerializer.new(@claim), jwt: @token }, status: :created
+			@token = encode_token(claim_id: @claim.id)
+			render json: { claim: ClaimSerializer.new(@claim), jwt: @token }, status: :created
 		else
 			render json: { error: 'failed to create claim' }, status: :not_acceptable
 		end
@@ -35,6 +34,5 @@ class ClaimsController < ApplicationController
 
 	def claim_params
 		params.require(:claim).permit(:completed)
-	endoy
 	end
 end

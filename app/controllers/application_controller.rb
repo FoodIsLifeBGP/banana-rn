@@ -30,8 +30,14 @@ class ApplicationController < ActionController::API
     def current_donor
       if decoded_token
         donor_id = decoded_token[0]['donor_id']
-        # puts "found donor:", Donor.find_by(id: donor_id)
-        @donor = Donor.find_by(id: donor_id)
+        client_id = decoded_token[0]['client_id']
+        puts donor_id, client_id
+        @user = nil
+        if donor_id
+          @user = Donor.find(donor_id)
+        elsif client_id
+          @user = Client.find(client_id)
+        end
       end
     end
 

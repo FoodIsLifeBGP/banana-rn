@@ -1,8 +1,12 @@
 class ClaimSerializer < ActiveModel::Serializer
   attributes :id,
-    :donation_id,
+    :address,
+    :canceled,
     :client_id,
-    :qr_code,
     :completed,
-    :canceled
+    :created_at,
+    :donor,
+    :donation,
+    :qr_code,
+    :updated_at,
 end

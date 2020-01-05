@@ -1,11 +1,14 @@
 class DonorsController < ApplicationController
-	skip_before_action :authorized, only: [:create, :account_status]
+	skip_before_action :authorized, only: [:create, :account_status, :show]
 
 	def index
 		@donors = Donor.all
 	end
 
 	def show
+	end
+
+	def get_donations
 		id = params[:id].to_i
 		authorized_id = decoded_token[0]['donor_id']
 		if id != authorized_id
@@ -21,10 +24,8 @@ class DonorsController < ApplicationController
 	end
 
 	def create
-		@donor = Donor.new(donor_params)
+		@donor = Donor.create!(donor_params)
 		if @donor.valid?
-			@donor.account_status = 'pending'
-			@donor.save
 			@token = encode_token(donor_id: @donor.id)
 			session[:donor_id] = @donor.id
 			render json: { donor: DonorSerializer.new(@donor), jwt: @token }, status: :created
