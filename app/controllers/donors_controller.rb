@@ -1,12 +1,5 @@
 class DonorsController < ApplicationController
-	skip_before_action :authorized, only: [:create, :account_status, :show]
-
-	def index
-		@donors = Donor.all
-	end
-
-	def show
-	end
+	skip_before_action :authorized, only: [:create, :account_status]
 
 	def get_donations
 		id = params[:id].to_i
@@ -18,9 +11,6 @@ class DonorsController < ApplicationController
 		@donor = Donor.find(id)
 
 		render json: @donor.donations, include: 'claims', status: :ok
-	end
-
-	def new
 	end
 
 	def create
@@ -56,10 +46,6 @@ class DonorsController < ApplicationController
 		success ?
 			(render json: success_message, status: :updated) :
 			(render json: failure_message, status: :not_acceptable)
-	end
-
-
-	def edit
 	end
 
 	def update

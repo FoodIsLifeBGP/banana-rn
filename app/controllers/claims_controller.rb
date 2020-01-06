@@ -1,13 +1,4 @@
 class ClaimsController < ApplicationController
-	def index
-	end
-
-	def show
-	end
-
-	def new
-	end
-
 	def create
 		@claim = Claim.create(claim_params)
 		if @claim.valid?
@@ -16,9 +7,6 @@ class ClaimsController < ApplicationController
 		else
 			render json: { error: 'failed to create claim' }, status: :not_acceptable
 		end
-	end
-
-	def edit
 	end
 
 	def update

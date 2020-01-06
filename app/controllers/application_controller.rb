@@ -18,7 +18,7 @@ class ApplicationController < ActionController::API
         token = auth_header.split(' ')[1]
         # header: { 'Authorization': 'Bearer <token>' }
         begin
-          # puts "decoded token:", JWT.decode(token, 'my_s3cr3t', true, algorithm: 'HS256')
+          puts "decoded token:", JWT.decode(token, 'my_s3cr3t', true, algorithm: 'HS256')
           JWT.decode(token, 'my_s3cr3t', true, algorithm: 'HS256')
         rescue JWT::DecodeError
           puts "decode error"
@@ -31,7 +31,6 @@ class ApplicationController < ActionController::API
       if decoded_token
         donor_id = decoded_token[0]['donor_id']
         client_id = decoded_token[0]['client_id']
-        puts donor_id, client_id
         @user = nil
         if donor_id
           @user = Donor.find(donor_id)
@@ -42,7 +41,6 @@ class ApplicationController < ActionController::API
     end
 
     def logged_in?
-      # puts "logged in?:", !!current_donor
       !!current_donor
     end
 

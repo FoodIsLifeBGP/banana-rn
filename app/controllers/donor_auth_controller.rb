@@ -13,9 +13,9 @@ class DonorAuthController < ApplicationController
 			render json: { message: 'Invalid email or password' }, status: :unauthorized
 		end
 	end
- 
+
 	private
- 
+
 	def donor_login_params
 		params.require(:donor).permit(:email, :password)
 	end
