@@ -1,4 +1,5 @@
 class DonationsController < ApplicationController
+	skip_before_action :authorized, only: [:create]
 
 	def index
 		render json: Donation.all
@@ -27,9 +28,6 @@ class DonationsController < ApplicationController
 		end
 	end
 
-	def edit
-	end
-
 	def update
 		id = params[:id].to_i
 		@donation = Donation.find(id)
@@ -37,7 +35,6 @@ class DonationsController < ApplicationController
 			@donation.update(donation_params)
 			render json: { donation: DonationSerializer.new(@donation) }, status: :accepted
 		else
-			puts "invalid"
 			render json: { error: 'failed to create donation' }, status: :not_acceptable
 		end
 	end
