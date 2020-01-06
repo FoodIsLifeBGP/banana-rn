@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { View, YellowBox } from 'react-native';
+import { Text, View, YellowBox } from 'react-native';
 import { Provider } from 'react-native-paper';
+import Constants from 'expo-constants';
 import * as Font from 'expo-font';
 import NavigationService from '@util/NavigationService';
 import Route from './src/routes/Route';
@@ -28,6 +29,15 @@ export default function App() {
 		loadFonts();
 	}, []);
 
+	if (![ 'donor', 'client' ].includes(Constants.manifest.extra.variant)) {
+		return (
+			<View style={styles.container}>
+				<Text style={styles.heading}>INCORRECT VARIANT SPECIFIED</Text>
+				<Text style={styles.text}>You must specify 'donor' or 'client' in app.json (expo.extra.variant).</Text>
+				<Text style={styles.text}>Refresh the app to see your changes.</Text>
+			</View>
+		);
+	}
 
 	return fontsLoaded && (
 		<Provider>

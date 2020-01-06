@@ -1,6 +1,7 @@
 import railsAxios from '@util/railsAxios';
+import initialState from '@state/index';
 
-export const login = async (store, { email, password }) => {
+export const logIn = async (store, { email, password }) => {
 	const { loginUrl, userIdentity } = store.state;
 
 	try {
@@ -21,9 +22,6 @@ export const login = async (store, { email, password }) => {
 	}
 };
 
-export const logout = async store => {
-	await store.setState({
-		jwt: '',
-		user: {},
-	});
+export const logOut = async store => {
+	await store.setState(initialState);
 };

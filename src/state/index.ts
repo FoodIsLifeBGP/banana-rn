@@ -26,7 +26,7 @@ const {
 	LOGIN_URL,
 } = getEnv();
 
-const initialState: InitialState = {
+export const initialState: InitialState = {
 	userIdentity: USER_IDENTITY,
 	apiBaseUrl: API_BASE_URL,
 	loginUrl: LOGIN_URL,
@@ -35,7 +35,7 @@ const initialState: InitialState = {
 	donationsOrClaims: [],
 };
 
-// Paste the following into your code to use global state:
+// Paste the following into your code to use global state & actions:
 
 // import useGlobal from '@state';
 // const [ globalState, globalActions ] = useGlobal;

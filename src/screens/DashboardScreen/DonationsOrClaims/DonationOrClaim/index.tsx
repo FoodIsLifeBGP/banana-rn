@@ -4,7 +4,7 @@ import Donation from './Donation';
 import Claim from './Claim';
 // import { Donation as IDonation, Claim as IClaim } from './DonationOrClaim.type';
 
-// TODO: I feel that the following tells the function to cast donationOrClaim as a Donation or Claim for use in their respective components.  Typescript does not agree, so we have `any` for now.
+// TODO: I feel that the commented out code tells the function to cast donationOrClaim as a Donation or Claim, depending on which they are, since their respective components require strictly one or the other.  Typescript does not agree, so we have `any` for now.
 
 // export default function DonationOrClaim<T extends IDonation | IClaim>(
 // { donationOrClaim }: { donationOrClaim: T },

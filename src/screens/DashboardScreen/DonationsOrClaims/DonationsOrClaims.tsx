@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useIsFocused } from 'react-navigation-hooks';
 import { ScrollView, View, Text } from 'react-native';
 import { Divider } from 'react-native-paper';
 import useGlobal from '@state';
@@ -6,10 +7,11 @@ import { SpacerInline } from '@elements';
 import DonationOrClaim from './DonationOrClaim';
 
 export default () => {
+	const isFocused = useIsFocused();
 	const store = useGlobal() as any;
 	const [ globalState, globalActions ] = store;
 
-	const [ donationsOrClaims, setDonationsOrClaims ] = useState(null);
+	const [ donationsOrClaims, setDonationsOrClaims ] = useState(globalState.donationsOrClaims);
 	const [ loaded, setLoaded ] = useState(false);
 
 	const getDonationsOrClaimsFromApi = async () => {
@@ -21,8 +23,10 @@ export default () => {
 	};
 
 	useEffect(() => {
-		getDonationsOrClaimsFromApi();
-	}, []);
+		if (isFocused) {
+			getDonationsOrClaimsFromApi();
+		}
+	}, [ isFocused ]);
 
 	if (!loaded) { return <Text>Suuup</Text>; }
 

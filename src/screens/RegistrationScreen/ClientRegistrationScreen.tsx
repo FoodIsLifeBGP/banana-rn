@@ -25,7 +25,7 @@ import styles from './RegistrationScreen.styles';
 
 export default () => {
 	const { navigate } = useNavigation();
-	const [ globalState, globalActions ] = useGlobal() as any;
+	const [ _globalState, globalActions ] = useGlobal() as any;
 	const { register } = globalActions;
 
 	const transportationMethods = [

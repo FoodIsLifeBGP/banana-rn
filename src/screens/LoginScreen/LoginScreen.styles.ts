@@ -13,7 +13,7 @@ export default StyleSheet.create({
 		backgroundColor: 'white',
 		fontSize: 18,
 		fontFamily: 'open-sans-regular',
-		paddingLeft: 8,
+		paddingLeft: 12,
 	},
 	passwordContainer: {
 		height: 50,

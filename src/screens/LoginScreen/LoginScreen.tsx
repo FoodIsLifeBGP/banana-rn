@@ -16,18 +16,24 @@ export default () => {
 	const { navigate } = useNavigation();
 	const [ globalState, globalActions ] = useGlobal() as any;
 	const { userIdentity } = globalState;
-	const { login } = globalActions;
+	const { logIn } = globalActions;
 
-	const [ email, setEmail ] = useState(useNavigationParam('email') || '');
-	const [ password, setPassword ] = useState(useNavigationParam('password') || '');
+	const [ email, setEmail ] = useState(useNavigationParam('email') ?? '');
+	const [ password, setPassword ] = useState(useNavigationParam('password') ?? '');
 	const [ hidePwd, setHidePwd ] = useState(true);
 
+	const clearEmailAndPassword = () => { setEmail(''); setPassword(''); };
+
 	const handleLogin = async () => {
-		const statusCode = await login({ email, password });
+		const statusCode = await logIn({ email, password });
 		switch (statusCode) {
-			case 202: navigate('LoginSuccessScreen'); break;
-			case 401: Alert.alert('Incorrect email or password'); break;
-			case 500: Alert.alert('Network error - please try again'); break;
+			case 202: {
+				await clearEmailAndPassword();
+				navigate('LoginSuccessScreen');
+				return;
+			}
+			case 401: Alert.alert('Incorrect email or password'); return;
+			case 500: Alert.alert('Network error - please try again'); return;
 			default: Alert.alert(statusCode);
 		}
 	};
@@ -44,6 +50,8 @@ export default () => {
 				style={styles.input}
 				autoCapitalize="none"
 				autoCorrect={false}
+				autoFocus={true}
+				blurOnSubmit={false}
 			/>
 			<InputLabel text="Password" />
 			<View style={styles.passwordContainer}>

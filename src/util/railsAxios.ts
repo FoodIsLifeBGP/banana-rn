@@ -2,7 +2,7 @@ import axios from 'axios';
 import getEnv from './environment';
 
 export default (jwt?: string) => {
-	const BASIC_HEADERS = {
+	const JSON_HEADERS = {
 		Accept: 'application/json',
 		'Content-Type': 'application/json',
 	};
@@ -12,8 +12,8 @@ export default (jwt?: string) => {
 	const { API_BASE_URL } = getEnv();
 	return axios.create({
 		headers: jwt
-			? { ...BASIC_HEADERS, ...AUTH_HEADER }
-			: { ...BASIC_HEADERS },
+			? { ...JSON_HEADERS, ...AUTH_HEADER }
+			: { ...JSON_HEADERS },
 		baseURL: API_BASE_URL,
 	});
 };
