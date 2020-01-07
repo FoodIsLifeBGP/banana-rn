@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { AsyncStorage, Text } from 'react-native';
+import React from 'react';
+import { Text } from 'react-native';
+import useGlobal from '@state';
 import InfoScreen from '../InfoScreen';
 import AccountSuspendedScreen from '../AccountSuspendedScreen';
 import ApplicationPendingScreen from '../ApplicationPendingScreen';
@@ -7,28 +8,17 @@ import ApplicationApprovedScreen from '../ApplicationApprovedScreen';
 import DashboardScreen from '../DashboardScreen';
 
 export default () => {
-	const [ donor, setDonor ] = useState();
-	const [ jwt, setJwt ] = useState();
-	const [ loaded, setLoaded ] = useState(false);
+	const [ globalState ] = useGlobal();
+	const { user = {} as any, jwt = '' } = globalState;
+	const { id } = user;
 
-	const getDonorAndJwt = async () => {
-		await setDonor(JSON.parse(await AsyncStorage.getItem('donor') || ''));
-		await setJwt(await AsyncStorage.getItem('jwt'));
-		setLoaded(!([ donor, jwt ].includes('')));
-	};
+	if (!jwt || !user) { return <Text>Loading...</Text>; }
 
-	useEffect(() => {
-		getDonorAndJwt();
-	}, [ loaded ]);
-
-	if (!loaded) { return <Text>Loading...</Text>; }
-
-	const { id } = donor;
-
-	if (donor?.account_status === 'suspended') { return <AccountSuspendedScreen />; }
-	if (donor?.account_status === 'pending') { return <ApplicationPendingScreen />; }
-	if (donor?.account_status === 'approved') { return <ApplicationApprovedScreen id={id} />; }
-	if (donor?.account_status === 'active') { return <DashboardScreen jwt={jwt} id={id} />; }
-
-	return <InfoScreen title="Login error" nextScreenDestination="LoginScreen" nextScreenTitle="Login" />;
+	switch (user?.account_status) {
+		case 'suspended': return <AccountSuspendedScreen />;
+		case 'pending': return <ApplicationPendingScreen />;
+		case 'approved': return <ApplicationApprovedScreen id={id} />;
+		case 'active': return <DashboardScreen />;
+		default: return <InfoScreen title="Login error" nextScreenDestination="LoginScreen" nextScreenTitle="Login" />;
+	}
 };

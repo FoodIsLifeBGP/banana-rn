@@ -1,25 +1,39 @@
 import React, { useState } from 'react';
 import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
-import { View, Alert } from 'react-native';
+import { View, Alert, TextInput } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import { TextInput } from 'react-native-paper';
-import login from '@util/login';
-import { Title, LinkButton, SpacerInline } from '@elements';
-import InputLabel from '../../elements/FormTextInput/InputLabel';
-import Icon from '../../elements/Icon';
+import useGlobal from '@state';
+import {
+	Title,
+	LinkButton,
+	SpacerInline,
+	InputLabel,
+	Icon,
+} from '@elements';
 import styles from './LoginScreen.styles';
 
 export default () => {
 	const { navigate } = useNavigation();
-	const [ email, setEmail ] = useState(useNavigationParam('email') || '');
-	const [ password, setPassword ] = useState(useNavigationParam('password') || '');
+	const [ globalState, globalActions ] = useGlobal() as any;
+	const { userIdentity } = globalState;
+	const { logIn } = globalActions;
+
+	const [ email, setEmail ] = useState(useNavigationParam('email') ?? '');
+	const [ password, setPassword ] = useState(useNavigationParam('password') ?? '');
 	const [ hidePwd, setHidePwd ] = useState(true);
+
+	const clearEmailAndPassword = () => { setEmail(''); setPassword(''); };
+
 	const handleLogin = async () => {
-		const statusCode = await login({ email, password });
+		const statusCode = await logIn({ email, password });
 		switch (statusCode) {
-			case 202: navigate('LoginSuccessScreen'); break;
-			case 401: Alert.alert('Incorrect email or password'); break;
-			case 500: Alert.alert('Network error - please try again'); break;
+			case 202: {
+				await clearEmailAndPassword();
+				navigate('LoginSuccessScreen');
+				return;
+			}
+			case 401: Alert.alert('Incorrect email or password'); return;
+			case 500: Alert.alert('Network error - please try again'); return;
 			default: Alert.alert(statusCode);
 		}
 	};
@@ -27,29 +41,27 @@ export default () => {
 	return (
 		<View style={styles.outerContainer}>
 			<SpacerInline height={140} />
-			<Title text="I am a donor." />
+			<Title text={`I am a ${userIdentity}.`} />
 			<SpacerInline height={40} />
 			<InputLabel text="Email Address" />
 			<TextInput
-				label=""
 				value={email}
-				onChangeText={text => setEmail(text)}
+				onChangeText={setEmail}
 				style={styles.input}
-				underlineColor="white"
 				autoCapitalize="none"
 				autoCorrect={false}
+				autoFocus={true}
+				blurOnSubmit={false}
 			/>
 			<InputLabel text="Password" />
 			<View style={styles.passwordContainer}>
 				<View style={{ flex: 8 }}>
 					<TextInput
-						label=""
 						textContentType="password"
 						value={password}
 						secureTextEntry={hidePwd}
-						onChangeText={text => setPassword(text)}
+						onChangeText={setPassword}
 						style={styles.input}
-						underlineColor="gray"
 						autoCapitalize="none"
 						autoCorrect={false}
 					/>

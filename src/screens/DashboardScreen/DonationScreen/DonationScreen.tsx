@@ -1,31 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
 import {
 	View,
 	Text,
 	TouchableOpacity,
 	Image,
-	AsyncStorage,
 	Alert,
 } from 'react-native';
 import { Switch } from 'react-native-paper';
+import useGlobal from '@state';
 import {
 	Header,
 	SpacerInline,
 	FormTextInput,
 	LinkButton,
+	InputLabel,
 } from '@elements';
 import * as colors from '@util/colors';
-import createDonation from '@util/createDonation';
-import updateDonation from '@util/updateDonation';
-import InputLabel from '../../../elements/FormTextInput/InputLabel';
 import styles from './DonationScreen.styles';
 
 export default () => {
+	const [ globalState, globalActions ] = useGlobal() as any;
+	const { user, jwt } = globalState;
+	const { postDonation, logOut, getDonationsOrClaims } = globalActions;
 	const { navigate } = useNavigation();
 	const donation = useNavigationParam('donation');
 	const edit = useNavigationParam('edit');
-	const id = useNavigationParam('id');
+	const donationId = useNavigationParam('id') || null;
 
 	const {
 		claims = '',
@@ -39,55 +40,34 @@ export default () => {
 		total_servings = '',
 	} = donation || {};
 
-	const [ donor, setDonor ] = useState({} as any);
-	const [ jwt, setJwt ] = useState({} as any);
 	const [ name, setName ] = useState(food_name);
-	const [ sixtyMinuteLimit, setSixtyMinuteLimit ] = useState(true);
+	const [ durationInMinutes, setDurationInMinutes ] = useState(60);
 	const [ totalServings, setTotalServings ] = useState(total_servings);
 	const [ servingName, setServingName ] = useState(measurement);
 	const [ perPerson, setPerPerson ] = useState(per_person);
 	const [ pickupLocation, setPickupLocation ] = useState(pickup_location);
-	const [ loaded, setLoaded ] = useState(false);
 	const [ cancel, setCancel ] = useState(false);
 	const [ stop, setStop ] = useState(false);
 
 	const icon = require('@assets/images/banana-icon.png');
 
 	const submitDonation = async () => {
-		const statusCode = id
-			? (
-				await updateDonation({
-					id, donorId: donor.id, jwt, name, sixtyMinuteLimit, totalServings, servingName, perPerson, pickupLocation,
-				}))
-			: (
-				await createDonation({
-					donorId: donor.id, jwt, name, sixtyMinuteLimit, totalServings, servingName, perPerson, pickupLocation,
-				}));
+		const donationProps = {
+			donationId, donorId: user.id, jwt, name, durationInMinutes, totalServings, servingName, perPerson, pickupLocation, cancel,
+		};
+		if (!donationId) { delete donationProps.donationId; }
+		const statusCode = await postDonation(donationProps);
 		switch (statusCode) {
-			case 201: Alert.alert('Donation created!'); navigate('LoginSuccessScreen'); return;
-			case 202: Alert.alert('Donation updated!'); navigate('LoginSuccessScreen'); return;
+			case 201: Alert.alert('Donation created!'); getDonationsOrClaims(); navigate('LoginSuccessScreen'); return;
+			case 202: Alert.alert('Donation updated!'); getDonationsOrClaims(); navigate('LoginSuccessScreen'); return;
 			case (400 || 406): Alert.alert('Bad data - sorry, please try again!'); return;
-			case (401 || 403): Alert.alert('Authentication error - please log in again.'); return;
+			case (401 || 403): Alert.alert('Authentication error - please log in again.'); logOut(); navigate('LoginScreen'); return;
 			case 404: Alert.alert('Network error - sorry, please try again!'); return;
 			case 500: Alert.alert('Server problem - sorry, please try again!'); return;
 			default: Alert.alert('Sorry, something went wrong. Please try again.');
 		}
 	};
 
-	const getDonorAndJwt = async () => {
-		await setDonor(JSON.parse(await AsyncStorage.getItem('donor') || ''));
-		await setJwt(await AsyncStorage.getItem('jwt'));
-		if (donor && jwt) {
-			setPickupLocation(donor.pickup_location);
-			setLoaded(true);
-		}
-	};
-
-	useEffect(() => {
-		getDonorAndJwt();
-	}, [ loaded ]);
-
-	// Stop and cancel are exclusive, so only one can be true at a time.
 	const toggleCancel = () => {
 		setCancel(!cancel); setStop(false);
 	};
@@ -118,20 +98,20 @@ export default () => {
 					<InputLabel text="Time limit" />
 					<View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
 						<TouchableOpacity
-							onPress={() => setSixtyMinuteLimit(false)}
+							onPress={() => setDurationInMinutes(30)}
 							style={{
 								...styles.timeLimitButton,
-								borderColor: !sixtyMinuteLimit ? 'white' : colors.BANANA_YELLOW,
+								borderColor: durationInMinutes === 30 ? 'white' : colors.BANANA_YELLOW,
 							}}
 						>
 							<Text style={styles.buttonText}>30 MIN</Text>
 						</TouchableOpacity>
 
 						<TouchableOpacity
-							onPress={() => setSixtyMinuteLimit(true)}
+							onPress={() => setDurationInMinutes(60)}
 							style={{
 								...styles.timeLimitButton,
-								borderColor: sixtyMinuteLimit ? 'white' : colors.BANANA_YELLOW,
+								borderColor: durationInMinutes === 60 ? 'white' : colors.BANANA_YELLOW,
 							}}
 						>
 							<Text style={styles.buttonText}>60 MIN</Text>

@@ -1,10 +1,4 @@
-import {
-	Dimensions,
-	Platform,
-	StatusBar,
-	StyleSheet,
-} from 'react-native';
-// import { material } from 'react-native-typography';
+import { Platform, StyleSheet } from 'react-native';
 import * as colors from '@util/colors';
 
 export default StyleSheet.create({

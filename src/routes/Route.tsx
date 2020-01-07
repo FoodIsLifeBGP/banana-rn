@@ -3,6 +3,9 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 
+import getEnv from '@util/environment';
+
+// TODO: For some reason global imports aren't for these
 import LoginScreen from '../screens/LoginScreen';
 import DashboardScreen from '../screens/DashboardScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
@@ -31,9 +34,10 @@ export const MainStack = createStackNavigator(
 	},
 );
 
-// Drawer Navigator
-export const Drawer = createDrawerNavigator(
-	{
+const donorOrClientDrawer = () => {
+	const { USER_IDENTITY } = getEnv();
+
+	const DONOR_MENU = {
 		'Scan QR Code': {
 			screen: QRCodeScannerScreen,
 			navigationOptions: {
@@ -48,18 +52,47 @@ export const Drawer = createDrawerNavigator(
 				drawerIcon: <SvgImage source={require('@assets/icons/ICON_DONATION(WHITE).svg')} />,
 			},
 		},
+	};
+
+	const CLIENT_MENU = {
+		'My Profile': {
+			screen: QRCodeScannerScreen,
+			navigationOptions: {
+				drawerLabel: 'Scan QR Code',
+				drawerIcon: <SvgImage source={require('@assets/icons/ICON_QR_CODE(WHITE).svg')} />,
+			},
+		},
+		'My Claims': {
+			screen: MainStack,
+			navigationOptions: {
+				drawerLabel: 'My Donations',
+				drawerIcon: <SvgImage source={require('@assets/icons/ICON_DONATION(WHITE).svg')} />,
+			},
+		},
+	};
+
+	const LOGOUT = {
 		'Log Out': {
-			screen: LoginScreen, // not a real log out yet
+			screen: LoginScreen,
 			navigationOptions: {
 				drawerLabel: 'Log Out',
 				drawerIcon: <SvgImage source={require('@assets/icons/ICON_LOGOUT(WHITE).svg')} />,
 			},
 		},
-	},
+	};
+
+	return USER_IDENTITY === 'donor'
+		? { ...DONOR_MENU, ...LOGOUT }
+		: { ...CLIENT_MENU, ...LOGOUT };
+};
+
+// Drawer Navigator
+export const Drawer = createDrawerNavigator(
+	donorOrClientDrawer(),
 	{
 		contentComponent: MenuDrawer,
 		drawerPosition: 'right',
-		drawerBackgroundColor: 'transparent ',
+		drawerBackgroundColor: 'transparent',
 	},
 );
 
@@ -84,6 +117,6 @@ export const FullAppStack = createStackNavigator(
 	},
 );
 
-const Route = createAppContainer(FullAppStack);
+const DonorRoute = createAppContainer(FullAppStack);
 
-export default Route;
+export default DonorRoute;

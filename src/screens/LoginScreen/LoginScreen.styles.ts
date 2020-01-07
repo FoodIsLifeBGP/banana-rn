@@ -11,10 +11,9 @@ export default StyleSheet.create({
 		height: 50,
 		marginBottom: 15,
 		backgroundColor: 'white',
-		borderRadius: 0,
-		borderTopLeftRadius: 0,
-		borderTopRightRadius: 0,
-		textDecorationLine: 'none',
+		fontSize: 18,
+		fontFamily: 'open-sans-regular',
+		paddingLeft: 12,
 	},
 	passwordContainer: {
 		height: 50,

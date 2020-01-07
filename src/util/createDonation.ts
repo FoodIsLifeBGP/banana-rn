@@ -1,4 +1,4 @@
-import railsAxiosAuth from './railsAxiosAuth';
+import railsAxios from './railsAxios';
 
 interface DonationProps {
 	donorId: number;
@@ -14,7 +14,7 @@ interface DonationProps {
 export default async ({
 	donorId, jwt, name, sixtyMinuteLimit, totalServings, servingName, perPerson, pickupLocation,
 }: DonationProps) => {
-	const response = await railsAxiosAuth(jwt).post('/donations/create', JSON.stringify({
+	const response = await railsAxios(jwt).post('/donations/create', JSON.stringify({
 		donation: {
 			donor_id: donorId,
 			food_name: name,

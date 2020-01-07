@@ -1,6 +1,11 @@
 import React from 'react';
-import { View, TextInput } from 'react-native';
-import InputLabel from './InputLabel';
+import {
+	View,
+	TextInput,
+	StyleProp,
+	TextStyle,
+} from 'react-native';
+import { InputLabel } from '@elements';
 import styles from './FormTextInput.styles';
 
 interface FormTextInputProps {
@@ -11,6 +16,8 @@ interface FormTextInputProps {
 	autoCapitalize?: 'words' | 'sentences' | 'none' | 'characters';
 	inline?: boolean;
 	upperCase?: boolean;
+	disabled?: boolean;
+	style?: StyleProp<TextStyle>;
 }
 
 export default ({
@@ -21,6 +28,8 @@ export default ({
 	autoCapitalize = 'none',
 	inline = false,
 	upperCase = true,
+	disabled = false,
+	style,
 }: FormTextInputProps) => (
 	inline
 		? (
@@ -31,8 +40,9 @@ export default ({
 					<TextInput
 						value={value}
 						onChangeText={setValue}
-						style={{ ...styles.input, textAlign: 'right' }}
+						style={[ styles.input, disabled && styles.disabled, style, { textAlign: 'right' } ]}
 						autoCapitalize={autoCapitalize}
+						editable={!disabled}
 					/>
 				</View>
 			</View>
@@ -43,8 +53,9 @@ export default ({
 				<TextInput
 					value={value}
 					onChangeText={setValue}
-					style={styles.input}
+					style={[ disabled && styles.disabled, styles.input, style ]}
 					autoCapitalize={autoCapitalize}
+					editable={!disabled}
 				/>
 			</View>
 		)
