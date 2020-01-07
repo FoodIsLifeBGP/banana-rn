@@ -1,6 +1,8 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import * as colors from '@util/colors';
 
+const inputHeight = 35;
+
 export default StyleSheet.create({
 	outerContainer: {
 		backgroundColor: colors.BANANA_YELLOW,
@@ -8,7 +10,7 @@ export default StyleSheet.create({
 		justifyContent: 'space-between',
 	},
 	input: {
-		height: 40,
+		height: inputHeight,
 		marginBottom: 14,
 		paddingLeft: 10,
 		fontSize: 16,
@@ -32,7 +34,7 @@ export default StyleSheet.create({
 		borderRadius: Dimensions.get('window').width / 2,
 	},
 	passwordContainer: {
-		height: 40,
+		height: inputHeight,
 		flexDirection: 'row',
 		backgroundColor: 'white',
 		marginBottom: 10,
@@ -41,16 +43,18 @@ export default StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		width: 40,
-		height: 40,
+		height: inputHeight,
+		backgroundColor: 'white',
 	},
 	iconPadding: {
 		paddingRight: 35,
 	},
-	hideIcon: {
+	icon: {
 		fontSize: 24,
 		color: colors.NAVY_BLUE,
 	},
 	row: {
+		width: '100%',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 	},

@@ -140,7 +140,7 @@ export default () => {
 						<TouchableWithoutFeedback
 							onPress={() => setHidePwd(!hidePwd)}
 						>
-							<Icon name={hidePwd ? 'lock' : 'unlock'} style={styles.hideIcon} />
+							<Icon name={hidePwd ? 'lock' : 'unlock'} style={styles.icon} />
 						</TouchableWithoutFeedback>
 					</View>
 				</View>

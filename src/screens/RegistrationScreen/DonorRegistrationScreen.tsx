@@ -1,31 +1,44 @@
 import React, { useState } from 'react';
 import { useNavigation } from 'react-navigation-hooks';
-import { View, Text, Alert } from 'react-native';
+import {
+	Alert,
+	ScrollView,
+	Text,
+	TextInput,
+	View,
+} from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import * as ImagePicker from 'expo-image-picker';
+import * as Permissions from 'expo-permissions';
 import { Checkbox } from 'react-native-paper';
+import {
+	FormTextInput,
+	InputLabel,
+	Header,
+	LinkButton,
+	SpacerInline,
+	Title,
+	Icon,
+} from '@elements';
 import useGlobal from '@state';
 import * as colors from '@util/colors';
-import {
-	Title,
-	LinkButton,
-	FormTextInput,
-	SpacerInline,
-	Header,
-} from '@elements';
 import styles from './RegistrationScreen.styles';
 
 export default () => {
 	const { navigate } = useNavigation();
 	const [ _globalState, globalActions ] = useGlobal() as any;
 	const { register } = globalActions;
-	const [ organizationName, setOrganizationName ] = useState('');
-	const [ email, setEmail ] = useState('');
-	const [ password, setPassword ] = useState('');
-	const [ license, setLicense ] = useState('');
-	const [ street, setStreet ] = useState('');
+
 	const [ city, setCity ] = useState('');
-	const [ state, setState ] = useState('WA');
-	const [ zip, setZip ] = useState();
+	const [ email, setEmail ] = useState('');
+	const [ image, setImage ] = useState();
+	const [ license, setLicense ] = useState('');
+	const [ organizationName, setOrganizationName ] = useState('');
+	const [ password, setPassword ] = useState('');
+	const [ street, setStreet ] = useState('');
+	const [ state, _setState ] = useState('WA');
 	const [ termsOfService, setTermsOfService ] = useState(false);
+	const [ zip, setZip ] = useState();
 
 	const toggleTermsOfService = () => setTermsOfService(!termsOfService);
 
@@ -34,6 +47,7 @@ export default () => {
 		if (!email.includes('@') || !email.includes('.')) { Alert.alert('Please enter a valid email address.'); return; }
 		if (password.length < 8) { Alert.alert('Please enter a password at least 8 characters long.'); return; }
 		if (license.length !== 9) { Alert.alert('Please enter your 9-digit UBI with no spaces or dashes.'); return; }
+		if (!image) { Alert.alert('Please add an image of your business license to continue.'); return; }
 		if (!street || street.split(' ').length < 3) { Alert.alert('Please enter your street number and name.'); return; }
 		if (!city) { Alert.alert('Please enter your city.'); return; }
 		if (zip.toString().length !== 5) { Alert.alert('Please enter your 5-digit zip code.'); return; }
@@ -50,15 +64,29 @@ export default () => {
 		}
 	};
 
+	// TODO: add take picture functionality, abstract this out to a util or state.  See https://docs.expo.io/versions/latest/sdk/imagepicker/#imagepickerlaunchcameraasyncoptions
+	const pickImage = async () => {
+		const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+		if (status !== 'granted') {
+			Alert.alert('No camera roll permissions');
+		}
+		const pickedImage = await ImagePicker.launchImageLibraryAsync({
+			mediaTypes: ImagePicker.MediaTypeOptions.All,
+			allowsEditing: true,
+			aspect: [ 16, 9 ],
+			quality: 1,
+		});
+		pickedImage.cancelled === false && setImage(pickedImage);
+	};
+
 	return (
-		<View style={styles.outerContainer}>
+		<ScrollView contentContainerStyle={styles.outerContainer}>
 			<View>
 				<Header showMenu={false} />
 				<Title text="Registration." />
 				<Text style={styles.text}>
 					Please add your business's details below.  You will be able to update them once registration is complete.
 				</Text>
-				<SpacerInline height={20} />
 				<FormTextInput
 					text="Organization Name"
 					value={organizationName}
@@ -82,6 +110,26 @@ export default () => {
 					value={license}
 					setValue={setLicense}
 				/>
+
+				<View>
+					<InputLabel text="Business License Verification" />
+					<View style={styles.row}>
+						<View style={{ flex: 4 }}>
+							<TextInput
+								value={image?.uri}
+								style={styles.input}
+								autoCapitalize="none"
+							/>
+						</View>
+						<View style={styles.iconContainer}>
+							<TouchableWithoutFeedback
+								onPress={pickImage}
+							>
+								<Icon name="image" style={styles.icon} />
+							</TouchableWithoutFeedback>
+						</View>
+					</View>
+				</View>
 
 				<FormTextInput
 					text="Street Address"
@@ -114,7 +162,6 @@ export default () => {
 					/>
 				</View>
 
-				<SpacerInline height={10} />
 				<View style={styles.checkboxRow}>
 					<View style={styles.checkBox}>
 						<Checkbox
@@ -125,27 +172,32 @@ export default () => {
 						/>
 					</View>
 					<SpacerInline width={10} />
-					<Text style={styles.text}>Accept</Text>
+					<Text
+						style={styles.text}
+						onPress={toggleTermsOfService}
+					>
+						Accept
+					</Text>
 					<SpacerInline width={10} />
-					<View style={{ top: 9 }}>
+					<View style={{ top: 11 }}>
 						<LinkButton
 							text="Terms of Service"
 							destination="TermsScreen"
 						/>
 					</View>
 				</View>
-
 			</View>
 
 
 			<View>
+				<SpacerInline height={15} />
 				<LinkButton
 					text="Register"
 					onPress={validateAndSubmit}
 				/>
 				<SpacerInline height={40} />
 			</View>
-		</View>
+		</ScrollView>
 	);
 };
 
