@@ -1,6 +1,8 @@
 # THE BANANA APP: Ruby on Rails/Postgres backend
 
-## Installation
+Banana App is an open-source, not-for-profit project of The Be Good Foundation.  We can reduce hunger by simplifying food donation.  We make it easy for grocery stores and restaurants to donate good food that would otherwise be disposed of.  Users will be able to find active donations, view the business's food rating, and claim a portion.
+
+# Installation (Mac/OSX)
 
 All of The Banana App family (Donor, Client, & Admin) runs off of this backend.  Install this first.
 
@@ -45,17 +47,13 @@ Once you see that, open a web browser, and navigate to `http://localhost:3000/do
 
 You're done!  You can now move on to installing the Donor, Client, or Admin apps at the following URLs:
 
-#### [Donor](https://github.com/FoodIsLifeBGP/banana-rn)
+## [Donor/Client](https://github.com/FoodIsLifeBGP/banana-rn)
 
-#### [Client](https://github.com/FoodIsLifeBGP/banana-rn-client)
+## Admin: TBD
 
-#### Admin: TBD
+# Endpoints
 
-
-
-## Endpoints
-
-### Complete:
+## Complete:
 - admin_auth/create
 - donor_auth/create
 - client_auth/create
@@ -65,6 +63,7 @@ You're done!  You can now move on to installing the Donor, Client, or Admin apps
 
 - donor/create
 - donor/get
+- donor/scan -- complete a claim scanned from the donor frontend app
 
 - claims/update -- client cancels donation, or donor marks as claimed
 - client/get_donations (by location) -- client searching for nearby donations, and getting donation detail (should be moved to donations controller)
@@ -72,9 +71,9 @@ You're done!  You can now move on to installing the Donor, Client, or Admin apps
 - donations/create -- donor listing a donation
 - donations/update -- donor updating donation info
 - donations/get_donations (active, by user) -- donor seeing their donation list
+- donations/:id/claim -- client creates a claim on a donation
 
 ### To do:
 - donor/account_status --> donor/update
-- claims/create -- client puts in claim for donation with UUID
 - client/get_claims -- client pulling up their current claims and QR code info
 - push notifications

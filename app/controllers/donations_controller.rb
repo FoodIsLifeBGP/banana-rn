@@ -1,3 +1,5 @@
+require 'base64'
+
 class DonationsController < ApplicationController
 	skip_before_action :authorized, only: [:create]
 
@@ -35,7 +37,35 @@ class DonationsController < ApplicationController
 			@donation.update(donation_params)
 			render json: { donation: DonationSerializer.new(@donation) }, status: :accepted
 		else
-			render json: { error: 'failed to create donation' }, status: :not_acceptable
+			render json: { error: 'failed to update donation' }, status: :not_acceptable
+		end
+	end
+
+	def make_claim
+		donation_id = params[:id]
+		client_id = params[:client_id]
+
+		# No multiple claims by one client on one donation
+		if Claim.find_by(donation_id: donation_id, client_id: client_id)
+			render json: { error: 'claim already exists for this client and donation' }, status: :not_acceptable
+			return
+		end
+
+		qr_code = Base64.encode64({ 'client_id': params[:client_id], 'donation_id': params[:id] }.to_json).chomp
+		claim_params = {
+			client_id: params[:client_id],
+			donation_id: params[:id],
+			qr_code: qr_code,
+			completed: false,
+			time_claimed: Time.now,
+			canceled: false,
+		}
+		@claim = Claim.new(claim_params)
+		if @claim.valid?
+			@claim.save
+			render json: { claim: ClaimSerializer.new(@claim) }, status: :accepted
+		else
+			render json: { error: 'failed to create claim' }, status: :not_acceptable
 		end
 	end
 

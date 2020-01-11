@@ -1,3 +1,5 @@
+require 'base64'
+
 Admin.destroy_all
 Claim.destroy_all
 Donation.destroy_all
@@ -144,26 +146,50 @@ puts "Seeding Claims..."
 claim1 = Claim.create!(
 	client_id: client1.id,
 	donation_id: donation1.id,
-	qr_code: "qrcode",
-	completed: false,
+	qr_code: Base64.encode64({ 'client_id': client1.id, 'donation_id': donation1.id }.to_json).chomp,
+	completed: true,
 	time_claimed: Time.now,
 	canceled: false,
 )
 claim2 = Claim.create!(
 	client_id: client1.id,
 	donation_id: donation2.id,
-	qr_code: "qrcode",
+	qr_code: Base64.encode64({ 'client_id': client1.id, 'donation_id': donation2.id }.to_json).chomp,
 	completed: false,
 	time_claimed: nil,
-	canceled: true,
+	canceled: false,
 )
 claim3 = Claim.create!(
 	client_id: client1.id,
-	donation_id: donation2.id,
-	qr_code: "qrcode",
+	donation_id: donation3.id,
+	qr_code: Base64.encode64({ 'client_id': client1.id, 'donation_id': donation3.id }.to_json).chomp,
 	completed: false,
 	time_claimed: nil,
-	canceled: true,
+	canceled: false,
+)
+claim4 = Claim.create!(
+	client_id: client2.id,
+	donation_id: donation1.id,
+	qr_code: Base64.encode64({ 'client_id': client2.id, 'donation_id': donation1.id }.to_json).chomp,,
+	completed: false,
+	time_claimed: nil,
+	canceled: false,
+)
+claim5 = Claim.create!(
+	client_id: client2.id,
+	donation_id: donation2.id,
+	qr_code: Base64.encode64({ 'client_id': client2.id, 'donation_id': donation2.id }.to_json).chomp,,
+	completed: false,
+	time_claimed: nil,
+	canceled: false,
+)
+claim6 = Claim.create!(
+	client_id: client2.id,
+	donation_id: donation3.id,
+	qr_code: Base64.encode64({ 'client_id': client2.id, 'donation_id': donation3.id }.to_json).chomp,,
+	completed: false,
+	time_claimed: nil,
+	canceled: false,
 )
 
 puts "Seeding Admins..."

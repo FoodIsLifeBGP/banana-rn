@@ -21,6 +21,12 @@ class ClaimsController < ApplicationController
 	private
 
 	def claim_params
-		params.require(:claim).permit(:completed)
+		params.require(:claim).permit(:client_id,
+			:donation_id,
+			:qr_code,
+			:completed,
+			:time_claimed,
+			:canceled
+		)
 	end
 end

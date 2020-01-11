@@ -60,7 +60,7 @@ class ClientsController < ApplicationController
     render json: @reachable, include: 'claims', status: :ok
   end
 
-  def claims
+  def get_claims
     @user = Client.find(params[:id])
     @claims = @user.claims
     @claims_to_return = @claims.as_json
@@ -69,7 +69,6 @@ class ClientsController < ApplicationController
       @claims_to_return[i]['donor'] = claim.donation.donor.organization_name
       @claims_to_return[i]['donation'] = claim.donation.as_json
     }
-    puts @claims_to_return[0]
     render json: @claims_to_return, status: :ok
   end
 
