@@ -16,7 +16,7 @@ const getEnv = () => {
 	return ({
 		...variantSpecificProperties,
 		USER_IDENTITY: variant,
-		API_BASE_URL: 'http://b89d6ad2.ngrok.io',
+		API_BASE_URL: 'http://localhost:3000',
 	});
 };
 

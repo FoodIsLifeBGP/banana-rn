@@ -21,11 +21,6 @@ import * as colors from '@util/colors';
 import styles from './ClaimScreen.styles';
 
 export default () => {
-	// const [ globalState, globalActions ] = useGlobal() as any;
-	// const { user, jwt } = globalState;
-	// const { postDonation, logOut, getDonationsOrClaims } = globalActions;
-	// const { navigate } = useNavigation();
-
 	const icon = require('@assets/images/banana-icon.png');
 
 	// Dummy Data

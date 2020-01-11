@@ -8,7 +8,7 @@ export default StyleSheet.create({
 	outerContainer: {
 		flex: 1,
 		justifyContent: 'space-between',
-		backgroundColor: '#ffffff',
+		backgroundColor: colors.BANANA_YELLOW,
 		paddingHorizontal: '11%',
 	},
 	input: {

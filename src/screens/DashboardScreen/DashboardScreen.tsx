@@ -15,7 +15,7 @@ const DashboardScreen = () => {
 	const [segmentIndex, setSegmentIndex] = useState(0);
 	const title = userIdentity === 'donor' ? 'My Donations.' : 'My Claims.';
 	return userIdentity === 'donor' 
-	// TO-DO 
+	// TO-DO: donar screen might need to update
 	? (
 		<View style={styles.outerContainer}>
 			<View>
