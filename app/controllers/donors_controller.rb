@@ -57,6 +57,23 @@ class DonorsController < ApplicationController
 		end
 	end
 
+	def scan_qr_code
+		claim = JSON.parse(Base64.decode64(params[:qr_code]))
+		@claim = Claim.find_by(client_id: claim.client_id, donation_id: claim.donation_id)
+		if @claim
+			if !@claim.completed
+				@claim.completed = true
+				@claim.save
+				render json: { message: 'claim completed' }, status: :accepted
+				return
+			else
+				render json: { error: 'claim has already been completed'}, status: :bad_request
+			end
+		else
+			render json: { error: 'claim not found' }, status: :bad_request
+		end
+	end
+
 	private
 
 	def donor_params
