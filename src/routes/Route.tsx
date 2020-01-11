@@ -19,6 +19,8 @@ import QRCodeScannerScreen from '../screens/QRCodeScannerScreen/QRCodeScannerScr
 
 import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
 import SvgImage from '../elements/SvgImage/SvgImage';
+import { Colors } from 'react-native-paper';
+import * as colors from '@util/colors';
 
 // Logged-In Screens for Drawer Navigator
 export const MainStack = createStackNavigator(
@@ -55,24 +57,37 @@ const donorOrClientDrawer = () => {
 	};
 
 	const CLIENT_MENU = {
-		'My Profile': {
-			screen: QRCodeScannerScreen,
-			navigationOptions: {
-				drawerLabel: 'Scan QR Code',
-				drawerIcon: <SvgImage source={require('@assets/icons/ICON_QR_CODE(WHITE).svg')} />,
-			},
-		},
-		'My Claims': {
+		'DashboardScreen': {
 			screen: MainStack,
 			navigationOptions: {
-				drawerLabel: 'My Donations',
+				drawerLabel: 'My Claims',
 				drawerIcon: <SvgImage source={require('@assets/icons/ICON_DONATION(WHITE).svg')} />,
 			},
 		},
 	};
 
-	const LOGOUT = {
-		'LoginScreen': {
+	const COMMON_MENU = {
+		'ProfileScreen': {
+			screen: MainStack,
+			navigationOptions: {
+				drawerLabel: 'My Profile',
+				drawerIcon: <SvgImage source={require('@assets/icons/ICON_DONATION(WHITE).svg')} />,
+			},
+		},
+		'SettingsScreen': {
+			screen: MainStack,
+			navigationOptions: {
+				drawerLabel: 'Settings',
+				drawerIcon: <SvgImage source={require('@assets/icons/ICON_DONATION(WHITE).svg')} />,
+			},
+		},
+		'HelpScreen': {
+			screen: MainStack,
+			navigationOptions: {
+				drawerLabel: 'Help',
+				drawerIcon: <SvgImage source={require('@assets/icons/ICON_DONATION(WHITE).svg')} />,
+			},
+		},'LoginScreen': {
 			screen: LoginScreen,
 			navigationOptions: {
 				drawerLabel: 'Log Out',
@@ -82,8 +97,8 @@ const donorOrClientDrawer = () => {
 	};
 
 	return USER_IDENTITY === 'donor'
-		? { ...DONOR_MENU, ...LOGOUT }
-		: { ...CLIENT_MENU, ...LOGOUT };
+		? { ...DONOR_MENU, ...COMMON_MENU }
+		: { ...CLIENT_MENU, ...COMMON_MENU };
 };
 
 // Drawer Navigator
@@ -92,7 +107,7 @@ export const Drawer = createDrawerNavigator(
 	{
 		contentComponent: MenuDrawer,
 		drawerPosition: 'right',
-		drawerBackgroundColor: 'transparent',
+		drawerBackgroundColor: colors.NAVY_BLUE,
 	},
 );
 
