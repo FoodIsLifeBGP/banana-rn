@@ -38,14 +38,14 @@ const donorOrClientDrawer = () => {
 	const { USER_IDENTITY } = getEnv();
 
 	const DONOR_MENU = {
-		'Scan QR Code': {
+		'QRCodeScannerScreen': {
 			screen: QRCodeScannerScreen,
 			navigationOptions: {
 				drawerLabel: 'Scan QR Code',
 				drawerIcon: <SvgImage source={require('@assets/icons/ICON_QR_CODE(WHITE).svg')} />,
 			},
 		},
-		'My Donations': {
+		'DashboardScreen': {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: 'My Donations',
@@ -72,7 +72,7 @@ const donorOrClientDrawer = () => {
 	};
 
 	const LOGOUT = {
-		'Log Out': {
+		'LoginScreen': {
 			screen: LoginScreen,
 			navigationOptions: {
 				drawerLabel: 'Log Out',
