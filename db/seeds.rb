@@ -178,7 +178,7 @@ claim4 = Claim.create!(
 claim5 = Claim.create!(
 	client_id: client2.id,
 	donation_id: donation2.id,
-	qr_code: Base64.encode64({ 'client_id': client2.id, 'donation_id': donation2.id }.to_json).chomp,,
+	qr_code: Base64.encode64({ 'client_id': client2.id, 'donation_id': donation2.id }.to_json).chomp,
 	completed: false,
 	time_claimed: nil,
 	canceled: false,
@@ -186,7 +186,7 @@ claim5 = Claim.create!(
 claim6 = Claim.create!(
 	client_id: client2.id,
 	donation_id: donation3.id,
-	qr_code: Base64.encode64({ 'client_id': client2.id, 'donation_id': donation3.id }.to_json).chomp,,
+	qr_code: Base64.encode64({ 'client_id': client2.id, 'donation_id': donation3.id }.to_json).chomp,
 	completed: false,
 	time_claimed: nil,
 	canceled: false,
