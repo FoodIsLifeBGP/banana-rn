@@ -44,8 +44,18 @@ interface IDonation {
 	pickup_location: string;
 }
 
+interface IInitialState {
+	userIdentity: 'donor' | 'client';
+	apiBaseUrl: string;
+	loginUrl: string;
+	jwt?: string;
+	user?: DonorState | ClientState | SharedProps;
+	donationsOrClaims?: Donation[] | Claim[];
+}
+
 export type DonorState = IDonorState;
 export type ClientState = IClientState;
 export type SharedProps = ISharedProps;
 export type Claim = IClaim;
 export type Donation = IDonation;
+export type InitialState = IInitialState;

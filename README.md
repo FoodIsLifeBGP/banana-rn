@@ -1,4 +1,6 @@
-# THE BANANA APP: Donor/Client Apps (React Native/Typescript)
+# BANANA APP: Donor/Client Apps (React Native/Typescript)
+
+Banana App is an open-source, not-for-profit project of The Be Good Foundation.  We can reduce hunger by simplifying food donation.  We make it easy for grocery stores and restaurants to donate good food that would otherwise be disposed of.  Users will be able to find active donations, view the business's food rating, and claim a portion.
 
 # Installation (Mac/OSX)
 
@@ -77,7 +79,7 @@ Warnings will not prevent a merge.
 
 Take in `userIdentity` from state (see [State Management](#state-management)).  This will always be either `donor` or `client`.  (The app won't boot otherwise.)
 
-This can be used to change strings - (`${userIdentity === 'donor' ? 'Donations' | 'Claims'}`) - or for more complex logic (conditional elements, split components, or backend routes).
+This can be used to change strings - (`${userIdentity === 'donor' ? 'Donations' | 'Claims'}`) - or for bigger features (conditional/split components, backend routes, etc).
 
 ## Editor
 
@@ -172,6 +174,6 @@ The style defaults to `color: 'white', fontSize: 50`, and the component can be p
 
 ## Environment variables
 
-The variant field in `app.json/expo/extra` is used to set some psuedo-environment variables.  These values are then immediately loaded into state, so they're only to be used before state is initialized.  That is to say, hopefully you will never have to use them.  But if you do:
+The variant field in `app.json/expo/extra` is used to set some psuedo-environment variables.  These values are then immediately loaded into state, so they're only to be used before state is initialized.  That is to say, hopefully you will never have to use them.  But if you do, they live in `/src/util/environment.ts`.  The API URL root also lives here.
 - `import getEnv from '@util/environment';`
 - in body: `const { NEW_VARIABLE } = getEnv();`

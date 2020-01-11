@@ -1,24 +1,9 @@
 import React from 'react';
 import getEnv from '@util/environment';
 import useGlobalHook from 'use-global-hook';
-import {
-	DonorState,
-	ClientState,
-	SharedProps,
-	Claim,
-	Donation,
-} from './index.types';
+import { InitialState } from './index.types';
 
 import * as actions from './actions';
-
-interface InitialState {
-	userIdentity: 'donor' | 'client';
-	apiBaseUrl: string;
-	loginUrl: string;
-	jwt?: string;
-	user?: DonorState | ClientState | SharedProps;
-	donationsOrClaims?: Donation[] | Claim[];
-}
 
 const {
 	USER_IDENTITY,
