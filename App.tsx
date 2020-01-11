@@ -9,7 +9,7 @@ import styles from './App.styles';
 
 YellowBox.ignoreWarnings([
 	'Warning: componentWillReceiveProps has been renamed',
-	'Require cycle: src/elements/index.ts',
+	'Require cycle',
 ]);
 
 export default function App() {

@@ -1,8 +1,8 @@
 import railsAxios from '@util/railsAxios';
 
-const getDonationsOrClaims = async store => {
+export const getDonationsOrClaims = async store => {
 	const { jwt, user, userIdentity } = store.state;
-	const route = userIdentity === 'donor' ? 'donations' : 'claims';
+	const route = userIdentity === 'donor' ? 'get_donations' : 'get_claims';
 	const endpoint = `/${userIdentity}s/${user.id}/${route}`;
 	try {
 		const response = await railsAxios(jwt).get(endpoint);
@@ -19,5 +19,3 @@ const getDonationsOrClaims = async store => {
 		return false;
 	}
 };
-
-export { getDonationsOrClaims };
