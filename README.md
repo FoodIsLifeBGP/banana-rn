@@ -1,14 +1,8 @@
-# BANANA APP: Donor/Client Apps (React Native/Typescript)
-
-Banana App is an open-source, not-for-profit project of The Be Good Foundation.  We can reduce hunger by simplifying food donation.  We make it easy for grocery stores and restaurants to donate good food that would otherwise be disposed of.  Users will be able to find active donations, view the business's food rating, and claim a portion.
+# THE BANANA APP: Donor/Client Apps (React Native/Typescript)
 
 # Installation (Mac/OSX)
 
 Step 0 is to [install the backend](https://github.com/FoodIsLifeBGP/banana-rails).  Follow those instructions to make sure you have everything needed to install this repo (like the Xcode command line tools).
-
-Install Xcode for the iOS simulator.  This takes a while.
-
-- https://developer.apple.com/xcode/
 
 First we install NVM, Node, and the Expo CLI.
 
@@ -50,6 +44,62 @@ When the app opens, you will see the login screen.  Assuming you are still runni
 
 or create a new account.
 
+# Installation (Windows)
+
+*The Windows set-up is still in progress. If you find an error or deadend when installing please contact us to troubleshoot and improve the instructions.*
+
+Step 0 is to [install the backend](https://github.com/FoodIsLifeBGP/banana-rails).  Follow those instructions to make sure you have everything needed to install this repo (like the Xcode command line tools).
+
+First we install NVM, Node, and the Expo CLI.
+
+Go to your project's root folder in Terminal (`cd ~/Desktop/the-banana-app`) and run:
+
+- `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash`
+
+Close your Terminal window and reopen
+
+- `nvm --version` (if this doesn't give an error, the previous command worked)
+- `nvm install node`
+- `npm i -g expo-cli`
+
+Once those are complete, run:
+
+- `git clone https://github.com/FoodIsLifeBGP/banana-rn && cd banana-rn && npm i`
+
+Take note of `app.json` in the root.  This is where we specify whether to compile the donor or client app.
+
+```json
+{
+  "expo": {
+	...
+	"extra": {
+			"variant": "donor"
+		}
+  }
+}
+```
+
+Use `"variant": "client"` to load the app in client mode.  Do not check in your changes to this field.
+
+Now run:
+- `expo start` (or `expo r`.  Later, you may want to use `expo r -c` to clear the cache.)
+
+A tab in your web browser will open showing the Expo dashboard. You can follow the [Expo docs](https://docs.expo.io/versions/v33.0.0/workflow/up-and-running/#open-the-app-on-your-phone-or) to open the app on your phone, or the Android simulator.
+
+When the app opens, you will see the login screen.  Assuming you are still running the [Rails server](https://github.com/FoodIsLifeBGP/banana-rails) in the background, you can log in with the sample account for your variant:
+
+- email: `donor@donor.com`, password: `donor`
+- email: `client@client.com`, password: `client`
+
+or create a new account.
+
+•	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
+•	Close and reopen terminal
+•	nvm --version (if this doesn't give an error, the previous command worked)
+•	nvm install node
+•	npm i -g expo-cli
+
+
 # The rest of The Banana App family:
 
 ## [Backend](https://github.com/FoodIsLifeBGP/banana-rails)
@@ -83,7 +133,7 @@ Warnings will not prevent a merge.
 
 Take in `userIdentity` from state (see [State Management](#state-management)).  This will always be either `donor` or `client`.  (The app won't boot otherwise.)
 
-This can be used to change strings - (`${userIdentity === 'donor' ? 'Donations' | 'Claims'}`) - or for bigger features (conditional/split components, backend routes, etc).
+This can be used to change strings - (`${userIdentity === 'donor' ? 'Donations' | 'Claims'}`) - or for more complex logic (conditional elements, split components, or backend routes).
 
 ## Editor
 
@@ -178,6 +228,6 @@ The style defaults to `color: 'white', fontSize: 50`, and the component can be p
 
 ## Environment variables
 
-The variant field in `app.json/expo/extra` is used to set some psuedo-environment variables.  These values are then immediately loaded into state, so they're only to be used before state is initialized.  That is to say, hopefully you will never have to use them.  But if you do, they live in `/src/util/environment.ts`.  The API URL root also lives here.
+The variant field in `app.json/expo/extra` is used to set some psuedo-environment variables.  These values are then immediately loaded into state, so they're only to be used before state is initialized.  That is to say, hopefully you will never have to use them.  But if you do:
 - `import getEnv from '@util/environment';`
 - in body: `const { NEW_VARIABLE } = getEnv();`
