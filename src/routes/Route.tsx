@@ -3,6 +3,7 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 
+import * as colors from '@util/colors';
 import getEnv from '@util/environment';
 
 // TODO: For some reason global imports aren't for these
@@ -38,14 +39,14 @@ const donorOrClientDrawer = () => {
 	const { USER_IDENTITY } = getEnv();
 
 	const DONOR_MENU = {
-		'Scan QR Code': {
+		QRCodeScannerScreen: {
 			screen: QRCodeScannerScreen,
 			navigationOptions: {
 				drawerLabel: 'Scan QR Code',
 				drawerIcon: <SvgImage source={require('@assets/icons/ICON_QR_CODE(WHITE).svg')} />,
 			},
 		},
-		'My Donations': {
+		DashboardScreen: {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: 'My Donations',
@@ -55,24 +56,38 @@ const donorOrClientDrawer = () => {
 	};
 
 	const CLIENT_MENU = {
-		'My Profile': {
-			screen: QRCodeScannerScreen,
-			navigationOptions: {
-				drawerLabel: 'Scan QR Code',
-				drawerIcon: <SvgImage source={require('@assets/icons/ICON_QR_CODE(WHITE).svg')} />,
-			},
-		},
-		'My Claims': {
+		DashboardScreen: {
 			screen: MainStack,
 			navigationOptions: {
-				drawerLabel: 'My Donations',
+				drawerLabel: 'My Claims',
 				drawerIcon: <SvgImage source={require('@assets/icons/ICON_DONATION(WHITE).svg')} />,
 			},
 		},
 	};
 
-	const LOGOUT = {
-		'Log Out': {
+	const COMMON_MENU = {
+		ProfileScreen: {
+			screen: MainStack,
+			navigationOptions: {
+				drawerLabel: 'My Profile',
+				drawerIcon: <SvgImage source={require('@assets/icons/ICON_DONATION(WHITE).svg')} />,
+			},
+		},
+		SettingsScreen: {
+			screen: MainStack,
+			navigationOptions: {
+				drawerLabel: 'Settings',
+				drawerIcon: <SvgImage source={require('@assets/icons/ICON_DONATION(WHITE).svg')} />,
+			},
+		},
+		HelpScreen: {
+			screen: MainStack,
+			navigationOptions: {
+				drawerLabel: 'Help',
+				drawerIcon: <SvgImage source={require('@assets/icons/ICON_DONATION(WHITE).svg')} />,
+			},
+		},
+		LoginScreen: {
 			screen: LoginScreen,
 			navigationOptions: {
 				drawerLabel: 'Log Out',
@@ -82,8 +97,8 @@ const donorOrClientDrawer = () => {
 	};
 
 	return USER_IDENTITY === 'donor'
-		? { ...DONOR_MENU, ...LOGOUT }
-		: { ...CLIENT_MENU, ...LOGOUT };
+		? { ...DONOR_MENU, ...COMMON_MENU }
+		: { ...CLIENT_MENU, ...COMMON_MENU };
 };
 
 // Drawer Navigator
@@ -92,7 +107,7 @@ export const Drawer = createDrawerNavigator(
 	{
 		contentComponent: MenuDrawer,
 		drawerPosition: 'right',
-		drawerBackgroundColor: 'transparent',
+		drawerBackgroundColor: colors.NAVY_BLUE,
 	},
 );
 

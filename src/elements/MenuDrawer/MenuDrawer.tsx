@@ -14,8 +14,9 @@ import styles from './MenuDrawer.styles';
 
 const MenuDrawer = props => {
 	const [ globalState, globalActions ] = useGlobal() as any;
-	const { navigate } = useNavigation();
-	const logoutRoute = 'Log Out';
+	const { navigate, toggleDrawer } = useNavigation();
+	const { logOut } = globalActions;
+	const loginScreen = 'LoginScreen';
 
 	return (
 		<ScrollView>
@@ -38,11 +39,10 @@ const MenuDrawer = props => {
 					labelStyle={styles.labelText}
 					itemStyle={styles.menuItem}
 					onItemPress={async ({ route }) => {
-						if (route.routeName === logoutRoute) {
-							const { logOut } = globalActions;
+						toggleDrawer();
+						navigate(route.routeName);
+						if (route.routeName === loginScreen) {
 							await logOut();
-							navigate('LoginScreen', { email: '!', password: '' });
-							navigate('LoginScreen', { email: '' });
 						}
 					}}
 				/>
