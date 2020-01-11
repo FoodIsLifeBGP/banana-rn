@@ -36,7 +36,7 @@ export default () => {
 		image_url = '',
 		measurement = '',
 		per_person = '',
-		pickup_location = '',
+		pickup_location = globalState.user.pickup_location || '',
 		total_servings = '',
 	} = donation || {};
 
@@ -52,6 +52,14 @@ export default () => {
 	const icon = require('@assets/images/banana-icon.png');
 
 	const submitDonation = async () => {
+		if (!name) { Alert.alert('Please add the name of your donation.'); return; }
+		if (/[^a-z\s]/i.test(name)) { Alert.alert('Please enter a donation name with letters only.'); return; }
+		if (!servingName) { Alert.alert('Please add a serving name.'); return; }
+		if (/[^a-z\s]/i.test(servingName)) { Alert.alert('Please enter a serving name with letters only.'); return; }
+		if (!totalServings || totalServings < 0) { Alert.alert('Please add at least one total serving.'); return; }
+		if (!perPerson || perPerson < 0) { Alert.alert('Please add at least one per person.'); return; }
+		if (!pickupLocation) { Alert.alert('Please enter a pickup location.'); return; }
+
 		const donationProps = {
 			donationId, donorId: user.id, jwt, name, durationInMinutes, totalServings, servingName, perPerson, pickupLocation, cancel,
 		};
