@@ -6,7 +6,16 @@ Banana App is an open-source, not-for-profit project of The Be Good Foundation. 
 
 All of The Banana App family (Donor, Client, & Admin) runs off of this backend.  Install this first.
 
-The following commands in Terminal will install RVM, Ruby 2.6.3, Rails, and the Postgres gem.
+The following commands in Terminal will install:
+- GPG
+- RVM
+- Ruby 2.6.3
+- Rails
+- Postgres
+
+You'll need [Homebrew](https://docs.brew.sh/Installation) to install GPG.
+
+- `brew install gnupg`
 - `gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB`
 - `\curl -sSL https://get.rvm.io | bash`
 - `rvm install 2.6.3 && rvm use 2.6.3`
