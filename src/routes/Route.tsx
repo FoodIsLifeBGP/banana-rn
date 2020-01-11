@@ -16,6 +16,7 @@ import ApplicationPendingScreen from '../screens/ApplicationPendingScreen';
 import ContactScreen from '../screens/ContactScreen';
 import LoginSuccessScreen from '../screens/LoginSuccessScreen';
 import DonationScreen from '../screens/DashboardScreen/DonationScreen';
+import ClaimScreen from '../screens/DashboardScreen/ClaimScreen';
 import QRCodeScannerScreen from '../screens/QRCodeScannerScreen/QRCodeScannerScreen';
 
 import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
@@ -27,6 +28,7 @@ export const MainStack = createStackNavigator(
 		DashboardScreen,
 		LoginSuccessScreen,
 		DonationScreen,
+		ClaimScreen,
 		QRCodeScannerScreen,
 	},
 	{

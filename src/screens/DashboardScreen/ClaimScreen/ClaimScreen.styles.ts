@@ -1,8 +1,9 @@
 import { StyleSheet } from 'react-native';
-import platformShadow from '@util/platformShadow';
 import * as colors from '@util/colors';
+import platformShadow from '@util/platformShadow';
 
 const addButtonSize = 110;
+const iconSize = 90;
 
 export default StyleSheet.create({
 	outerContainer: {
@@ -45,4 +46,53 @@ export default StyleSheet.create({
 		color: colors.BANANA_YELLOW,
 		bottom: 24,
 	},
+	detailTop: {
+		flex: 1,
+		backgroundColor: colors.BANANA_YELLOW,
+	},
+	detailBot: {
+		flex: 1,
+		backgroundColor: '#ffffff',
+		flexDirection:'column'
+	},
+	heading: {
+		fontSize: 30,
+		color: colors.NAVY_BLUE,
+		textAlign: 'center',
+		fontWeight: 'bold'
+	},
+	H3:{
+		fontSize: 20,
+		color: colors.NAVY_BLUE,
+		textAlign: 'center',
+		fontWeight: 'bold',
+		padding:5
+	},
+	text:{
+		fontSize: 15,
+		color: colors.NAVY_BLUE,
+		textAlign: 'center',
+		padding:8
+	},
+	icon: {
+		height: (iconSize * 0.64),
+		width: (iconSize * 0.8),
+	},
+	iconMask: {
+		height: iconSize,
+		width: iconSize,
+		borderRadius: iconSize / 2,
+		backgroundColor: 'white',
+		justifyContent: 'center',
+		alignItems: 'center',
+		borderColor: 'white',
+		borderWidth: 1,
+	},
+	iconContainer: {
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	button:{
+		padding:10
+	}
 });
