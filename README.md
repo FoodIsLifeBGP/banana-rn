@@ -6,6 +6,10 @@ Banana App is an open-source, not-for-profit project of The Be Good Foundation. 
 
 Step 0 is to [install the backend](https://github.com/FoodIsLifeBGP/banana-rails).  Follow those instructions to make sure you have everything needed to install this repo (like the Xcode command line tools).
 
+Install Xcode for the iOS simulator.  This takes a while.
+
+- https://developer.apple.com/xcode/
+
 First we install NVM, Node, and the Expo CLI.
 
 Go to your project's root folder in Terminal (`cd ~/Desktop/the-banana-app`) and run:
