@@ -3,6 +3,7 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 
+import * as colors from '@util/colors';
 import getEnv from '@util/environment';
 
 // TODO: For some reason global imports aren't for these
@@ -19,8 +20,6 @@ import QRCodeScannerScreen from '../screens/QRCodeScannerScreen/QRCodeScannerScr
 
 import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
 import SvgImage from '../elements/SvgImage/SvgImage';
-import { Colors } from 'react-native-paper';
-import * as colors from '@util/colors';
 
 // Logged-In Screens for Drawer Navigator
 export const MainStack = createStackNavigator(
@@ -40,14 +39,14 @@ const donorOrClientDrawer = () => {
 	const { USER_IDENTITY } = getEnv();
 
 	const DONOR_MENU = {
-		'QRCodeScannerScreen': {
+		QRCodeScannerScreen: {
 			screen: QRCodeScannerScreen,
 			navigationOptions: {
 				drawerLabel: 'Scan QR Code',
 				drawerIcon: <SvgImage source={require('@assets/icons/ICON_QR_CODE(WHITE).svg')} />,
 			},
 		},
-		'DashboardScreen': {
+		DashboardScreen: {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: 'My Donations',
@@ -57,7 +56,7 @@ const donorOrClientDrawer = () => {
 	};
 
 	const CLIENT_MENU = {
-		'DashboardScreen': {
+		DashboardScreen: {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: 'My Claims',
@@ -67,27 +66,28 @@ const donorOrClientDrawer = () => {
 	};
 
 	const COMMON_MENU = {
-		'ProfileScreen': {
+		ProfileScreen: {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: 'My Profile',
 				drawerIcon: <SvgImage source={require('@assets/icons/ICON_DONATION(WHITE).svg')} />,
 			},
 		},
-		'SettingsScreen': {
+		SettingsScreen: {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: 'Settings',
 				drawerIcon: <SvgImage source={require('@assets/icons/ICON_DONATION(WHITE).svg')} />,
 			},
 		},
-		'HelpScreen': {
+		HelpScreen: {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: 'Help',
 				drawerIcon: <SvgImage source={require('@assets/icons/ICON_DONATION(WHITE).svg')} />,
 			},
-		},'LoginScreen': {
+		},
+		LoginScreen: {
 			screen: LoginScreen,
 			navigationOptions: {
 				drawerLabel: 'Log Out',

@@ -11,7 +11,6 @@ import { useNavigation } from 'react-navigation-hooks';
 import useGlobal from '@state';
 import { SpacerInline } from '@elements';
 import styles from './MenuDrawer.styles';
-import { LOG_OUT, SCAN_QR_CODE, MY_DONATIONS } from '@util/strings';
 
 const MenuDrawer = props => {
 	const [ globalState, globalActions ] = useGlobal() as any;
