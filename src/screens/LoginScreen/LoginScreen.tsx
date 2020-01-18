@@ -33,8 +33,9 @@ export default () => {
 				return;
 			}
 			case 401: Alert.alert('Incorrect email or password'); return;
+			case 404: Alert.alert('Server not found - please try again'); return;
 			case 500: Alert.alert('Network error - please try again'); return;
-			default: Alert.alert(statusCode);
+			default: Alert.alert(`Server replied with ${statusCode} status code`);
 		}
 	};
 
