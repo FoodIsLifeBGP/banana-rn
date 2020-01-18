@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'donations#active'
+  root 'application#authorized'
 
   get 'donors/:id/get_donations', to: 'donors#get_donations'
   get 'donors/:id/:status', to: 'donors#account_status'
