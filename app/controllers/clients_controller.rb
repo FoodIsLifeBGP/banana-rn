@@ -32,10 +32,10 @@ class ClientsController < ApplicationController
 
   def get_donations
     # hardcoded for now, will be passed in from front end later
-    client_lat = 47.618249
-    client_long = -122.3520729
+    client_lat = params[:latitude] || .618249
+    client_long = params[:latitude] || -122.3520729
+    
     mode = Client.find(params[:id].to_i).transportation_method
-
     case mode
     when 'walk'
       distance = 1.0
@@ -55,7 +55,7 @@ class ClientsController < ApplicationController
 
     @reachable = @available.select do |donation|
       # Check distance from client to donor of donation
-      Donor.find(donation.donor_id).distance_from([client_lat,client_long]) <= distance
+      Donor.find(donation.donor_id).distance_from([client_lat, client_long]) <= distance
     end
     render json: @reachable, include: 'claims', status: :ok
   end
