@@ -30,32 +30,39 @@ class ClientsController < ApplicationController
     end
   end
 
-  def get_donations
-    # hardcoded for now, will be passed in from front end later
-    client_lat = params[:latitude] || .618249
-    client_long = params[:latitude] || -122.3520729
+  def get_client_donations
+    client_lat = params[:latitude].to_i || 47.618249
+    client_long = params[:latitude].to_i || -122.3520729
     
     mode = Client.find(params[:id].to_i).transportation_method
+
+    @distance = 100.0
     case mode
     when 'walk'
-      distance = 1.0
+      @distance = 1.0
     when 'bike'
-      distance = 5.0
+      @distance = 5.0
     when 'public'
-      distance = 5.0
+      @distance = 5.0
     when 'car'
-      distance = 20.0
+      @distance = 20.0
     end
 
     @available = Donation.all.select do |d|
       # Check if each donation is still active based on the time it was created and its duration.
       # Time.now comes back in seconds, so we divide by 60 to compare in minutes.
-      (Time.now - d.created_at) / 60 < d.duration_minutes
+
+      # NOTE: For testing purposes, we are returning all donations, so we don't have to keep creating new ones.
+      # NOTE: Uncomment the next line when that is ready to change.
+      # (Time.now - d.created_at) / 60 < d.duration_minutes
+
+      # NOTE: Kill next line when making the above change.
+      true
     end
 
     @reachable = @available.select do |donation|
-      # Check distance from client to donor of donation
-      Donor.find(donation.donor_id).distance_from([client_lat, client_long]) <= distance
+      # Check @distance from client to donor of donation
+      Donor.find(donation.donor_id).distance_from([client_lat, client_long]) <= @distance
     end
     render json: @reachable, include: 'claims', status: :ok
   end
