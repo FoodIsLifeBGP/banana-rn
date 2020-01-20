@@ -30,9 +30,14 @@ class ClientsController < ApplicationController
     end
   end
 
-  def get_client_donations
-    client_lat = params[:latitude].to_i || 47.618249
-    client_long = params[:latitude].to_i || -122.3520729
+  def get_donations
+    if !params[:client_lat] || !params[:client_long]
+      render json: { error: 'Missing client_lat and/or client_long params' }, status: :not_acceptable
+      return
+    end
+
+    client_lat = params[:client_lat].to_f
+    client_long = params[:client_long].to_f
     
     mode = Client.find(params[:id].to_i).transportation_method
 
@@ -48,6 +53,8 @@ class ClientsController < ApplicationController
       @distance = 20.0
     end
 
+    puts 'travel distance:', @distance
+
     @available = Donation.all.select do |d|
       # Check if each donation is still active based on the time it was created and its duration.
       # Time.now comes back in seconds, so we divide by 60 to compare in minutes.
@@ -62,8 +69,11 @@ class ClientsController < ApplicationController
 
     @reachable = @available.select do |donation|
       # Check @distance from client to donor of donation
-      Donor.find(donation.donor_id).distance_from([client_lat, client_long]) <= @distance
+      donor = Donor.find(donation.donor_id)
+      donor.distance_to([client_lat, client_long]) <= @distance
     end
+
+    puts 'reachable:', @reachable.map(&:food_name)
     render json: @reachable, include: 'claims', status: :ok
   end
 
