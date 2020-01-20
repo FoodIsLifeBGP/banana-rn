@@ -8,8 +8,8 @@ import ApplicationApprovedScreen from '../ApplicationApprovedScreen';
 import DashboardScreen from '../DashboardScreen';
 
 export default () => {
-	const [ globalState ] = useGlobal();
-	const { user = {} as any, jwt = '' } = globalState;
+	const [ state ] = useGlobal();
+	const { user = {} as any, jwt = '' } = state;
 	const { id } = user;
 
 	if (!jwt || !user) { return <Text>Loading...</Text>; }

@@ -13,9 +13,9 @@ import { SpacerInline } from '@elements';
 import styles from './MenuDrawer.styles';
 
 const MenuDrawer = props => {
-	const [ globalState, globalActions ] = useGlobal() as any;
+	const [ state, actions ] = useGlobal() as any;
 	const { navigate, toggleDrawer } = useNavigation();
-	const { logOut } = globalActions;
+	const { logOut } = actions;
 	const loginScreen = 'LoginScreen';
 
 	return (

@@ -114,7 +114,7 @@ TODO: make absolute imports work for the MenuDrawer.  Any new elements should be
 There are some excellent usage samples by the author [here](https://codesandbox.io/s/v6zz2nwow5) and [here](https://codesandbox.io/s/wqvykj5497), and a small example below.
 
 - Lives in `@state/index.ts`.  Initial state comes from the helpfully named `initialState` constant.
-- Calling the hook returns the `store` array: `[ globalState, globalActions ]`.
+- Calling the hook returns the `store` array: `[ state, actions ]`.
 
 ### Writing Actions
 
@@ -130,7 +130,7 @@ export const increase = async (store, amount) => {
 ```
 4. Import & access the store in your component: 
 ```ts
-const [ globalState, globalActions ] = useGlobal();
+const [ state, actions ] = useGlobal();
 ```
 5. Use as desired.  Example component:
 ```ts
@@ -138,10 +138,10 @@ import useGlobal from '@state';
 import { Button } from 'react-native'
 
 const ExampleComponent = () => {
-	const [ globalState, globalActions ] = useGlobal();
+	const [ state, actions ] = useGlobal();
 	return (
 		<Button
-			onPress={globalState.increase(1)}
+			onPress={state.increase(1)}
 		/>
 	);
 }

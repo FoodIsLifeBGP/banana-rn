@@ -9,11 +9,11 @@ import Claim from './Claim';
 // export default function DonationOrClaim<T extends IDonation | IClaim>(
 // { donationOrClaim }: { donationOrClaim: T },
 // ): T extends IDonation ? IDonation : IClaim {
-export default ({ donationOrClaim }: { donationOrClaim: any }) => {
-	const [ globalState ] = useGlobal();
-	const { userIdentity } = globalState;
+export default ({ donationOrClaim, resource }: { donationOrClaim: any; resource: 'donations' | 'claims' }) => {
+	const [ state ] = useGlobal();
+	const { userIdentity } = state;
 
-	return userIdentity === 'donor'
-		? <Donation donation={donationOrClaim} />
-		: <Claim claim={donationOrClaim} />;
+	return userIdentity === 'client' && resource === 'claims'
+		? <Claim claim={donationOrClaim} />
+		: <Donation donation={donationOrClaim} />;
 };

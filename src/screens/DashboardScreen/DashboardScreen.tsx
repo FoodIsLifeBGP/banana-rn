@@ -9,9 +9,9 @@ import styles from './DashboardScreen.styles';
 
 const DashboardScreen = () => {
 	const { navigate } = useNavigation();
-	const [ globalState ] = useGlobal();
-	const { userIdentity } = globalState;
-	const title = userIdentity === 'donor' ? 'My Donations.' : 'My Claims.';
+	const [ state ] = useGlobal();
+	const { userIdentity } = state;
+	const title = userIdentity === 'donor' ? 'My Donations.' : 'Open Donations.';
 
 	return (
 		<View style={styles.outerContainer}>
@@ -21,7 +21,7 @@ const DashboardScreen = () => {
 				<SpacerInline height={20} />
 			</View>
 
-			<DonationsOrClaims />
+			<DonationsOrClaims resource="donations" />
 
 			{ userIdentity === 'donor' && (
 				<View style={styles.addButton}>

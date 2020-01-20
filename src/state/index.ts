@@ -15,15 +15,15 @@ export const initialState: InitialState = {
 	userIdentity: USER_IDENTITY,
 	apiBaseUrl: API_BASE_URL,
 	loginUrl: LOGIN_URL,
+	donationsOrClaims: [],
 	jwt: undefined,
 	user: undefined,
-	donationsOrClaims: [],
 };
 
 // Paste the following into your code to use global state & actions:
 
 // import useGlobal from '@state';
-// const [ globalState, globalActions ] = useGlobal;
+// const [ state, actions ] = useGlobal;
 
 const useGlobal = useGlobalHook(React, initialState, actions);
 

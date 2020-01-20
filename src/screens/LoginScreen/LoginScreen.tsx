@@ -14,9 +14,9 @@ import styles from './LoginScreen.styles';
 
 export default () => {
 	const { navigate } = useNavigation();
-	const [ globalState, globalActions ] = useGlobal() as any;
-	const { userIdentity } = globalState;
-	const { logIn } = globalActions;
+	const [ state, actions ] = useGlobal() as any;
+	const { userIdentity } = state;
+	const { logIn } = actions;
 
 	const [ email, setEmail ] = useState(useNavigationParam('email') ?? '');
 	const [ password, setPassword ] = useState(useNavigationParam('password') ?? '');

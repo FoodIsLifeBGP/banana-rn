@@ -20,9 +20,9 @@ import * as colors from '@util/colors';
 import styles from './DonationScreen.styles';
 
 export default () => {
-	const [ globalState, globalActions ] = useGlobal() as any;
-	const { user, jwt } = globalState;
-	const { postDonation, logOut, getDonationsOrClaims } = globalActions;
+	const [ state, actions ] = useGlobal() as any;
+	const { user, jwt } = state;
+	const { postDonation, logOut, getDonationsOrClaims } = actions;
 	const { navigate } = useNavigation();
 	const donation = useNavigationParam('donation');
 	const edit = useNavigationParam('edit');
@@ -36,7 +36,7 @@ export default () => {
 		image_url = '',
 		measurement = '',
 		per_person = '',
-		pickup_location = globalState.user.pickup_location || '',
+		pickup_location = state.user.pickup_location || '',
 		total_servings = '',
 	} = donation || {};
 
