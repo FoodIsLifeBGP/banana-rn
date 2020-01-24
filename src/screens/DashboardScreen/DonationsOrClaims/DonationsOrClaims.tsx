@@ -6,16 +6,23 @@ import useGlobal from '@state';
 import { SpacerInline } from '@elements';
 import DonationOrClaim from './DonationOrClaim';
 
-export default () => {
-	const isFocused = useIsFocused();
-	const store = useGlobal() as any;
-	const [ globalState, globalActions ] = store;
+interface LocalProps {
+	resource: 'donations' | 'claims';
+}
 
-	const [ donationsOrClaims, setDonationsOrClaims ] = useState(globalState.donationsOrClaims);
+export default ({ resource }: LocalProps) => {
+	const isFocused = useIsFocused();
+	const [ state, actions ] = useGlobal() as any;
+
+	const [ donationsOrClaims, setDonationsOrClaims ] = useState(state.donationsOrClaims);
 	const [ loaded, setLoaded ] = useState(false);
 
 	const getDonationsOrClaimsFromApi = async () => {
-		const data = await globalActions.getDonationsOrClaims();
+		const { getDonationsOrClaims, getActiveDonationsForClient, getLocation } = actions;
+		const coords = await getLocation();
+		const { userIdentity } = state;
+		const method = userIdentity === 'client' && resource === 'donations' ? getActiveDonationsForClient : getDonationsOrClaims;
+		const data = await method(resource);
 		if (data) {
 			await setDonationsOrClaims(data);
 			setLoaded(true);
@@ -28,7 +35,7 @@ export default () => {
 		}
 	}, [ isFocused ]);
 
-	if (!loaded) { return <Text>Suuup</Text>; }
+	if (!loaded) { return <Text>Loading...</Text>; }
 
 	return donationsOrClaims && Array.isArray(donationsOrClaims) && donationsOrClaims !== []
 		? (
@@ -37,7 +44,11 @@ export default () => {
 					(donationsOrClaims as any).map((donationOrClaim, i) => (
 						<View key={donationOrClaim.id}>
 							<Divider style={{ backgroundColor: 'blue' }} />
-							<DonationOrClaim donationOrClaim={donationOrClaim} key={donationOrClaim.id} />
+							<DonationOrClaim
+								donationOrClaim={donationOrClaim}
+								key={donationOrClaim.id}
+								resource={resource}
+							/>
 							{
 								i === (donationsOrClaims as any).length - 1
 									&& <Divider style={{ backgroundColor: 'blue' }} />

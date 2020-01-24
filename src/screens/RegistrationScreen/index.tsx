@@ -4,8 +4,8 @@ import DonorRegistrationScreen from './DonorRegistrationScreen';
 import ClientRegistrationScreen from './ClientRegistrationScreen';
 
 export default () => {
-	const [ globalState ] = useGlobal();
-	const { userIdentity } = globalState;
+	const [ state ] = useGlobal();
+	const { userIdentity } = state;
 	switch (userIdentity) {
 		case 'donor': return <DonorRegistrationScreen />;
 		case 'client':

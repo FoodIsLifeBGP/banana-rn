@@ -14,25 +14,26 @@ interface DonationProps {
 	totalServings: string | number;
 }
 
-const postDonation = async (_store, donation: DonationProps) => {
-	const {
-		donationId, donorId, jwt, name, durationInMinutes, totalServings, servingName, perPerson, pickupLocation, cancel,
-	} = donation;
+const postDonation = async (_store, {
+	donationId, donorId, jwt, name, durationInMinutes, totalServings, servingName, perPerson, pickupLocation, cancel,
+}: DonationProps) => {
 	const endpoint = `/donations/${donationId ? `${donationId}/update` : 'create'}`;
+	const donation = JSON.stringify({
+		donation: {
+			food_name: name,
+			donor_id: donorId,
+			duration_minutes: durationInMinutes,
+			total_servings: totalServings,
+			measurement: servingName,
+			per_person: perPerson,
+			image_url: '',
+			pickup_location: pickupLocation,
+			canceled: cancel,
+		},
+	});
+
 	try {
-		const response = await railsAxios(jwt).post(endpoint, JSON.stringify({
-			donation: {
-				food_name: name,
-				donor_id: donorId,
-				duration_minutes: durationInMinutes,
-				total_servings: totalServings,
-				measurement: servingName,
-				per_person: perPerson,
-				image_url: '',
-				pickup_location: pickupLocation,
-				canceled: cancel,
-			},
-		}));
+		const response = await railsAxios(jwt).post(endpoint, donation);
 
 		return response.request.status || 'Error';
 	} catch (error) {

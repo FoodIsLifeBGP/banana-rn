@@ -1,15 +1,15 @@
-interface IDonorState {
+export interface DonorState {
 	organization_name: string;
 	business_license: string;
 }
 
-interface IClientState {
+export interface ClientState {
 	transportation_method: string;
 	ethnicity: string;
 	gender: string;
 }
 
-interface ISharedProps {
+export interface SharedProps {
 	email: string;
 	password: string;
 	address_street: string;
@@ -17,9 +17,13 @@ interface ISharedProps {
 	address_state: string;
 	address_zip: number;
 	account_status: string;
+	coords: {
+		latitude?: number;
+		longitude?: number;
+	};
 }
 
-interface IClaim {
+export interface Claim {
 	client_id: number;
 	donation_id: number;
 	qr_code: string;
@@ -30,7 +34,7 @@ interface IClaim {
 	canceled: boolean;
 }
 
-interface IDonation {
+export interface Donation {
 	food_name: string;
 	measurement: string;
 	per_person: number;
@@ -44,7 +48,7 @@ interface IDonation {
 	pickup_location: string;
 }
 
-interface IInitialState {
+export interface InitialState {
 	userIdentity: 'donor' | 'client';
 	apiBaseUrl: string;
 	loginUrl: string;
@@ -53,9 +57,6 @@ interface IInitialState {
 	donationsOrClaims?: Donation[] | Claim[];
 }
 
-export type DonorState = IDonorState;
-export type ClientState = IClientState;
-export type SharedProps = ISharedProps;
-export type Claim = IClaim;
-export type Donation = IDonation;
-export type InitialState = IInitialState;
+export interface StatusCode {
+	code: 200 | 202 | 400 | 403 | 404 | 418 | 500;
+}
