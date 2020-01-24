@@ -8,5 +8,5 @@ class ClaimSerializer < ActiveModel::Serializer
     :donor,
     :donation,
     :qr_code,
-    :updated_at,
+    :updated_at
 end
