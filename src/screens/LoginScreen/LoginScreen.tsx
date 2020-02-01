@@ -18,6 +18,8 @@ export default () => {
 	const { userIdentity } = state;
 	const { logIn } = actions;
 
+	const defaultEmail = 'client@client.com';
+	const defaultPassword = 'client';
 	const [ email, setEmail ] = useState(useNavigationParam('email') ?? '');
 	const [ password, setPassword ] = useState(useNavigationParam('password') ?? '');
 	const [ hidePwd, setHidePwd ] = useState(true);
