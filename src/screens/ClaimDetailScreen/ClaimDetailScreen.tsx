@@ -24,7 +24,7 @@ const ClaimDetailScreen = () => {
 	const distance = 0.3;
 	const remainingMin = 30;
 	const remainingSec = 30;
-	const pickupInsturctions = 'FRONTDESK';
+	const pickupInstructions = 'FRONTDESK';
 
 	const screenHeight = Math.round(Dimensions.get('window').height);
 	const screenWidth = Math.round(Dimensions.get('window').width);
@@ -57,7 +57,7 @@ const ClaimDetailScreen = () => {
 					{`${remainingMin} MIN ${remainingSec} SEC`}
 				</Text>
 				<Text style={[ styles.textBold, styles.text ]}>
-					{`PICKUP INSTRUCTIONS:"${pickupInsturctions}"`}
+					{`PICKUP INSTRUCTIONS:"${pickupInstructions}"`}
 				</Text>
 			</View>
 			<View style={styles.QRCodeContainer}>
