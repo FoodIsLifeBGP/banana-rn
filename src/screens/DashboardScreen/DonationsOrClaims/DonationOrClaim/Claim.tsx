@@ -38,10 +38,9 @@ export default ({ claim }: Claim) => {
 	const timeLeft = minutesElapsed < duration_minutes
 		? duration_minutes - minutesElapsed
 		: 0;
-
 	return (
 		<TouchableOpacity
-			onPress={() => navigate('DonationScreen', { donation, id, edit: true })}
+			onPress={() => navigate('ClaimDetailScreen', { claim, id })}
 		>
 			<View style={styles.card}>
 				<View style={[ styles.iconContainer, { backgroundColor: timeLeft > 0 ? 'blue' : 'gray' } ]}>
