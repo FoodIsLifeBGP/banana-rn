@@ -16,8 +16,13 @@ Go to your project's root folder in Terminal (`cd ~/Desktop/the-banana-app`) and
 
 - `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash`
 - `nvm --version` (if this doesn't give an error, the previous command worked)
-- `nvm install node`
-- `npm i -g expo-cli`
+- Node
+  - Mac: `nvm install node`
+  - Windows: `nvm install node`. Set the your nvm path in system variables in Environment variables. For example: C:\Users\Ashwini\AppData\Roaming\npm
+- NPM
+  - Mac: `npm i -g expo-cli`
+  - Windows: `npm i -g expo-cli`. Set the your npm path in system variables in Environment variables. For example: C:\Users\Ashwini\AppData\Roaming\nvm
+
 
 Once those are complete, run:
 
