@@ -20,7 +20,7 @@ class DonorsController < ApplicationController
 			session[:donor_id] = @donor.id
 			render json: { donor: DonorSerializer.new(@donor), jwt: @token }, status: :created
 		else
-			render json: { error: 'failed to create donor' }, status: :not_acceptable
+			render json: { error: 'failed to create donor' }, status: :unprocessable_entity
 		end
 	end
 
@@ -45,7 +45,7 @@ class DonorsController < ApplicationController
 
 		success ?
 			(render json: success_message, status: :updated) :
-			(render json: failure_message, status: :not_acceptable)
+			(render json: failure_message, status: :unprocessable_entity)
 	end
 
 	def update
@@ -67,10 +67,10 @@ class DonorsController < ApplicationController
 				render json: { message: 'claim completed' }, status: :accepted
 				return
 			else
-				render json: { error: 'claim has already been completed'}, status: :bad_request
+				render json: { error: 'claim has already been completed'}, status: :unprocessable_entity
 			end
 		else
-			render json: { error: 'claim not found' }, status: :bad_request
+			render json: { error: 'claim not found' }, status: :unprocessable_entity
 		end
 	end
 

@@ -5,7 +5,7 @@ class ClaimsController < ApplicationController
 			@token = encode_token(claim_id: @claim.id)
 			render json: { claim: ClaimSerializer.new(@claim), jwt: @token }, status: :created
 		else
-			render json: { error: 'failed to create claim' }, status: :not_acceptable
+			render json: { error: 'failed to create claim' }, status: :unprocessable_entity
 		end
 	end
 

@@ -17,7 +17,7 @@ class ClientsController < ApplicationController
         @token = encode_token(client_id: @client.id)
         render json: { client: ClientSerializer.new(@client), jwt: @token }, status: :created
     else
-      render json: { error: 'failed to create client' }, status: :not_acceptable
+      render json: { error: 'failed to create client' }, status: :unprocessable_entity
     end
   end
 
@@ -32,7 +32,7 @@ class ClientsController < ApplicationController
 
   def get_donations
     if !params[:client_lat] || !params[:client_long]
-      render json: { error: 'Missing client_lat and/or client_long params' }, status: :not_acceptable
+      render json: { error: 'Missing client_lat and/or client_long params' }, status: :unprocessable_entity
       return
     end
 
@@ -67,11 +67,15 @@ class ClientsController < ApplicationController
       true
     end
 
-    @reachable = @available.select do |donation|
-      # Check @distance from client to donor of donation
-      donor = Donor.find(donation.donor_id)
-      donor.distance_to([client_lat, client_long]) <= @distance
-    end
+    # Uncomment the below code to limit donations by distance.
+    # @reachable = @available.select do |donation|
+    #   # Check @distance from client to donor of donation
+    #   donor = Donor.find(donation.donor_id)
+    #   donor.distance_to([client_lat, client_long]) <= @distance
+    # end
+
+    # HACK: shows all donations while we are in test mode.  Remove this when uncommenting the above code.
+    @reachable = @available
 
     puts 'reachable:', @reachable.map(&:food_name)
     render json: @reachable, include: 'claims', status: :ok

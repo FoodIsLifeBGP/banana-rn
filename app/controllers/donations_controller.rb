@@ -26,7 +26,7 @@ class DonationsController < ApplicationController
 			@donation.save
 			render json: { donation: DonationSerializer.new(@donation) }, status: :created
 		else
-			render json: { error: 'failed to create donation' }, status: :not_acceptable
+			render json: { error: 'failed to create donation' }, status: :unprocessable_entity
 		end
 	end
 
@@ -37,7 +37,7 @@ class DonationsController < ApplicationController
 			@donation.update(donation_params)
 			render json: { donation: DonationSerializer.new(@donation) }, status: :accepted
 		else
-			render json: { error: 'failed to update donation' }, status: :not_acceptable
+			render json: { error: 'failed to update donation' }, status: :unprocessable_entity
 		end
 	end
 
@@ -47,7 +47,7 @@ class DonationsController < ApplicationController
 
 		# No multiple claims by one client on one donation
 		if Claim.find_by(donation_id: donation_id, client_id: client_id)
-			render json: { error: 'claim already exists for this client and donation' }, status: :not_acceptable
+			render json: { error: 'claim already exists for this client and donation' }, status: :unprocessable_entity
 			return
 		end
 
@@ -65,7 +65,7 @@ class DonationsController < ApplicationController
 			@claim.save
 			render json: { claim: ClaimSerializer.new(@claim) }, status: :accepted
 		else
-			render json: { error: 'failed to create claim' }, status: :not_acceptable
+			render json: { error: 'failed to create claim' }, status: :unprocessable_entity
 		end
 	end
 
