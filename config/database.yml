@@ -78,9 +78,10 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+# Uncomment below line and move under `production` to point Heroku towards our AWS Postgres database.  Without it, it will default to Heroku's.
+# url: 'postgres://banana_app:mael57lj560C7s7Gk1pa@backenddev.cgdyyelenxkg.us-east-2.rds.amazonaws.com:5432/postgres'
 production:
   <<: *default
-  url: 'postgres://banana_app:mael57lj560C7s7Gk1pa@backenddev.cgdyyelenxkg.us-east-2.rds.amazonaws.com:5432/postgres'
   database: backend_production
   username: backend
   password: <%= ENV['BACKEND_DATABASE_PASSWORD'] %>
