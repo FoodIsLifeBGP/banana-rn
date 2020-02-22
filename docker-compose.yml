@@ -1,0 +1,25 @@
+version: '3'
+services:
+  db:
+    image: postgres:12
+    ## maps data from `/var/lib/postgresql/data` in the db container to volume called pgdata of docker(it helps to evoid a bug on windows)
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment: 
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ## expose the port 5432 in the db container to port 5432 in host machine, be sure that there is not runing instance in your machine.
+    ports: 
+      - "5432:5432"
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    ## map all the files from current file to /bananrails in the web container
+    ## where the hot reload features from
+    volumes:
+      - .:/banana-rails
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+volumes:
+  pgdata:

@@ -2,61 +2,122 @@
 
 Banana App is an open-source, not-for-profit project of The Be Good Foundation.  We can reduce hunger by simplifying food donation.  We make it easy for grocery stores and restaurants to donate good food that would otherwise be disposed of.  Users will be able to find active donations, view the business's food rating, and claim a portion.
 
-# Installation (Mac/OSX)
+# Installation for Mac(Docker)
 
-All of The Banana App family (Donor, Client, & Admin) runs off of this backend.  Install this first.
+- Install Docker from [official website ](https://hub.docker.com/?overlay=onboarding) (Take the tutorial if you want)
+  - a brief introduction for docker:
 
-The following commands in Terminal will install:
-- GPG
-- RVM
-- Ruby 2.6.3
-- Rails
-- Postgres
+    > Docker is an open platform for developers and sysadmins to build, ship, and run distributed applications. Consisting of Docker Engine, a portable, lightweight runtime and packaging tool, and Docker Hub, a cloud service for sharing applications and automating workflows, Docker enables apps to be quickly assembled from components and eliminates the friction between development, QA, and production environments. As a result, IT can ship faster and run the same app, unchanged, on laptops, data center VMs, and any cloud.
 
-You'll need [Homebrew](https://docs.brew.sh/Installation) to install GPG.
+  - Why we want to use docker:
+    
+    - From the previous experience, developers using windows could suffer from configuring the environment, downloading the Postgres database and many other things like the version of ruby, and docker is a convenient solution to solve all those problems so beginners need only focus on project structure and project development. 
+- If you do not know docker before, just think it as a manager of virtual machines. Our project would run in those virtual machines with no dependency on the environment of your machine.
+  
+- Make sure there is no running program in your 5432 port, which is the default port for Postgresql where we would map the database container to. 
 
-- `brew install gnupg`
-- `gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB`
-- `\curl -sSL https://get.rvm.io | bash`
-- `rvm install 2.6.3 && rvm use 2.6.3`
-- `gem install rails`
-- `gem install pg`
+  - you might find `lsof -i:[port]` and `kill [pid]` useful
 
-Install Postgres by following the instructions on https://postgresapp.com/.
+- Run command
 
-Back in Terminal, run
-- `git clone https://github.com/256hz/banana-rails.git && cd banana-rails`
+  ```bash
+  docker-compose up
+  ```
 
-From inside `banana-rails`, run:
-- `bundle` (package installer)
-- `rails db:setup` (creates, migrates, and seeds your local DB)
-and finally
-- `rails s`
-to start the server.  Once that's running, your terminal should look something like:
+  to build and run the docker environment.
 
-```terminal
-=> Booting Puma
-=> Rails 6.0.0 application starting in development 
-=> Run `rails server --help` for more startup options
-Puma starting in single mode...
-* Version 3.12.1 (ruby 2.6.3-p62), codename: Llamas in Pajamas
-* Min threads: 5, max threads: 5
-* Environment: development
-* Listening on tcp://localhost:3000
-Use Ctrl-C to stop
-```
+- Run the command 
 
-Once you see that, open a web browser, and navigate to `http://localhost:3000/donors/0/donations`.  If you see this:
+  ```
+  docker-compose run web rails db:setup
+  ```
 
-```json
-{
-	"message": "Please log in."
-}
-```
+  To initialize the container, hopefully you would only need to run it once. But if you rebuild the docker containers you might need to run it again.
 
-You're done!  You can now move on to installing the Donor, Client, or Admin apps at the following URLs:
+- Visit ``http://localhost:3000`` on your browser if you see the information
 
-## [Donor/Client](https://github.com/FoodIsLifeBGP/banana-rn)
+  ```json
+  {
+  	"message": "Please log in."
+  }
+  ```
+
+  Then you're done! You can now move on to installing the Donor, Client, or Admin apps at the following URLs:
+
+  **[Donor/Client](https://github.com/FoodIsLifeBGP/banana-rn)**
+
+- The docker offers hot reload features so every modification of files under the project directory would be updated in real time, and there is no need to restart the backend server.
+
+  - The underlying mechanism is that docker synchronizes the files between project directory and container directory. For more details, look at comment at `volumes` configuration under `docker-compose.yml` file in the project root directory.
+
+# Installation for windows (Docker)
+
+- Install Docker from [official website ](https://hub.docker.com/?overlay=onboarding) 
+
+- If it says "Only supports windows 10 pro", try following steps 
+  - run following script as cmd script in administrator mode
+
+    ```
+    pushd "%~dp0"
+    
+    dir /b %SystemRoot%\servicing\Packages\*Hyper-V*.mum >hyper-v.txt
+    
+    for /f %%i in ('findstr /i . hyper-v.txt 2^>nul') do dism /online /norestart /add-package:"%SystemRoot%\servicing\Packages\%%i"
+    
+    del hyper-v.txt
+    
+    Dism /online /enable-feature /featurename:Microsoft-Hyper-V-All /LimitAccess /ALL
+    ```
+
+    - This code enables a window feature necessary for running docker.
+    - It would require you to restart the your machine
+
+  - run following script as before to disguise you system as win10pro:
+
+    ```
+    REG ADD "HKEY_LOCAL_MACHINE\software\Microsoft\Windows NT\CurrentVersion" /v EditionId /T REG_EXPAND_SZ /d Professional /F
+    ```
+
+  - it should be able to run the install exe, and remember to uncheck the first option box (enable window features blabla) at the first step
+
+- Make sure there is no running program in your 5432 port, which is the default port for Postgresql where we would map the database container to. 
+
+  - [command inspecting port on windows TBD]
+
+- Run command
+
+  ```bash
+  docker-compose up
+  ```
+
+  to build and run the docker environment.
+
+- Run the command in a new terminal window
+
+  ```
+  docker-compose run web rails db:setup
+  ```
+
+  To initialize the docker
+
+- Visit ``http://localhost:3000`` on your browser if you see the information
+
+  ```json
+  {
+  	"message": "Please log in."
+  }
+  ```
+
+  Then you're done! You can now move on to installing the Donor, Client, or Admin apps at the following URLs:
+
+  **[Donor/Client](https://github.com/FoodIsLifeBGP/banana-rn)**
+
+## common problems：
+
+- `standard_init_linux.go:211: exec user process caused "no such file or directory"`
+  - Use any software(Like [notepad++](https://stackoverflow.com/questions/51508150/standard-init-linux-go190-exec-user-process-caused-no-such-file-or-directory)) to replace the CRLF in file to LF.
+  - It would not trigger git update, so do not worry about that.
+  - That is because of an history problem that the window use CRLF as the EOL notation and it could cause problems in Linux container(which ruby image is based on)
 
 ## Admin: TBD
 
