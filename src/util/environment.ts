@@ -16,7 +16,7 @@ const getEnv = () => {
 	return ({
 		...variantSpecificProperties,
 		USER_IDENTITY: variant,
-		API_BASE_URL: 'https://banana-rails.herokuapp.com',
+		API_BASE_URL: __DEV__ ? 'http://localhost:3000' : 'https://banana-rails.herokuapp.com',
 	});
 };
 
