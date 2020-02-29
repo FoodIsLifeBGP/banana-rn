@@ -1,5 +1,5 @@
 class ClientsController < ApplicationController
-  skip_before_action :authorized, only: [:create]
+  skip_before_action :authorized, only: [:create, :update]
 
   def index
     @clients = Client.all
@@ -22,12 +22,14 @@ class ClientsController < ApplicationController
   end
 
   def update
-    if @client.update(client_params)
-      redirect_to client_path(@client)
-    else
-      flash[:errors] = @client.errors.full_messages
-      redirect_to edit_client_path
-    end
+    @client = Client.find(params[:id])
+		if @client.update(client_params)
+			render json: @client
+		else
+			failure_message = { error: "Client id: #{params[:id]} was not updated. #{@client.errors.full_messages}" }
+			puts failure_message
+			render json: failure_message
+		end
   end
 
   def get_donations
@@ -106,7 +108,7 @@ class ClientsController < ApplicationController
       :ethnicity,
       :gender,
       :password,
-      :transportation_method
+      :transportation_method,
     )
   end
 end

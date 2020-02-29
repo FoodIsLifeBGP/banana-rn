@@ -49,11 +49,13 @@ class DonorsController < ApplicationController
 	end
 
 	def update
+		@donor = Donor.find(params[:id])
 		if @donor.update(donor_params)
-			redirect_to donor_path(@donor)
+			render json: @donor
 		else
-			flash[:errors] = @donor.errors.full_messages
-			redirect_to edit_donor_path
+			failure_message = { error: "Donor id: #{params[:id]} was not updated. #{@donor.errors.full_messages}" }
+			puts failure_message
+			render json: failure_message
 		end
 	end
 
@@ -88,7 +90,7 @@ class DonorsController < ApplicationController
 			:email,
 			:organization_name,
 			:password,
-			:pickup_location
+			:pickup_location,
 		)
 	end
 end

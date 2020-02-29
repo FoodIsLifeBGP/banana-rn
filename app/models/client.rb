@@ -4,7 +4,6 @@ class Client < ApplicationRecord
 	has_many :claims
 
 	validates :email, uniqueness: { case_sensitive: false }
-	validates :password, presence: true
 	validates :address_street, presence: false
 	validates :address_city, presence: false
 	validates :address_state, presence: false
