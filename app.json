@@ -13,7 +13,7 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/banana-splash.png",
+      "image": "./assets/bananaAppSplash.png",
       "resizeMode": "contain",
       "backgroundColor": "#083A9B"
     },
