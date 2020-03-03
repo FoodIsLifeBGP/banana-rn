@@ -27,6 +27,7 @@ export default ({ resource }: LocalProps) => {
 			await setDonationsOrClaims(data);
 			setLoaded(true);
 		}
+		console.log(userIdentity)
 	};
 
 	useEffect(() => {
