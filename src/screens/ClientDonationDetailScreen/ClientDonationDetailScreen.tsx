@@ -6,13 +6,27 @@ import styles from './ClientDonationDetailScreen.styles'
 
 
 const ClientDonationDetailScreen = () => {
+	const navigate = useNavigation()
 	const [ state, action ] = useGlobal() as any;
 	const { userIdentity } = state;
-	const { navigate } = useNavigation();
-	console.log(navigate)
-	// const { route } = navigate;
-	// const donation = route.params.donation
-	// console.log(donation)
+	const { params } = navigate.state
+	const {
+		canceled,
+		created_at,
+		donor_id,
+		duration_minutes,
+		food_name,
+		id,
+		image_url,
+		measurement,
+		per_person,
+		pickup_location,
+		total_servings,
+		updated_at
+	} = params.donation
+	console.log('this is params...', params)
+	const { donation } = route.params;
+	console.log('this is donation..', donation)
 	return (
 		<View style={styles.outerContainer}>
 			<View style={styles.card}>

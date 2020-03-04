@@ -39,7 +39,7 @@ export default ({ donation }: Donation) => {
 		<TouchableOpacity
 		// updated onPress to take to client/donor appropriate screen
 			onPress={userIdentity === 'client'
-			? () => navigate('ClientDonationDetailScreen', { donation, id, edit: true })
+			? () => navigate('ClientDonationDetailScreen', { donation, id, edit: false })
 			: () => navigate('DonationScreen', { donation, id, edit: true })
 			}
 		>
