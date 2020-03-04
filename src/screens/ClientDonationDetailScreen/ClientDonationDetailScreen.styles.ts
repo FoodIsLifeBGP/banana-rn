@@ -11,10 +11,16 @@ export default StyleSheet.create({
 		// paddingHorizontal: '11%',
 	},
 	imageContainer: {
-		height: 120,
+		height: 250,
 		flexDirection: 'row',
 		alignItems: 'center',
+		justifyContent: 'center',
 		paddingHorizontal: '6%',
+	},
+	image: {
+		height: 160,
+		width: 200,
+		
 	},
 	card: {
 		height: 120,
@@ -49,7 +55,7 @@ export default StyleSheet.create({
 	},
 	descriptionText: {
 		fontFamily: 'open-sans-regular',
-		color: colors.DARK_GRAY,
+		color: colors.DARK_GRAY_TRANSPARENT,
 		fontSize: 13,
 		textAlign: 'justify',
 	},

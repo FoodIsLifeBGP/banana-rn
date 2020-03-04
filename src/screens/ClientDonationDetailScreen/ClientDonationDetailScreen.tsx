@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { Image, View, Text, ScrollView } from 'react-native';
 import { useNavigation } from 'react-navigation-hooks'
 import styles from './ClientDonationDetailScreen.styles'
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -23,15 +23,18 @@ const ClientDonationDetailScreen = () => {
 		updated_at
 	} = params.donation
 
+	const testImage = require('@assets/images/banana-icon.png');
+
+
 	return (
 		<ScrollView style={styles.outerContainer}>
 			<View style={styles.imageContainer}>
-				<Text>Image Here</Text>
+				<Image source={testImage} style={styles.image}/>
 			</View>
 			<View style={styles.card}>
 				<Text style={styles.foodTitle}>{food_name}</Text>
-				{/* get donor from donor id for below */}
-				<Text style={styles.donorSubtitle}>FROM {donor_id}</Text>
+				{/* get donor from donor id for below, import icon to use. */}
+				<Text style={styles.donorSubtitle}> FROM {donor_id}</Text>
 				<Text style={styles.subtitle}>{total_servings} {measurement} · [INSERT DISTANCE]</Text>
 			</View>
 			<View style={styles.card}>
