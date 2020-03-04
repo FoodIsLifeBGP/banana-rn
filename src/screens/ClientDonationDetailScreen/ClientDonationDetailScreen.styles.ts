@@ -7,9 +7,8 @@ const iconSize = 90;
 export default StyleSheet.create({
 	outerContainer: {
 		flex: 1,
-		justifyContent: 'space-between',
-		backgroundColor: colors.BANANA_YELLOW,
-		paddingHorizontal: '11%',
+		backgroundColor: colors.WHITE,
+		// paddingHorizontal: '11%',
 	},
 	card: {
 		height: 120,
@@ -40,14 +39,30 @@ export default StyleSheet.create({
 		fontFamily: 'open-sans-regular',
 		color: colors.NAVY_BLUE,
 	},
-	timeLimitButton: {
-		backgroundColor: colors.NAVY_BLUE,
-		color: colors.BANANA_YELLOW,
-		width: '47.5%',
-		borderWidth: 2,
+	buttonContainer: {
+		backgroundColor: colors.BANANA_YELLOW,
+		paddingHorizontal: '11%',
+		height: 70,
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		alignItems: 'center'
+	},
+	cancelButton: {
+		backgroundColor: colors.BANANA_YELLOW,
+		color: colors.NAVY_BLUE,
+		borderWidth: 1,
 		height: 30,
 		justifyContent: 'center',
-		alignItems: 'center',
+		paddingHorizontal: 30,
+		...platformShadow(5),
+	},
+	claimButton: {
+		backgroundColor: colors.NAVY_BLUE,
+		color: colors.BANANA_YELLOW,
+		borderWidth: 1,
+		height: 30,
+		justifyContent: 'center',
+		paddingHorizontal: 30,
 		...platformShadow(5),
 	},
 	buttonText: {

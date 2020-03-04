@@ -1,14 +1,12 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import { useNavigation } from 'react-navigation-hooks'
-import useGlobal from '@state';
 import styles from './ClientDonationDetailScreen.styles'
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 const ClientDonationDetailScreen = () => {
 	const navigate = useNavigation()
-	const [ state, action ] = useGlobal() as any;
-	const { userIdentity } = state;
 	const { params } = navigate.state
 	const {
 		canceled,
@@ -24,10 +22,9 @@ const ClientDonationDetailScreen = () => {
 		total_servings,
 		updated_at
 	} = params.donation
-	console.log('this is params...', params)
-	console.log('testing donation import...', food_name)
+
 	return (
-		<View style={styles.outerContainer}>
+		<ScrollView style={styles.outerContainer}>
 			<View style={styles.card}>
 			<Text>Image Here</Text>
 			</View>
@@ -40,10 +37,15 @@ const ClientDonationDetailScreen = () => {
 			<View style={styles.card}>
 			<Text>Navigation Info</Text>
 			</View>
-			<View style={styles.card}>
-			<Text>Claim / Cancel Buttons</Text>
+			<View style={styles.buttonContainer}>
+				<TouchableOpacity style={styles.cancelButton}>
+					<Text>CANCEL</Text>
+				</TouchableOpacity>
+				<TouchableOpacity style={styles.claimButton}>
+					<Text>CLAIM</Text>
+				</TouchableOpacity>
 			</View>
-		</View>
+		</ScrollView>
 	);
 };
 
