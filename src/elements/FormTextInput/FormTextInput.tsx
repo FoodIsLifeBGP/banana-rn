@@ -43,6 +43,7 @@ export default ({
 						style={[ styles.input, disabled && styles.disabled, style, { textAlign: 'right' } ]}
 						autoCapitalize={autoCapitalize}
 						editable={!disabled}
+						placeholder="placerholder"
 					/>
 				</View>
 			</View>
@@ -56,6 +57,7 @@ export default ({
 					style={[ disabled && styles.disabled, styles.input, style ]}
 					autoCapitalize={autoCapitalize}
 					editable={!disabled}
+					placeholder="placerholder"
 				/>
 			</View>
 		)

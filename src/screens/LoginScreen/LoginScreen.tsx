@@ -55,6 +55,8 @@ export default () => {
 				autoCorrect={false}
 				autoFocus={true}
 				blurOnSubmit={false}
+				placeholder = 'example@thebgp.com'
+				placeholderTextColor = {styles.placeholderEmail}
 			/>
 			<InputLabel text="Password" />
 			<View style={styles.passwordContainer}>
@@ -67,6 +69,7 @@ export default () => {
 						style={styles.input}
 						autoCapitalize="none"
 						autoCorrect={false}
+						placeholder = '********'
 					/>
 				</View>
 				<View style={styles.iconContainer}>

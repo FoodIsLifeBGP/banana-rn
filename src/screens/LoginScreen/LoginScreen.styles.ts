@@ -11,8 +11,9 @@ export default StyleSheet.create({
 		height: 50,
 		marginBottom: 15,
 		backgroundColor: 'white',
-		fontSize: 18,
+		fontSize: 14,
 		fontFamily: 'open-sans-regular',
+		color: colors.NAVY_BLUE,
 		paddingLeft: 12,
 	},
 	passwordContainer: {
