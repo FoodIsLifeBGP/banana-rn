@@ -42,33 +42,38 @@ export default StyleSheet.create({
 	buttonContainer: {
 		backgroundColor: colors.BANANA_YELLOW,
 		paddingHorizontal: '11%',
-		height: 70,
+		height: 64,
 		flexDirection: 'row',
 		justifyContent: 'space-between',
-		alignItems: 'center'
+		alignItems: 'center',
 	},
 	cancelButton: {
 		backgroundColor: colors.BANANA_YELLOW,
-		color: colors.NAVY_BLUE,
+		borderColor: colors.NAVY_BLUE,
 		borderWidth: 1,
 		height: 30,
 		justifyContent: 'center',
-		paddingHorizontal: 30,
+		paddingHorizontal: 40,
 		...platformShadow(5),
 	},
 	claimButton: {
 		backgroundColor: colors.NAVY_BLUE,
-		color: colors.BANANA_YELLOW,
+		borderColor: colors.NAVY_BLUE,
 		borderWidth: 1,
 		height: 30,
 		justifyContent: 'center',
-		paddingHorizontal: 30,
+		paddingHorizontal: 40,
 		...platformShadow(5),
 	},
-	buttonText: {
+	cancelButtonText: {
 		fontFamily: 'open-sans-regular',
 		fontSize: 13,
-		color: colors.BANANA_YELLOW,
+		color: colors.NAVY_BLUE,
+	},
+	claimButtonText: {
+		fontFamily: 'open-sans-regular',
+		fontSize: 13,
+		color: colors.WHITE,
 	},
 	createContainer: {
 		justifyContent: 'center',

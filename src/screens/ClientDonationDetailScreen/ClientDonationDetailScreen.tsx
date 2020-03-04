@@ -39,10 +39,10 @@ const ClientDonationDetailScreen = () => {
 			</View>
 			<View style={styles.buttonContainer}>
 				<TouchableOpacity style={styles.cancelButton}>
-					<Text>CANCEL</Text>
+					<Text style={styles.cancelButtonText}>CANCEL</Text>
 				</TouchableOpacity>
 				<TouchableOpacity style={styles.claimButton}>
-					<Text>CLAIM</Text>
+					<Text style={styles.claimButtonText}>CLAIM</Text>
 				</TouchableOpacity>
 			</View>
 		</ScrollView>
