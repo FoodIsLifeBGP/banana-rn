@@ -25,13 +25,23 @@ const ClientDonationDetailScreen = () => {
 		updated_at
 	} = params.donation
 	console.log('this is params...', params)
-	const { donation } = route.params;
-	console.log('this is donation..', donation)
+	console.log('testing donation import...', food_name)
 	return (
 		<View style={styles.outerContainer}>
 			<View style={styles.card}>
-
-			<Text>Hello from Client Donation Detail Screen</Text>
+			<Text>Image Here</Text>
+			</View>
+			<View style={styles.card}>
+			<Text>Specs</Text>
+			</View>
+			<View style={styles.card}>
+			<Text>Pick Up Info</Text>
+			</View>
+			<View style={styles.card}>
+			<Text>Navigation Info</Text>
+			</View>
+			<View style={styles.card}>
+			<Text>Claim / Cancel Buttons</Text>
 			</View>
 		</View>
 	);
