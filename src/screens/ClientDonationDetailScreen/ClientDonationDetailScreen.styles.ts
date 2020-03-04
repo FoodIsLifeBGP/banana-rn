@@ -10,34 +10,51 @@ export default StyleSheet.create({
 		backgroundColor: colors.WHITE,
 		// paddingHorizontal: '11%',
 	},
-	card: {
+	imageContainer: {
 		height: 120,
 		flexDirection: 'row',
 		alignItems: 'center',
+		paddingHorizontal: '6%',
 	},
-	iconRow: {
-		flexDirection: 'row',
-		justifyContent: 'space-between',
+	card: {
+		height: 120,
+		flexDirection: 'column',
+		alignItems: 'flex-start',
+		paddingHorizontal: '6%',
 	},
-	iconContainer: {
-		height: iconSize,
-		width: iconSize,
-		borderRadius: iconSize / 2,
-		backgroundColor: colors.NAVY_BLUE,
-		marginRight: 10,
-		justifyContent: 'center',
-		alignItems: 'center',
+	foodTitle: {
+		fontFamily: 'open-sans-bold',
+		color: colors.NAVY_BLUE,
+		fontSize: 32
 	},
-	icon: {
-		height: (iconSize * 0.64),
-		width: (iconSize * 0.8),
+	donorSubtitle: {
+		fontFamily: 'open-sans-bold',
+		color: colors.NAVY_BLUE,
+		fontSize: 13
+	},
+	subtitle: {
+		fontFamily: 'open-sans-regular',
+		color: colors.NAVY_BLUE,
+		fontSize: 13
+	},
+	sectionTitle: {
+		fontFamily: 'open-sans-bold',
+		color: colors.NAVY_BLUE,
+		fontSize: 24
+	},
+	addressText: {
+		fontFamily: 'open-sans-regular',
+		color: colors.NAVY_BLUE,
+		fontSize: 16
+	},
+	descriptionText: {
+		fontFamily: 'open-sans-regular',
+		color: colors.DARK_GRAY,
+		fontSize: 13,
+		textAlign: 'justify',
 	},
 	infoContainer: {
 		flexDirection: 'column',
-	},
-	infoText: {
-		fontFamily: 'open-sans-regular',
-		color: colors.NAVY_BLUE,
 	},
 	buttonContainer: {
 		backgroundColor: colors.BANANA_YELLOW,
@@ -74,9 +91,5 @@ export default StyleSheet.create({
 		fontFamily: 'open-sans-regular',
 		fontSize: 13,
 		color: colors.WHITE,
-	},
-	createContainer: {
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
+	}
 });
