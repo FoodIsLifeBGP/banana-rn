@@ -89,24 +89,28 @@ export default () => {
 				</Text>
 				<FormTextInput
 					text="Organization Name"
+					placeholder=""
 					value={organizationName}
 					setValue={setOrganizationName}
 				/>
 
 				<FormTextInput
 					text="Email Address"
+					placeholder=""
 					value={email}
 					setValue={setEmail}
 				/>
 
 				<FormTextInput
 					text="Password"
+					placeholder=""
 					value={password}
 					setValue={setPassword}
 				/>
 
 				<FormTextInput
 					text="WA State UBI (Business License No.)"
+					placeholder=""
 					value={license}
 					setValue={setLicense}
 				/>
@@ -133,6 +137,7 @@ export default () => {
 
 				<FormTextInput
 					text="Street Address"
+					placeholder=""
 					value={street}
 					setValue={setStreet}
 					autoCapitalize="words"
@@ -141,6 +146,7 @@ export default () => {
 				<View style={styles.row}>
 					<FormTextInput
 						text="City"
+						placeholder=""
 						value={city}
 						setValue={setCity}
 						width="40%"
@@ -148,6 +154,7 @@ export default () => {
 					/>
 					<FormTextInput
 						text="State"
+						placeholder=""
 						value={state}
 						setValue={() => {}}
 						width="15%"
@@ -155,6 +162,7 @@ export default () => {
 					/>
 					<FormTextInput
 						text="Zip"
+						placeholder=""
 						value={zip}
 						setValue={setZip}
 						width="35%"

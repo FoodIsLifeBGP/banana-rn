@@ -10,6 +10,7 @@ import styles from './FormTextInput.styles';
 
 interface FormTextInputProps {
 	text: string;
+	placeholder: string;
 	value: any;
 	setValue: any;
 	width?: number | string;
@@ -22,6 +23,7 @@ interface FormTextInputProps {
 
 export default ({
 	text,
+	placeholder,
 	value,
 	setValue,
 	width = '100%',
@@ -43,7 +45,7 @@ export default ({
 						style={[ styles.input, disabled && styles.disabled, style, { textAlign: 'right' } ]}
 						autoCapitalize={autoCapitalize}
 						editable={!disabled}
-						placeholder="placerholder"
+						placeholder={placeholder}
 					/>
 				</View>
 			</View>
@@ -57,7 +59,7 @@ export default ({
 					style={[ disabled && styles.disabled, styles.input, style ]}
 					autoCapitalize={autoCapitalize}
 					editable={!disabled}
-					placeholder="placerholder"
+					placeholder={placeholder}
 				/>
 			</View>
 		)
