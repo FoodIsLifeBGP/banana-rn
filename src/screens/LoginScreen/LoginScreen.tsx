@@ -56,7 +56,6 @@ export default () => {
 				autoFocus={true}
 				blurOnSubmit={false}
 				placeholder = 'example@thebgp.com'
-				placeholderTextColor = {styles.placeholderEmail}
 			/>
 			<InputLabel text="Password" />
 			<View style={styles.passwordContainer}>
