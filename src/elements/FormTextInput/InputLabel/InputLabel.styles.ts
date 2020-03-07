@@ -6,8 +6,6 @@ export default StyleSheet.create({
 		height: 25,
 	},
 	text: {
-		// fontFamily: 'open-sans-regular',
-		// fontSize: 14,
 		fontFamily: 'open-sans-regular',
 		fontStyle: 'normal',
 		fontWeight: 'bold',
