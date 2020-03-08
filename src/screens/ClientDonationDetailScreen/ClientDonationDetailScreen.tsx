@@ -25,6 +25,22 @@ const ClientDonationDetailScreen = () => {
 
 	const testImage = require('@assets/images/banana-icon.png');
 
+	const startTime = new Date(created_at);
+	const now = new Date();
+	console.log('starttime and now..', startTime, now)
+	const difference = now - startTime
+	console.log('difference..',difference)
+	const minutesElapsed = Math.round(now.getTime() - (startTime.getTime()) / 1000 / 60);
+	// const timeLeft = minutesElapsed < duration_minutes
+	// 	? duration_minutes - minutesElapsed
+	// 	: 0;
+	const timeLeft = duration_minutes - minutesElapsed
+	const timeRemaining = () => {
+		const seconds = Math.round(difference / 1000) < 60 ? Math.round(difference / 1000) : Math.round(difference / 1000) % 60
+		const minutes = Math.round(difference / 1000 / 60) < 60 ? Math.round(difference / 1000 / 60) : Math.round(difference / 1000 / 60) % 60
+		const hours = Math.round(difference / 1000 / 60 / 60) < 24 ? Math.round(difference / 1000 / 60 / 60) : Math.round(difference / 1000 / 60 / 60) % 24
+		return `${hours}:${minutes}:${seconds}`
+	}
 
 	return (
 		<ScrollView style={styles.outerContainer}>
@@ -36,6 +52,12 @@ const ClientDonationDetailScreen = () => {
 				{/* get donor from donor id for below, import icon to use. */}
 				<Text style={styles.donorSubtitle}> FROM {donor_id}</Text>
 				<Text style={styles.subtitle}>{total_servings} {measurement} · [INSERT DISTANCE]</Text>
+				{/* insert time remaining box */}
+				{console.log('date.now', Date.now())}
+				{console.log('created_at...', created_at)}
+				{console.log('created_at to integer?', new Date(created_at).getTime())}
+				{console.log('time remaining function...', timeRemaining())}
+				<Text style={styles.descriptionText}>{timeRemaining()}</Text>
 			</View>
 			<View style={styles.card}>
 				<Text style={styles.sectionTitle}>PICK UP INFO</Text>
