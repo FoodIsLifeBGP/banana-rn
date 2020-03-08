@@ -31,14 +31,14 @@ export default () => {
 
 	const [ city, setCity ] = useState('');
 	const [ email, setEmail ] = useState('');
-	const [ image, setImage ] = useState();
+	const [ image, setImage ] = useState({} as ImagePicker.ImagePickerResult);
 	const [ license, setLicense ] = useState('');
 	const [ organizationName, setOrganizationName ] = useState('');
 	const [ password, setPassword ] = useState('');
 	const [ street, setStreet ] = useState('');
 	const [ state, _setState ] = useState('WA');
 	const [ termsOfService, setTermsOfService ] = useState(false);
-	const [ zip, setZip ] = useState();
+	const [ zip, setZip ] = useState('');
 
 	const toggleTermsOfService = () => setTermsOfService(!termsOfService);
 
@@ -50,7 +50,7 @@ export default () => {
 		if (!image) { Alert.alert('Please add an image of your business license to continue.'); return; }
 		if (!street || street.split(' ').length < 3) { Alert.alert('Please enter your street number and name.'); return; }
 		if (!city) { Alert.alert('Please enter your city.'); return; }
-		if (zip.toString().length !== 5) { Alert.alert('Please enter your 5-digit zip code.'); return; }
+		if (!(/^\d{5}$/.test(zip))) { Alert.alert('Please enter a valid 5-digit zip code.'); return; }
 		if (!termsOfService) { Alert.alert('Please read and accept the terms of service to complete your registration.'); return; }
 
 		const statusCode = await register({
@@ -116,7 +116,7 @@ export default () => {
 					<View style={styles.row}>
 						<View style={{ flex: 4 }}>
 							<TextInput
-								value={image?.uri}
+								value={!image.cancelled ? image.uri : ''}
 								style={styles.input}
 								autoCapitalize="none"
 							/>
