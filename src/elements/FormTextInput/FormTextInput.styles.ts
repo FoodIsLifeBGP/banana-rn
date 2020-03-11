@@ -10,16 +10,13 @@ export default StyleSheet.create({
 		justifyContent: 'space-between',
 		marginBottom: 10,
 	},
-	text: {
-		fontFamily: 'open-sans-regular',
-		fontSize: 18,
-		color: colors.NAVY_BLUE,
-	},
 	input: {
 		height: 40,
-		marginBottom: 14,
-		backgroundColor: 'white',
+		marginBottom: 10,
+		backgroundColor: colors.LIGHT_YELLOW,
 		paddingHorizontal: 8,
+		paddingVertical: 10,
+		color: colors.NAVY_BLUE,
 		width: '100%',
 	},
 	disabled: {
