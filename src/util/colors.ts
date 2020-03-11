@@ -1,6 +1,8 @@
 export const ACTIVE_YELLOW = 'rgb(254, 243, 94)';
 export const BANANA_YELLOW = 'rgb(254, 223, 54)';
 export const INACTIVE_YELLOW = 'rgb(180, 160, 50)';
+export const FADED_NAVY_BLUE = '#083A9BB3';
+export const LIGHT_YELLOW = '#FFF6C7';
 export const WHITE = 'rgb(255, 255, 255)';
 export const LIGHT_GRAY_DISABLED = 'rgb(220, 220, 220)';
 export const DARK_GRAY = 'rgb(60, 60, 60)';
