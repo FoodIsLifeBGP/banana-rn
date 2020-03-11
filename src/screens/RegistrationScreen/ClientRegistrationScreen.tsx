@@ -118,7 +118,6 @@ export default () => {
 
 				<FormTextInput
 					text="Email Address"
-					placeholder=""
 					value={email}
 					setValue={setEmail}
 					style={styles.input}
@@ -148,7 +147,6 @@ export default () => {
 
 				<FormTextInput
 					text="Street Address"
-					placeholder=""
 					value={street}
 					setValue={setStreet}
 					autoCapitalize="words"
@@ -158,7 +156,6 @@ export default () => {
 				<View style={styles.row}>
 					<FormTextInput
 						text="City"
-						placeholder=""
 						value={city}
 						setValue={setCity}
 						width="41%"
@@ -167,7 +164,6 @@ export default () => {
 					/>
 					<FormTextInput
 						text="State"
-						placeholder=""
 						value={state}
 						setValue={() => {}}
 						width="18%"
@@ -177,7 +173,6 @@ export default () => {
 					/>
 					<FormTextInput
 						text="Zip"
-						placeholder=""
 						value={zip}
 						setValue={setZip}
 						width="33%"
