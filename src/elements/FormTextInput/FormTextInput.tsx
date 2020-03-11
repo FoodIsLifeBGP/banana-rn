@@ -6,11 +6,13 @@ import {
 	TextStyle,
 } from 'react-native';
 import { InputLabel } from '@elements';
+import { Colors } from 'react-native-paper';
+import * as colors from '@util/colors';
 import styles from './FormTextInput.styles';
 
 interface FormTextInputProps {
 	text: string;
-	placeholder: string;
+	placeholder?: string;
 	value: any;
 	setValue: any;
 	width?: number | string;
@@ -46,6 +48,7 @@ export default ({
 						autoCapitalize={autoCapitalize}
 						editable={!disabled}
 						placeholder={placeholder}
+						placeholderTextColor={colors.FADED_NAVY_BLUE}
 					/>
 				</View>
 			</View>
@@ -60,6 +63,7 @@ export default ({
 					autoCapitalize={autoCapitalize}
 					editable={!disabled}
 					placeholder={placeholder}
+					placeholderTextColor={colors.FADED_NAVY_BLUE}
 				/>
 			</View>
 		)
