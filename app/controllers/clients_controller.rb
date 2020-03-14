@@ -14,8 +14,8 @@ class ClientsController < ApplicationController
   def create
     @client = Client.create!(client_params)
     if @client.valid?
-        @token = encode_token(client_id: @client.id)
-        render json: { client: ClientSerializer.new(@client), jwt: @token }, status: :created
+      @token = encode_token(client_id: @client.id)
+      render json: { client: ClientSerializer.new(@client), jwt: @token }, status: :created
     else
       render json: { error: 'failed to create client' }, status: :unprocessable_entity
     end
