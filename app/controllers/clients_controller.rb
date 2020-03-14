@@ -23,13 +23,13 @@ class ClientsController < ApplicationController
 
   def update
     @client = Client.find(params[:id])
-		if @client.update(client_params)
-			render json: @client
-		else
-			failure_message = { error: "Client id: #{params[:id]} was not updated. #{@client.errors.full_messages}" }
-			puts failure_message
-			render json: failure_message
-		end
+    if @client.update(client_params)
+      render json: @client
+    else
+      failure_message = { error: "Client id: #{params[:id]} was not updated. #{@client.errors.full_messages}" }
+      puts failure_message
+      render json: failure_message
+    end
   end
 
   def get_donations
