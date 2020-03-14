@@ -9,10 +9,13 @@ import getEnv from '@util/environment';
 import { Icon } from '@elements';
 import { IconName } from '@elements/Icon';
 
+// TODO: For some reason global imports aren't for these
+import HelpScreen from '../screens/HelpScreen';
 import LoginScreen from '../screens/LoginScreen';
 import DashboardScreen from '../screens/DashboardScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
 import TermsScreen from '../screens/TermsScreen';
+import FAQsScreen from '../screens/FAQsScreen';
 import ContactScreen from '../screens/ContactScreen';
 import LoginSuccessScreen from '../screens/LoginSuccessScreen';
 import DonationScreen from '../screens/DashboardScreen/DonationScreen';
@@ -91,10 +94,11 @@ const donorOrClientDrawer = () => {
 			},
 		},
 		HelpScreen: {
-			screen: MainStack,
+			screen: HelpScreen,
 			navigationOptions: {
 				drawerLabel: 'Help',
 				drawerIcon: DrawerIcon('help'),
+				backBehavior: 'order',
 			},
 		},
 		LogoutScreen: {
@@ -128,6 +132,7 @@ export const FullAppStack = createStackNavigator(
 		RegistrationScreen,
 		TermsScreen,
 		ContactScreen,
+		FAQsScreen,
 		Drawer,
 	},
 	{
