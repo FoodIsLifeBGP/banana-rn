@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
-import { View, Alert, TextInput } from 'react-native';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import {
+	View,
+	Alert,
+	TextInput,
+	Text,
+} from 'react-native';
 import useGlobal from '@state';
 import {
 	Title,
 	LinkButton,
 	SpacerInline,
 	InputLabel,
-	Icon,
 } from '@elements';
 import styles from './LoginScreen.styles';
 
@@ -18,11 +21,8 @@ export default () => {
 	const { userIdentity } = state;
 	const { logIn } = actions;
 
-	const defaultEmail = 'client@client.com';
-	const defaultPassword = 'client';
 	const [ email, setEmail ] = useState(useNavigationParam('email') ?? '');
 	const [ password, setPassword ] = useState(useNavigationParam('password') ?? '');
-	const [ hidePwd, setHidePwd ] = useState(true);
 
 	const clearEmailAndPassword = () => { setEmail(''); setPassword(''); };
 
@@ -43,44 +43,42 @@ export default () => {
 
 	return (
 		<View style={styles.outerContainer}>
-			<SpacerInline height={140} />
-			<Title text={`I am a ${userIdentity}.`} />
-			<SpacerInline height={40} />
-			<InputLabel text="Email Address" />
-			<TextInput
-				value={email}
-				onChangeText={setEmail}
-				style={styles.input}
-				autoCapitalize="none"
-				autoCorrect={false}
-				autoFocus={true}
-				blurOnSubmit={false}
-			/>
-			<InputLabel text="Password" />
-			<View style={styles.passwordContainer}>
-				<View style={{ flex: 8 }}>
-					<TextInput
-						textContentType="password"
-						value={password}
-						secureTextEntry={hidePwd}
-						onChangeText={setPassword}
-						style={styles.input}
-						autoCapitalize="none"
-						autoCorrect={false}
-					/>
+			<View style={styles.banner}>
+				<Title text={`banana ${userIdentity}`} />
+			</View>
+			<View style={styles.innerContainer}>
+				<SpacerInline height={60} />
+				<InputLabel text="Email" />
+				<TextInput
+					value={email}
+					onChangeText={setEmail}
+					style={styles.input}
+					autoCapitalize="none"
+					autoCorrect={false}
+					autoFocus={true}
+					blurOnSubmit={false}
+				/>
+				<InputLabel text="Password" />
+				<View style={styles.passwordContainer}>
+					<View style={{ flex: 8 }}>
+						<TextInput
+							textContentType="password"
+							value={password}
+							secureTextEntry={true}
+							onChangeText={setPassword}
+							style={styles.input}
+							autoCapitalize="none"
+							autoCorrect={false}
+						/>
+					</View>
 				</View>
-				<View style={styles.iconContainer}>
-					<TouchableWithoutFeedback
-						onPress={() => setHidePwd(!hidePwd)}
-					>
-						<Icon name={hidePwd ? 'lock' : 'unlock'} style={styles.hideIcon} />
-					</TouchableWithoutFeedback>
+				<Text style={styles.link}>Forgot Password?</Text>
+				<SpacerInline height={200} />
+				<View style={styles.buttonContainer}>
+					<LinkButton text="Log In" onPress={() => handleLogin()} />
+					<LinkButton text="Register" destination="RegistrationScreen" />
 				</View>
 			</View>
-			<SpacerInline height={40} />
-			<LinkButton text="Log In" onPress={() => handleLogin()} />
-			<SpacerInline height={10} />
-			<LinkButton text="Register" destination="RegistrationScreen" />
 		</View>
 	);
 };
