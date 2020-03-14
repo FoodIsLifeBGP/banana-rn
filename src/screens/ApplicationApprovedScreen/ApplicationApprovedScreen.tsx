@@ -1,21 +1,26 @@
-import React from 'react';
-import { Text } from 'react-native';
-import setAccountToActive from '@util/setAccountToActive';
-import InfoScreen from '../InfoScreen';
-import styles from './ApplicationPendingScreen.styles';
+import { SpacerInline, Paragraph } from '@elements';
 
-export default ({ id }: {id: string}) => {
+import setAccountToActive from '@util/setAccountToActive';
+import React from 'react';
+import InfoScreen from '../InfoScreen';
+
+export default ({ id }: { id: string }) => {
 	setAccountToActive({ id });
 
 	return (
 		<InfoScreen
-			title="Your application is approved."
-			nextScreenTitle="Next"
+			title="Your application is approved!"
+			nextScreenTitle="Start"
 			nextScreenDestination="DashboardScreen"
 		>
-			<Text style={styles.documentText}>
-				Welcome to The Banana App!  We are excited to have you here.
-			</Text>
+			<Paragraph>
+        Welcome to the Banana App! We are so excited to have you join our
+        family.
+			</Paragraph>
+			<SpacerInline height={40} />
+			<Paragraph emphasized={true}>
+        CLICK "START" TO BEGIN YOUR FIRST DONATION!
+			</Paragraph>
 		</InfoScreen>
 	);
 };

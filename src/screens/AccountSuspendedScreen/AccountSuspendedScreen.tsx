@@ -1,16 +1,16 @@
+import { Paragraph } from '@elements';
 import React from 'react';
-import { Text } from 'react-native';
 import InfoScreen from '../InfoScreen';
-import styles from './AccountSuspendedScreen.styles';
 
 export default () => (
 	<InfoScreen
 		title="Your account has been suspended."
-		nextScreenTitle="Contact Us"
-		nextScreenDestination="ContactScreen"
+		nextScreenTitle="Learn More"
+		nextScreenDestination="HelpScreen"
 	>
-		<Text style={styles.documentText}>
-			We have temporarily suspended this account while we investigate.  Thanks for your understanding.
-		</Text>
+		<Paragraph>
+      We have temporarily suspended this account while we investigate. Thanks
+      for your understanding.
+		</Paragraph>
 	</InfoScreen>
 );

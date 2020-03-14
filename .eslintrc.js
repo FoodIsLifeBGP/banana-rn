@@ -101,6 +101,7 @@ module.exports = {
 			}
 		],
 		'react/jsx-props-no-spreading': 1,
+		'react/prop-types': 0,
 		'semi': [ 'error', 'always' ],
 		'@typescript-eslint/camelcase': 'off',
     '@typescript-eslint/explicit-function-return-type': [ 0 ],
