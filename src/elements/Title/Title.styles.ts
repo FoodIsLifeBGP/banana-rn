@@ -7,5 +7,6 @@ export default StyleSheet.create({
 		fontSize: 38,
 		lineHeight: 50,
 		color: colors.NAVY_BLUE,
+		alignSelf: 'center',
 	},
 });
