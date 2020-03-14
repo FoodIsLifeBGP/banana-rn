@@ -7,12 +7,12 @@ class Donor < ApplicationRecord
 	
 	validates :organization_name, presence: true
 	validates :email, uniqueness: { case_sensitive: false }
-	validates :password, presence: true
 	validates :business_license, presence: true
 	validates :address_street, presence: true
 	validates :address_city, presence: true
 	validates :address_state, presence: true
 	validates :address_zip, presence: true
+	#TODO: add operation hours ??
 
 	geocoded_by :address
 	after_validation :geocode

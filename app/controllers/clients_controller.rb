@@ -1,5 +1,5 @@
 class ClientsController < ApplicationController
-  skip_before_action :authorized, only: [:create]
+  skip_before_action :authorized, only: [:create, :update]
 
   def index
     @clients = Client.all
@@ -14,19 +14,21 @@ class ClientsController < ApplicationController
   def create
     @client = Client.create!(client_params)
     if @client.valid?
-        @token = encode_token(client_id: @client.id)
-        render json: { client: ClientSerializer.new(@client), jwt: @token }, status: :created
+      @token = encode_token(client_id: @client.id)
+      render json: { client: ClientSerializer.new(@client), jwt: @token }, status: :created
     else
       render json: { error: 'failed to create client' }, status: :unprocessable_entity
     end
   end
 
   def update
+    @client = Client.find(params[:id])
     if @client.update(client_params)
-      redirect_to client_path(@client)
+      render json: @client
     else
-      flash[:errors] = @client.errors.full_messages
-      redirect_to edit_client_path
+      failure_message = { error: "Client id: #{params[:id]} was not updated. #{@client.errors.full_messages}" }
+      puts failure_message
+      render json: failure_message
     end
   end
 
@@ -106,7 +108,7 @@ class ClientsController < ApplicationController
       :ethnicity,
       :gender,
       :password,
-      :transportation_method
+      :transportation_method,
     )
   end
 end
