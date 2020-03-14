@@ -18,6 +18,7 @@ import LoginSuccessScreen from '../screens/LoginSuccessScreen';
 import DonationScreen from '../screens/DashboardScreen/DonationScreen';
 import QRCodeScannerScreen from '../screens/QRCodeScannerScreen/QRCodeScannerScreen';
 import ClaimDetailScreen from '../screens/ClaimDetailScreen/ClaimDetailScreen';
+import LogoutScreen from '../screens/LogoutScreen'
 
 import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
 import SvgImage from '../elements/SvgImage/SvgImage';
@@ -89,8 +90,8 @@ const donorOrClientDrawer = () => {
 				drawerIcon: <SvgImage source={require('@assets/icons/ICON_DONATION(WHITE).svg')} />,
 			},
 		},
-		LoginScreen: {
-			screen: LoginScreen,
+		LogoutScreen: {
+			screen: LogoutScreen,
 			navigationOptions: {
 				drawerLabel: 'Log Out',
 				drawerIcon: <SvgImage source={require('@assets/icons/ICON_LOGOUT(WHITE).svg')} />,

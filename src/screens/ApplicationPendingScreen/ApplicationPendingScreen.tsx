@@ -1,17 +1,19 @@
+import { SpacerInline } from '@elements';
+import { Paragraph } from '@elements/Paragraph';
 import React from 'react';
-import { Text } from 'react-native';
 import InfoScreen from '../InfoScreen';
-import styles from './ApplicationPendingScreen.styles';
 
 export default () => (
-	<InfoScreen
-		title="Your application is being reviewed."
-		nextScreenTitle="Contact Us"
-		nextScreenDestination="ContactScreen"
-	>
-		<Text style={styles.documentText}>
-			Please allow 24-48 hours for your registration to complete.  The app will open when your application is processed.
-		</Text>
-	</InfoScreen>
+  <InfoScreen
+    title='Your application is being reviewed.'
+    nextScreenTitle='Learn More'
+    nextScreenDestination='ApplicationApprovedScreen'
+  >
+    <Paragraph>
+      Please allow 24-48 hours for your registration to be reviewed. We will
+      send you an email once the application has been processed.
+    </Paragraph>
+    <SpacerInline height={40} />
+    <Paragraph emphasized>THANK YOU!</Paragraph>
+  </InfoScreen>
 );
-
