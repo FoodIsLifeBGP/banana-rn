@@ -41,7 +41,7 @@ export default StyleSheet.create({
 	title: {
 		width: '95%',
 		textAlign: 'center',
-		color: colors.NAVY_BLUE,
+		color: 'inherit',
 		fontFamily: 'open-sans-bold',
 		fontSize: 20,
 		whiteSpace: 'normal',

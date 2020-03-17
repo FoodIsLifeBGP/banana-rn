@@ -1,18 +1,27 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
+import { ColorPalette, COLOR_SCHEMES } from '@util/colorSchemes';
+import { useColorScheme } from 'react-native-appearance';
 import styles, { DEFAULT_TOP_OFFSET } from './Modal.styles';
+
 
 interface ModalProps {
 	title: string; // Title text show in the header.
 	open: boolean; // Whether the modal is open.
-	top?: number; // Top offset for the modal. Default: 90px.
+	top?: number; // Top offset for the modal relative to its parent.
+	palette?: ColorPalette; // The color theme for the modal.
 	onClose: Function; // Callback for when the modal 'should' close.
 	children: JSX.Element; // Content element of the modal.
 }
 
 export default ({
 	top = DEFAULT_TOP_OFFSET,
+	palette = 'default',
+	onClose,
+	children,
 }: ModalProps) => {
+	const colorScheme = COLOR_SCHEMES[useColorScheme()];
+
 	const handleUnderlayPress = () => {
 		if (open) {
 			onClose();
@@ -24,7 +33,7 @@ export default ({
 			<TouchableOpacity style={styles.underlay} onPress={handleUnderlayPress} />
 
 			<View style={[ styles.container, { top } ]}>
-				<View style={styles.header}>
+				<View style={[ colorScheme[palette], styles.header ]}>
 					<Text
 						style={styles.title}
 					>
