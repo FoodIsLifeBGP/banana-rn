@@ -6,7 +6,7 @@ import styles, { DEFAULT_TOP_OFFSET } from './Modal.styles';
 
 
 interface ModalProps {
-	title: string; // Title text show in the header.
+	title: string; // Title text shown in the header.
 	open: boolean; // Whether the modal is open.
 	top?: number; // Top offset for the modal relative to its parent.
 	palette?: ColorPalette; // The color theme for the modal.
@@ -15,6 +15,8 @@ interface ModalProps {
 }
 
 export default ({
+	title,
+	open,
 	top = DEFAULT_TOP_OFFSET,
 	palette = 'default',
 	onClose,
@@ -31,7 +33,6 @@ export default ({
 	return (
 		<View style={[ styles.wrapper, !open && { width: 0, height: 0 } ]}>
 			<TouchableOpacity style={styles.underlay} onPress={handleUnderlayPress} />
-
 			<View style={[ styles.container, { top } ]}>
 				<View style={[ colorScheme[palette], styles.header ]}>
 					<Text
@@ -40,7 +41,6 @@ export default ({
 						{title.toUpperCase()}
 					</Text>
 				</View>
-
 				<View style={styles.body}>
 					<View style={styles.bodyContent}>
 						{children}
