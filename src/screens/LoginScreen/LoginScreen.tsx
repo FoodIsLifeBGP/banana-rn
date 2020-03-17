@@ -44,7 +44,7 @@ export default () => {
 	return (
 		<View style={styles.outerContainer}>
 			<View style={styles.banner}>
-				<Title text={`banana ${userIdentity}`} />
+				<Title text={`banana\n${userIdentity}`} />
 			</View>
 			<View style={styles.innerContainer}>
 				<SpacerInline height={60} />

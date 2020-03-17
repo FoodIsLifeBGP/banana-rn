@@ -30,10 +30,11 @@ export default StyleSheet.create({
 		color: colors.NAVY_BLUE,
 	},
 	banner: {
+		height: 'fit-content',
+		justifyContent: 'center',
+		paddingVertical: 55,
+		paddingHorizontal: '5%',
 		backgroundColor: colors.BANANA_YELLOW,
-		height: '35%',
-		paddingHorizontal: '15%',
-		paddingTop: 110,
 	},
 	innerContainer: {
 		paddingHorizontal: '15%',
