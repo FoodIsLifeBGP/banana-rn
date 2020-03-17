@@ -1,6 +1,9 @@
 import { StyleSheet } from 'react-native';
 import * as colors from '@util/colors';
 
+// Position of the modal relative to its container.
+export const DEFAULT_TOP_OFFSET = 90;
+
 export default StyleSheet.create({
 	wrapper: {
 		width: '100%',

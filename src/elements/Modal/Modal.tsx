@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import styles from './Modal.styles';
+import styles, { DEFAULT_TOP_OFFSET } from './Modal.styles';
 
 interface ModalProps {
 	title: string; // Title text show in the header.
@@ -11,7 +11,7 @@ interface ModalProps {
 }
 
 export default ({
-	title, open, top = 90, onClose, children,
+	top = DEFAULT_TOP_OFFSET,
 }: ModalProps) => {
 	const handleUnderlayPress = () => {
 		if (open) {
