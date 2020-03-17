@@ -62,19 +62,15 @@ export default () => {
 					</View>
 					<View>
 						<InputLabel text="Password" />
-						<View style={styles.passwordContainer}>
-							<View style={{ flex: 8 }}>
-								<TextInput
-									textContentType="password"
-									value={password}
-									secureTextEntry={true}
-									onChangeText={setPassword}
-									style={styles.input}
-									autoCapitalize="none"
-									autoCorrect={false}
-								/>
-							</View>
-						</View>
+						<TextInput
+							textContentType="password"
+							value={password}
+							secureTextEntry={true}
+							onChangeText={setPassword}
+							style={styles.input}
+							autoCapitalize="none"
+							autoCorrect={false}
+						/>
 					</View>
 					<Text style={styles.link}>Forgot Password?</Text>
 				</View>
