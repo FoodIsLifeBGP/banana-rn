@@ -28,6 +28,7 @@
 		},
 		"extra": {
 			"variant": "donor"
-		}
-  }
+		},
+		"userInterfaceStyle": "automatic"
+	}
 }
