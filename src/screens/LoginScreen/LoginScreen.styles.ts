@@ -37,13 +37,19 @@ export default StyleSheet.create({
 		backgroundColor: colors.BANANA_YELLOW,
 	},
 	innerContainer: {
+		flexGrow: 1,
+		paddingTop: 'calc(100vh * (35 / 640))',
 		paddingHorizontal: '15%',
+		justifyContent: 'space-between',
+	},
+	form: {
 	},
 	buttonContainer: {
 		flexDirection: 'row',
 		paddingHorizontal: '8%',
 		justifyContent: 'space-between',
 		alignItems: 'center',
+		bottom: 50,
 	},
 	link: {
 		color: colors.NAVY_BLUE,

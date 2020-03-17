@@ -47,33 +47,38 @@ export default () => {
 				<Title text={`banana\n${userIdentity}`} />
 			</View>
 			<View style={styles.innerContainer}>
-				<SpacerInline height={60} />
-				<InputLabel text="Email" />
-				<TextInput
-					value={email}
-					onChangeText={setEmail}
-					style={styles.input}
-					autoCapitalize="none"
-					autoCorrect={false}
-					autoFocus={true}
-					blurOnSubmit={false}
-				/>
-				<InputLabel text="Password" />
-				<View style={styles.passwordContainer}>
-					<View style={{ flex: 8 }}>
+				<View style={styles.form}>
+					<View>
+						<InputLabel text="Email" />
 						<TextInput
-							textContentType="password"
-							value={password}
-							secureTextEntry={true}
-							onChangeText={setPassword}
+							value={email}
+							onChangeText={setEmail}
 							style={styles.input}
 							autoCapitalize="none"
 							autoCorrect={false}
+							autoFocus={true}
+							blurOnSubmit={false}
 						/>
 					</View>
+					<View>
+						<InputLabel text="Password" />
+						<View style={styles.passwordContainer}>
+							<View style={{ flex: 8 }}>
+								<TextInput
+									textContentType="password"
+									value={password}
+									secureTextEntry={true}
+									onChangeText={setPassword}
+									style={styles.input}
+									autoCapitalize="none"
+									autoCorrect={false}
+								/>
+							</View>
+						</View>
+					</View>
+					<Text style={styles.link}>Forgot Password?</Text>
 				</View>
-				<Text style={styles.link}>Forgot Password?</Text>
-				<SpacerInline height={200} />
+
 				<View style={styles.buttonContainer}>
 					<LinkButton text="Log In" onPress={() => handleLogin()} />
 					<LinkButton text="Register" destination="RegistrationScreen" />
