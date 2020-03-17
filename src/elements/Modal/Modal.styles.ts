@@ -36,7 +36,6 @@ export default StyleSheet.create({
 		height: 80,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: colors.BANANA_YELLOW,
 	},
 	title: {
 		width: '95%',
@@ -49,15 +48,15 @@ export default StyleSheet.create({
 	body: {
 		width: '100%',
 		height: 'fit-content',
-		paddingVertical: 20,
-		paddingHorizontal: 18,
 		alignItems: 'center',
 		backgroundColor: colors.WHITE,
-		maxHeight: 350,
-		// TODO: find max-height relative to screen height?
+		maxHeight: '56.25vh',
 	},
 	bodyContent: {
 		overflow: 'scroll',
 		height: '100%',
+		width: '100%',
+		paddingVertical: 20,
+		paddingHorizontal: 18,
 	},
 });
