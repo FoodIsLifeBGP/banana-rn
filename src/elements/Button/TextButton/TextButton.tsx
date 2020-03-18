@@ -12,14 +12,14 @@ export default ({
 	onPress,
 	style = {},
 	disabled = false,
-	type = 'default',
+	palette = 'default',
 	compact = false,
 }: TextButtonProps) => (
 	<Button
 		onPress={onPress}
 		style={style}
 		disabled={disabled}
-		type={type}
+		palette={palette}
 		compact={compact}
 	>
 		<Text style={[ styles.text ]}>{text}</Text>
