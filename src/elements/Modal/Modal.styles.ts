@@ -48,7 +48,6 @@ export default StyleSheet.create({
 	body: {
 		width: '100%',
 		height: 'fit-content',
-		alignItems: 'center',
 		backgroundColor: colors.WHITE,
 		maxHeight: '56.25vh',
 	},

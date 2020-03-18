@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { ColorPalette, COLOR_SCHEMES } from '@util/colorSchemes';
 import { useColorScheme } from 'react-native-appearance';
+import { ScrollView } from 'react-native-gesture-handler';
 import styles, { DEFAULT_TOP_OFFSET } from './Modal.styles';
 
 
@@ -42,9 +43,9 @@ export default ({
 					</Text>
 				</View>
 				<View style={styles.body}>
-					<View style={styles.bodyContent}>
+					<ScrollView contentContainerStyle={styles.bodyContent}>
 						{children}
-					</View>
+					</ScrollView>
 				</View>
 			</View>
 		</View>
