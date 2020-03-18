@@ -20,6 +20,7 @@ export default StyleSheet.create({
 	container: {
 		width: 'calc(100% - 15px)',
 		height: 'fit-content',
+		minHeight: 362,
 		position: 'absolute',
 		alignItems: 'center',
 		overflow: 'hidden',
@@ -47,7 +48,7 @@ export default StyleSheet.create({
 	},
 	body: {
 		width: '100%',
-		height: 'fit-content',
+		height: '100%',
 		backgroundColor: colors.WHITE,
 		maxHeight: '56.25vh',
 	},
@@ -57,5 +58,8 @@ export default StyleSheet.create({
 		width: '100%',
 		paddingVertical: 20,
 		paddingHorizontal: 18,
+		color: colors.NAVY_BLUE,
+		textAlign: 'center',
+		justifyContent: 'space-around',
 	},
 });
