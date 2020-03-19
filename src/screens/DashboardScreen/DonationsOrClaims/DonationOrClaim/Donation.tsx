@@ -32,7 +32,6 @@ export default ({ donation }: Donation) => {
 		? duration_minutes - minutesElapsed
 		: 0;
 
-
 	return (
 		<TouchableOpacity
 			onPress={() => navigate('DonationScreen', { donation, id, edit: true })}
