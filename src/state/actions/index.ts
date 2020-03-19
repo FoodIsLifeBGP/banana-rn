@@ -17,4 +17,4 @@ export { logIn, logOut } from './auth';
 export { postDonation } from './postDonation';
 export { register } from './register';
 export { scan } from './scan';
-
+export { updateAlert, clearAlert } from './alert';

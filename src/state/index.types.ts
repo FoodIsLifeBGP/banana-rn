@@ -48,10 +48,32 @@ export interface Donation {
 	pickup_location: string;
 }
 
+/**
+ * An alert to be displayed to the user.
+ */
+export interface Alert {
+	/**
+	 * Title of the alert.
+	 */
+	title: string;
+
+	/**
+	 * Message to the user.
+	 */
+	message: string;
+
+	/**
+	 * Whether the alert can be casually dismissed by the user
+	 * (e.g. tapping the content behind a modal).
+	 */
+	dismissable?: boolean;
+}
+
 export interface InitialState {
 	userIdentity: 'donor' | 'client';
 	apiBaseUrl: string;
 	loginUrl: string;
+	alert?: Alert;
 	jwt?: string;
 	user?: DonorState | ClientState | SharedProps;
 	donationsOrClaims?: Donation[] | Claim[];
