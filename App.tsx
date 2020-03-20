@@ -48,7 +48,7 @@ export default function App() {
 			<Provider>
 				<View style={styles.container}>
 					<Route ref={navRef => NavigationService.setTopLevelNavigator(navRef)} />
-					<TheAlertModal message="Uh oh! An error occurred." />
+					<TheAlertModal />
 				</View>
 			</Provider>
 		</AppearanceProvider>
