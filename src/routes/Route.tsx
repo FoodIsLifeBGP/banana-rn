@@ -18,6 +18,7 @@ import LoginSuccessScreen from '../screens/LoginSuccessScreen';
 import DonationScreen from '../screens/DashboardScreen/DonationScreen';
 import QRCodeScannerScreen from '../screens/QRCodeScannerScreen/QRCodeScannerScreen';
 import ClaimDetailScreen from '../screens/ClaimDetailScreen/ClaimDetailScreen';
+import DonationsDetailScreen from '../screens/DonationsDetailScreen/DonationsDetailScreen';
 
 import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
 import SvgImage from '../elements/SvgImage/SvgImage';
@@ -30,6 +31,7 @@ export const MainStack = createStackNavigator(
 		DonationScreen,
 		QRCodeScannerScreen,
 		ClaimDetailScreen,
+		DonationsDetailScreen,
 	},
 	{
 		headerMode: 'none',
