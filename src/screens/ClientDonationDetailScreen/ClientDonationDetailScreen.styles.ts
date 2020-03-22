@@ -2,8 +2,6 @@ import { StyleSheet } from 'react-native';
 import * as colors from '@util/colors';
 import platformShadow from '@util/platformShadow';
 
-const iconSize = 90;
-
 export default StyleSheet.create({
 	outerContainer: {
 		flex: 1,
@@ -47,6 +45,19 @@ export default StyleSheet.create({
 		fontFamily: 'open-sans-bold',
 		color: colors.NAVY_BLUE,
 		fontSize: 24
+	},
+	timeRemainingContainer: {
+		flexDirection: 'row',
+		fontFamily: 'open-sans-bold',
+		color: colors.NAVY_BLUE,
+		fontSize: 24,
+		backgroundColor: colors.LIGHT_GRAY,
+		width: '50%',
+		height: 'auto',
+		alignSelf: 'center',
+		marginVertical: 30,
+		paddingVertical: 10,
+		paddingHorizontal: 30,
 	},
 	addressText: {
 		fontFamily: 'open-sans-regular',
@@ -97,5 +108,9 @@ export default StyleSheet.create({
 		fontFamily: 'open-sans-regular',
 		fontSize: 13,
 		color: colors.WHITE,
+	},
+	icon: {
+		height: 6,
+		width: 8,
 	}
 });

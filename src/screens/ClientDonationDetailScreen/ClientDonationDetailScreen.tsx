@@ -4,6 +4,7 @@ import { useNavigation } from 'react-navigation-hooks'
 import styles from './ClientDonationDetailScreen.styles'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { stopLocationUpdatesAsync } from 'expo-location';
+import useGlobal from '@state'
 
 const ClientDonationDetailScreen = () => {
 	const navigate = useNavigation()
@@ -24,48 +25,52 @@ const ClientDonationDetailScreen = () => {
 	} = params.donation
 
 	const testImage = require('@assets/images/banana-icon.png');
+	const [ state ] = useGlobal() as any;
+
 
 	const startTime = new Date(created_at);
 	const now = new Date();
-	console.log('starttime and now..', startTime, now)
 	const difference = now - startTime
-	console.log('difference..',difference)
 	const minutesElapsed = Math.round(now.getTime() - (startTime.getTime()) / 1000 / 60);
-	// uncomment this once we have current and active items
+
 	const timeLeft = minutesElapsed < duration_minutes
 		? duration_minutes - minutesElapsed
 		: 0;
-	// const timeLeft = duration_minutes - minutesElapsed
 	const timeRemaining = () => {
 		if (timeLeft === 0){
 			return 'Expired'
 		}
 		const seconds = Math.round(difference / 1000) < 60 ? Math.round(difference / 1000) : Math.round(difference / 1000) % 60
 		const minutes = Math.round(difference / 1000 / 60) < 60 ? Math.round(difference / 1000 / 60) : Math.round(difference / 1000 / 60) % 60
-		const hours = Math.round(difference / 1000 / 60 / 60) < 24 ? Math.round(difference / 1000 / 60 / 60) : Math.round(difference / 1000 / 60 / 60) % 24
-		return `${hours}:${minutes}:${seconds}`
+		// const hours = Math.round(difference / 1000 / 60 / 60) < 24 ? Math.round(difference / 1000 / 60 / 60) : Math.round(difference / 1000 / 60 / 60) % 24
+		return `${minutes} MIN ${seconds} SEC`
 	}
 
 	return (
 		<ScrollView style={styles.outerContainer}>
 			{/* Image at top */}
 			<View style={styles.imageContainer}>
+				{/* Need to update this with actual image once we start persisting image urls */}
 				<Image source={testImage} style={styles.image}/>
 			</View>
 			{/* Item Details */}
 			<View style={styles.card}>
 				<Text style={styles.foodTitle}>{food_name}</Text>
 				{/* get donor from donor id for below, import icon to use. */}
-				
-				<Text style={styles.subtitle}>FROM</Text>
-				<Text style={styles.donorSubtitle}> {donor_id}</Text>
-				<Text style={styles.subtitle}>{total_servings} {measurement} · [INSERT DISTANCE]</Text>
-				{/* insert time remaining box */}
-				{console.log('date.now', Date.now())}
-				{console.log('created_at...', created_at)}
-				{console.log('created_at to integer?', new Date(created_at).getTime())}
-				{console.log('time remaining function...', timeRemaining())}
-				<Text style={styles.descriptionText}>{timeRemaining()}</Text>
+				<Text style={styles.subtitle}>
+					<Image source={testImage} style={styles.icon}/>
+					<Text style={styles.subtitle}> FROM</Text>
+					<Text style={styles.donorSubtitle}> {donor_id}</Text>
+				</Text>
+				{console.log(state)}
+				<Text style={styles.subtitle}>
+					<Image source={testImage} style={styles.icon}/>
+					<Text>  {total_servings} {measurement}</Text>
+					<Text style={styles.donorSubtitle}>  ·  </Text>
+					<Image source={testImage} style={styles.icon}/>
+					<Text>  [INSERT DISTANCE] MI</Text>
+				</Text>
+				<Text style={styles.timeRemainingContainer}>{timeRemaining()}</Text>
 			</View>
 			{/* Pick up Info */}
 			<View style={styles.card}>
