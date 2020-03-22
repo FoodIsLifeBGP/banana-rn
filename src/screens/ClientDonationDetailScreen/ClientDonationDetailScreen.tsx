@@ -48,13 +48,17 @@ const ClientDonationDetailScreen = () => {
 
 	return (
 		<ScrollView style={styles.outerContainer}>
+			{/* Image at top */}
 			<View style={styles.imageContainer}>
 				<Image source={testImage} style={styles.image}/>
 			</View>
+			{/* Item Details */}
 			<View style={styles.card}>
 				<Text style={styles.foodTitle}>{food_name}</Text>
 				{/* get donor from donor id for below, import icon to use. */}
-				<Text style={styles.donorSubtitle}> FROM {donor_id}</Text>
+				
+				<Text style={styles.subtitle}>FROM</Text>
+				<Text style={styles.donorSubtitle}> {donor_id}</Text>
 				<Text style={styles.subtitle}>{total_servings} {measurement} · [INSERT DISTANCE]</Text>
 				{/* insert time remaining box */}
 				{console.log('date.now', Date.now())}
@@ -63,15 +67,18 @@ const ClientDonationDetailScreen = () => {
 				{console.log('time remaining function...', timeRemaining())}
 				<Text style={styles.descriptionText}>{timeRemaining()}</Text>
 			</View>
+			{/* Pick up Info */}
 			<View style={styles.card}>
 				<Text style={styles.sectionTitle}>PICK UP INFO</Text>
 				<Text style={styles.addressText}>{pickup_location}</Text>
 				<Text style={styles.descriptionText}>Pickup instructions go here...They do not currently exist. banana banana banana banana...</Text>
 			</View>
+			{/* Navigation Info */}
 			<View style={styles.card}>
 				<Text style={styles.sectionTitle}>HOW TO GET THERE</Text>
 				<Text style={styles.descriptionText}>Transit options to help you get there in time.</Text>
 			</View>
+			{/* Claim/Cancel buttons */}
 			<View style={styles.buttonContainer}>
 				<TouchableOpacity style={styles.cancelButton}>
 					<Text style={styles.cancelButtonText}>CANCEL</Text>
