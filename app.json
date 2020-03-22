@@ -27,7 +27,7 @@
       "supportsTablet": true
 		},
 		"extra": {
-			"variant": "donor"
+			"variant": "client"
 		}
   }
 }

@@ -31,11 +31,15 @@ const ClientDonationDetailScreen = () => {
 	const difference = now - startTime
 	console.log('difference..',difference)
 	const minutesElapsed = Math.round(now.getTime() - (startTime.getTime()) / 1000 / 60);
-	// const timeLeft = minutesElapsed < duration_minutes
-	// 	? duration_minutes - minutesElapsed
-	// 	: 0;
-	const timeLeft = duration_minutes - minutesElapsed
+	// uncomment this once we have current and active items
+	const timeLeft = minutesElapsed < duration_minutes
+		? duration_minutes - minutesElapsed
+		: 0;
+	// const timeLeft = duration_minutes - minutesElapsed
 	const timeRemaining = () => {
+		if (timeLeft === 0){
+			return 'Expired'
+		}
 		const seconds = Math.round(difference / 1000) < 60 ? Math.round(difference / 1000) : Math.round(difference / 1000) % 60
 		const minutes = Math.round(difference / 1000 / 60) < 60 ? Math.round(difference / 1000 / 60) : Math.round(difference / 1000 / 60) % 60
 		const hours = Math.round(difference / 1000 / 60 / 60) < 24 ? Math.round(difference / 1000 / 60 / 60) : Math.round(difference / 1000 / 60 / 60) % 24
