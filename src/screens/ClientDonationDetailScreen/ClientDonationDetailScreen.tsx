@@ -5,6 +5,8 @@ import styles from './ClientDonationDetailScreen.styles'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { stopLocationUpdatesAsync } from 'expo-location';
 import useGlobal from '@state'
+import { SpacerInline } from '@elements';
+import { Divider } from 'react-native-paper';
 
 const ClientDonationDetailScreen = () => {
 	const navigate = useNavigation()
@@ -73,13 +75,20 @@ const ClientDonationDetailScreen = () => {
 				<Text style={styles.timeRemainingContainer}>{timeRemaining()}</Text>
 			</View>
 			{/* Pick up Info */}
+			<Divider/>
 			<View style={styles.card}>
+			<SpacerInline height={15}/>
 				<Text style={styles.sectionTitle}>PICK UP INFO</Text>
 				<Text style={styles.addressText}>{pickup_location}</Text>
-				<Text style={styles.descriptionText}>Pickup instructions go here...They do not currently exist. banana banana banana banana...</Text>
+				<Text style={styles.subtitle}>Pickup instructions go here...They do not currently exist. banana banana banana banana...</Text>
+				<TouchableOpacity style={styles.readMore}>
+					<Text style={styles.readMoreText}>READ MORE</Text>
+				</TouchableOpacity>
 			</View>
+			<Divider/>
 			{/* Navigation Info */}
 			<View style={styles.card}>
+			<SpacerInline height={10}/>
 				<Text style={styles.sectionTitle}>HOW TO GET THERE</Text>
 				<Text style={styles.descriptionText}>Transit options to help you get there in time.</Text>
 			</View>

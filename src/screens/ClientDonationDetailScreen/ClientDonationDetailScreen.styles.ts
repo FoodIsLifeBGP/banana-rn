@@ -21,7 +21,7 @@ export default StyleSheet.create({
 		
 	},
 	card: {
-		height: 120,
+		height: 'auto',
 		flexDirection: 'column',
 		alignItems: 'flex-start',
 		paddingHorizontal: '6%',
@@ -29,22 +29,22 @@ export default StyleSheet.create({
 	foodTitle: {
 		fontFamily: 'open-sans-bold',
 		color: colors.NAVY_BLUE,
-		fontSize: 32
+		fontSize: 26
 	},
 	donorSubtitle: {
 		fontFamily: 'open-sans-bold',
 		color: colors.NAVY_BLUE,
-		fontSize: 13
+		fontSize: 15
 	},
 	subtitle: {
 		fontFamily: 'open-sans-regular',
 		color: colors.NAVY_BLUE,
-		fontSize: 13
+		fontSize: 15
 	},
 	sectionTitle: {
 		fontFamily: 'open-sans-bold',
 		color: colors.NAVY_BLUE,
-		fontSize: 24
+		fontSize: 20
 	},
 	timeRemainingContainer: {
 		flexDirection: 'row',
@@ -60,18 +60,26 @@ export default StyleSheet.create({
 		paddingHorizontal: 30,
 	},
 	addressText: {
-		fontFamily: 'open-sans-regular',
+		fontFamily: 'open-sans-bold',
 		color: colors.NAVY_BLUE,
-		fontSize: 16
-	},
-	descriptionText: {
-		fontFamily: 'open-sans-regular',
-		color: colors.DARK_GRAY_TRANSPARENT,
-		fontSize: 13,
-		textAlign: 'justify',
+		fontSize: 15,
+		marginVertical: 8,
 	},
 	infoContainer: {
 		flexDirection: 'column',
+	},
+	readMore: {
+		flexDirection: 'row',
+		width: '100%',
+		height: 50,
+		alignItems: 'center',
+		justifyContent: 'center'
+	},
+	readMoreText: {
+		fontFamily: 'open-sans-bold',
+		color: colors.NAVY_BLUE,
+		fontSize: 12,
+		textAlign: 'justify',
 	},
 	buttonContainer: {
 		backgroundColor: colors.BANANA_YELLOW,
