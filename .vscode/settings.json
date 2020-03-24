@@ -23,4 +23,5 @@
 	],
 	"editor.insertSpaces": false,
 	"editor.detectIndentation": false,
+	"git.ignoreLimitWarning": true,
 }
