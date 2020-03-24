@@ -18,7 +18,7 @@ import LoginSuccessScreen from '../screens/LoginSuccessScreen';
 import DonationScreen from '../screens/DashboardScreen/DonationScreen';
 import QRCodeScannerScreen from '../screens/QRCodeScannerScreen/QRCodeScannerScreen';
 import ClaimDetailScreen from '../screens/ClaimDetailScreen/ClaimDetailScreen';
-import ClientDonationDetailScreen from '../screens/ClientDonationDetailScreen/ClientDonationDetailScreen'
+import ClientDonationDetailScreen from '../screens/ClientDonationDetailScreen/ClientDonationDetailScreen';
 
 import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
 import SvgImage from '../elements/SvgImage/SvgImage';

@@ -18,7 +18,6 @@ export default StyleSheet.create({
 	image: {
 		height: 160,
 		width: 200,
-		
 	},
 	card: {
 		height: 'auto',
@@ -29,22 +28,22 @@ export default StyleSheet.create({
 	foodTitle: {
 		fontFamily: 'open-sans-bold',
 		color: colors.NAVY_BLUE,
-		fontSize: 26
+		fontSize: 26,
 	},
 	donorSubtitle: {
 		fontFamily: 'open-sans-bold',
 		color: colors.NAVY_BLUE,
-		fontSize: 15
+		fontSize: 15,
 	},
 	subtitle: {
 		fontFamily: 'open-sans-regular',
 		color: colors.NAVY_BLUE,
-		fontSize: 15
+		fontSize: 15,
 	},
 	sectionTitle: {
 		fontFamily: 'open-sans-bold',
 		color: colors.NAVY_BLUE,
-		fontSize: 20
+		fontSize: 20,
 	},
 	timeRemainingContainer: {
 		flexDirection: 'row',
@@ -73,7 +72,7 @@ export default StyleSheet.create({
 		width: '100%',
 		height: 50,
 		alignItems: 'center',
-		justifyContent: 'center'
+		justifyContent: 'center',
 	},
 	readMoreText: {
 		fontFamily: 'open-sans-bold',
@@ -120,5 +119,5 @@ export default StyleSheet.create({
 	icon: {
 		height: 6,
 		width: 8,
-	}
+	},
 });
