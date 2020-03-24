@@ -59,12 +59,12 @@ const ClientDonationDetailScreen = () => {
 			<View style={styles.card}>
 				<Text style={styles.foodTitle}>{food_name}</Text>
 				{/* get donor from donor id for below, import icon to use. */}
+				{/* {console.log(state)} */}
 				<Text style={styles.subtitle}>
 					<Image source={testImage} style={styles.icon}/>
 					<Text style={styles.subtitle}> FROM</Text>
 					<Text style={styles.donorSubtitle}> {donor_id}</Text>
 				</Text>
-				{console.log(state)}
 				<Text style={styles.subtitle}>
 					<Image source={testImage} style={styles.icon}/>
 					<Text>  {total_servings} {measurement}</Text>
