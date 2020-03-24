@@ -29,7 +29,7 @@ const ClientDonationDetailScreen = () => {
 		pickup_location,
 		total_servings,
 		updated_at,
-	} = params.donation;
+	} = params?.donation;
 
 	const testImage = require('@assets/images/banana-icon.png');
 	const [ state ] = useGlobal() as any;
@@ -37,7 +37,7 @@ const ClientDonationDetailScreen = () => {
 
 	const startTime = new Date(created_at);
 	const now = new Date();
-	const difference = now - startTime;
+	const difference = Number(now) - Number(startTime);
 	const minutesElapsed = Math.round(now.getTime() - (startTime.getTime()) / 1000 / 60);
 
 	const timeLeft = minutesElapsed < duration_minutes
@@ -100,7 +100,7 @@ const ClientDonationDetailScreen = () => {
 			<View style={styles.card}>
 				<SpacerInline height={10} />
 				<Text style={styles.sectionTitle}>HOW TO GET THERE</Text>
-				<Text style={styles.descriptionText}>Transit options to help you get there in time.</Text>
+				<Text style={styles.subtitle}>Transit options to help you get there in time.</Text>
 			</View>
 			{/* Claim/Cancel buttons */}
 			<View style={styles.buttonContainer}>

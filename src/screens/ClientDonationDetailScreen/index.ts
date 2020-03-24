@@ -1,3 +1,3 @@
-import ClientDetailDonationScreen from './ClientDetailDonationScreen';
+import ClientDonationDetailScreen from './ClientDonationDetailScreen';
 
-export default ClientDetailDonationScreen;
+export default ClientDonationDetailScreen;
