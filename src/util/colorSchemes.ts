@@ -8,11 +8,14 @@ import { ColorSchemeName } from 'react-native-appearance';
 import * as colors from '@util/colors';
 
 /**
- * default  = Gray background, blue text.
- * primary  = Blue background, white text.
- * accent   = Red background, white text.
- * disabled = Light gray background.
- * active   = Yellow background, blue text.
+ * palette   = Background  = Text
+ * ---------------------------------------
+ * default   = Grey        = Blue
+ * primary   = Blue        = White
+ * secondary = Yellow      = Blue
+ * tertiary  = Transparent = Blue
+ * accent    = Red         = White
+ * disabled  = Light gray  = White
  */
 export type ColorPalette = 'default' | 'primary' | 'secondary' | 'tertiary' | 'accent' | 'disabled';
 
