@@ -1,16 +1,17 @@
 import React from 'react';
 import {
-	Text,
+	Text, TextStyle, StyleProp,
 } from 'react-native';
 import styles from '../Button.styles';
 import Button, { ButtonProps } from '../Button';
 
-type TextButtonProps = { text: string } & ButtonProps;
+type TextButtonProps = { text: string; textStyle?: StyleProp<TextStyle> } & ButtonProps;
 
 export default ({
 	text,
 	onPress,
 	style = {},
+	textStyle = {},
 	disabled = false,
 	palette = 'default',
 	compact = false,
@@ -21,7 +22,8 @@ export default ({
 		disabled={disabled}
 		palette={palette}
 		compact={compact}
+		outlined={palette === 'tertiary'}
 	>
-		<Text style={[ styles.text ]}>{text}</Text>
+		<Text style={[ styles.text, textStyle ]}>{text}</Text>
 	</Button>
 );
