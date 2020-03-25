@@ -8,6 +8,8 @@ export default StyleSheet.create({
 		minWidth: 'fit-content',
 		justifyContent: 'center',
 		alignItems: 'center',
+		borderWidth: 0,
+		borderStyle: 'solid',
 	},
 	text: {
 		fontFamily: 'open-sans-bold',
