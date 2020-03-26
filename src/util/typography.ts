@@ -1,3 +1,9 @@
+/**
+ * Standardized typography styling.
+ *
+ * @packageDocumentation
+ */
+
 import * as colors from '@util/colors';
 
 export default {
