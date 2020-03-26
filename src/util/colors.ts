@@ -1,3 +1,4 @@
+export const LIGHT_BLUE = '#768FC0';
 export const NAVY_BLUE = '#083A9B';
 export const FADED_NAVY_BLUE = '#083A9BB3';
 export const LIGHT_YELLOW = '#FFF6C7';
