@@ -22,6 +22,8 @@
     "expo-barcode-scanner": "~8.0.0",
     "expo-constants": "~8.0.0",
     "expo-font": "~8.0.0",
+    "expo-image-picker": "~8.0.1",
+    "expo-location": "~8.0.0",
     "expo-permissions": "~8.0.0",
     "react": "16.9.0",
     "react-dom": "16.9.0",
@@ -36,6 +38,7 @@
     "react-native-reanimated": "~1.4.0",
     "react-native-remote-svg": "^2.0.6",
     "react-native-svg": "9.13.3",
+    "react-native-svg-transformer": "^0.14.3",
     "react-native-vector-icons": "^6.6.0",
     "react-native-web": "^0.11.7",
     "react-native-webview": "7.4.3",
@@ -44,9 +47,7 @@
     "react-navigation-hooks": "1.1.0",
     "react-navigation-stack": "1.10.3",
     "use-global-hook": "^0.1.12",
-    "xcode": "2.1.0",
-    "expo-image-picker": "~8.0.1",
-    "expo-location": "~8.0.0"
+    "xcode": "2.1.0"
   },
   "devDependencies": {
     "@types/react": "16.9.17",
