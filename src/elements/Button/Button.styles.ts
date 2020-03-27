@@ -19,8 +19,4 @@ export default StyleSheet.create({
 		color: 'inherit',
 		whiteSpace: 'nowrap',
 	},
-	compact: {
-		width: 'fit-content',
-		borderRadius: 100,
-	},
 });
