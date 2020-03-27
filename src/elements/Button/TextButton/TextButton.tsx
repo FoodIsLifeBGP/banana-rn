@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-props-no-spreading */
+
 import React from 'react';
 import {
 	Text, TextStyle, StyleProp,
@@ -5,20 +7,24 @@ import {
 import styles from '../Button.styles';
 import Button, { ButtonProps } from '../Button';
 
-type TextButtonProps = { text: string; textStyle?: StyleProp<TextStyle> } & ButtonProps;
+type TextButtonProps = { text: string; textStyle?: StyleProp<TextStyle> } & Omit<ButtonProps, 'children'>;
 
 export default ({
 	text,
-	textStyle = {},
-	palette = 'default',
-	compact = false,
+	textStyle, // 'backgroundColor' and 'color' will override pressed and disabled styling
+	style,
+	pressedStyle,
+	disabledStyle,
+	outlined = false,
+	disabled = false,
 	...props
 }: TextButtonProps) => (
 	<Button
-		compact={compact}
-		outlined={palette === 'tertiary'}
-		palette={palette}
-		// eslint-disable-next-line react/jsx-props-no-spreading
+		style={style}
+		pressedStyle={pressedStyle}
+		disabledStyle={disabledStyle}
+		outlined={outlined}
+		disabled={disabled}
 		{...props}
 	>
 		<Text style={[ styles.text, textStyle ]}>{text}</Text>
