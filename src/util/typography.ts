@@ -4,20 +4,21 @@
  * @packageDocumentation
  */
 
+import { TextStyle } from 'react-native';
 import { NAVY_BLUE, LIGHT_BLUE } from '@util/colors';
 
-const heading = {
+const heading: TextStyle = {
 	fontFamily: 'open-sans-bold',
 	color: NAVY_BLUE,
 	textTransform: 'uppercase',
 };
 
-const body = {
+const body: TextStyle = {
 	fontFamily: 'open-sans-regular',
 	color: NAVY_BLUE,
 };
 
-export default {
+const typography: Record<string, TextStyle> = {
 	h1: {
 		...heading,
 		fontSize: 40,
@@ -69,3 +70,5 @@ export default {
 		textTransform: 'uppercase',
 	},
 };
+
+export default typography;
