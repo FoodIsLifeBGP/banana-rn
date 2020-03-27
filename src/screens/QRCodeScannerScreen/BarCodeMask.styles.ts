@@ -2,43 +2,18 @@ import { StyleSheet, Dimensions } from 'react-native';
 import * as colors from '@util/colors';
 
 const { width, height } = Dimensions.get('screen');
-const windowSquare = 200;
+const windowSquare = 300;
 
+const scaler = windowSquare / (windowSquare / 50);
 const widthMinusWindow = (width - windowSquare) / 2;
-const heightMinusWindow = (height - windowSquare) / 2;
+const heightMinusWindow = ((height - windowSquare) / 2)  - scaler;
 
 export default StyleSheet.create({
-	top: {
-		position: 'absolute',
+	background: {
 		backgroundColor: colors.DARK_GRAY_TRANSPARENT,
-		top: 0,
-		left: 0,
+		height,
 		width,
-		height: heightMinusWindow,
-	},
-	bottom: {
-		position: 'absolute',
-		backgroundColor: colors.DARK_GRAY_TRANSPARENT,
-		bottom: 0,
-		left: 0,
-		width,
-		height: heightMinusWindow,
-	},
-	left: {
-		position: 'absolute',
-		backgroundColor: colors.DARK_GRAY_TRANSPARENT,
-		top: heightMinusWindow,
-		left: 0,
-		width: widthMinusWindow,
-		height: windowSquare,
-	},
-	right: {
-		position: 'absolute',
-		backgroundColor: colors.DARK_GRAY_TRANSPARENT,
-		top: heightMinusWindow,
-		right: 0,
-		width: widthMinusWindow,
-		height: windowSquare,
+		zIndex: -1
 	},
 	xContainer: {
 		position: 'absolute',
@@ -55,16 +30,68 @@ export default StyleSheet.create({
 	textContainer: {
 		position: 'absolute',
 		bottom: 0,
-		width,
-		height: 200,
+		width: 375,
+		height: 250,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
 	text: {
-		fontFamily: 'open-sans-regular',
-		fontSize: 16,
-		color: 'white',
+		fontFamily: 'open-sans-bold',
+		fontSize: 24,
+		color: colors.NAVY_BLUE,
 		textAlign: 'center',
-		lineHeight: 24,
+		lineHeight: 32,
 	},
+	reticleUL: {
+		position: 'absolute',
+		borderStyle: 'solid',
+		height: windowSquare / 5,
+		width: windowSquare / 2.75,
+		borderWidth: 4,
+		borderLeftColor: colors.BANANA_YELLOW,
+		borderTopColor: colors.BANANA_YELLOW,
+		borderBottomWidth: 0,
+		borderRightWidth: 0,
+		top: heightMinusWindow,
+		left: widthMinusWindow,
+	},
+	reticleUR: {
+		position: 'absolute',
+		borderStyle: 'solid',
+		height: windowSquare / 5,
+		width: windowSquare / 2.75,
+		borderWidth: 4,
+		borderRightColor: colors.BANANA_YELLOW,
+		borderTopColor: colors.BANANA_YELLOW,
+		borderBottomWidth: 0,
+		borderLeftWidth: 0,
+		top: heightMinusWindow,
+		right: widthMinusWindow,
+	},
+	reticleDL: {
+		position: 'absolute',
+		borderStyle: 'solid',
+		height: windowSquare / 5,
+		width: windowSquare / 2.75,
+		borderWidth: 4,
+		borderLeftColor: colors.BANANA_YELLOW,
+		borderBottomColor: colors.BANANA_YELLOW,
+		borderTopWidth: 0,
+		borderRightWidth: 0,
+		bottom: heightMinusWindow + scaler + 2,
+		left: widthMinusWindow,
+	},
+	reticleDR: {
+		position: 'absolute',
+		borderStyle: 'solid',
+		height: windowSquare / 5,
+		width: windowSquare / 2.75,
+		borderWidth: 4,
+		borderRightColor: colors.BANANA_YELLOW,
+		borderBottomColor: colors.BANANA_YELLOW,
+		borderTopWidth: 0,
+		borderLeftWidth: 0,
+		bottom: heightMinusWindow + scaler + 2,
+		right: widthMinusWindow,
+	}
 });
