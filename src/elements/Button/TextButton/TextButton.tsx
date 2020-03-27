@@ -9,20 +9,17 @@ type TextButtonProps = { text: string; textStyle?: StyleProp<TextStyle> } & Butt
 
 export default ({
 	text,
-	onPress,
-	style = {},
 	textStyle = {},
-	disabled = false,
 	palette = 'default',
 	compact = false,
+	...props
 }: TextButtonProps) => (
 	<Button
-		onPress={onPress}
-		style={style}
-		disabled={disabled}
-		palette={palette}
 		compact={compact}
 		outlined={palette === 'tertiary'}
+		palette={palette}
+		// eslint-disable-next-line react/jsx-props-no-spreading
+		{...props}
 	>
 		<Text style={[ styles.text, textStyle ]}>{text}</Text>
 	</Button>
