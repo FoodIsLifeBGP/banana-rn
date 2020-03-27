@@ -4,62 +4,68 @@
  * @packageDocumentation
  */
 
-import * as colors from '@util/colors';
+import { NAVY_BLUE, LIGHT_BLUE } from '@util/colors';
+
+const heading = {
+	fontFamily: 'open-sans-bold',
+	color: NAVY_BLUE,
+	textTransform: 'uppercase',
+};
+
+const body = {
+	fontFamily: 'open-sans-regular',
+	color: NAVY_BLUE,
+};
 
 export default {
 	h1: {
-		fontFamily: 'open-sans-bold',
+		...heading,
 		fontSize: 40,
-		color: colors.NAVY_BLUE,
 	},
 	h2: {
-		fontFamily: 'open-sans-bold',
+		...heading,
 		fontSize: 25,
-		color: colors.NAVY_BLUE,
 	},
 	h3: {
-		fontFamily: 'open-sans-bold',
+		...heading,
 		fontSize: 20,
-		color: colors.NAVY_BLUE,
 	},
 	h4: {
-		fontFamily: 'open-sans-bold',
+		...heading,
 		fontSize: 16,
-		color: colors.NAVY_BLUE,
 	},
 	h5: {
-		fontFamily: 'open-sans-bold',
+		...heading,
 		fontSize: 12,
-		color: colors.NAVY_BLUE,
 	},
 	body1: {
-		fontFamily: 'open-sans-regular',
+		...body,
 		fontSize: 16,
-		color: colors.NAVY_BLUE,
 	},
 	body2: {
-		fontFamily: 'open-sans-regular',
+		...body,
 		fontSize: 16,
-		color: colors.LIGHT_BLUE,
+		color: LIGHT_BLUE,
 	},
 	body3: {
-		fontFamily: 'open-sans-regular',
+		...body,
 		fontSize: 14,
-		color: colors.NAVY_BLUE,
+		textTransform: 'uppercase',
 	},
 	body4: {
-		fontFamily: 'open-sans-regular',
+		...body,
+		fontFamily: 'open-sans-light',
 		fontSize: 14,
-		color: colors.NAVY_BLUE,
 	},
 	body5: {
-		fontFamily: 'open-sans-regular',
+		...body,
 		fontSize: 12,
-		color: colors.NAVY_BLUE,
+		textTransform: 'uppercase',
 	},
 	body6: {
-		fontFamily: 'open-sans-regular',
+		...body,
+		fontFamily: 'open-sans-bold',
 		fontSize: 12,
-		color: colors.NAVY_BLUE,
+		textTransform: 'uppercase',
 	},
 };
