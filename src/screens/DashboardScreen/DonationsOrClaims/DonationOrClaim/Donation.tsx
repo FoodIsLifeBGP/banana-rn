@@ -6,6 +6,7 @@ import {
 	TouchableOpacity,
 	Image,
 } from 'react-native';
+import useGlobal from '@state';
 import { Donation } from './DonationOrClaim.type';
 import styles from './DonationOrClaim.styles';
 
@@ -31,10 +32,15 @@ export default ({ donation }: Donation) => {
 	const timeLeft = minutesElapsed < duration_minutes
 		? duration_minutes - minutesElapsed
 		: 0;
+	const [ state ] = useGlobal() as any;
+	const { userIdentity } = state;
 
 	return (
 		<TouchableOpacity
-			onPress={() => navigate('DonationScreen', { donation, id, edit: true })}
+		// updated onPress to take to client/donor appropriate screen
+			onPress={userIdentity === 'client'
+				? () => navigate('ClientDonationDetailScreen', { donation, id, edit: false })
+				: () => navigate('DonationScreen', { donation, id, edit: true })}
 		>
 			<View style={{ ...styles.card }}>
 				<View style={{ ...styles.iconContainer, backgroundColor: timeLeft > 0 ? 'blue' : 'gray' }}>
