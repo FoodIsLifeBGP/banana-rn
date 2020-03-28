@@ -62,7 +62,7 @@ const donorOrClientDrawer = () => {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: 'My Claims',
-				drawerIcon: <SvgImage source={require('@assets/icons/small/ICON_CLAIMS.svg')} />,
+				drawerIcon: <SvgImage source={require('@assets/icons/small/ICON_CLAIMS_WHITE.svg')} />,
 			},
 		},
 	};
