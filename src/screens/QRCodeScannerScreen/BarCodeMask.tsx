@@ -9,12 +9,15 @@ export default () => {
 	const { navigate } = useNavigation();
 	return (
 		<>
-			<View style={styles.reticleUL}/>
-			<View style={styles.reticleUR}/>
-			<View style={styles.reticleDL}/>
-			<View style={styles.reticleDR}/>
+			<View style={styles.reticleUL} />
+			<View style={styles.reticleUR} />
+			<View style={styles.reticleDL} />
+			<View style={styles.reticleDR} />
 			<View style={styles.background} />
 			<View style={styles.xContainer}>
+				<TouchableWithoutFeedback onPress={() => navigate('DashboardScreen')}>
+					<Icon name="chevron-left" style={styles.x} />
+				</TouchableWithoutFeedback>
 				<TouchableWithoutFeedback onPress={() => navigate('DashboardScreen')}>
 					<Icon name="close" style={styles.x} />
 				</TouchableWithoutFeedback>
@@ -22,7 +25,7 @@ export default () => {
 			<View style={styles.textContainer}>
 				<Text style={styles.text}>
 					{`
-						Align QR code/barcode
+						Align QR code
 						within frame to scan
 					`}
 				</Text>
