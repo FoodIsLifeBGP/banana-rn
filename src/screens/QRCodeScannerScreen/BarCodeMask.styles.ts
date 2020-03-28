@@ -4,28 +4,37 @@ import * as colors from '@util/colors';
 const { width, height } = Dimensions.get('screen');
 const windowSquare = 300;
 
+/*
+	Scaler for Offset in Y-axis based on windowSquare.
+	Used in multiple cases.
+	Can be cleaned up.
+*/
 const scaler = windowSquare / (windowSquare / 50);
 const widthMinusWindow = (width - windowSquare) / 2;
-const heightMinusWindow = ((height - windowSquare) / 2)  - scaler;
+const heightMinusWindow = ((height - windowSquare) / 2) - scaler;
 
 export default StyleSheet.create({
 	background: {
 		backgroundColor: colors.DARK_GRAY_TRANSPARENT,
 		height,
 		width,
-		zIndex: -1
+		zIndex: -1,
 	},
 	xContainer: {
 		position: 'absolute',
-		top: 30,
-		left: 10,
-		justifyContent: 'center',
-		alignItems: 'center',
+		display: 'flex',
+		flexDirection: 'row',
+		top: 0,
+		left: 0,
+		justifyContent: 'space-between',
+		backgroundColor: colors.LIGHT_GRAY,
+		width: '100%',
+		paddingTop: 20,
+		paddingHorizontal: 5,
 	},
 	x: {
 		textAlign: 'center',
-		textAlignVertical: 'center',
-		fontSize: 70,
+		fontSize: 48,
 	},
 	textContainer: {
 		position: 'absolute',
@@ -38,9 +47,11 @@ export default StyleSheet.create({
 	text: {
 		fontFamily: 'open-sans-bold',
 		fontSize: 24,
-		color: colors.NAVY_BLUE,
+		color: colors.WHITE,
 		textAlign: 'center',
 		lineHeight: 32,
+		textShadowColor: 'black',
+		textShadowRadius: 5,
 	},
 	reticleUL: {
 		position: 'absolute',
@@ -93,5 +104,5 @@ export default StyleSheet.create({
 		borderLeftWidth: 0,
 		bottom: heightMinusWindow + scaler + 2,
 		right: widthMinusWindow,
-	}
+	},
 });
