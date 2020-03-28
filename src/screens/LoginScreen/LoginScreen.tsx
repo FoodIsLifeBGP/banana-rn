@@ -44,7 +44,7 @@ export default () => {
 	return (
 		<View style={styles.outerContainer}>
 			<View style={styles.banner}>
-				<Title text={`banana\n${userIdentity}`} />
+				<Title text={`banana \n${userIdentity}`} />
 			</View>
 			<View style={styles.innerContainer}>
 				<View style={styles.form}>
