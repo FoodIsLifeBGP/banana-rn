@@ -5,7 +5,7 @@ import platformShadow from '@util/platformShadow';
 export default StyleSheet.create({
 	outerContainer: {
 		flex: 1,
-		backgroundColor: colors.WHITE,
+		backgroundColor: colors.DARK_GRAY_TRANSPARENT,
 		// paddingHorizontal: '11%',
 	},
 	imageContainer: {
@@ -119,5 +119,6 @@ export default StyleSheet.create({
 	icon: {
 		height: 6,
 		width: 8,
+		// borderColor: colors.NAVY_BLUE,
 	},
 });

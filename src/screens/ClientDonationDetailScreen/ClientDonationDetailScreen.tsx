@@ -12,6 +12,7 @@ import useGlobal from '@state';
 import { SpacerInline } from '@elements';
 import { Divider } from 'react-native-paper';
 import styles from './ClientDonationDetailScreen.styles';
+import SvgImage from '@elements/SvgImage/SvgImage';
 
 const ClientDonationDetailScreen = () => {
 	const navigate = useNavigation();
@@ -32,6 +33,7 @@ const ClientDonationDetailScreen = () => {
 	} = params?.donation;
 
 	const testImage = require('@assets/images/banana-icon.png');
+	const testIcon = require('@assets/icons/ICON_USER.svg');
 	const [ state ] = useGlobal() as any;
 
 
@@ -66,7 +68,7 @@ const ClientDonationDetailScreen = () => {
 				{/* get donor from donor id for below, import icon to use. */}
 				{/* {console.log(state)} */}
 				<Text style={styles.subtitle}>
-					<Image source={testImage} style={styles.icon} />
+					<Image source={testIcon} style={styles.icon} />
 					<Text style={styles.subtitle}> FROM</Text>
 					<Text style={styles.donorSubtitle}>
 						{donor_id}
