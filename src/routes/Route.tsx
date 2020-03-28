@@ -72,7 +72,7 @@ const donorOrClientDrawer = () => {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: 'My Profile',
-				drawerIcon: <SvgImage source={require('@assets/icons/small/ICON_USER.svg')} />,
+				drawerIcon: <SvgImage source={require('@assets/icons/small/ICON_USER_WHITE.svg')} />,
 			},
 		},
 		SettingsScreen: {
