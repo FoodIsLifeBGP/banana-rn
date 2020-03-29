@@ -17,6 +17,7 @@ export default function App() {
 
 	const loadFonts = async () => {
 		await Font.loadAsync({
+			// Expo doesn't currently (v36.0.0) support fontWeight or fontStyle
 			'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
 			'open-sans-regular': require('./assets/fonts/OpenSans-Regular.ttf'),
 			'open-sans-light': require('./assets/fonts/OpenSans-Light.ttf'),
