@@ -43,8 +43,11 @@ export default StyleSheet.create({
 		flexDirection: 'row',
 		paddingHorizontal: '8%',
 		justifyContent: 'space-between',
-		alignItems: 'center',
-		bottom: 50,
+		// Below styling keeps the buttons close to the fields on all screen sizes
+		alignItems: 'flex-end',
+		flex: 1,
+		minHeight: 80,
+		maxHeight: 116,
 	},
 	forgotPassword: {
 		width: 'fit-content',
