@@ -143,21 +143,21 @@ export default () => {
 						label="City"
 						value={city}
 						setValue={setCity}
-						width="40%"
+						style={{ width: '40%' }}
 						autoCapitalize="words"
 					/>
 					<FormTextInput
 						label="State"
 						value={state}
-						setValue={() => {}}
-						width="15%"
+						setValue={() => { }}
+						style={{ width: '15%' }}
 						autoCapitalize="words"
 					/>
 					<FormTextInput
 						label="Zip"
 						value={zip}
 						setValue={setZip}
-						width="35%"
+						style={{ width: '35%' }}
 						autoCapitalize="words"
 					/>
 				</View>

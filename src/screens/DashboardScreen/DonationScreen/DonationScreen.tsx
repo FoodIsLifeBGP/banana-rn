@@ -97,7 +97,7 @@ export default () => {
 						label="Donating:"
 						value={name}
 						setValue={setName}
-						width="50%"
+						style={{ width: '50%' }}
 					/>
 				</View>
 
@@ -135,36 +135,28 @@ export default () => {
 						label="Serving name (bunch, etc.)"
 						value={servingName}
 						setValue={setServingName}
-						inline={true}
-						width="40%"
-						upperCase={false}
+						style={{ width: '40%' }}
 					/>
 
 					<FormTextInput
 						label="# per person"
 						value={perPerson && perPerson.toString()}
 						setValue={setPerPerson}
-						inline={true}
-						width="20%"
-						upperCase={false}
+						style={{ width: '20%' }}
 					/>
 
 					<FormTextInput
 						label="Total # of servings"
 						value={totalServings && totalServings.toString()}
 						setValue={setTotalServings}
-						inline={true}
-						width="20%"
-						upperCase={false}
+						style={{ width: '20%' }}
 					/>
 
 					<FormTextInput
 						label="Pickup spot"
 						value={pickupLocation}
 						setValue={setPickupLocation}
-						inline={true}
-						width="60%"
-						upperCase={false}
+						style={{ width: '60%' }}
 					/>
 				</View>
 			</View>
