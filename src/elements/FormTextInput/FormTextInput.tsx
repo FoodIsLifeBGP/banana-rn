@@ -29,10 +29,11 @@ export default ({
 	inputStyle,
 	error = false,
 	errorMessage,
+	style,
 	editable = true,
 	...props
 }: FormTextInputProps) => (
-	<View>
+	<View style={style}>
 		<InputLabel text={label} />
 
 		<View>
