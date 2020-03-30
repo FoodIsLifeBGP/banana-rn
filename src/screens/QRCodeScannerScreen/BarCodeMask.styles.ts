@@ -27,7 +27,6 @@ export default StyleSheet.create({
 		top: 0,
 		left: 0,
 		justifyContent: 'space-between',
-		backgroundColor: colors.LIGHT_GRAY,
 		width: '100%',
 		paddingTop: 20,
 		paddingHorizontal: 5,
@@ -42,7 +41,6 @@ export default StyleSheet.create({
 		width: 375,
 		height: 250,
 		justifyContent: 'center',
-		alignItems: 'center',
 	},
 	text: {
 		fontFamily: 'open-sans-bold',
