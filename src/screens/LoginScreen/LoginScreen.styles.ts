@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import * as colors from '@util/colors';
+import typography from '@util/typography';
 
 export default StyleSheet.create({
 	outerContainer: {
@@ -45,8 +46,11 @@ export default StyleSheet.create({
 		alignItems: 'center',
 		bottom: 50,
 	},
-	link: {
-		color: colors.NAVY_BLUE,
-		textAlign: 'right',
+	forgotPassword: {
+		width: 'fit-content',
+		alignSelf: 'flex-end',
+	},
+	forgotPasswordText: {
+		...typography.body3,
 	},
 });

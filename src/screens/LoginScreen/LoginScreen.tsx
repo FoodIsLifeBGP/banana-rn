@@ -11,6 +11,7 @@ import {
 	LinkButton,
 	FormTextInput,
 } from '@elements';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import styles from './LoginScreen.styles';
 
 export default () => {
@@ -38,6 +39,8 @@ export default () => {
 			default: Alert.alert(`Server replied with ${statusCode} status code`);
 		}
 	};
+
+	const handleForgotPassword = () => { console.log('Handle forgot password.'); };
 
 	return (
 		// Should the root be a ScrollView? Or is the wrapper around this screen already scrollable?
@@ -78,7 +81,16 @@ export default () => {
 						// blurOnSubmit={false} TODO: this prolly should be true? to move focus to password field
 					/>
 
-					<Text style={styles.link}>Forgot Password?</Text>
+					<View style={styles.forgotPassword}>
+						{/* View wrapper required to constrain clickable area of button */}
+						<TouchableWithoutFeedback
+							onPress={handleForgotPassword}
+						>
+							<Text style={styles.forgotPasswordText}>
+								Forgot Password?
+							</Text>
+						</TouchableWithoutFeedback>
+					</View>
 				</View>
 
 				<View style={styles.buttonContainer}>
