@@ -88,25 +88,25 @@ export default () => {
 					Please add your business's details below.  You will be able to update them once registration is complete.
 				</Text>
 				<FormTextInput
-					text="Organization Name"
+					label="Organization Name"
 					value={organizationName}
 					setValue={setOrganizationName}
 				/>
 
 				<FormTextInput
-					text="Email Address"
+					label="Email Address"
 					value={email}
 					setValue={setEmail}
 				/>
 
 				<FormTextInput
-					text="Password"
+					label="Password"
 					value={password}
 					setValue={setPassword}
 				/>
 
 				<FormTextInput
-					text="WA State UBI (Business License No.)"
+					label="WA State UBI (Business License No.)"
 					value={license}
 					setValue={setLicense}
 				/>
@@ -132,7 +132,7 @@ export default () => {
 				</View>
 
 				<FormTextInput
-					text="Street Address"
+					label="Street Address"
 					value={street}
 					setValue={setStreet}
 					autoCapitalize="words"
@@ -140,21 +140,21 @@ export default () => {
 
 				<View style={styles.row}>
 					<FormTextInput
-						text="City"
+						label="City"
 						value={city}
 						setValue={setCity}
 						width="40%"
 						autoCapitalize="words"
 					/>
 					<FormTextInput
-						text="State"
+						label="State"
 						value={state}
 						setValue={() => {}}
 						width="15%"
 						autoCapitalize="words"
 					/>
 					<FormTextInput
-						text="Zip"
+						label="Zip"
 						value={zip}
 						setValue={setZip}
 						width="35%"
