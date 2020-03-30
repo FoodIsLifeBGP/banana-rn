@@ -3,15 +3,13 @@ import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
 import {
 	View,
 	Alert,
-	TextInput,
 	Text,
 } from 'react-native';
 import useGlobal from '@state';
 import {
 	Title,
 	LinkButton,
-	SpacerInline,
-	InputLabel,
+	FormTextInput,
 } from '@elements';
 import styles from './LoginScreen.styles';
 
@@ -42,36 +40,44 @@ export default () => {
 	};
 
 	return (
+		// Should the root be a ScrollView? Or is the wrapper around this screen already scrollable?
 		<View style={styles.outerContainer}>
 			<View style={styles.banner}>
+				{/* TODO: this should be a component that is also used in info screens */}
 				<Title text={`banana \n${userIdentity}`} />
 			</View>
-			<View style={styles.innerContainer}>
+
+			<View style={styles.bodyContainer}>
 				<View style={styles.form}>
-					<View>
-						<InputLabel text="Email" />
-						<TextInput
-							value={email}
-							onChangeText={setEmail}
-							style={styles.input}
-							autoCapitalize="none"
-							autoCorrect={false}
-							autoFocus={true}
-							blurOnSubmit={false}
-						/>
-					</View>
-					<View>
-						<InputLabel text="Password" />
-						<TextInput
-							textContentType="password"
-							value={password}
-							secureTextEntry={true}
-							onChangeText={setPassword}
-							style={styles.input}
-							autoCapitalize="none"
-							autoCorrect={false}
-						/>
-					</View>
+					<FormTextInput
+						label="email"
+						value={email}
+						setValue={setEmail}
+						style={styles.inputEmail}
+						placeholder="info@bananaapp.org"
+						autoCorrect={false}
+						autoFocus={true}
+						autoCompleteType="email"
+						textContentType="username"
+						enablesReturnKeyAutomatically={true}
+						keyboardType="email-address"
+						returnKeyType="next"
+						// blurOnSubmit={false} TODO: true? to trigger callback to move focus to password field
+					/>
+
+					<FormTextInput
+						label="password"
+						value={password}
+						setValue={setPassword}
+						secureTextEntry={true}
+						autoCorrect={false}
+						autoCompleteType="password"
+						textContentType="password"
+						enablesReturnKeyAutomatically={true}
+						returnKeyType="go"
+						// blurOnSubmit={false} TODO: this prolly should be true? to move focus to password field
+					/>
+
 					<Text style={styles.link}>Forgot Password?</Text>
 				</View>
 

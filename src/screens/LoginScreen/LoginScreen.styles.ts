@@ -5,14 +5,8 @@ export default StyleSheet.create({
 	outerContainer: {
 		flex: 1,
 	},
-	input: {
-		height: 50,
+	inputEmail: {
 		marginBottom: 15,
-		backgroundColor: 'white',
-		fontSize: 14,
-		fontFamily: 'open-sans-regular',
-		color: colors.NAVY_BLUE,
-		paddingLeft: 12,
 	},
 	passwordContainer: {
 		height: 50,
