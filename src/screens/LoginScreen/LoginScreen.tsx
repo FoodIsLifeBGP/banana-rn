@@ -51,7 +51,9 @@ export default () => {
 			</View>
 
 			<View style={styles.bodyContainer}>
-				<View style={styles.form}>
+				<View
+					style={styles.form}
+				>
 					<FormTextInput
 						label="email"
 						value={email}

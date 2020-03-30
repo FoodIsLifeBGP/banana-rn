@@ -2,6 +2,8 @@ import { StyleSheet } from 'react-native';
 import * as colors from '@util/colors';
 import typography from '@util/typography';
 
+const SCREEN_HORIZONTAL_OFFSET = '5%';
+
 export default StyleSheet.create({
 	outerContainer: {
 		flex: 1,
@@ -27,19 +29,23 @@ export default StyleSheet.create({
 	banner: {
 		height: 'fit-content',
 		justifyContent: 'center',
-		paddingVertical: 55,
-		paddingHorizontal: '5%',
+		paddingVertical: '12%', // Helps ensure proportions on small screens (e.g. iPhone 4).
+		paddingHorizontal: SCREEN_HORIZONTAL_OFFSET,
 		backgroundColor: colors.BANANA_YELLOW,
 	},
-	innerContainer: {
+	bodyContainer: {
+		width: '100%',
+		alignItems: 'center',
 		flexGrow: 1,
+		// Values (35 & 64) based off of Figma padding-top and screen size of mockup
 		paddingTop: 'calc(100vh * (35 / 640))',
-		paddingHorizontal: '15%',
-		justifyContent: 'space-between',
+		paddingHorizontal: SCREEN_HORIZONTAL_OFFSET,
 	},
 	form: {
+		width: '100%',
 	},
 	buttonContainer: {
+		width: '100%',
 		flexDirection: 'row',
 		paddingHorizontal: '8%',
 		justifyContent: 'space-between',
