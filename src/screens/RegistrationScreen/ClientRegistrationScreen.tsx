@@ -117,7 +117,7 @@ export default () => {
 				<SpacerInline height={20} />
 
 				<FormTextInput
-					text="Email Address"
+					label="Email Address"
 					value={email}
 					setValue={setEmail}
 					style={styles.input}
@@ -146,7 +146,7 @@ export default () => {
 				</View>
 
 				<FormTextInput
-					text="Street Address"
+					label="Street Address"
 					value={street}
 					setValue={setStreet}
 					autoCapitalize="words"
@@ -155,29 +155,26 @@ export default () => {
 
 				<View style={styles.row}>
 					<FormTextInput
-						text="City"
+						label="City"
 						value={city}
 						setValue={setCity}
-						width="41%"
+						style={[ styles.input, { width: '41%' } ]}
 						autoCapitalize="words"
-						style={styles.input}
 					/>
 					<FormTextInput
-						text="State"
+						label="State"
 						value={state}
-						setValue={() => {}}
-						width="18%"
+						setValue={() => { }}
+						style={[ styles.input, { width: '18%' } ]}
 						autoCapitalize="words"
-						disabled={true}
-						style={styles.input}
+						editable={false}
 					/>
 					<FormTextInput
-						text="Zip"
+						label="Zip"
 						value={zip}
 						setValue={setZip}
-						width="33%"
+						style={[ styles.input, { width: '33%' } ]}
 						autoCapitalize="words"
-						style={styles.input}
 					/>
 				</View>
 
