@@ -45,14 +45,14 @@ const donorOrClientDrawer = () => {
 			screen: QRCodeScannerScreen,
 			navigationOptions: {
 				drawerLabel: 'Scan QR Code',
-				drawerIcon: <SvgImage source={require('@assets/icons/small/ICON_QR_CODE.svg')} />,
+				drawerIcon: <SvgImage source={require('@assets/icons/ICON_QR-CODE.svg')} />,
 			},
 		},
 		DashboardScreen: {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: 'My Donations',
-				drawerIcon: <SvgImage source={require('@assets/icons/small/ICON_DONATIONS.svg')} />,
+				drawerIcon: <SvgImage source={require('@assets/icons/ICON_DONATIONS.svg')} />,
 			},
 		},
 	};
@@ -62,7 +62,7 @@ const donorOrClientDrawer = () => {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: 'My Claims',
-				drawerIcon: <SvgImage source={require('@assets/icons/small/ICON_CLAIMS_WHITE.svg')} />,
+				drawerIcon: <SvgImage source={require('@assets/icons/ICON_CLAIMS.svg')} />,
 			},
 		},
 	};
@@ -72,28 +72,28 @@ const donorOrClientDrawer = () => {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: 'My Profile',
-				drawerIcon: <SvgImage source={require('@assets/icons/small/ICON_USER_WHITE.svg')} />,
+				drawerIcon: <SvgImage source={require('@assets/icons/ICON_USER.svg')} />,
 			},
 		},
 		SettingsScreen: {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: 'Settings',
-				drawerIcon: <SvgImage source={require('@assets/icons/small/ICON_SETTINGS.svg')} />,
+				drawerIcon: <SvgImage source={require('@assets/icons/ICON_SETTINGS.svg')} />,
 			},
 		},
 		HelpScreen: {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: 'Help',
-				drawerIcon: <SvgImage source={require('@assets/icons/small/ICON_HELP.svg')} />,
+				drawerIcon: <SvgImage source={require('@assets/icons/ICON_HELP.svg')} />,
 			},
 		},
 		LoginScreen: {
 			screen: LoginScreen,
 			navigationOptions: {
 				drawerLabel: 'Log Out',
-				drawerIcon: <SvgImage source={require('@assets/icons/small/ICON_LOGOUT.svg')} />,
+				drawerIcon: <SvgImage source={require('@assets/icons/ICON_LOGOUT.svg')} />,
 			},
 		},
 	};
