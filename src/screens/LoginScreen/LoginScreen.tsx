@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, RefObject, createRef } from 'react';
 import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
 import {
 	View,
 	Alert,
 	Text,
+	TextInput,
 } from 'react-native';
 import useGlobal from '@state';
 import {
@@ -20,10 +21,14 @@ export default () => {
 	const { userIdentity } = state;
 	const { logIn } = actions;
 
+	const passwordInputRef: RefObject<TextInput> = createRef();
+
 	const [ email, setEmail ] = useState(useNavigationParam('email') ?? '');
 	const [ password, setPassword ] = useState(useNavigationParam('password') ?? '');
 
 	const clearEmailAndPassword = () => { setEmail(''); setPassword(''); };
+
+	const handleEmailInputSubmit = () => passwordInputRef.current?.focus();
 
 	const handleLogin = async () => {
 		const statusCode = await logIn({ email, password });
@@ -43,10 +48,9 @@ export default () => {
 	const handleForgotPassword = () => { console.log('Handle forgot password.'); };
 
 	return (
-		// Should the root be a ScrollView? Or is the wrapper around this screen already scrollable?
 		<View style={styles.outerContainer}>
 			<View style={styles.banner}>
-				{/* TODO: this should be a component that is also used in info screens */}
+				{/* TODO: banner should be a component */}
 				<Title text={`banana \n${userIdentity}`} />
 			</View>
 
@@ -67,20 +71,23 @@ export default () => {
 						enablesReturnKeyAutomatically={true}
 						keyboardType="email-address"
 						returnKeyType="next"
-						// blurOnSubmit={false} TODO: true? to trigger callback to move focus to password field
+						blurOnSubmit={true} // Necessary to prevent focus from 'flickering'
+						onSubmitEditing={handleEmailInputSubmit}
 					/>
 
 					<FormTextInput
 						label="password"
 						value={password}
 						setValue={setPassword}
+						ref={passwordInputRef}
 						secureTextEntry={true}
 						autoCorrect={false}
 						autoCompleteType="password"
 						textContentType="password"
 						enablesReturnKeyAutomatically={true}
 						returnKeyType="go"
-						// blurOnSubmit={false} TODO: this prolly should be true? to move focus to password field
+						blurOnSubmit={false}
+						onSubmitEditing={handleLogin}
 					/>
 
 					<View style={styles.forgotPassword}>
@@ -96,7 +103,7 @@ export default () => {
 				</View>
 
 				<View style={styles.buttonContainer}>
-					<LinkButton text="Log In" onPress={() => handleLogin()} />
+					<LinkButton text="Log In" onPress={handleLogin} />
 					<LinkButton text="Register" destination="RegistrationScreen" />
 				</View>
 			</View>
