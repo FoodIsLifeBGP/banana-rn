@@ -9,18 +9,18 @@ export default StyleSheet.create({
 		flex: 1,
 	},
 	banner: {
-		height: 'fit-content',
+		flexGrow: 1,
+		flexShrink: 2,
+		flexBasis: '27%',
 		justifyContent: 'center',
-		paddingVertical: '12%', // Helps ensure proportions on small screens (e.g. iPhone 4).
 		paddingHorizontal: SCREEN_HORIZONTAL_OFFSET,
 		backgroundColor: colors.BANANA_YELLOW,
 	},
 	bodyContainer: {
+		flexGrow: 4,
 		width: '100%',
 		alignItems: 'center',
-		flexGrow: 1,
-		// Values (35 & 64) based off of Figma padding-top and screen size of mockup
-		paddingTop: 'calc(100vh * (35 / 640))',
+		paddingTop: '5%',
 		paddingHorizontal: SCREEN_HORIZONTAL_OFFSET,
 	},
 	form: {
@@ -41,7 +41,6 @@ export default StyleSheet.create({
 		maxHeight: 116,
 	},
 	forgotPassword: {
-		width: 'fit-content',
 		alignSelf: 'flex-end',
 	},
 	forgotPasswordText: {
