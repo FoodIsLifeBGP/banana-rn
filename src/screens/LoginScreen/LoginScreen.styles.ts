@@ -7,11 +7,13 @@ const SCREEN_HORIZONTAL_OFFSET = '5%';
 export default StyleSheet.create({
 	outerContainer: {
 		flex: 1,
+		flexBasis: '100%',
 	},
 	banner: {
 		flexGrow: 1,
 		flexShrink: 2,
 		flexBasis: '27%',
+		maxHeight: 300,
 		justifyContent: 'center',
 		paddingHorizontal: SCREEN_HORIZONTAL_OFFSET,
 		backgroundColor: colors.BANANA_YELLOW,
@@ -19,8 +21,10 @@ export default StyleSheet.create({
 	bodyContainer: {
 		flexGrow: 4,
 		width: '100%',
-		alignItems: 'center',
+	},
+	bodyContentContainer: {
 		paddingTop: '5%',
+		alignItems: 'center',
 		paddingHorizontal: SCREEN_HORIZONTAL_OFFSET,
 	},
 	form: {
@@ -37,7 +41,7 @@ export default StyleSheet.create({
 		// Below styling keeps the buttons close to the fields on all screen sizes
 		alignItems: 'flex-end',
 		flex: 1,
-		minHeight: 80,
+		minHeight: 70,
 		maxHeight: 116,
 	},
 	forgotPassword: {

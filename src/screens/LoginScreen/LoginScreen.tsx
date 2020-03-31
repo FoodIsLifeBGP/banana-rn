@@ -1,10 +1,12 @@
 import React, { useState, RefObject, createRef } from 'react';
 import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
 import {
+	ScrollView,
 	View,
 	Alert,
 	Text,
 	TextInput,
+	KeyboardAvoidingView,
 } from 'react-native';
 import useGlobal from '@state';
 import {
@@ -48,13 +50,13 @@ export default () => {
 	const handleForgotPassword = () => { console.log('Handle forgot password.'); };
 
 	return (
-		<View style={styles.outerContainer}>
+		<KeyboardAvoidingView style={styles.outerContainer} behavior="padding">
 			<View style={styles.banner}>
 				{/* TODO: banner should be a component */}
 				<Title text={`banana \n${userIdentity}`} />
 			</View>
 
-			<View style={styles.bodyContainer}>
+			<ScrollView style={styles.bodyContainer} contentContainerStyle={styles.bodyContentContainer}>
 				<View
 					style={styles.form}
 				>
@@ -65,7 +67,6 @@ export default () => {
 						style={styles.inputEmail}
 						placeholder="info@bananaapp.org"
 						autoCorrect={false}
-						autoFocus={true}
 						autoCompleteType="username"
 						textContentType="username"
 						enablesReturnKeyAutomatically={true}
@@ -106,7 +107,7 @@ export default () => {
 					<LinkButton text="Log In" onPress={handleLogin} />
 					<LinkButton text="Register" destination="RegistrationScreen" />
 				</View>
-			</View>
-		</View>
+			</ScrollView>
+		</KeyboardAvoidingView>
 	);
 };
