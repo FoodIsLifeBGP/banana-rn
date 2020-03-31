@@ -8,24 +8,6 @@ export default StyleSheet.create({
 	outerContainer: {
 		flex: 1,
 	},
-	inputEmail: {
-		marginBottom: 15,
-	},
-	passwordContainer: {
-		height: 50,
-		flexDirection: 'row',
-		justifyContent: 'flex-start',
-		backgroundColor: 'white',
-	},
-	iconContainer: {
-		justifyContent: 'center',
-		alignItems: 'center',
-		width: 50,
-	},
-	hideIcon: {
-		fontSize: 26,
-		color: colors.NAVY_BLUE,
-	},
 	banner: {
 		height: 'fit-content',
 		justifyContent: 'center',
@@ -43,6 +25,9 @@ export default StyleSheet.create({
 	},
 	form: {
 		width: '100%',
+	},
+	inputEmail: {
+		marginBottom: 15,
 	},
 	buttonContainer: {
 		width: '100%',
