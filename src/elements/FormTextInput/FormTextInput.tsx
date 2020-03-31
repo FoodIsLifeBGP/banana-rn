@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
-import React from 'react';
+import React, { forwardRef, RefObject, Ref } from 'react';
 import {
 	View,
 	TextInput,
@@ -22,7 +22,7 @@ interface FormTextInputProps extends TextInputProps {
 	errorMessage?: string; // User-facing message associated with an error.
 }
 
-export default ({
+const FormTextInput = ({
 	label,
 	value,
 	setValue,
@@ -32,12 +32,13 @@ export default ({
 	style,
 	editable = true,
 	...props
-}: FormTextInputProps) => (
+}: FormTextInputProps, ref: Ref<TextInput>) => (
 	<View style={style}>
 		<InputLabel text={label} />
 
 		<View>
 			<TextInput
+				ref={ref}
 				value={value}
 				onChangeText={setValue}
 				style={[
@@ -59,3 +60,9 @@ export default ({
 		</View>
 	</View>
 );
+
+/**
+ * Allows the HoC (FormTextInput) to pass references to the native TextInput.
+ */
+export default forwardRef<TextInput, FormTextInputProps & {ref?: RefObject<TextInput>}>(FormTextInput);
+
