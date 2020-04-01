@@ -5,17 +5,16 @@ export default StyleSheet.create({
 	container: {
 		height: 35,
 		marginBottom: 15,
-		alignItems: 'flex-start',
+		alignItems: 'center',
 	},
 	textContainer: {
 		height: 30,
 		width: 'auto',
 		borderBottomColor: 'white',
 		borderBottomWidth: 3.5,
-		paddingLeft: 25,
 	},
 	text: {
-		textAlign: 'left',
+		textAlign: 'center',
 		fontFamily: 'open-sans-bold',
 		fontSize: 20,
 		color: colors.NAVY_BLUE,
