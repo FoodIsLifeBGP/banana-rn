@@ -1,34 +1,56 @@
 import { StyleSheet } from 'react-native';
-import * as colors from '@util/colors';
+import * as Colors from '@util/colors';
+import typography from '@util/typography';
 
-export default StyleSheet.create({
+const GRID_MARGIN = 20; // Grid One from Style Guide TODO: make grid constants global
+export const ICON_SIZE = 24;
+
+export const QuestionListItem = StyleSheet.create({
+	// TODO: Reduce redundancy with Contact Screen
+	container: {
+		borderWidth: 1,
+		borderStyle: 'solid',
+		borderColor: 'transparent',
+		borderTopColor: Colors.LIGHT_GRAY,
+	},
+	firstContainer: {
+		borderTopColor: 'transparent',
+	},
+	questionContainer: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		paddingHorizontal: GRID_MARGIN,
+		paddingVertical: 10,
+		backgroundColor: Colors.WHITE,
+	},
+	questionIcon: {
+	},
 	questionText: {
-		fontFamily: 'open-sans-bold',
-		fontSize: 20,
-		color: colors.NAVY_BLUE,
-		textDecorationLine: 'underline',
+		...typography.h4,
+		textTransform: 'none',
+		paddingLeft: GRID_MARGIN,
+	},
+	answerTextContainer: {
+		paddingHorizontal: GRID_MARGIN,
 	},
 	answerText: {
-		fontFamily: 'open-sans-regular',
-		fontSize: 18,
-		color: colors.NAVY_BLUE,
+		...typography.body1,
+		paddingLeft: ICON_SIZE + GRID_MARGIN,
+		paddingVertical: 10,
 	},
-	headerContainer: {
-		paddingHorizontal: '10%',
-	},
-	headingText: {
-		fontFamily: 'open-sans-bold',
-		fontSize: 20,
-		color: colors.NAVY_BLUE,
-		alignSelf: 'center',
-	},
+});
+
+export default StyleSheet.create({
 	outerContainer: {
 		flex: 1,
-		backgroundColor: colors.BANANA_YELLOW,
 	},
-	contentContainer: {
+	bodyContainer: {
 		flex: 1,
-		backgroundColor: 'white',
-		padding: 25,
+	},
+	questionList: {
+		paddingVertical: GRID_MARGIN / 2,
+	},
+	backButton: {
+		padding: 20,
 	},
 });
