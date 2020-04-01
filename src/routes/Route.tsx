@@ -15,7 +15,7 @@ import LoginScreen from '../screens/LoginScreen';
 import DashboardScreen from '../screens/DashboardScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
 import TermsScreen from '../screens/TermsScreen';
-import FAQsScreen from '../screens/FAQsScreen';
+import FaqScreen from '../screens/FaqScreen';
 import ContactScreen from '../screens/ContactScreen';
 import LoginSuccessScreen from '../screens/LoginSuccessScreen';
 import DonationScreen from '../screens/DashboardScreen/DonationScreen';
@@ -132,7 +132,7 @@ export const FullAppStack = createStackNavigator(
 		RegistrationScreen,
 		TermsScreen,
 		ContactScreen,
-		FAQsScreen,
+		FaqScreen,
 		Drawer,
 	},
 	{

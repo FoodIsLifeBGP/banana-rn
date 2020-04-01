@@ -19,7 +19,7 @@ export default () => (
 		<SpacerInline height={20} />
 		<ScrollView contentContainerStyle={styles.contentContainer}>
 			<View>
-				<HelpLineItem text="FAQs" destination="FAQsScreen" />
+				<HelpLineItem text="FAQs" destination="FaqScreen" />
 				<HelpLineItem text="Tutorial" link="https://www.youtube.com/watch?v=Psax2CCcJEI" />
 				<HelpLineItem text="Contact Us" destination="ContactScreen" />
 			</View>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { Header, SpacerInline, Title } from '@elements';
-import styles from './FAQsScreen.styles';
+import styles from './FaqScreen.styles';
 
 export default () => (
 	<View style={styles.outerContainer}>
@@ -15,7 +15,7 @@ export default () => (
 				FAQs
 			</Text>
 			<SpacerInline height={20} />
-			<FAQLineItem question="this is a question" answer="this is an answer" />
+			<FaqLineItem question="this is a question" answer="this is an answer" />
 		</View>
 	</View>
 );
@@ -25,7 +25,7 @@ interface FAQItemProps {
 	answer: string;
 }
 
-const FAQLineItem = (props: FAQItemProps) => {
+const FaqLineItem = (props: FAQItemProps) => {
 	const answerVisible = true;
 	const toggleAnswerVisibility = () => {
 		// TODO: Show/hide answer based on previous visibility state
