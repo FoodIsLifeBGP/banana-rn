@@ -1,52 +1,95 @@
 import React from 'react';
-import { View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import {
+	View,
+	Text,
+	TouchableHighlight,
+	ScrollView,
+} from 'react-native';
+import { useNavigation } from 'react-navigation-hooks';
 import { Linking } from 'expo';
 import {
-	Title,
 	SpacerInline,
 	Header,
-	LinkButton,
+	ContentHeader,
 } from '@elements';
-import styles from './HelpScreen.styles';
+import styles, { HelpListItemStyles } from './HelpScreen.styles';
+
 
 export default () => (
 	<View style={styles.outerContainer}>
-		<View style={styles.headerContainer}>
-			<Header showMenu={true} />
-		</View>
-		<Title text="Learn More" />
-		<SpacerInline height={20} />
+		<Header showMenu={true} />
+		{/* Delete spacer after TopBar/NavBar is fixed/ added */}
+		<SpacerInline height={1} />
+
+		<ContentHeader title="Help" headerSize="large" />
+
 		<ScrollView contentContainerStyle={styles.contentContainer}>
-			<View>
-				<HelpLineItem text="FAQs" destination="FaqScreen" />
-				<HelpLineItem text="Tutorial" link="https://www.youtube.com/watch?v=Psax2CCcJEI" />
-				<HelpLineItem text="Contact Us" destination="ContactScreen" />
+			<View style={styles.helpList}>
+				{
+					helpItems.map(({ text, destination, link }) => (
+						<HelpListItem
+							key={text}
+							text={text}
+							destination={destination}
+							link={link}
+						/>
+					))
+				}
 			</View>
 		</ScrollView>
 	</View>
 );
 
 
-interface HelpItemProps {
+type HelpItem = {
 	text: string;
-	destination?: string;
 	link?: string;
-}
+	destination?: string; // TODO: create type from screen titles and use here
+};
+type HelpItemProps = HelpItem;
 
-const HelpLineItem = (props: HelpItemProps) => {
+const HelpListItem = ({
+	text,
+	destination,
+	link,
+}: HelpItemProps) => {
+	const { navigate } = useNavigation();
+
 	const handlePress = () => {
-		// TODO: Update this to navigate directly to YouTube
-		props.link && Linking.openURL(props.link);
+		if (destination) {
+			navigate(destination);
+		} else if (link) {
+			Linking.openURL(link);
+		} else {
+			throw new Error('Link or destination is required.');
+		}
 	};
+
 	return (
-		<View style={styles.lineItem}>
-			<SpacerInline height={20} />
-			<LinkButton
-				text={props.text}
-				destination={props.destination}
-				onPress={handlePress}
-			/>
-		</View>
+		<TouchableHighlight onPress={handlePress}>
+			<View style={HelpListItemStyles.container}>
+				<Text style={HelpListItemStyles.text}>
+					{text}
+				</Text>
+
+				{/* <Icon style={HelpListItemStyles.icon} name="more" size={24} /> */}
+			</View>
+		</TouchableHighlight>
 	);
 };
+
+// Menu item contents for the Help menu
+const helpItems: Array<HelpItem> = [
+	{
+		text: 'FAQ',
+		destination: 'FaqScreen',
+	},
+	{
+		text: 'Tutorial',
+		link: 'https://www.youtube.com/watch?v=Psax2CCcJEI',
+	},
+	{
+		text: 'Contact Us',
+		destination: 'ContactScreen',
+	},
+];

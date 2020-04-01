@@ -1,21 +1,36 @@
 import { StyleSheet } from 'react-native';
-import * as colors from '@util/colors';
+import * as Colors from '@util/colors';
+import typography from '@util/typography';
+
+const GRID_MARGIN = 20; // Grid One from Style Guide TODO: make grid constants global
+
+export const HelpListItemStyles = StyleSheet.create({
+	container: {
+		flexDirection: 'row',
+		paddingHorizontal: GRID_MARGIN,
+		paddingVertical: 15,
+		justifyContent: 'space-between',
+		backgroundColor: Colors.WHITE,
+		borderBottomWidth: 1,
+		borderBottomColor: Colors.LIGHT_GRAY,
+	},
+	text: {
+		...typography.h3,
+	},
+	icon: {
+
+	},
+});
 
 export default StyleSheet.create({
-	headerContainer: {
-		paddingHorizontal: '10%',
-	},
 	outerContainer: {
 		flex: 1,
-		backgroundColor: colors.BANANA_YELLOW,
 	},
 	contentContainer: {
 		flex: 1,
 		justifyContent: 'space-between',
-		backgroundColor: 'white',
 	},
-	lineItem: {
-		borderBottomWidth: 1,
-		borderBottomColor: colors.LIGHT_GRAY,
+	helpList: {
+		paddingTop: GRID_MARGIN,
 	},
 });
