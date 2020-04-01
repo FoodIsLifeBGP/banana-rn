@@ -4,7 +4,7 @@
 
 #### Please check if the PR fulfills these requirements
 
-- [ ] The changes don't come from your master branch.
+- [ ] The changes don't come from your master branch. ([Source](https://blog.jasonmeridth.com/posts/do-not-issue-pull-requests-from-your-master-branch/)) 
 
 ---
 
@@ -29,6 +29,16 @@
 #### Other information
 
 
----
+
+#### Discussion Questions
+
+
 
 #### Images (before/ after screenshots, interaction GIFs, ...)
+
+
+---
+
+
+#### TODO
+
