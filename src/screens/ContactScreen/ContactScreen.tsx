@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import { Linking } from 'expo';
 import {
+	ContentHeader,
 	Header,
 	SpacerInline,
 } from '@elements';
@@ -49,9 +50,7 @@ export default () => (
 		{/* TODO: remove spacer after header is updated */}
 		<SpacerInline height={1} />
 
-		<View style={styles.header}>
-			<Text style={styles.headerText}>Contact Us</Text>
-		</View>
+		<ContentHeader title="Contact Us" />
 
 		<ScrollView style={styles.bodyContainer}>
 			{/* Body Message */}
