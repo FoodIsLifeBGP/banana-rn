@@ -26,8 +26,8 @@ const deprecatedIconMap: Record<DeprecatedIconName, IconName> = {
 	'chevron-down': 'expand',
 	'chevron-left': 'back',
 	image: 'camera',
-	lock: null, // TODO: test if null is processed correctly --> i.e. no SVG is rendered w/o error
-	unlock: null,
+	lock: 'eyeOff',
+	unlock: 'eyeOn',
 };
 
 export type DeprecatedIconName =
