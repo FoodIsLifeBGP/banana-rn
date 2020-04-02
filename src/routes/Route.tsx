@@ -11,10 +11,6 @@ import LoginScreen from '../screens/LoginScreen';
 import DashboardScreen from '../screens/DashboardScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
 import TermsScreen from '../screens/TermsScreen';
-import ApplicationApprovedScreen from '../screens/ApplicationApprovedScreen';
-import ApplicationPendingScreen from '../screens/ApplicationPendingScreen';
-import ApplicationIncompleteScreen from '../screens/ApplicationIncompleteScreen';
-import AccountSuspendedScreen from '../screens/AccountSuspendedScreen';
 import ContactScreen from '../screens/ContactScreen';
 import LoginSuccessScreen from '../screens/LoginSuccessScreen';
 import DonationScreen from '../screens/DashboardScreen/DonationScreen';
@@ -122,10 +118,6 @@ export const FullAppStack = createStackNavigator(
 		LoginScreen,
 		RegistrationScreen,
 		TermsScreen,
-		ApplicationApprovedScreen,
-		ApplicationPendingScreen,
-		ApplicationIncompleteScreen,
-		AccountSuspendedScreen,
 		ContactScreen,
 		Drawer,
 	},

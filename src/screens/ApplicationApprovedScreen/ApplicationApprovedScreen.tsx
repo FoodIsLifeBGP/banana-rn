@@ -5,22 +5,23 @@ import React from 'react';
 import InfoScreen from '../InfoScreen';
 
 export default ({ id }: { id: string }) => {
-  setAccountToActive({ id });
+	setAccountToActive({ id });
 
-  return (
-    <InfoScreen
-      title='Your application is approved! (:'
-      nextScreenTitle='Start'
-      nextScreenDestination='DashboardScreen'
-    >
-      <Paragraph>
+	return (
+		<InfoScreen
+			title="Your application is approved! (:"
+			nextScreenTitle="Start"
+			nextScreenDestination="DashboardScreen"
+			showBackButton={false}
+		>
+			<Paragraph>
         Welcome to the Banana App! We are so excited to have you join our
         family.
-      </Paragraph>
-      <SpacerInline height={40} />
-      <Paragraph emphasized={true}>
+			</Paragraph>
+			<SpacerInline height={40} />
+			<Paragraph emphasized={true}>
         CLICK "START" TO BEGIN YOUR FIRST DONATION!
-      </Paragraph>
-    </InfoScreen>
-  );
+			</Paragraph>
+		</InfoScreen>
+	);
 };

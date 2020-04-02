@@ -1,20 +1,23 @@
-import { Paragraph } from '@elements';
+import { Paragraph, SpacerInline } from '@elements';
 import React from 'react';
 import InfoScreen from '../InfoScreen';
 
 export default () => (
-  <InfoScreen
-    title='Your account is incomplete. ):'
-    nextScreenTitle='Contact Us'
-    nextScreenDestination='ContactScreen'
-  >
-    <Paragraph>Looks like your application needs further review.</Paragraph>
-    <Paragraph>
+	<InfoScreen
+		title="Your account is incomplete. ):"
+		nextScreenTitle="Contact Us"
+		nextScreenDestination="ContactScreen"
+		showBackButton={false}
+	>
+		<Paragraph>Looks like your application needs further review.</Paragraph>
+		<SpacerInline height={20} />
+		<Paragraph>
       Please expect to receive a call from us within 24-48 hours regarding your
       account.
-    </Paragraph>
-    <Paragraph>
+		</Paragraph>
+		<SpacerInline height={20} />
+		<Paragraph>
       If you don't hear from us, please contact us via email.
-    </Paragraph>
-  </InfoScreen>
+		</Paragraph>
+	</InfoScreen>
 );

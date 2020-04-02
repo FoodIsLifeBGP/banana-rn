@@ -31,7 +31,7 @@ export default () => {
 		switch (statusCode) {
 			case 202: {
 				await clearEmailAndPassword();
-				navigate('AccountSuspendedScreen');
+				navigate('LoginSuccessScreen');
 				return;
 			}
 			case 401: Alert.alert('Incorrect email or password'); return;
