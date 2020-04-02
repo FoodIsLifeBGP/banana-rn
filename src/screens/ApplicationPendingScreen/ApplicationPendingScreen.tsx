@@ -7,10 +7,11 @@ export default () => (
 	<InfoScreen
 		title="Your application is being reviewed."
 		nextScreenTitle="Learn More"
-		nextScreenDestination="ApplicationApprovedScreen"
+		nextScreenDestination="HelpScreen"
+		showBackButton={false}
 	>
 		<Paragraph>
-			Please allow 24-48 hours for your registration to be reviewed. We will
+      Please allow 24-48 hours for your registration to be reviewed. We will
       send you an email once the application has been processed.
 		</Paragraph>
 		<SpacerInline height={40} />

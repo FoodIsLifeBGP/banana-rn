@@ -9,9 +9,10 @@ export default ({ id }: { id: string }) => {
 
 	return (
 		<InfoScreen
-			title="Your application is approved!"
+			title="Your application is approved! (:"
 			nextScreenTitle="Start"
 			nextScreenDestination="DashboardScreen"
+			showBackButton={false}
 		>
 			<Paragraph>
         Welcome to the Banana App! We are so excited to have you join our

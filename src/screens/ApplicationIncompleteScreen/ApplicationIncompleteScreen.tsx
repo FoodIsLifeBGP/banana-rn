@@ -4,14 +4,12 @@ import InfoScreen from '../InfoScreen';
 
 export default () => (
 	<InfoScreen
-		title="Your account is suspended. ):"
+		title="Your account is incomplete. ):"
 		nextScreenTitle="Contact Us"
 		nextScreenDestination="ContactScreen"
 		showBackButton={false}
 	>
-		<Paragraph>
-      Looks like your application didn't meet one of our requirements.
-		</Paragraph>
+		<Paragraph>Looks like your application needs further review.</Paragraph>
 		<SpacerInline height={20} />
 		<Paragraph>
       Please expect to receive a call from us within 24-48 hours regarding your
