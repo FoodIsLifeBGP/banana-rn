@@ -31,11 +31,6 @@ const ClaimDetailScreen = () => {
 	return (
 		<View style={styles.outerContainer}>
 
-			<View>
-				<Header showBackButton={true} />
-				<Title text="itemName" />
-				<SpacerInline height={20} />
-			</View>
 			<View style={styles.contentContainer}>
 				<Text style={styles.title}>
 					{'PENDING\n  CLAIM'}

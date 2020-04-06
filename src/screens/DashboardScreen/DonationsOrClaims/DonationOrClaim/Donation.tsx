@@ -34,7 +34,7 @@ export default ({ donation }: Donation) => {
 
 	return (
 		<TouchableOpacity
-			onPress={() => navigate('DonationsDetailScreen', { donation, id })}
+			onPress={() => navigate('DonationScreen', { donation, id, edit: true })}
 		>
 			<View style={{ ...styles.card }}>
 				<View style={{ ...styles.iconContainer, backgroundColor: timeLeft > 0 ? 'blue' : 'gray' }}>

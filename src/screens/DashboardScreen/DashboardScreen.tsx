@@ -21,7 +21,7 @@ const DashboardScreen = () => {
 				<SpacerInline height={20} />
 			</View>
 
-			<DonationsOrClaims resource={userIdentity === 'donor' ? 'donations' : 'claims'} />
+			<DonationsOrClaims resource="donations" />
 
 			{ userIdentity === 'donor' && (
 				<View style={styles.addButton}>
