@@ -23,6 +23,51 @@ Once those are complete, run:
 
 - `git clone https://github.com/FoodIsLifeBGP/banana-rn && cd banana-rn && npm i`
 
+# Installation (Windows)
+
+**SETTING UP CODE ENVIRONMENT FOR WINDOWS**
+
+1) Go to [this website](https://github.com/coreybutler/nvm-windows) and follow the instructions for installing Node Version Manager for Windows 
+
+***NOTE: This is necessary as the Banana app uses an older version of Node. This is also very convenient as it will let you switch between previous (or current) versions of Node depending on which project you're working on.***
+
+2) To confirm installation, open up your Command Prompt and run `nvm --version` and it should return the version of your NVM and a list of its usage.
+
+3) Once that's done, run `nvm install node@12.10.0` (Banana App's config are compatible with Node version <= 12.10.0) and Agree to all the prompts to complete installation.
+
+4) Run `nvm use 12.10.0` to make sure that your machine is using Node version 12.10.0. [NOTE: Run `nvm list` to see all the versions of Node that your NVM know and you can use the same command `nvm use [version]` to switch].
+
+5) Run `npm i -g expo-cli` to enable expo cli globally.
+
+6) Make sure you've traversed to the right directory (most likely Desktop) and run `git clone https://github.com/FoodIsLifeBGP/banana-rn && cd banana-rn && npm i`
+
+
+**SETTING UP ANDROID SIMULATOR**
+
+1) Download the latest version of Android Studio [here](https://developer.android.com/studio/) and complete the installation. No other configurations needed.
+
+2) Once downloaded, open Android Studio and a little start up box should open. Go to the bottom right corner of that box and find "Configure" and select SDK manager.
+
+3) Under `Appearance & Behavior > System Settings > Android SDK settings` and SDK Platforms tab. Make sure you have Android 10.0 (Q) and Android 9.0(Pie) checked (also feel free to check  other Android versions, all up to your preference).
+
+4) Under the same settings / page, but on the SDK Tools Tab, Make sure you have Google Play and Android SDK Platform-Tools services checked and leave the rest untouched.
+
+5) Click "Apply" and "OK" to exit out.
+
+6) On the start up box, click on "Configure" one more time and select "AVD Manager". This AVD Manager shows you the list of Android emulators you have ready.
+
+7) To create a new device, simply click on "Create Virtual Device" at the bottom left.
+
+8) Select what kind of device you'd like to work with, but Pixel 2 does the job well and click "Next".
+
+9) Select which system image you want on the device. Simply hit the "Download" button next to the name and wait for it. Once downloaded, select it and hit "Next".
+
+10) Verify all the configurations (name, startup orientation, etc.) and click "Finish" when done.
+
+11) The configuration box will close and your new device should appear on your list of Virtual Devices. Select your choice, and click the green button under the "Actions" tab over on the right side of the window to launch the emulator.
+
+# Additional notes about environment
+
 Take note of `app.json` in the root.  This is where we specify whether to compile the donor or client app.
 
 ```json
@@ -41,7 +86,7 @@ Use `"variant": "client"` to load the app in client mode.  Do not check in your 
 Now run:
 - `expo start` (or `expo r`.  Later, you may want to use `expo r -c` to clear the cache.)
 
-A tab in your web browser will open showing the Expo dashboard.  To open the app in the iOS Simulator, hit the link button marked `open in iOS Simulator`, on the left-hand side of the dashboard.  You can also follow the [Expo docs](https://docs.expo.io/versions/v33.0.0/workflow/up-and-running/#open-the-app-on-your-phone-or) to open the app on your phone, or the Android simulator.
+A tab in your web browser will open showing the Expo dashboard.  To open the app in either iOS or Android Simulator, hit the link button marked `open in iOS/Android Simulator`, on the left-hand side of the dashboard.  You can also follow the [Expo docs](https://docs.expo.io/versions/v33.0.0/workflow/up-and-running/#open-the-app-on-your-phone-or) to open the app on your phone, or the Android simulator.
 
 When the app opens, you will see the login screen.  Assuming you are still running the [Rails server](https://github.com/FoodIsLifeBGP/banana-rails) in the background, you can log in with the sample account for your variant:
 

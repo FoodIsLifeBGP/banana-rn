@@ -11,13 +11,12 @@ import LoginScreen from '../screens/LoginScreen';
 import DashboardScreen from '../screens/DashboardScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
 import TermsScreen from '../screens/TermsScreen';
-import ApplicationApprovedScreen from '../screens/ApplicationApprovedScreen';
-import ApplicationPendingScreen from '../screens/ApplicationPendingScreen';
 import ContactScreen from '../screens/ContactScreen';
 import LoginSuccessScreen from '../screens/LoginSuccessScreen';
 import DonationScreen from '../screens/DashboardScreen/DonationScreen';
 import QRCodeScannerScreen from '../screens/QRCodeScannerScreen/QRCodeScannerScreen';
 import ClaimDetailScreen from '../screens/ClaimDetailScreen/ClaimDetailScreen';
+import LogoutScreen from '../screens/LogoutScreen';
 import DonationsDetailScreen from '../screens/DonationsDetailScreen/DonationsDetailScreen';
 
 import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
@@ -47,14 +46,14 @@ const donorOrClientDrawer = () => {
 			screen: QRCodeScannerScreen,
 			navigationOptions: {
 				drawerLabel: 'Scan QR Code',
-				drawerIcon: <SvgImage source={require('@assets/icons/ICON_QR_CODE(WHITE).svg')} />,
+				drawerIcon: <SvgImage source={require('@assets/icons/ICON_QR-CODE.svg')} />,
 			},
 		},
 		DashboardScreen: {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: 'My Donations',
-				drawerIcon: <SvgImage source={require('@assets/icons/ICON_DONATION(WHITE).svg')} />,
+				drawerIcon: <SvgImage source={require('@assets/icons/ICON_DONATIONS.svg')} />,
 			},
 		},
 	};
@@ -64,7 +63,7 @@ const donorOrClientDrawer = () => {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: 'My Claims',
-				drawerIcon: <SvgImage source={require('@assets/icons/ICON_DONATION(WHITE).svg')} />,
+				drawerIcon: <SvgImage source={require('@assets/icons/ICON_CLAIMS.svg')} />,
 			},
 		},
 	};
@@ -74,28 +73,28 @@ const donorOrClientDrawer = () => {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: 'My Profile',
-				drawerIcon: <SvgImage source={require('@assets/icons/ICON_DONATION(WHITE).svg')} />,
+				drawerIcon: <SvgImage source={require('@assets/icons/ICON_USER.svg')} />,
 			},
 		},
 		SettingsScreen: {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: 'Settings',
-				drawerIcon: <SvgImage source={require('@assets/icons/ICON_DONATION(WHITE).svg')} />,
+				drawerIcon: <SvgImage source={require('@assets/icons/ICON_SETTINGS.svg')} />,
 			},
 		},
 		HelpScreen: {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: 'Help',
-				drawerIcon: <SvgImage source={require('@assets/icons/ICON_DONATION(WHITE).svg')} />,
+				drawerIcon: <SvgImage source={require('@assets/icons/ICON_HELP.svg')} />,
 			},
 		},
-		LoginScreen: {
-			screen: LoginScreen,
+		LogoutScreen: {
+			screen: LogoutScreen,
 			navigationOptions: {
 				drawerLabel: 'Log Out',
-				drawerIcon: <SvgImage source={require('@assets/icons/ICON_LOGOUT(WHITE).svg')} />,
+				drawerIcon: <SvgImage source={require('@assets/icons/ICON_LOGOUT.svg')} />,
 			},
 		},
 	};
@@ -121,8 +120,6 @@ export const FullAppStack = createStackNavigator(
 		LoginScreen,
 		RegistrationScreen,
 		TermsScreen,
-		ApplicationApprovedScreen,
-		ApplicationPendingScreen,
 		ContactScreen,
 		Drawer,
 	},

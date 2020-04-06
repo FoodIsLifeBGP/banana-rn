@@ -15,7 +15,7 @@ export interface SharedProps {
 	address_street: string;
 	address_city: string;
 	address_state: string;
-	address_zip: number;
+	address_zip: string;
 	account_status: string;
 	coords: {
 		latitude?: number;

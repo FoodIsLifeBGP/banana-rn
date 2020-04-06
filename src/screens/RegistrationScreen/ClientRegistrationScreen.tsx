@@ -76,7 +76,7 @@ export default () => {
 	const [ street, setStreet ] = useState('');
 	const [ city, setCity ] = useState('');
 	const [ state, setState ] = useState('WA');
-	const [ zip, setZip ] = useState();
+	const [ zip, setZip ] = useState('');
 	const [ transportationMethod, setTransportationMethod ] = useState();
 	const [ gender, setGender ] = useState();
 	const [ ethnicity, setEthnicity ] = useState();
@@ -91,7 +91,7 @@ export default () => {
 		if (password.length < 8) { Alert.alert('Please enter a password at least 8 characters long.'); return; }
 		if (!street || street.split(' ').length < 3) { Alert.alert('Please enter your street number and name.'); return; }
 		if (!city) { Alert.alert('Please enter your city.'); return; }
-		if (zip.toString().length !== 5) { Alert.alert('Please enter your 5-digit zip code.'); return; }
+		if (!(/^\d{5}$/.test(zip))) { Alert.alert('Please enter a valid 5-digit zip code.'); return; }
 		if (!transportationMethod) { Alert.alert('Please select your preferred method of transportation.'); return; }
 		if (!termsOfService) { Alert.alert('Please read and accept the terms of service to complete your registration.'); return; }
 
@@ -117,7 +117,7 @@ export default () => {
 				<SpacerInline height={20} />
 
 				<FormTextInput
-					text="Email Address"
+					label="Email Address"
 					value={email}
 					setValue={setEmail}
 					style={styles.input}
@@ -146,7 +146,7 @@ export default () => {
 				</View>
 
 				<FormTextInput
-					text="Street Address"
+					label="Street Address"
 					value={street}
 					setValue={setStreet}
 					autoCapitalize="words"
@@ -155,29 +155,26 @@ export default () => {
 
 				<View style={styles.row}>
 					<FormTextInput
-						text="City"
+						label="City"
 						value={city}
 						setValue={setCity}
-						width="41%"
+						style={[ styles.input, { width: '41%' } ]}
 						autoCapitalize="words"
-						style={styles.input}
 					/>
 					<FormTextInput
-						text="State"
+						label="State"
 						value={state}
-						setValue={() => {}}
-						width="18%"
+						setValue={() => { }}
+						style={[ styles.input, { width: '18%' } ]}
 						autoCapitalize="words"
-						disabled={true}
-						style={styles.input}
+						editable={false}
 					/>
 					<FormTextInput
-						text="Zip"
+						label="Zip"
 						value={zip}
 						setValue={setZip}
-						width="33%"
+						style={[ styles.input, { width: '33%' } ]}
 						autoCapitalize="words"
-						style={styles.input}
 					/>
 				</View>
 

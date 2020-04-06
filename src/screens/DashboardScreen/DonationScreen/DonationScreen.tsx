@@ -94,10 +94,10 @@ export default () => {
 						<Image source={icon} style={styles.icon} />
 					</View>
 					<FormTextInput
-						text="Donating:"
+						label="Donating:"
 						value={name}
 						setValue={setName}
-						width="50%"
+						style={{ width: '50%' }}
 					/>
 				</View>
 
@@ -132,39 +132,31 @@ export default () => {
 					</Text>
 
 					<FormTextInput
-						text="Serving name (bunch, etc.)"
+						label="Serving name (bunch, etc.)"
 						value={servingName}
 						setValue={setServingName}
-						inline={true}
-						width="40%"
-						upperCase={false}
+						style={{ width: '40%' }}
 					/>
 
 					<FormTextInput
-						text="# per person"
+						label="# per person"
 						value={perPerson && perPerson.toString()}
 						setValue={setPerPerson}
-						inline={true}
-						width="20%"
-						upperCase={false}
+						style={{ width: '20%' }}
 					/>
 
 					<FormTextInput
-						text="Total # of servings"
+						label="Total # of servings"
 						value={totalServings && totalServings.toString()}
 						setValue={setTotalServings}
-						inline={true}
-						width="20%"
-						upperCase={false}
+						style={{ width: '20%' }}
 					/>
 
 					<FormTextInput
-						text="Pickup spot"
+						label="Pickup spot"
 						value={pickupLocation}
 						setValue={setPickupLocation}
-						inline={true}
-						width="60%"
-						upperCase={false}
+						style={{ width: '60%' }}
 					/>
 				</View>
 			</View>
