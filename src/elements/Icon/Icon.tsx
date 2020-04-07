@@ -16,8 +16,30 @@ export default ({ name, size, style }: IconProps) => {
 	const nameIsDeprecated = Object.keys(deprecatedIconMap).includes(name);
 	const validIconName = nameIsDeprecated ? (deprecatedIconMap[name] || '') : name;
 
+	const getDimensions = () => {
+		let width = size;
+		let height = size;
+
+		// Adjust dimensions for non-square icons
+		// Operand = dimension of SVG divided by dimension of base icon
+		if (name.includes('menu')) {
+			width *= (27 / 24);
+			height *= (23 / 24);
+		} else if (name.includes('bell')) {
+			height *= (26 / 24);
+		}
+
+		return { width, height };
+	};
+
+	const source = iconFiles[validIconName];
+	const dimensions = getDimensions();
+
 	return (
-		<Image style={[ styles.icon, { width: size, height: size }, style ]} source={iconFiles[validIconName]} />
+		<Image
+			style={[ styles.icon, dimensions, style ]}
+			source={source}
+		/>
 	);
 };
 
