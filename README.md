@@ -193,34 +193,6 @@ const ExampleComponent = () => {
 ```
    - Remember, useGlobalHook takes care of passing the state, so only put what you're updating in the arguments here.
 
-## Icons
-
-We are using the [Elegant Icon Font](https://www.elegantthemes.com/blog/resources/elegant-icon-font) set of icons in this project.  Use this through the `elements/Icon` component.  To add a new icon, go to the link above, and find the one you want next to its HTML code.  Let's say we want the lock icon. We find it with the HTML code `&#x6a;` underneath.
-
-Now open `elements/Icon/fontMap.ts`.  This is a hash in the format `'icon name': <unicode values>`.  Next convert the HTML character to Unicode - from `&#x6a;` to `\u006a`.  To get the unicode value for your character:
-
-   1. Start with `&#x6a;`
-   2. Trim `&#x` from the head of the value, and the semicolon from the tail.  You now have `6a`
-   3. Add zeros on the left side until your string is 4 characters long.  This gives you `006a`
-   4. Now add the unicode marker `\u` to the head: `\u006a`.  Done!
-
-Here's another example of a Unicode conversion with a larger value.  The same process is followed, this is just included for  clarity.
-
-   1. Start with `&#xe000;`
-   2. Trim `&#x` from the head of the value, and the semicolon from the tail.  You now have `e000`
-   3. You already have 4 characters, so no need to add zeros.
-   4. Add `\u` to the head: `\ue000`.
-
-Give your icon a name (`lock`)for a key, and use the Unicode as the value:
-
-`lock: '\ue000',`
-
-Now you can use this icon by using the key in the Icon component's `name=` prop:
-
-`<Icon name="lock" style={styles.icon}>`
-
-The style defaults to `color: 'white', fontSize: 50`, and the component can be passed a custom `style` prop to override.
-
 ## Environment variables
 
 The variant field in `app.json/expo/extra` is used to set some psuedo-environment variables.  These values are then immediately loaded into state, so they're only to be used before state is initialized.  That is to say, hopefully you will never have to use them.  But if you do, they live in `/src/util/environment.ts`.  The API URL root also lives here.
