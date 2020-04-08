@@ -1,6 +1,7 @@
 import React from 'react';
 import {
 	Image,
+	View,
 } from 'react-native';
 import { NAVY_BLUE } from '@util/colors';
 
@@ -57,10 +58,19 @@ export default ({ name, size, color = NAVY_BLUE }: IconProps) => {
 	const offset = getOffset();
 
 	return (
-		<Image
-			style={[ dimensions, offset ]}
-			source={source}
-		/>
+		<View style={{
+			position: 'relative',
+			width: size,
+			height: size,
+			justifyContent: 'center',
+			alignItems: 'center',
+		}}
+		>
+			<Image
+				style={[ dimensions, offset, { overflow: 'visible' } ]}
+				source={source}
+			/>
+		</View>
 	);
 };
 
