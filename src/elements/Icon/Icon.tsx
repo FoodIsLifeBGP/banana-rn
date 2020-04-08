@@ -1,18 +1,16 @@
 import React from 'react';
 import {
 	Image,
-	StyleProp,
-	ImageStyle,
 } from 'react-native';
-import styles from './Icon.styles';
+import { NAVY_BLUE } from '@util/colors';
 
 interface IconProps {
 	name: IconName | DeprecatedIconName;
 	size: number;
-	style?: StyleProp<ImageStyle>;
+	color?: string; // TODO: make icons color dynamic
 }
 
-export default ({ name, size, style }: IconProps) => {
+export default ({ name, size, color = NAVY_BLUE }: IconProps) => {
 	const nameIsDeprecated = Object.keys(deprecatedIconMap).includes(name);
 	const validIconName = nameIsDeprecated ? (deprecatedIconMap[name] || '') : name;
 
@@ -21,23 +19,46 @@ export default ({ name, size, style }: IconProps) => {
 		let height = size;
 
 		// Adjust dimensions for non-square icons
-		// Operand = dimension of SVG divided by dimension of base icon
+		// Operand = dimension of SVG divided by dimen sion of base icon
 		if (name.includes('menu')) {
-			width *= (27 / 24);
-			height *= (23 / 24);
+			width *= (27 / 24.0);
+			height *= (23 / 24.0);
 		} else if (name.includes('bell')) {
-			height *= (26 / 24);
+			height *= (26 / 24.0);
 		}
 
 		return { width, height };
 	};
 
+	const getOffset = () => {
+		const x = 0;
+		let y = 0;
+
+		if (name.includes('menu')) {
+			y = -1.25;
+		} else if (name.includes('bell')) {
+			y = -2;
+		}
+
+		return {
+			transform: [
+				{
+					translateX: x,
+				},
+				{
+					translateY: y,
+				},
+			],
+		};
+	};
+
 	const source = iconFiles[validIconName];
 	const dimensions = getDimensions();
+	const offset = getOffset();
 
 	return (
 		<Image
-			style={[ styles.icon, dimensions, style ]}
+			style={[ dimensions, offset ]}
 			source={source}
 		/>
 	);
