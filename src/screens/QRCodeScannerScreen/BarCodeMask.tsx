@@ -15,7 +15,7 @@ export default () => {
 			<View style={styles.right} />
 			<View style={styles.xContainer}>
 				<TouchableWithoutFeedback onPress={() => navigate('DashboardScreen')}>
-					<Icon name="close" style={styles.x} />
+					<Icon name="close" size={24} />
 				</TouchableWithoutFeedback>
 			</View>
 			<View style={styles.textContainer}>
