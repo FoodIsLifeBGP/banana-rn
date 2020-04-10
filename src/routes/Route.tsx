@@ -7,7 +7,9 @@ import * as colors from '@util/colors';
 import getEnv from '@util/environment';
 
 // TODO: For some reason global imports aren't for these
-import { IconName } from '@elements/Icon/Icons';
+import { Icon } from '@elements';
+import { IconName } from '@elements/Icon/icons';
+
 import LoginScreen from '../screens/LoginScreen';
 import DashboardScreen from '../screens/DashboardScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
@@ -20,7 +22,6 @@ import ClaimDetailScreen from '../screens/ClaimDetailScreen/ClaimDetailScreen';
 import LogoutScreen from '../screens/LogoutScreen';
 
 import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
-import Icon from '../elements/Icon/Icon';
 
 const DrawerIcon = (name: IconName) => Icon({
 	name,
