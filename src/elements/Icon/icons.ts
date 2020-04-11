@@ -4,36 +4,36 @@ import { SvgProps } from 'react-native-svg';
  * All SVG imports are transformed into functional react components via
  * the react-native-svg-transformer library.
  */
-import ArrowDown from '@assets/icons/ICON_ARROW-DOWN.svg';
-import ArrowUp from '@assets/icons/ICON_ARROW-UP.svg';
-import Back from '@assets/icons/ICON_BACK.svg';
-import Bell from '@assets/icons/ICON_BELL.svg';
-import BellOn from '@assets/icons/ICON_BELL-ON.svg';
-import Bike from '@assets/icons/ICON_BIKE.svg';
-import Camera from '@assets/icons/ICON_CAMERA.svg';
-import Claims from '@assets/icons/ICON_CLAIMS.svg';
-import Close from '@assets/icons/ICON_CLOSE.svg';
-import Condense from '@assets/icons/ICON_CONDENSE.svg';
-import Distance from '@assets/icons/ICON_DISTANCE.svg';
-import Donations from '@assets/icons/ICON_DONATIONS.svg';
-import Dropdown from '@assets/icons/ICON_DROPDOWN.svg';
-import Email from '@assets/icons/ICON_EMAIL.svg';
-import Expand from '@assets/icons/ICON_EXPAND.svg';
-import EyeOff from '@assets/icons/ICON_EYE-OFF.svg';
-import EyeOn from '@assets/icons/ICON_EYE-ON.svg';
-import Facebook from '@assets/icons/ICON_FACEBOOK.svg';
-import Help from '@assets/icons/ICON_HELP.svg';
-import Logout from '@assets/icons/ICON_LOGOUT.svg';
-import Menu from '@assets/icons/ICON_MENU.svg';
-import MenuOn from '@assets/icons/ICON_MENU-ON.svg';
-import More from '@assets/icons/ICON_MORE.svg';
-import QrCode from '@assets/icons/ICON_QR-CODE.svg';
-import Settings from '@assets/icons/ICON_SETTINGS.svg';
-import Time from '@assets/icons/ICON_TIME.svg';
-import Transit from '@assets/icons/ICON_TRANSIT.svg';
-import User from '@assets/icons/ICON_USER.svg';
-import Walk from '@assets/icons/ICON_WALK.svg';
-import Website from '@assets/icons/ICON_WEBSITE.svg';
+const ArrowDown = require('@assets/icons/ICON_ARROW-DOWN.svg');
+const ArrowUp = require('@assets/icons/ICON_ARROW-UP.svg');
+const Back = require('@assets/icons/ICON_BACK.svg');
+const Bell = require('@assets/icons/ICON_BELL.svg');
+const BellOn = require('@assets/icons/ICON_BELL-ON.svg');
+const Bike = require('@assets/icons/ICON_BIKE.svg');
+const Camera = require('@assets/icons/ICON_CAMERA.svg');
+const Claims = require('@assets/icons/ICON_CLAIMS.svg');
+const Close = require('@assets/icons/ICON_CLOSE.svg');
+const Condense = require('@assets/icons/ICON_CONDENSE.svg');
+const Distance = require('@assets/icons/ICON_DISTANCE.svg');
+const Donations = require('@assets/icons/ICON_DONATIONS.svg');
+const Dropdown = require('@assets/icons/ICON_DROPDOWN.svg');
+const Email = require('@assets/icons/ICON_EMAIL.svg');
+const Expand = require('@assets/icons/ICON_EXPAND.svg');
+const EyeOff = require('@assets/icons/ICON_EYE-OFF.svg');
+const EyeOn = require('@assets/icons/ICON_EYE-ON.svg');
+const Facebook = require('@assets/icons/ICON_FACEBOOK.svg');
+const Help = require('@assets/icons/ICON_HELP.svg');
+const Logout = require('@assets/icons/ICON_LOGOUT.svg');
+const Menu = require('@assets/icons/ICON_MENU.svg');
+const MenuOn = require('@assets/icons/ICON_MENU-ON.svg');
+const More = require('@assets/icons/ICON_MORE.svg');
+const QrCode = require('@assets/icons/ICON_QR-CODE.svg');
+const Settings = require('@assets/icons/ICON_SETTINGS.svg');
+const Time = require('@assets/icons/ICON_TIME.svg');
+const Transit = require('@assets/icons/ICON_TRANSIT.svg');
+const User = require('@assets/icons/ICON_USER.svg');
+const Walk = require('@assets/icons/ICON_WALK.svg');
+const Website = require('@assets/icons/ICON_WEBSITE.svg');
 
 
 export type DeprecatedIconName =
@@ -48,6 +48,7 @@ export type IconName =
 	| 'arrowUp'
 	| 'back'
 	| 'bell'
+
 	| 'bellOn'
 	| 'bike'
 	| 'camera'
@@ -84,7 +85,8 @@ export const deprecatedIconMap: Record<DeprecatedIconName, IconName> = {
 	unlock: 'eyeOn',
 };
 
-export const Icons: Record<IconName, React.FC<SvgProps>> = {
+// , React.FC<SvgProps> for mobile
+export const iconData: Record<IconName, NodeRequire> = {
 	arrowDown: ArrowDown,
 	arrowUp: ArrowUp,
 	back: Back,

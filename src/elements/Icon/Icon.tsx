@@ -1,11 +1,14 @@
 import React from 'react';
 import {
 	View,
+	Image,
+	Platform,
+	Text,
 } from 'react-native';
-import { NAVY_BLUE, RED } from '@util/colors';
+import { NAVY_BLUE } from '@util/colors';
 import {
 	deprecatedIconMap,
-	Icons,
+	iconData,
 	IconName,
 	DeprecatedIconName,
 } from './index';
@@ -66,7 +69,9 @@ export default ({ name, size, color = NAVY_BLUE }: IconProps) => {
 		};
 	};
 
-	const IconSvg = Icons[validIconName];
+	const iconCapta = iconData[validIconName];
+
+	console.log(iconCapta);
 
 	return (
 		<View style={{
@@ -77,8 +82,27 @@ export default ({ name, size, color = NAVY_BLUE }: IconProps) => {
 			alignItems: 'center',
 		}}
 		>
+			{
+				Platform.OS === 'web'
+					? (
+						<Image
+							source={iconCapta}
+							style={[
+								getDimensions(),
+								getOffset(),
+								{
+									overflow: 'visible',
+								},
+							]}
+
+							stroke="pink"
+							fill="pink"
+						/>
+					)
+					: <Text>Mobile</Text>
+			}
 			{/* //?? TODO: overflow visible required? */}
-			<IconSvg
+			{/* <IconSvg
 				style={[
 					getDimensions(),
 					getOffset(),
@@ -87,7 +111,7 @@ export default ({ name, size, color = NAVY_BLUE }: IconProps) => {
 				width={size}
 				height={size}
 				fill={RED}
-			/>
+			/> */}
 		</View>
 	);
 };
