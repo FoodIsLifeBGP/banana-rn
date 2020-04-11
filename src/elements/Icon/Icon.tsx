@@ -3,9 +3,10 @@ import {
 	View,
 	Image,
 	Platform,
-	Text,
+	ImageURISource,
 } from 'react-native';
-import { NAVY_BLUE } from '@util/colors';
+import { NAVY_BLUE, RED } from '@util/colors';
+import { SvgProps } from 'react-native-svg';
 import {
 	deprecatedIconMap,
 	iconData,
@@ -19,7 +20,11 @@ interface IconProps {
 	color?: string;
 }
 
-export default ({ name, size, color = NAVY_BLUE }: IconProps) => {
+export default ({
+	name,
+	size,
+	color = NAVY_BLUE,
+}: IconProps) => {
 	const nameIsDeprecated = Object.keys(deprecatedIconMap).includes(name);
 	const validIconName = nameIsDeprecated ? (deprecatedIconMap[name] || '') : name;
 
@@ -69,9 +74,8 @@ export default ({ name, size, color = NAVY_BLUE }: IconProps) => {
 		};
 	};
 
-	const iconCapta = iconData[validIconName];
-
-	console.log(iconCapta);
+	// If browser this is a data object. If mobile, this is object with Svg Component
+	const IconSvg: ImageURISource & { default: React.FC<SvgProps> } = iconData[validIconName];
 
 	return (
 		<View style={{
@@ -86,7 +90,7 @@ export default ({ name, size, color = NAVY_BLUE }: IconProps) => {
 				Platform.OS === 'web'
 					? (
 						<Image
-							source={iconCapta}
+							source={IconSvg}
 							style={[
 								getDimensions(),
 								getOffset(),
@@ -94,24 +98,21 @@ export default ({ name, size, color = NAVY_BLUE }: IconProps) => {
 									overflow: 'visible',
 								},
 							]}
-
-							stroke="pink"
-							fill="pink"
 						/>
 					)
-					: <Text>Mobile</Text>
+					: (
+						// ?? TODO: overflow visible required?
+						<IconSvg.default
+							style={[
+								getDimensions(),
+								getOffset(),
+								{ overflow: 'visible' },
+							]}
+							width={size}
+							height={size}
+						/>
+					)
 			}
-			{/* //?? TODO: overflow visible required? */}
-			{/* <IconSvg
-				style={[
-					getDimensions(),
-					getOffset(),
-					{ overflow: 'visible' },
-				]}
-				width={size}
-				height={size}
-				fill={RED}
-			/> */}
 		</View>
 	);
 };
