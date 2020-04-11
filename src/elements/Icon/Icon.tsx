@@ -9,9 +9,10 @@ import { NAVY_BLUE, RED } from '@util/colors';
 import { SvgProps } from 'react-native-svg';
 import {
 	deprecatedIconMap,
-	iconData,
+	iconImports,
 	IconName,
 	DeprecatedIconName,
+	IconImport,
 } from './index';
 
 interface IconProps {
@@ -56,7 +57,7 @@ export default ({
 		let y = 0;
 
 		if (name.includes('menu')) {
-			// !! TODO: these should be calculated
+			// !! TODO: these should be calculated and added to a data structure with the imported icons.
 			y = -1.25;
 		} else if (name.includes('bell')) {
 			y = -2;
@@ -75,7 +76,7 @@ export default ({
 	};
 
 	// If browser this is a data object. If mobile, this is object with Svg Component
-	const IconSvg: ImageURISource & { default: React.FC<SvgProps> } = iconData[validIconName];
+	const IconSvg: IconImport = iconImports[validIconName];
 
 	return (
 		<View style={{

@@ -1,9 +1,19 @@
+import { ImageURISource } from 'react-native';
 import { SvgProps } from 'react-native-svg';
 
 /**
- * All SVG imports are transformed into functional react components via
- * the react-native-svg-transformer library.
+ * SVG imports depend on the OS.
+ *
+ * If the OS is web, the imports will beimage uri
+ * sources (e.g. data blob or asset path on server).
+ *
+ * If the OS is Android or iOS, the imports will be native-compliant,
+ * dynamic react components.
  */
+export type IconImport = ImageURISource & {
+	default: React.FC<SvgProps>;
+};
+
 const ArrowDown = require('@assets/icons/ICON_ARROW-DOWN.svg');
 const ArrowUp = require('@assets/icons/ICON_ARROW-UP.svg');
 const Back = require('@assets/icons/ICON_BACK.svg');
@@ -85,8 +95,7 @@ export const deprecatedIconMap: Record<DeprecatedIconName, IconName> = {
 	unlock: 'eyeOn',
 };
 
-// , React.FC<SvgProps> for mobile
-export const iconData: Record<IconName, NodeRequire> = {
+export const iconImports: Record<IconName, IconImport> = {
 	arrowDown: ArrowDown,
 	arrowUp: ArrowUp,
 	back: Back,
