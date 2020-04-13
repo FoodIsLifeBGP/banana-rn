@@ -111,6 +111,7 @@ export default ({
 							]}
 							width={size}
 							height={size}
+							fill={color}
 						/>
 					)
 			}
