@@ -1,3 +1,6 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M15 6L9 12L15 18" stroke="#083A9B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<svg fill="#083A9B" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+<path d="M15,19.5c-0.384,0-0.768-0.146-1.061-0.439l-6-6c-0.586-0.585-0.586-1.536,0-2.121l6-6
+	c0.586-0.586,1.535-0.586,2.121,0c0.586,0.585,0.586,1.536,0,2.121L11.121,12l4.939,4.939c0.586,0.586,0.586,1.535,0,2.121
+	C15.768,19.354,15.384,19.5,15,19.5z"/>
 </svg>
