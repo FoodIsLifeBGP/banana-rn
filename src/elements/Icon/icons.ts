@@ -1,43 +1,39 @@
-/**
- *
- */
-
 import {
 	DeprecatedIconName,
 	IconImport,
 	IconName,
 } from './Icon.types';
 
-const ArrowDown = require('@assets/icons/ICON_ARROW-DOWN.svg');
-const ArrowUp = require('@assets/icons/ICON_ARROW-UP.svg');
-const Back = require('@assets/icons/ICON_BACK.svg');
-const Bell = require('@assets/icons/ICON_BELL.svg');
-const BellOn = require('@assets/icons/ICON_BELL-ON.svg');
-const Bike = require('@assets/icons/ICON_BIKE.svg');
-const Camera = require('@assets/icons/ICON_CAMERA.svg');
-const Claims = require('@assets/icons/ICON_CLAIMS.svg');
-const Close = require('@assets/icons/ICON_CLOSE.svg');
-const Condense = require('@assets/icons/ICON_CONDENSE.svg');
-const Distance = require('@assets/icons/ICON_DISTANCE.svg');
-const Donations = require('@assets/icons/ICON_DONATIONS.svg');
-const Dropdown = require('@assets/icons/ICON_DROPDOWN.svg');
-const Email = require('@assets/icons/ICON_EMAIL.svg');
-const Expand = require('@assets/icons/ICON_EXPAND.svg');
-const EyeOff = require('@assets/icons/ICON_EYE-OFF.svg');
-const EyeOn = require('@assets/icons/ICON_EYE-ON.svg');
-const Facebook = require('@assets/icons/ICON_FACEBOOK.svg');
-const Help = require('@assets/icons/ICON_HELP.svg');
-const Logout = require('@assets/icons/ICON_LOGOUT.svg');
-const Menu = require('@assets/icons/ICON_MENU.svg');
-const MenuOn = require('@assets/icons/ICON_MENU-ON.svg');
-const More = require('@assets/icons/ICON_MORE.svg');
-const QrCode = require('@assets/icons/ICON_QR-CODE.svg');
-const Settings = require('@assets/icons/ICON_SETTINGS.svg');
-const Time = require('@assets/icons/ICON_TIME.svg');
-const Transit = require('@assets/icons/ICON_TRANSIT.svg');
-const User = require('@assets/icons/ICON_USER.svg');
-const Walk = require('@assets/icons/ICON_WALK.svg');
-const Website = require('@assets/icons/ICON_WEBSITE.svg');
+const ArrowDown: IconImport = require('@assets/icons/ICON_ARROW-DOWN.svg');
+const ArrowUp: IconImport = require('@assets/icons/ICON_ARROW-UP.svg');
+const Back: IconImport = require('@assets/icons/ICON_BACK.svg');
+const Bell: IconImport = require('@assets/icons/ICON_BELL.svg');
+const BellOn: IconImport = require('@assets/icons/ICON_BELL-ON.svg');
+const Bike: IconImport = require('@assets/icons/ICON_BIKE.svg');
+const Camera: IconImport = require('@assets/icons/ICON_CAMERA.svg');
+const Claims: IconImport = require('@assets/icons/ICON_CLAIMS.svg');
+const Close: IconImport = require('@assets/icons/ICON_CLOSE.svg');
+const Condense: IconImport = require('@assets/icons/ICON_CONDENSE.svg');
+const Distance: IconImport = require('@assets/icons/ICON_DISTANCE.svg');
+const Donations: IconImport = require('@assets/icons/ICON_DONATIONS.svg');
+const Dropdown: IconImport = require('@assets/icons/ICON_DROPDOWN.svg');
+const Email: IconImport = require('@assets/icons/ICON_EMAIL.svg');
+const Expand: IconImport = require('@assets/icons/ICON_EXPAND.svg');
+const EyeOff: IconImport = require('@assets/icons/ICON_EYE-OFF.svg');
+const EyeOn: IconImport = require('@assets/icons/ICON_EYE-ON.svg');
+const Facebook: IconImport = require('@assets/icons/ICON_FACEBOOK.svg');
+const Help: IconImport = require('@assets/icons/ICON_HELP.svg');
+const Logout: IconImport = require('@assets/icons/ICON_LOGOUT.svg');
+const Menu: IconImport = require('@assets/icons/ICON_MENU.svg');
+const MenuOn: IconImport = require('@assets/icons/ICON_MENU-ON.svg');
+const More: IconImport = require('@assets/icons/ICON_MORE.svg');
+const QrCode: IconImport = require('@assets/icons/ICON_QR-CODE.svg');
+const Settings: IconImport = require('@assets/icons/ICON_SETTINGS.svg');
+const Time: IconImport = require('@assets/icons/ICON_TIME.svg');
+const Transit: IconImport = require('@assets/icons/ICON_TRANSIT.svg');
+const User: IconImport = require('@assets/icons/ICON_USER.svg');
+const Walk: IconImport = require('@assets/icons/ICON_WALK.svg');
+const Website: IconImport = require('@assets/icons/ICON_WEBSITE.svg');
 
 export const deprecatedIconMap: Record<DeprecatedIconName, IconName> = {
 	'chevron-down': 'expand',
