@@ -1,6 +1,11 @@
 /**
  * Provides infrastructure for color scheme and palette declaration.
- * @packageDocumentation
+ *
+ * Consideration when using a color scheme:
+ *   - Text elements that are nested within an element that is assigned a color
+ *     scheme must have the 'color' property set to 'inherit' in order to use
+ *     a parent's themed text color without having to deconstruct the style object
+ *     and apply the properties individually.
  */
 
 import { TextStyle } from 'react-native';
@@ -48,15 +53,8 @@ const lightScheme: ColorScheme = {
 	},
 };
 
-/**
- * Consideration when using:
- *   - Text elements that are nested within an element that is assigned a color
- *     scheme must have the 'color' property set to 'inherit' in order to use
- *     a parent's themed text color without having to deconstruct the style object
- *     and apply the properties individually.
- */
 export const COLOR_SCHEMES: Record<ColorSchemeName, ColorScheme> = {
 	light: lightScheme,
-	dark: lightScheme,
+	dark: lightScheme, // TODO: Add dark theme when available
 	'no-preference': lightScheme,
 };
