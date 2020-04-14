@@ -1,17 +1,19 @@
+/**
+ *
+ */
+
 import React from 'react';
 import {
-	View,
 	Image,
 	Platform,
-	ImageURISource,
+	View,
 } from 'react-native';
-import { NAVY_BLUE, RED } from '@util/colors';
-import { SvgProps } from 'react-native-svg';
+import { NAVY_BLUE } from '@util/colors';
 import {
 	deprecatedIconMap,
 	iconImports,
-	IconName,
 	DeprecatedIconName,
+	IconName,
 	IconImport,
 } from './index';
 
@@ -27,11 +29,14 @@ export default ({
 	color = NAVY_BLUE,
 }: IconProps) => {
 	const nameIsDeprecated = Object.keys(deprecatedIconMap).includes(name);
-	const validIconName = nameIsDeprecated ? (deprecatedIconMap[name] || '') : name;
+	const validIconName = nameIsDeprecated
+		? (deprecatedIconMap[name] || '')
+		: name;
 
 	/**
 	 * Returns the required dimensions for the base icon (e.g. the hamburger
 	 * icon excluding the red dot) to be the given size.
+	 * ?? Should the values used be added to a data structure with the imported icons?
 	 */
 	const getDimensions = () => {
 		let width = size;
@@ -51,13 +56,13 @@ export default ({
 	/**
 	 * Returns the coordinate change required to center the base icon (e.g. the hamburger
 	 * icon excluding the red dot).
+	 * ?? Should the values used be calculated and added to a data structure with the imported icons?
 	 */
 	const getOffset = () => {
 		const x = 0;
 		let y = 0;
 
 		if (name.includes('menu')) {
-			// !! TODO: these should be calculated and added to a data structure with the imported icons.
 			y = -1.25;
 		} else if (name.includes('bell')) {
 			y = -2;
@@ -75,7 +80,6 @@ export default ({
 		};
 	};
 
-	// If browser this is a data object. If mobile, this is object with Svg Component
 	const IconSvg: IconImport = iconImports[validIconName];
 
 	return (
@@ -95,19 +99,14 @@ export default ({
 							style={[
 								getDimensions(),
 								getOffset(),
-								{
-									overflow: 'visible',
-								},
 							]}
 						/>
 					)
 					: (
-						// ?? TODO: overflow visible required?
 						<IconSvg.default
 							style={[
 								getDimensions(),
 								getOffset(),
-								{ overflow: 'visible' },
 							]}
 							width={size}
 							height={size}

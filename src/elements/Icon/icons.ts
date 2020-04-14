@@ -1,18 +1,12 @@
-import { ImageURISource } from 'react-native';
-import { SvgProps } from 'react-native-svg';
-
 /**
- * SVG imports depend on the OS.
  *
- * If the OS is web, the imports will beimage uri
- * sources (e.g. data blob or asset path on server).
- *
- * If the OS is Android or iOS, the imports will be native-compliant,
- * dynamic react components.
  */
-export type IconImport = ImageURISource & {
-	default: React.FC<SvgProps>;
-};
+
+import {
+	DeprecatedIconName,
+	IconImport,
+	IconName,
+} from './Icon.types';
 
 const ArrowDown = require('@assets/icons/ICON_ARROW-DOWN.svg');
 const ArrowUp = require('@assets/icons/ICON_ARROW-UP.svg');
@@ -45,48 +39,6 @@ const User = require('@assets/icons/ICON_USER.svg');
 const Walk = require('@assets/icons/ICON_WALK.svg');
 const Website = require('@assets/icons/ICON_WEBSITE.svg');
 
-
-export type DeprecatedIconName =
-	| 'chevron-down'
-	| 'chevron-left'
-	| 'image'
-	| 'lock'
-	| 'unlock';
-
-export type IconName =
-	| 'arrowDown'
-	| 'arrowUp'
-	| 'back'
-	| 'bell'
-
-	| 'bellOn'
-	| 'bike'
-	| 'camera'
-	| 'claims'
-	| 'close'
-	| 'condense'
-	| 'distance'
-	| 'donations'
-	| 'dropdown'
-	| 'email'
-	| 'expand'
-	| 'eyeOff'
-	| 'eyeOn'
-	| 'facebook'
-	| 'help'
-	| 'logout'
-	| 'menu'
-	| 'menuOn'
-	| 'more'
-	| 'qrCode'
-	| 'settings'
-	| 'time'
-	| 'transit'
-	| 'user'
-	| 'walk'
-	| 'website';
-
-// Mapping of old icon names to new icon names
 export const deprecatedIconMap: Record<DeprecatedIconName, IconName> = {
 	'chevron-down': 'expand',
 	'chevron-left': 'back',

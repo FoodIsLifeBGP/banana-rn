@@ -1,3 +1,7 @@
+/**
+ * Configuration file for the React Native bundler, Metro.
+ */
+
 const { getDefaultConfig } = require('metro-config');
 
 module.exports = (async () => {

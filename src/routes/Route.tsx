@@ -6,9 +6,8 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 import * as colors from '@util/colors';
 import getEnv from '@util/environment';
 
-// TODO: For some reason global imports aren't for these
 import { Icon } from '@elements';
-import { IconName } from '@elements/Icon/icons';
+import { IconName } from '@elements/Icon';
 
 import LoginScreen from '../screens/LoginScreen';
 import DashboardScreen from '../screens/DashboardScreen';
