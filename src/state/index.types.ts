@@ -64,7 +64,7 @@ export interface Alert {
 
 	/**
 	 * Whether the alert can be casually dismissed by the user
-	 * (e.g. tapping the content behind a modal).
+	 * (i.e. tapping the content behind a modal).
 	 */
 	dismissable?: boolean;
 }
