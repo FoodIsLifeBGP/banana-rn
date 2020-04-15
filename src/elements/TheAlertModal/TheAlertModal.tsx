@@ -1,20 +1,25 @@
 import React from 'react';
 import {
-	View, Text, Button,
+	Text,
+	View,
 } from 'react-native';
 import useGlobal from '@state';
-import { Modal } from '@elements';
+import {
+	TextButton,
+	Modal,
+} from '@elements';
 import { Alert } from '@state/index.types';
-
+import { COLOR_SCHEMES } from '@util/colorSchemes';
+import { useTheme } from 'react-navigation';
+import typography from '@util/typography';
 import styles from './TheAlertModal.styles';
-
-// TODO: add styling to modal body, can it be applied to the Modal component, and have it cascade to Alert's children?
-// TODO: replace Button element with custom TextButton element
 
 export default () => {
 	const [ globalState, globalActions ] = useGlobal() as any;
-	const { alert }: {alert: Alert} = globalState;
+	const { alert }: { alert: Alert } = globalState;
 	const { clearAlert } = globalActions;
+
+	const colorScheme = COLOR_SCHEMES[useTheme()];
 
 	const handleCloseButtonPress = () => {
 		clearAlert();
@@ -34,10 +39,21 @@ export default () => {
 			open={alert !== undefined}
 			onDismiss={handleDismiss}
 		>
-			<View>
-				<Text>{alert?.message || 'Uh oh, an unknown error occurred!'}</Text>
+			<View style={styles.body}>
+				<View style={styles.textContainer}>
+					<Text style={typography.body1}>
+						{alert?.message || 'Uh oh, an unknown error occurred!'}
+					</Text>
+				</View>
 
-				<Button title="OK" onPress={handleCloseButtonPress} />
+				<TextButton
+					text="OK"
+					style={[
+						colorScheme.primary,
+					]}
+					pressedStyle={colorScheme.secondary}
+					onPress={handleCloseButtonPress}
+				/>
 			</View>
 		</Modal>
 	);
