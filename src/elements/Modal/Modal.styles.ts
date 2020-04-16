@@ -1,6 +1,8 @@
 import { StyleSheet } from 'react-native';
 import * as colors from '@util/colors';
 
+// TODO: container shadow does not show iOS with required hidden overflow
+
 // Position of the modal relative to its container.
 export const DEFAULT_TOP_OFFSET = 90;
 
@@ -20,7 +22,6 @@ export default StyleSheet.create({
 	container: {
 		width: 330,
 		minHeight: 362,
-		maxHeight: '56.25%',
 		position: 'absolute',
 		alignItems: 'center',
 		overflow: 'hidden',
@@ -31,6 +32,7 @@ export default StyleSheet.create({
 			height: 4,
 		},
 		shadowRadius: 4,
+		shadowOpacity: 1,
 	},
 	header: {
 		width: '100%',
