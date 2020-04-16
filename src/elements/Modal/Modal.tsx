@@ -49,9 +49,22 @@ export default ({
 	};
 
 	return (
-		<View style={[ style, styles.wrapper, !open && { width: 0, height: 0 } ]}>
-			<TouchableOpacity style={styles.underlay} onPress={handleUnderlayPress} />
-			<View style={[ styles.container, { top } ]}>
+		<View style={[
+			style,
+			styles.wrapper,
+			!open && { width: 0, height: 0 },
+		]}
+		>
+			<TouchableOpacity
+				style={styles.underlay}
+				onPress={handleUnderlayPress}
+			/>
+
+			<View style={[
+				styles.container,
+				{ top },
+			]}
+			>
 				<View style={[
 					styles.header,
 					{ backgroundColor: colorPalette.background },
@@ -66,6 +79,7 @@ export default ({
 						{title.toUpperCase()}
 					</Text>
 				</View>
+
 				<View style={styles.body}>
 					<ScrollView contentContainerStyle={styles.bodyContent}>
 						{children}
