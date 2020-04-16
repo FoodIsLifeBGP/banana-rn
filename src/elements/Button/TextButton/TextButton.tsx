@@ -7,26 +7,41 @@ import {
 import styles from '../Button.styles';
 import Button, { ButtonProps } from '../Button';
 
-type TextButtonProps = { text: string; textStyle?: StyleProp<TextStyle> } & Omit<ButtonProps, 'children'>;
+type TextButtonProps = {
+	text: string;
+	textStyle?: StyleProp<TextStyle>;
+} & Omit<ButtonProps, 'children'>;
 
 export default ({
 	text,
 	textStyle, // 'backgroundColor' and 'color' will override pressed and disabled styling
 	style,
-	pressedStyle,
-	disabledStyle,
+	buttonStyle,
 	outlined = false,
 	disabled = false,
 	...props
 }: TextButtonProps) => (
 	<Button
 		style={style}
-		pressedStyle={pressedStyle}
-		disabledStyle={disabledStyle}
+		buttonStyle={buttonStyle}
 		outlined={outlined}
 		disabled={disabled}
 		{...props}
 	>
-		<Text style={[ styles.text, textStyle ]}>{text}</Text>
+		{
+			foregroundColor => (
+				<Text style={[
+					styles.text,
+					{
+						color: foregroundColor,
+					},
+					textStyle,
+				]}
+				>
+					{text}
+				</Text>
+			)
+		}
+
 	</Button>
 );

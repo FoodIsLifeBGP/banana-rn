@@ -16,7 +16,6 @@ export default StyleSheet.create({
 		fontSize: 16,
 		textTransform: 'uppercase',
 		textAlign: 'center',
-		color: 'inherit',
 		whiteSpace: 'nowrap',
 	},
 });
