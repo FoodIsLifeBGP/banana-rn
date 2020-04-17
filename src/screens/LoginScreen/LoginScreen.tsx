@@ -27,6 +27,7 @@ export default () => {
 
 	const [ email, setEmail ] = useState(useNavigationParam('email') ?? '');
 	const [ password, setPassword ] = useState(useNavigationParam('password') ?? '');
+	const [ isPasswordVisible, setIsPasswordVisible ] = useState(false);
 
 	const clearEmailAndPassword = () => { setEmail(''); setPassword(''); };
 
@@ -51,8 +52,8 @@ export default () => {
 
 	return (
 		<KeyboardAvoidingView style={styles.outerContainer} behavior="padding">
-			<View style={styles.banner}>
-				{/* TODO: banner should be a component */}
+			<View style={styles.header}>
+				{/* TODO: use ContentHeader component when available */}
 				<Title text={`banana \n${userIdentity}`} />
 			</View>
 
@@ -62,33 +63,31 @@ export default () => {
 				>
 					<FormTextInput
 						label="email"
+						placeholder="info@bananaapp.org"
 						value={email}
 						setValue={setEmail}
 						style={styles.inputEmail}
-						placeholder="info@bananaapp.org"
+						onSubmitEditing={handleEmailInputSubmit}
 						autoCorrect={false}
+						enablesReturnKeyAutomatically={true}
 						autoCompleteType="username"
 						textContentType="username"
-						enablesReturnKeyAutomatically={true}
 						keyboardType="email-address"
 						returnKeyType="next"
 						blurOnSubmit={true} // Necessary to prevent focus from 'flickering'
-						onSubmitEditing={handleEmailInputSubmit}
 					/>
 
 					<FormTextInput
 						label="password"
+						type="password"
 						value={password}
 						setValue={setPassword}
 						ref={passwordInputRef}
-						secureTextEntry={true}
-						autoCorrect={false}
-						autoCompleteType="password"
-						textContentType="password"
+						onSubmitEditing={handleLogin}
 						enablesReturnKeyAutomatically={true}
+						autoCompleteType="password"
 						returnKeyType="go"
 						blurOnSubmit={false}
-						onSubmitEditing={handleLogin}
 					/>
 
 					<View style={styles.forgotPassword}>

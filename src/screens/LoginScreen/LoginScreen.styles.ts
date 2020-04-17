@@ -9,7 +9,7 @@ export default StyleSheet.create({
 		flex: 1,
 		flexBasis: '100%',
 	},
-	banner: {
+	header: {
 		flexGrow: 1,
 		flexShrink: 2,
 		flexBasis: '27%',
