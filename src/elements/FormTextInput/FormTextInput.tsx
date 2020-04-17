@@ -1,7 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React, {
-	forwardRef, RefObject, Ref, useState,
+	forwardRef,
+	RefObject,
+	Ref,
+	useState,
 } from 'react';
 import {
 	View,
@@ -17,18 +20,31 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import styles from './FormTextInput.styles';
 
 interface BasicTextInputProps extends TextInputProps {
-	value: TextInputProps['value']; // Input value.
-	setValue: TextInputProps['onChangeText']; // Callback used with every keystroke within the input.
-	inputStyle?: StyleProp<TextStyle>; // Styling to override default input styling.
+	/** User-submitted value. */
+	value: TextInputProps['value'];
+
+	/** Callback used with every keystroke within the input. */
+	setValue: TextInputProps['onChangeText'];
+
+	/** Styling to override default input styling. */
+	inputStyle?: StyleProp<TextStyle>;
+
+	/** Reference to the text input for programmatic manipulation. */
 	ref: Ref<TextInput>;
 }
 
 interface FormTextInputProps extends BasicTextInputProps {
-	type?: 'default' | 'password'; // Type of prebuilt text inputs.
+	/** Type text input. */
+	type?: 'default' | 'password';
+
+	/** Label for the input. */
 	label: string;
-	inputStyle?: StyleProp<TextStyle>; // Styling to override default input styling.
-	error?: boolean; // Whether or not there is an error associated with the given text.
-	errorMessage?: string; // User-facing message associated with an error.
+
+	/** Whether or not there is an error associated with the given input value. */
+	error?: boolean;
+
+	/** User-facing message associated with an error. */
+	errorMessage?: string;
 }
 
 /**
@@ -134,7 +150,9 @@ const FormTextInput = ({
 
 				{error && (
 					<View style={styles.errorMessage}>
-						<Text style={styles.errorMessageText}>{errorMessage}</Text>
+						<Text style={styles.errorMessageText}>
+							{errorMessage}
+						</Text>
 					</View>
 				)}
 			</View>
@@ -146,4 +164,3 @@ const FormTextInput = ({
  * Allows the Higher-Order-Component (FormTextInput) to pass references to the native TextInput.
  */
 export default forwardRef<TextInput, FormTextInputProps & { ref?: RefObject<TextInput> }>(FormTextInput);
-
