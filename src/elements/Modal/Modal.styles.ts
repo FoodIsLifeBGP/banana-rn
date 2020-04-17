@@ -20,8 +20,10 @@ export default StyleSheet.create({
 		backgroundColor: colors.WHITE_TRANSPARENT,
 	},
 	container: {
-		width: 330,
+		width: '100%',
+		maxWidth: 330,
 		minHeight: 362,
+		marginHorizontal: 15,
 		position: 'absolute',
 		alignItems: 'center',
 		overflow: 'hidden',

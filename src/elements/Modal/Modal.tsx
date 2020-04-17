@@ -52,7 +52,7 @@ export default ({
 		<View style={[
 			style,
 			styles.wrapper,
-			!open && { width: 0, height: 0 },
+			!open && { display: 'none' },
 		]}
 		>
 			<TouchableOpacity
