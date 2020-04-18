@@ -2,8 +2,7 @@ import React from 'react';
 import {
 	View, Text, TouchableOpacity, StyleProp, ViewStyle,
 } from 'react-native';
-import { ColorPalette, COLOR_SCHEMES } from '@util/colorSchemes';
-import { useColorScheme } from 'react-native-appearance';
+import { ColorPaletteName, useScheme } from '@util/colorSchemes';
 import { ScrollView } from 'react-native-gesture-handler';
 import styles, { DEFAULT_TOP_OFFSET } from './Modal.styles';
 
@@ -22,7 +21,7 @@ interface ModalProps {
 	top?: number; //
 
 	/** The color theme for the modal. */
-	palette?: ColorPalette; //
+	palette?: ColorPaletteName; //
 
 	/** Callback for when the user taps outside of the modal container. */
 	onDismiss: Function; //
@@ -40,7 +39,8 @@ export default ({
 	onDismiss,
 	children,
 }: ModalProps) => {
-	const colorScheme = COLOR_SCHEMES[useColorScheme()];
+	const scheme = useScheme();
+	const colorPalette = scheme[palette];
 
 	const handleUnderlayPress = () => {
 		if (open) {
@@ -49,16 +49,37 @@ export default ({
 	};
 
 	return (
-		<View style={[ style, styles.wrapper, !open && { width: 0, height: 0 } ]}>
-			<TouchableOpacity style={styles.underlay} onPress={handleUnderlayPress} />
-			<View style={[ styles.container, { top } ]}>
-				<View style={[ colorScheme[palette], styles.header ]}>
+		<View style={[
+			style,
+			styles.wrapper,
+			!open && { display: 'none' },
+		]}
+		>
+			<TouchableOpacity
+				style={styles.underlay}
+				onPress={handleUnderlayPress}
+			/>
+
+			<View style={[
+				styles.container,
+				{ top },
+			]}
+			>
+				<View style={[
+					styles.header,
+					{ backgroundColor: colorPalette.background },
+				]}
+				>
 					<Text
-						style={styles.title}
+						style={[
+							styles.title,
+							{ color: colorPalette.foreground },
+						]}
 					>
 						{title.toUpperCase()}
 					</Text>
 				</View>
+
 				<View style={styles.body}>
 					<ScrollView contentContainerStyle={styles.bodyContent}>
 						{children}

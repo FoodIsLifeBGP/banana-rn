@@ -5,27 +5,26 @@ import React, { useState } from 'react';
 import {
 	TouchableHighlight,
 	TouchableHighlightProps,
-	StyleProp,
-	TextStyle,
 	ViewStyle,
 } from 'react-native';
-import { COLOR_SCHEMES, ColorScheme } from '@util/colorSchemes';
-import { useColorScheme } from 'react-native-appearance';
-import { DARK_GRAY_TRANSPARENT } from '@util/colors';
+import {
+	ColorScheme,
+	useScheme,
+} from '@util/colorSchemes';
+import { DARK_GRAY_TRANSPARENT, WHITE } from '@util/colors';
 import styles from './Button.styles';
+import { ButtonStyle } from './index';
 
 export type ButtonProps = TouchableHighlightProps & {
-	children: React.ReactNode; // Elements to be wrapped by the button.
-	pressedStyle?: StyleProp<TextStyle>; // Styling for the button during an 'active' pseudo-state.
-	disabledStyle?: StyleProp<TextStyle>; // Styling for the button if it's disabled.
+	children: (foregroundColor: string) => React.ReactNode; // Elements to be wrapped by the button.
+	buttonStyle: ButtonStyle; // Styles for different button states.
 	outlined?: boolean; // Whether the button is styled with an outline and transparent body.
 };
 
 export default ({
 	children,
 	style,
-	pressedStyle,
-	disabledStyle,
+	buttonStyle,
 	outlined = false,
 	disabled = false,
 	activeOpacity = 0.8,
@@ -33,35 +32,55 @@ export default ({
 	onHideUnderlay = () => { },
 	...props
 }: ButtonProps) => {
-	const scheme: ColorScheme = COLOR_SCHEMES[useColorScheme()];
-	const defaultStyle = scheme.default;
-	const defaultDisabledStyle = scheme.disabled;
+	const scheme: ColorScheme = useScheme();
+	// Whether or not the button is pressed/ active.
+	const [ pressed, setPressed ] = useState(false);
 
-	// Underlay color is showed when the button is active.
-	const UNDERLAY_COLOR = (pressedStyle as TextStyle)?.backgroundColor
-		|| DARK_GRAY_TRANSPARENT;
+	const DEFAULT_PRESSED_PALETTE = {
+		background: DARK_GRAY_TRANSPARENT,
+		foreground: WHITE, // ?? What is a meaningful default value for foreground?
+	};
+	const DEFAULT_DISABLED_PALETTE = scheme.disabled;
+
+	// Palettes for button states.
+	const defaultPalette = buttonStyle.default;
+	const pressedPalette = buttonStyle.pressed || DEFAULT_PRESSED_PALETTE;
+	const disabledPalette = buttonStyle.disabled || DEFAULT_DISABLED_PALETTE;
+
+	// Underlay color is showed when the button is pressed.
+	const UNDERLAY_COLOR = pressedPalette?.background || DARK_GRAY_TRANSPARENT;
 
 	// Outline styling
-	const borderColorSource = disabled ? disabledStyle || defaultDisabledStyle : style || defaultStyle;
-	const BORDER_COLOR = (borderColorSource as TextStyle).color;
+	const BORDER_COLOR = (
+		disabled
+			? disabledPalette
+			: defaultPalette
+	).foreground;
 	const outlineBorder: ViewStyle = {
 		borderColor: BORDER_COLOR,
 		borderWidth: 2,
 		borderStyle: 'solid',
 	};
 
-	// Whether or not the button is pressed/ active.
-	const [ pressed, setPressed ] = useState(false);
+	const getCurrentPalette = () => {
+		let palette = defaultPalette;
+		if (disabled) palette = disabledPalette;
+		if (pressed) palette = pressedPalette;
+		return palette;
+	};
+
+	const backgroundColor = getCurrentPalette().background;
+	const foregroundColor = getCurrentPalette().foreground;
 
 	return (
 		<TouchableHighlight
 			style={[
 				styles.container,
-				defaultStyle,
 				outlined && outlineBorder,
+				{
+					backgroundColor,
+				},
 				style,
-				pressed && pressedStyle,
-				disabled && (disabledStyle || defaultDisabledStyle),
 			]}
 			underlayColor={UNDERLAY_COLOR}
 			activeOpacity={activeOpacity}
@@ -70,7 +89,9 @@ export default ({
 			onHideUnderlay={() => { setPressed(false); onHideUnderlay(); }}
 			{...props}
 		>
-			{children}
+			{
+				children(foregroundColor)
+			}
 		</TouchableHighlight>
 	);
 };
