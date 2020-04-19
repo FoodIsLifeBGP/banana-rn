@@ -27,8 +27,4 @@ export default StyleSheet.create({
 		alignItems: 'center',
 		width: 50,
 	},
-	hideIcon: {
-		fontSize: 26,
-		color: colors.NAVY_BLUE,
-	},
 });

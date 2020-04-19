@@ -116,7 +116,7 @@ export default () => {
 									}
 								}}
 							>
-								<Icon name="image" style={styles.icon} />
+								<Icon name="image" size={24} />
 							</TouchableWithoutFeedback>
 						</View>
 					</View>
