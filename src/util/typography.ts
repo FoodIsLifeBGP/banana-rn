@@ -34,6 +34,7 @@ const typography: Record<string, TextStyle> = {
 	h4: {
 		...heading,
 		fontSize: 16,
+		lineHeight: 18, // Required to not cut off in buttons
 	},
 	h5: {
 		...heading,

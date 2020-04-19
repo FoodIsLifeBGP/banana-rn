@@ -8,8 +8,6 @@ import {
 	View,
 } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import * as ImagePicker from 'expo-image-picker';
-import * as Permissions from 'expo-permissions';
 import { Checkbox } from 'react-native-paper';
 import {
 	FormTextInput,
@@ -22,6 +20,8 @@ import {
 } from '@elements';
 import useGlobal from '@state';
 import * as colors from '@util/colors';
+import { sourceImage } from '@util/ImageSourcer';
+import { ImageInfo } from 'expo-image-picker/build/ImagePicker.types';
 import styles from './RegistrationScreen.styles';
 
 export default () => {
@@ -31,7 +31,7 @@ export default () => {
 
 	const [ city, setCity ] = useState('');
 	const [ email, setEmail ] = useState('');
-	const [ image, setImage ] = useState({} as ImagePicker.ImagePickerResult);
+	const [ image, setImage ] = useState({} as ImageInfo);
 	const [ license, setLicense ] = useState('');
 	const [ organizationName, setOrganizationName ] = useState('');
 	const [ password, setPassword ] = useState('');
@@ -64,20 +64,6 @@ export default () => {
 		}
 	};
 
-	// TODO: add take picture functionality, abstract this out to a util or state.  See https://docs.expo.io/versions/latest/sdk/imagepicker/#imagepickerlaunchcameraasyncoptions
-	const pickImage = async () => {
-		const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-		if (status !== 'granted') {
-			Alert.alert('No camera roll permissions');
-		}
-		const pickedImage = await ImagePicker.launchImageLibraryAsync({
-			mediaTypes: ImagePicker.MediaTypeOptions.All,
-			allowsEditing: true,
-			aspect: [ 16, 9 ],
-			quality: 1,
-		});
-		pickedImage.cancelled === false && setImage(pickedImage);
-	};
 
 	return (
 		<ScrollView contentContainerStyle={styles.outerContainer}>
@@ -116,14 +102,19 @@ export default () => {
 					<View style={styles.row}>
 						<View style={{ flex: 4 }}>
 							<TextInput
-								value={!image.cancelled ? image.uri : ''}
+								value={image.uri || ''}
 								style={styles.input}
 								autoCapitalize="none"
 							/>
 						</View>
 						<View style={styles.iconContainer}>
 							<TouchableWithoutFeedback
-								onPress={pickImage}
+								onPress={async () => {
+									const imageResponse = await sourceImage('cameraRoll');
+									if (imageResponse) {
+										setImage(imageResponse as ImageInfo);
+									}
+								}}
 							>
 								<Icon name="image" size={24} />
 							</TouchableWithoutFeedback>
@@ -176,7 +167,7 @@ export default () => {
 						style={styles.text}
 						onPress={toggleTermsOfService}
 					>
-						Accept
+					Accept
 					</Text>
 					<SpacerInline width={10} />
 					<View style={{ top: 11 }}>

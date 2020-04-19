@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, YellowBox } from 'react-native';
 import { Provider } from 'react-native-paper';
+import { AppearanceProvider } from 'react-native-appearance';
 import Constants from 'expo-constants';
 import * as Font from 'expo-font';
 import NavigationService from '@util/NavigationService';
@@ -40,10 +41,14 @@ export default function App() {
 	}
 
 	return fontsLoaded && (
-		<Provider>
-			<View style={styles.container}>
-				<Route ref={navRef => NavigationService.setTopLevelNavigator(navRef)} />
-			</View>
-		</Provider>
+		<AppearanceProvider>
+			{/* All elements within AppearanceProvider will have access
+			 *  to the user-defined OS color theme preference: 'light', 'dark', 'no-preference'. */}
+			<Provider>
+				<View style={styles.container}>
+					<Route ref={navRef => NavigationService.setTopLevelNavigator(navRef)} />
+				</View>
+			</Provider>
+		</AppearanceProvider>
 	);
 }
