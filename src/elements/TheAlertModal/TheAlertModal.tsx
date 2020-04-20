@@ -47,10 +47,14 @@ export default () => {
 
 				<TextButton
 					text="OK"
-					style={[
-						colorScheme.primary,
-					]}
-					pressedStyle={colorScheme.secondary}
+					style={{
+						width: 104,
+					}}
+					buttonStyle={{
+						default: scheme.primary,
+						pressed: scheme.secondary,
+						disabled: scheme.disabled,
+					}}
 					onPress={handleCloseButtonPress}
 				/>
 			</View>
