@@ -6,12 +6,18 @@ import useGlobal from '@state';
 import { Title, SpacerInline, Header } from '@elements';
 import DonationsOrClaims from '../../library/DonationsOrClaims';
 import styles from './DashboardScreen.styles';
+import DonorDashboardScreen from '../DonorDashboardScreen';
 
 const DashboardScreen = () => {
 	const { navigate } = useNavigation();
 	const [ state ] = useGlobal();
 	const { userIdentity } = state;
-	const title = userIdentity === 'donor' ? 'My Donations.' : 'Open Donations.';
+
+	if (userIdentity === 'donor') {
+		return DonorDashboardScreen();
+	}
+
+	const title = 'Open Donations.';
 
 	return (
 		<View style={styles.outerContainer}>
@@ -23,17 +29,15 @@ const DashboardScreen = () => {
 
 			<DonationsOrClaims resource="donations" />
 
-			{ userIdentity === 'donor' && (
-				<View style={styles.addButton}>
-					<TouchableOpacity
-						onPress={() => navigate('DonationScreen', {})}
-					>
-						<Text style={styles.plus}>
-							+
-						</Text>
-					</TouchableOpacity>
-				</View>
-			)}
+			<View style={styles.addButton}>
+				<TouchableOpacity
+					onPress={() => navigate('DonationScreen', {})}
+				>
+					<Text style={styles.plus}>
+						+
+					</Text>
+				</TouchableOpacity>
+			</View>
 		</View>
 	);
 };
