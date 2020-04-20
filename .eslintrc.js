@@ -56,6 +56,16 @@ module.exports = {
 		'class-methods-use-this': 0,
 		'eol-last': [ 1, 'always'],
 		'func-call-spacing': 'off',
+		'function-call-argument-newline': [
+			1, 
+			"always"
+		],
+		'function-paren-newline': [
+			1,
+			{
+				minItems: 2,
+			}
+		],
 		'global-require': 0,
 		'import/extensions': [ 0, 'never' ],
 		'import/no-unresolved': [
