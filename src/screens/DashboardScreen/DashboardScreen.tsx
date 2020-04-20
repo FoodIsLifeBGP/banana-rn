@@ -4,7 +4,7 @@ import { View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import useGlobal from '@state';
 import { Title, SpacerInline, Header } from '@elements';
-import DonationsOrClaims from './DonationsOrClaims';
+import DonationsOrClaims from '../../library/DonationsOrClaims';
 import styles from './DashboardScreen.styles';
 
 const DashboardScreen = () => {
