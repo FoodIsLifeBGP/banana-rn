@@ -9,8 +9,7 @@ import {
 	Modal,
 } from '@elements';
 import { Alert } from '@state/index.types';
-import { COLOR_SCHEMES } from '@util/colorSchemes';
-import { useTheme } from 'react-navigation';
+import { useScheme } from '@util/colorSchemes';
 import typography from '@util/typography';
 import styles from './TheAlertModal.styles';
 
@@ -19,7 +18,7 @@ export default () => {
 	const { alert }: { alert: Alert } = globalState;
 	const { clearAlert } = globalActions;
 
-	const colorScheme = COLOR_SCHEMES[useTheme()];
+	const scheme = useScheme();
 
 	const handleCloseButtonPress = () => {
 		clearAlert();
