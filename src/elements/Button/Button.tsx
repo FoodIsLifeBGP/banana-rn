@@ -6,6 +6,7 @@ import {
 	TouchableHighlight,
 	TouchableHighlightProps,
 	ViewStyle,
+	View,
 } from 'react-native';
 import {
 	ColorScheme,
@@ -89,9 +90,14 @@ export default ({
 			onHideUnderlay={() => { setPressed(false); onHideUnderlay(); }}
 			{...props}
 		>
-			{
-				children(foregroundColor)
-			}
+			{/**
+			  * View is required in order for native props to pass down to children properly.
+			  */}
+			<View>
+				{
+					children(foregroundColor)
+				}
+			</View>
 		</TouchableHighlight>
 	);
 };
