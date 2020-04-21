@@ -193,36 +193,76 @@ const ExampleComponent = () => {
 ```
    - Remember, useGlobalHook takes care of passing the state, so only put what you're updating in the arguments here.
 
-## Icons
-
-We are using the [Elegant Icon Font](https://www.elegantthemes.com/blog/resources/elegant-icon-font) set of icons in this project.  Use this through the `elements/Icon` component.  To add a new icon, go to the link above, and find the one you want next to its HTML code.  Let's say we want the lock icon. We find it with the HTML code `&#x6a;` underneath.
-
-Now open `elements/Icon/fontMap.ts`.  This is a hash in the format `'icon name': <unicode values>`.  Next convert the HTML character to Unicode - from `&#x6a;` to `\u006a`.  To get the unicode value for your character:
-
-   1. Start with `&#x6a;`
-   2. Trim `&#x` from the head of the value, and the semicolon from the tail.  You now have `6a`
-   3. Add zeros on the left side until your string is 4 characters long.  This gives you `006a`
-   4. Now add the unicode marker `\u` to the head: `\u006a`.  Done!
-
-Here's another example of a Unicode conversion with a larger value.  The same process is followed, this is just included for  clarity.
-
-   1. Start with `&#xe000;`
-   2. Trim `&#x` from the head of the value, and the semicolon from the tail.  You now have `e000`
-   3. You already have 4 characters, so no need to add zeros.
-   4. Add `\u` to the head: `\ue000`.
-
-Give your icon a name (`lock`)for a key, and use the Unicode as the value:
-
-`lock: '\ue000',`
-
-Now you can use this icon by using the key in the Icon component's `name=` prop:
-
-`<Icon name="lock" style={styles.icon}>`
-
-The style defaults to `color: 'white', fontSize: 50`, and the component can be passed a custom `style` prop to override.
-
 ## Environment variables
 
 The variant field in `app.json/expo/extra` is used to set some psuedo-environment variables.  These values are then immediately loaded into state, so they're only to be used before state is initialized.  That is to say, hopefully you will never have to use them.  But if you do, they live in `/src/util/environment.ts`.  The API URL root also lives here.
 - `import getEnv from '@util/environment';`
 - in body: `const { NEW_VARIABLE } = getEnv();`
+
+## Icons
+
+The icon system enables dynamically colored icons for mobile, and statically rendered icons for browser.
+The [Icon component](https://github.com/FoodIsLifeBGP/banana-rn/tree/master/src/elements/Icon) ensures consistent usage of the each icon/icon pairs.
+
+```tsx
+import { Icon } from '@/elements';
+...
+<Icon name="arrowDown" color="pink" size={24} />
+```
+
+### Adding new icons
+
+Any new SVG icons will have to follow some standards in order to work with the icon system.
+
+1. Convert all open paths with stroke to closed paths without stroke.
+   - Use a 'Stroke to Path' feature in a vector editing software.
+   - This ensures that the 'fill' attribute is the only variable to change in order to alter icon colors.
+2. Only one dynamic color per icon.
+   - If an icon has more than one color (e.g. [NavBar icons with red notification dots](https://github.com/FoodIsLifeBGP/banana-rn/blob/master/assets/icons/ICON_BELL-ON.svg)), the non-color-dynamic SVG elements must have a fill attribute set to their static color.
+   - Any color-dynamic parts of the icon _must not_ have a fill attribute. They will inherit the root element's fill color. `<path fill="red" ... />`
+3. The root element, `<svg fill="#000000" ... >`, must have a fill color.
+   - In order for static rendering to work, a fill color must be provided to the SVG root element.
+   - This fill color is overwritten with JS.
+4. Be wary of declaring presentation attributes within a `style` attribute. These cannot be overwritten.
+
+#### 'Animated' Icons
+
+Some icons need to seamlessly replace each other in order to simulate animation.
+
+Note: The term **Base icon** means the main part of the icon versions that don't change. Think the hamburger menu lines, not the red notification dot. 
+
+1. Viewbox dimensions must envelope all SVG versions of the icon.
+2. Each icon version must share the same viewbox dimensions.
+3. The icon versions might need to be offset or given alternate dimensions.
+    - In order for asymetrical icon groups to be positioned properly (i.e. centered), offset distances and dimension scaling ratios should be provided within the Icon component in order for the 'base icon' to be present properly.
+
+## SVGs
+
+SVGs are imported differently depending on if the build is for mobile or browser.
+
+In ***mobile device*** bundling, SVGs are imported as dynamic React Components.
+
+```ts
+import { SvgImage } from '@assets/image.svg';
+...
+<SvgImage ... />
+```
+
+In ***browser*** webpacking, SVGs are imported as static URIs (e.g. server assets path, data blob URI, etc.).
+
+```ts
+import { SvgImage } from '@assets/image.svg';
+...
+<Image source={SvgImage} ... />
+```
+
+```ts
+import { SvgImage } from '@assets/image.svg';
+import { Platform } from 'react-native';
+...
+if (Platform.os === 'web') {
+	<Image source={SvgImage} ... />
+} else {
+	<SvgImage ... />
+}
+```

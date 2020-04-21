@@ -59,7 +59,7 @@ export default () => {
 		<View style={styles.iconContainer}>
 			<Icon
 				name="chevron-down"
-				style={styles.chevronIcon}
+				size={24}
 			/>
 		</View>
 	);
@@ -140,7 +140,7 @@ export default () => {
 						<TouchableWithoutFeedback
 							onPress={() => setHidePwd(!hidePwd)}
 						>
-							<Icon name={hidePwd ? 'lock' : 'unlock'} style={styles.icon} />
+							<Icon name={hidePwd ? 'lock' : 'unlock'} size={24} />
 						</TouchableWithoutFeedback>
 					</View>
 				</View>

@@ -30,7 +30,7 @@ export default ({
 						onPress={backDestination ? () => navigate(backDestination) : () => goBack()}
 						style={{ flexDirection: 'row', alignItems: 'center' }}
 					>
-						<Icon name="chevron-left" />
+						<Icon name="chevron-left" size={24} />
 						<Text style={styles.backButtonLabel}>
 							{backButtonText}
 						</Text>

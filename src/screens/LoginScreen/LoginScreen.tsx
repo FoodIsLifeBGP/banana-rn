@@ -10,6 +10,7 @@ import {
 	InputLabel,
 	Icon,
 } from '@elements';
+import { NAVY_BLUE } from '@util/colors';
 import styles from './LoginScreen.styles';
 
 export default () => {
@@ -73,7 +74,11 @@ export default () => {
 					<TouchableWithoutFeedback
 						onPress={() => setHidePwd(!hidePwd)}
 					>
-						<Icon name={hidePwd ? 'lock' : 'unlock'} style={styles.hideIcon} />
+						<Icon
+							name={hidePwd ? 'lock' : 'unlock'}
+							color={NAVY_BLUE}
+							size={24}
+						/>
 					</TouchableWithoutFeedback>
 				</View>
 			</View>
