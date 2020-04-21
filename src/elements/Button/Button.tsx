@@ -5,21 +5,29 @@ import React, { useState } from 'react';
 import {
 	TouchableHighlight,
 	TouchableHighlightProps,
-	ViewStyle,
 	View,
+	ViewStyle,
 } from 'react-native';
 import {
 	ColorScheme,
 	useScheme,
 } from '@util/colorSchemes';
-import { DARK_GRAY_TRANSPARENT, WHITE } from '@util/colors';
+import {
+	DARK_GRAY_TRANSPARENT,
+	WHITE,
+} from '@util/colors';
 import styles from './Button.styles';
 import { ButtonStyle } from './index';
 
 export type ButtonProps = TouchableHighlightProps & {
-	children: (foregroundColor: string) => React.ReactNode; // Elements to be wrapped by the button.
-	buttonStyle: ButtonStyle; // Styles for different button states.
-	outlined?: boolean; // Whether the button is styled with an outline and transparent body.
+	/** Render function that results in elements to be wrapped by the button. */
+	children: (foregroundColor: string) => React.ReactNode;
+
+	/** Styles for different button states. */
+	buttonStyle: ButtonStyle;
+
+	/** Whether the button is styled with an outline and transparent body. */
+	outlined?: boolean;
 };
 
 export default ({
