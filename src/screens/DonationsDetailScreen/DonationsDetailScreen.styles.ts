@@ -61,15 +61,16 @@ export default StyleSheet.create({
 		lineHeight: 35,
 	},
 
-    extensionContainer:{
+	extensionContainer: {
 		width: screenWidth,
 		flexDirection: 'column',
 		padding: 20,
 	},
-	extensionBtnContainer:{
-	    flex:1,
-		justifyContent:'space-between',
-		flexDirection:'row',
+
+	extensionBtnContainer: {
+		flex: 1,
+		justifyContent: 'space-between',
+		flexDirection: 'row',
 
 	},
 	text: {
