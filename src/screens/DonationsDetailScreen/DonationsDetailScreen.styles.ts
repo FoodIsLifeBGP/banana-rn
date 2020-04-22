@@ -17,7 +17,6 @@ export default StyleSheet.create({
 		flex: 1,
 		width: '100%',
 		backgroundColor: colors.WHITE,
-		justifyContent: 'space-between',
 		alignContent: 'center',
 		alignItems: 'center',
 		flexDirection: 'column',
@@ -29,7 +28,7 @@ export default StyleSheet.create({
 		borderColor: colors.NAVY_BLUE,
 		backgroundColor: colors.DARK_GRAY,
 		borderWidth: 3,
-		marginHorizontal: 10,
+		marginHorizontal: 15,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
@@ -39,13 +38,10 @@ export default StyleSheet.create({
 		padding: 20,
 	},
 	timeContainer: {
-		width: screenWidth,
-		height: screenHeight * 0.2,
 		borderTopColor: colors.LIGHT_GRAY_DISABLED,
-		borderTopWidth: 1,
+		borderTopWidth: 2,
 		borderBottomColor: colors.LIGHT_GRAY_DISABLED,
-		borderBottomWidth: 1,
-
+		borderBottomWidth: 2,
 	},
 	icon: {
 		height: (iconSize * 0.64),
@@ -65,21 +61,17 @@ export default StyleSheet.create({
 		lineHeight: 35,
 	},
 
-
-	QRCodeContainer: {
-		flex: 1,
-		flexGrow: 0.3,
-		width: '100%',
-		justifyContent: 'space-between',
-		alignContent: 'center',
-		alignItems: 'center',
+    extensionContainer:{
+		width: screenWidth,
 		flexDirection: 'column',
-		backgroundColor: colors.BANANA_YELLOW,
-		flexWrap: 'wrap',
 		padding: 20,
-		minHeight: 200,
 	},
+	extensionBtnContainer:{
+	    flex:1,
+		justifyContent:'space-between',
+		flexDirection:'row',
 
+	},
 	text: {
 		color: colors.NAVY_BLUE,
 		fontSize: screenWidth * 0.045,
