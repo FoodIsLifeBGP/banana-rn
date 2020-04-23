@@ -27,7 +27,7 @@ const DashboardScreen = () => {
 				<SpacerInline height={20} />
 			</View>
 
-			<DonationsOrClaims resource="donations" />
+			<DonationsOrClaims resource={userIdentity === 'donor' ? 'donations' : 'claims'} />
 
 			<View style={styles.addButton}>
 				<TouchableOpacity

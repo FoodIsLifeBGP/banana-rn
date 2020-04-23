@@ -5,6 +5,7 @@ import { AppearanceProvider } from 'react-native-appearance';
 import Constants from 'expo-constants';
 import * as Font from 'expo-font';
 import NavigationService from '@util/NavigationService';
+import { TheAlertModal } from '@elements';
 import Route from './src/routes/Route';
 import styles from './App.styles';
 
@@ -47,6 +48,7 @@ export default function App() {
 			<Provider>
 				<View style={styles.container}>
 					<Route ref={navRef => NavigationService.setTopLevelNavigator(navRef)} />
+					<TheAlertModal />
 				</View>
 			</Provider>
 		</AppearanceProvider>
