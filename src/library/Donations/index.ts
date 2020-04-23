@@ -1,3 +1,3 @@
-import Donation from './Donations';
+import Donations from './Donations';
 
-export default Donation;
+export { Donations };
