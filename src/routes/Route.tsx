@@ -19,6 +19,7 @@ import DonationScreen from '../screens/DashboardScreen/DonationScreen';
 import QRCodeScannerScreen from '../screens/QRCodeScannerScreen/QRCodeScannerScreen';
 import ClaimDetailScreen from '../screens/ClaimDetailScreen/ClaimDetailScreen';
 import LogoutScreen from '../screens/LogoutScreen';
+import DonationsDetailScreen from '../screens/DonationsDetailScreen/DonationsDetailScreen';
 
 import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
 
@@ -36,6 +37,7 @@ export const MainStack = createStackNavigator(
 		DonationScreen,
 		QRCodeScannerScreen,
 		ClaimDetailScreen,
+		DonationsDetailScreen,
 	},
 	{
 		headerMode: 'none',
