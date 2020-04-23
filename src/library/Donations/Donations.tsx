@@ -47,7 +47,7 @@ export default ({ resource }: LocalProps) => {
 							<Donation
 								donation={donation}
 								key={donation.id}
-								resource='donations'
+								resource="donations"
 							/>
 							{
 								i === (donations as any).length - 1
