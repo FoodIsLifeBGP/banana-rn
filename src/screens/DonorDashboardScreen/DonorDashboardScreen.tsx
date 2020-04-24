@@ -4,20 +4,13 @@ import { View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import useGlobal from '@state';
 import { Title, SpacerInline, Header } from '@elements';
-import { DonationsOrClaims } from '@library';
-import styles from './DashboardScreen.styles';
-import DonorDashboardScreen from '../DonorDashboardScreen';
+import { Donations } from '@library';
+import styles from './DonorDashboardScreen.styles';
 
-const DashboardScreen = () => {
+const DonorDashboardScreen = () => {
 	const { navigate } = useNavigation();
 	const [ state ] = useGlobal();
-	const { userIdentity } = state;
-
-	if (userIdentity === 'donor') {
-		return DonorDashboardScreen();
-	}
-
-	const title = 'Open Donations.';
+	const title = 'My Donations.';
 
 	return (
 		<View style={styles.outerContainer}>
@@ -27,19 +20,15 @@ const DashboardScreen = () => {
 				<SpacerInline height={20} />
 			</View>
 
-			<DonationsOrClaims resource="claims" />
+			<Donations resource="donations" />
 
 			<View style={styles.addButton}>
-				<TouchableOpacity
-					onPress={() => navigate('DonationScreen', {})}
-				>
-					<Text style={styles.plus}>
-						+
-					</Text>
+				<TouchableOpacity onPress={() => navigate('DonorDonationScreen', {})}>
+					<Text style={styles.plus} />
 				</TouchableOpacity>
 			</View>
 		</View>
 	);
 };
 
-export default DashboardScreen;
+export default DonorDashboardScreen;
