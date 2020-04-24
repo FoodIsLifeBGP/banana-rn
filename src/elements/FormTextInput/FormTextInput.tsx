@@ -33,7 +33,7 @@ interface BasicTextInputProps extends TextInputProps {
 	inputStyle?: StyleProp<TextStyle>;
 
 	/** Reference to the text input for programmatic manipulation. */
-	forwardedRef: Ref<TextInput>;
+	forwardedRef?: Ref<TextInput>;
 }
 
 interface FormTextInputProps extends BasicTextInputProps {
