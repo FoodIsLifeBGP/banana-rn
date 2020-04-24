@@ -14,7 +14,10 @@ import {
 	TextStyle,
 	TextInputProps,
 } from 'react-native';
-import { InputLabel } from '@elements';
+import {
+	Icon,
+	InputLabel,
+} from '@elements';
 import { LIGHT_BLUE } from '@util/colors';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import styles from './FormTextInput.styles';
@@ -89,7 +92,7 @@ const PasswordInput = (
 			<BasicTextInput
 				{...props}
 
-				secureTextEntry={true}
+				secureTextEntry={!isPasswordVisible}
 				autoCorrect={false}
 				textContentType="password"
 			/>
@@ -99,15 +102,12 @@ const PasswordInput = (
 					onPress={() => setIsPasswordVisible(!isPasswordVisible)}
 				>
 					<View style={styles.passwordIconContainer}>
-						{/*
-						Uncomment when Icon SVG is available and delete pink View placeholder
-
 						<Icon
-							name={isPasswordVisible ? 'eyeOff' : 'eyeOn'}
+							name={isPasswordVisible
+								? 'eyeOff'
+								: 'eyeOn'}
 							size={24}
 						/>
-						*/}
-						<View style={{ width: 24, height: 24, backgroundColor: isPasswordVisible ? 'blue' : 'pink' }} />
 					</View>
 				</TouchableWithoutFeedback>
 			</View>
