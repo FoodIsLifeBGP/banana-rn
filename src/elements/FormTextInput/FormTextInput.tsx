@@ -33,7 +33,7 @@ interface BasicTextInputProps extends TextInputProps {
 	inputStyle?: StyleProp<TextStyle>;
 
 	/** Reference to the text input for programmatic manipulation. */
-	ref: Ref<TextInput>;
+	forwardedRef: Ref<TextInput>;
 }
 
 interface FormTextInputProps extends BasicTextInputProps {
@@ -58,12 +58,12 @@ const BasicTextInput = ({
 	value,
 	setValue,
 	inputStyle,
-	ref,
+	forwardedRef,
 	editable = true,
 	...props
 }: BasicTextInputProps) => (
 	<TextInput
-		ref={ref}
+		ref={forwardedRef}
 		value={value}
 		onChangeText={setValue}
 		style={[
@@ -119,17 +119,20 @@ const PasswordInput = (
  * Input component for a form that includes a standardized label and text input.
  * Can render a field with an optional visible password if 'type' password is given.
  */
-const FormTextInput = ({
-	type = 'default',
-	label,
-	value,
-	setValue,
-	error = false,
-	errorMessage,
-	style,
-	inputStyle,
-	...props
-}: FormTextInputProps, ref: Ref<TextInput>) => {
+const FormTextInput = (
+	{
+		type = 'default',
+		label,
+		value,
+		setValue,
+		error = false,
+		errorMessage,
+		style,
+		inputStyle,
+		...props
+	}: FormTextInputProps,
+	ref: Ref<TextInput>,
+) => {
 	const Input = type === 'password'
 		? PasswordInput
 		: BasicTextInput;
@@ -141,7 +144,7 @@ const FormTextInput = ({
 			<View>
 				<Input
 					style={error && styles.inputError}
-					ref={ref}
+					forwardedRef={ref}
 					value={value}
 					setValue={setValue}
 					inputStyle={inputStyle}
