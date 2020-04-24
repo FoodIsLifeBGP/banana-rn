@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, YellowBox } from 'react-native';
 import { Provider } from 'react-native-paper';
+import { AppearanceProvider } from 'react-native-appearance';
 import Constants from 'expo-constants';
 import * as Font from 'expo-font';
 import NavigationService from '@util/NavigationService';
+import { TheAlertModal } from '@elements';
 import Route from './src/routes/Route';
 import styles from './App.styles';
 
@@ -21,7 +23,6 @@ export default function App() {
 			'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
 			'open-sans-regular': require('./assets/fonts/OpenSans-Regular.ttf'),
 			'open-sans-light': require('./assets/fonts/OpenSans-Light.ttf'),
-			'elegant-icons': require('./assets/fonts/ElegantIcons.ttf'),
 		});
 		setFontsLoaded(true);
 	};
@@ -41,10 +42,15 @@ export default function App() {
 	}
 
 	return fontsLoaded && (
-		<Provider>
-			<View style={styles.container}>
-				<Route ref={navRef => NavigationService.setTopLevelNavigator(navRef)} />
-			</View>
-		</Provider>
+		<AppearanceProvider>
+			{/* All elements within AppearanceProvider will have access
+			 *  to the user-defined OS color theme preference: 'light', 'dark', 'no-preference'. */}
+			<Provider>
+				<View style={styles.container}>
+					<Route ref={navRef => NavigationService.setTopLevelNavigator(navRef)} />
+					<TheAlertModal />
+				</View>
+			</Provider>
+		</AppearanceProvider>
 	);
 }

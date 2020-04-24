@@ -5,6 +5,7 @@ import InfoScreen from '../InfoScreen';
 import AccountSuspendedScreen from '../AccountSuspendedScreen';
 import ApplicationPendingScreen from '../ApplicationPendingScreen';
 import ApplicationApprovedScreen from '../ApplicationApprovedScreen';
+import ApplicationIncompleteScreen from '../ApplicationIncompleteScreen';
 import DashboardScreen from '../DashboardScreen';
 
 export default () => {
@@ -15,6 +16,7 @@ export default () => {
 	if (!jwt || !user) { return <Text>Loading...</Text>; }
 
 	switch (user?.account_status) {
+		case 'incomplete': return <ApplicationIncompleteScreen />;
 		case 'suspended': return <AccountSuspendedScreen />;
 		case 'pending': return <ApplicationPendingScreen />;
 		case 'approved': return <ApplicationApprovedScreen id={id} />;

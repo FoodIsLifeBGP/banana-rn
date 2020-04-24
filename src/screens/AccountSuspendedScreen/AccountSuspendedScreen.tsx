@@ -1,16 +1,25 @@
+import { Paragraph, SpacerInline } from '@elements';
 import React from 'react';
-import { Text } from 'react-native';
 import InfoScreen from '../InfoScreen';
-import styles from './AccountSuspendedScreen.styles';
 
 export default () => (
 	<InfoScreen
-		title="Your account has been suspended."
+		title="Your account is suspended. ):"
 		nextScreenTitle="Contact Us"
 		nextScreenDestination="ContactScreen"
+		showBackButton={false}
 	>
-		<Text style={styles.documentText}>
-			We have temporarily suspended this account while we investigate.  Thanks for your understanding.
-		</Text>
+		<Paragraph>
+      Looks like your application didn't meet one of our requirements.
+		</Paragraph>
+		<SpacerInline height={20} />
+		<Paragraph>
+      Please expect to receive a call from us within 24-48 hours regarding your
+      account.
+		</Paragraph>
+		<SpacerInline height={20} />
+		<Paragraph>
+      If you don't hear from us, please contact us via email.
+		</Paragraph>
 	</InfoScreen>
 );

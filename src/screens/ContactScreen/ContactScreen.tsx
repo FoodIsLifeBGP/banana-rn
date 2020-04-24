@@ -7,10 +7,10 @@ import styles from './ContactScreen.styles';
 export default () => (
 	<InfoScreen
 		title="Contact."
-		backDestination="ApplicationPendingScreen"
 	>
 		<Text style={styles.documentText}>
-			Please allow 24-48 hours for your registration to complete.  The app will open when your application is processed.
+			Please allow 24-48 hours for your registration to complete.
+			The app will open when your application is processed.
 		</Text>
 		<SpacerInline height={25} />
 		<Text style={styles.headingText}>

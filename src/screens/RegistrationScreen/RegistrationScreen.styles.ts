@@ -49,17 +49,9 @@ export default StyleSheet.create({
 	iconPadding: {
 		paddingRight: 35,
 	},
-	icon: {
-		fontSize: 24,
-		color: colors.NAVY_BLUE,
-	},
 	row: {
 		width: '100%',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
-	},
-	chevronIcon: {
-		color: colors.NAVY_BLUE,
-		fontSize: 37,
 	},
 });

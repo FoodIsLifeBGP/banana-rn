@@ -1,0 +1,12 @@
+<svg fill="#083A9B" version="1.1"
+	 id="svg2186" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="27px" height="23px"
+	 viewBox="0 0 27 23" enable-background="new 0 0 27 23" xml:space="preserve">
+<path id="rect1450" d="M1.5,4h21C23.328,4,24,4.671,24,5.5l0,0C24,6.329,23.328,7,22.5,7h-21C0.671,7,0,6.329,0,5.5
+	l0,0C0,4.671,0.671,4,1.5,4z"/>
+<path id="rect1452" d="M1.5,12h21c0.828,0,1.5,0.672,1.5,1.5l0,0c0,0.828-0.672,1.5-1.5,1.5h-21
+	C0.671,15,0,14.328,0,13.5l0,0C0,12.672,0.671,12,1.5,12z"/>
+<path id="rect1454" d="M1.5,20h21c0.828,0,1.5,0.672,1.5,1.5l0,0c0,0.828-0.672,1.5-1.5,1.5h-21
+	C0.671,23,0,22.328,0,21.5l0,0C0,20.672,0.671,20,1.5,20z"/>
+<circle id="circle1456" fill="#FF0000" cx="23" cy="4" r="4"/>
+</svg>
