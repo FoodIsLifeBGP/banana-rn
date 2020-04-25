@@ -9,14 +9,14 @@ export default () => (
 		nextScreenDestination="ContactScreen"
 		showBackButton={false}
 	>
-		<Paragraph>Looks like your application needs further review.</Paragraph>
+		<Paragraph fontSize={20}>Looks like your application needs further review.</Paragraph>
 		<SpacerInline height={20} />
-		<Paragraph>
+		<Paragraph fontSize={20}>
       Please expect to receive a call from us within 24-48 hours regarding your
       account.
 		</Paragraph>
 		<SpacerInline height={20} />
-		<Paragraph>
+		<Paragraph fontSize={20}>
       If you don't hear from us, please contact us via email.
 		</Paragraph>
 	</InfoScreen>
