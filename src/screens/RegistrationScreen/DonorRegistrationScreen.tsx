@@ -12,7 +12,7 @@ import { Checkbox } from 'react-native-paper';
 import {
 	FormTextInput,
 	InputLabel,
-	Header,
+	NavBar,
 	LinkButton,
 	SpacerInline,
 	Title,
@@ -68,7 +68,7 @@ export default () => {
 	return (
 		<ScrollView contentContainerStyle={styles.outerContainer}>
 			<View>
-				<Header showMenu={false} />
+				<NavBar showMenu={false} />
 				<Title text="Registration." />
 				<Text style={styles.text}>
 					Please add your business's details below.  You will be able to update them once registration is complete.
