@@ -9,3 +9,4 @@ export { SpacerInline } from './SpacerInline';
 export { Title } from './Title';
 export { Paragraph } from './Paragraph';
 export { Modal } from './Modal';
+export { TheAlertModal } from './TheAlertModal';

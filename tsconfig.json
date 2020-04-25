@@ -15,13 +15,15 @@
     "experimentalDecorators": true,
     "baseUrl": ".",
     "paths": {
-      "@assets/*": ["./assets/*"],
+      		"@assets/*": ["./assets/*"],
 			"@elements": ["./src/elements"],
 			"@elements/*": ["./src/elements/*"],
 			"@screens/*": ["./src/screens/*"],
 			"@state": ["./src/state"],
 			"@state/*": ["./src/state/*"],
-      "@util/*": ["./src/util/*"]
+			"@library": ["./src/library"],
+			"@library/*": ["./src/library/*"],
+      		"@util/*": ["./src/util/*"]
 		},
     "removeComments": true,
     "sourceMap": true,

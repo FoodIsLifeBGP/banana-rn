@@ -6,8 +6,8 @@ import {
 	TouchableOpacity,
 	Image,
 } from 'react-native';
-import { Donation } from './DonationOrClaim.type';
-import styles from './DonationOrClaim.styles';
+import { Donation } from './Donation.type';
+import styles from './Donation.styles';
 
 export default ({ donation }: Donation) => {
 	const { navigate } = useNavigation();
