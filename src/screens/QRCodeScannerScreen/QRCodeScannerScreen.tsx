@@ -59,22 +59,21 @@ export default () => {
 					<Modal title="ITEM DONATED" open={modalOn} onDismiss={handleDismiss} palette="secondary">
 						<View style={styles.content}>
 							{/* Placeholder for the item photo */}
-							<View style={styles.circle}
-							/>
-							<Text style={styles.textStyle}>{data.name}</Text>
-							<View style={styles.details}>
-								<Text>
+							<View style={styles.circle} />
+							<Text style={{ ...styles.textStyle, fontWeight: 'bold' }}>{data.name}</Text>
+							<View style={styles.textContainer}>
+								<Text style={styles.textStyle}>
 									<Icon name="image" style={styles.iconStyle} />
 									{data.by}
 								</Text>
 							</View>
-							<View style={{ ...styles.details, marginBottom: 20 }}>
+							<View style={{ ...styles.textContainer, marginBottom: 20 }}>
 								<Text style={styles.textStyle}>
 									<Icon name="unlock" style={styles.iconStyle} />
 									{data.createdAt}
 								</Text>
 							</View>
-							<TextButton text="OK" textStyle={{ fontSize: 12, paddingHorizontal: 15 }} buttonStyle={buttonStyle} onPress={handleDismiss} />
+							<TextButton text="OK" textStyle={styles.buttonTextStyle} buttonStyle={buttonStyle} onPress={handleDismiss} />
 						</View>
 					</Modal>
 				</>
@@ -86,13 +85,13 @@ export default () => {
 							{/* Placeholder for the item photo */}
 							<View style={styles.circle}
 							/>
-							<Text style={styles.textStyle}>PLEASE TRY AGAIN</Text>
-							<View style={{ ...styles.details, marginVertical: 20 }}>
-								<Text>QR Code Scan was not successful.</Text>
-								<Text>If this issue is not resolved,</Text>
-								<Text>Please contact us.</Text>
+							<Text style={{ ...styles.textStyle, fontWeight: 'bold' }}>PLEASE TRY AGAIN</Text>
+							<View style={{ ...styles.textContainer, marginVertical: 20 }}>
+								<Text style={styles.textStyle}>QR Code Scan was not successful.</Text>
+								<Text style={styles.textStyle}>If this issue is not resolved,</Text>
+								<Text style={styles.textStyle}>Please contact us.</Text>
 							</View>
-							<TextButton text="OK" textStyle={{ fontSize: 12, paddingHorizontal: 15 }} buttonStyle={buttonStyle} onPress={handleDismiss} />
+							<TextButton text="OK" textStyle={styles.buttonTextStyle} buttonStyle={buttonStyle} onPress={handleDismiss} />
 						</View>
 					</Modal>
 				</>
@@ -110,7 +109,7 @@ export default () => {
 						style={StyleSheet.absoluteFillObject}
 					/>
 					<BarCodeMask />
-					{scanned && <ModalContent />}
+					<ModalContent />
 				</>
 			);
 			case false: return <Text>No access to camera</Text>;
