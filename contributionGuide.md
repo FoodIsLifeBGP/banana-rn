@@ -105,7 +105,7 @@ Title
   );
   ```
 
-  Note that for more complicated component that needs to receive multiple parameters, we need to define the interface of parameter and apply it into functional component. Below is the example of `ClaimingProgressBar` which presents the claim status of a donation.
+  Note that for more complicated component that needs to receive multiple properties, we need to define an interface of the parameter and use it when initializing the functional component. Below is an example of `ClaimingProgressBar` which presents the claim statuses of a donation.
 
   ```tsx
   import React from 'react';
@@ -157,7 +157,7 @@ Title
   
   ```
 
-***it's recommended to build a skeleton of a component and add that component to index.ts under `elements`, so you could use it in screen and debug it.***
+***It's recommended to build a skeleton of a component and add that component to `index.ts` under `elements`, so you can more easily use it within screens to test and debug it.***
 
 #### Add component to element module and use it
 
