@@ -68,7 +68,7 @@ Title
 
 - Index.ts (export the component)
 
-  ``` typescript
+  ```tsx
   import Title from './Title';
   
   export { Title };
@@ -76,7 +76,7 @@ Title
 
 - Title.styles.ts (contains style rules for the component)
 
-  ``` typescript
+  ```tsx
   import { StyleSheet } from 'react-native';
   import * as colors from '@util/colors';
   
@@ -93,7 +93,7 @@ Title
 
 - Title.tsx (contains functional React component)
 
-  ``` typescript
+  ```tsx
   import React from 'react';
   import { View, Text } from 'react-native';
   import styles from './Title.styles';
@@ -107,7 +107,7 @@ Title
 
   Note that for more complicated component that needs to receive multiple parameters, we need to define the interface of parameter and apply it into functional component. Below is the example of `ClaimingProgressBar` which presents the claim status of a donation.
 
-  ``` typescript
+  ```tsx
   import React from 'react';
   import {
   	StyleProp, Text, TextStyle,
@@ -160,7 +160,7 @@ Title
 
 After you set up the skeleton of you component, export your component in `index.ts` under `elements`.
 
-``` typescript
+```tsx
 export { FormTextInput } from './FormTextInput';
 export { Header } from './Header';
 export { Icon } from './Icon';
@@ -178,7 +178,7 @@ export { Title } from './Title';
 
 After that, you could use your component in screen, as the code below:
 
-``` typescript
+```tsx
 import React, { useState } from 'react';
 import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
 import { View, Alert, TextInput } from 'react-native';
