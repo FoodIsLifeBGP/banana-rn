@@ -88,7 +88,6 @@ Title
   		color: colors.NAVY_BLUE,
   	},
   });
-  
   ```
 
 - Title.tsx (contains functional React component)
@@ -149,12 +148,10 @@ Title
   	const total = pickedUp + reserved + left;
   	return (
   		<View style={[ styles.claimProgressBar, { width }, style ]}>
-  		/*implementation logic*/
+  		  /*implementation logic*/
   		</View>
   	);
   };
-  
-  
   ```
 
 ***It's recommended to build a skeleton of a component and add that component to `index.ts` under `elements`, so you can more easily use it within screens to test and debug it.***
