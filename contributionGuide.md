@@ -204,4 +204,8 @@ export default () => {
 
 ### How to Create a PR and Use PR Templates
 
-@**[jacksonrya](https://github.com/jacksonrya)** provides a PR template [there](https://github.com/FoodIsLifeBGP/banana-rn/pull/49). You could create your PR under this format, and feel free to remove some section if that does not apply to your PR topic.
+Before submitting a PR, make sure that your changes come from a branch other than your master.
+
+One option is to first create a [Draft Pull Request](9https://github.blog/2019-02-14-introducing-draft-pull-requests/). If you'd like to share your work process and gather more feedback during your progress, this is a great option. Otherwise, feel free to submit a Pull Request when you know your changes are ready for review.
+
+[Pull request templates](https://github.com/FoodIsLifeBGP/banana-rn/tree/master/.github/PULL_REQUEST_TEMPLATE) are available within the `.github` directory. You can create your PR using the available templates and can remove any sections if they do not apply to your PR topic.
