@@ -6,20 +6,31 @@ import {
 import styles from './ClaimingProgressBar.styles';
 
 interface ClaimingProgressBarProps {
+	/** width for ClaimingProgressBar, default set to 100%. */
+
 	width?: number | string;
+	/** number of donations has been picked up. */
+
 	pickedUp: number;
+	/** number of donations has been reserved. */
+
 	reserved: number;
+	/** number of donations remaining. */
+
 	left: number;
+	/** style of ClaimingProgressBar. */
+
 	style?: StyleProp<TextStyle>;
 }
 /**
  * ClaimingProgressBar, basic idea is using flex-grow attribute of element to stretch bars
- * to corresponding proportion
- * @param{width} width for ClaimingProgressBar, default set to 100%
- * @param{pickedUp} number of donations has been picked up
- * @param{reserved} number of donations has been reserved
- * @param{left} number of donations remaining
- * @param{style} style of ClaimingProgressBar
+ * to corresponding proportion.
+ *
+ * @param width width for ClaimingProgressBar, default set to 100%.
+ * @param pickedUp number of donations has been picked up.
+ * @param reserved number of donations has been reserved.
+ * @param left number of donations remaining.
+ * @param style style of ClaimingProgressBar.
  * */
 export default ({
 	width = '100%',

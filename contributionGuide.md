@@ -115,26 +115,29 @@ Title
   } from 'react-native';
   import styles from './ClaimingProgressBar.styles';
   
-  //define interface there
+  // DEFINE INTERFACE HERE
   
   interface ClaimingProgressBarProps {
-  	width?: number | string;
-  	pickedUp: number;
-  	reserved: number;
-  	left: number;
-  	style?: StyleProp<TextStyle>;
+	/** Width for ClaimingProgressBar. */
+	width?: number | string;
+
+	/** Number of donations has been picked up. */
+	pickedUp: number;
+
+	/** Number of donations has been reserved. */
+	reserved: number;
+
+	/** Number of donations remaining. */
+	left: number;
+
+	/** Style of ClaimingProgressBar. */
+	style?: StyleProp<TextStyle>;
   }
-  
-  // apply interface in parameters of function and set default value
+
   /**
-   * ClaimingProgressBar, basic idea is using flex-grow attribute of element to stretch bars
-   * to corresponding proportion
-   * @param{width} width for ClaimingProgressBar, default set to 100%
-   * @param{pickedUp} number of donations has been picked up
-   * @param{reserved} number of donations has been reserved
-   * @param{left} number of donations remaining
-   * @param{style} style of ClaimingProgressBar
-   * */
+   * Data visualization that shows the total number of picked-up, reserved, and available
+   * servings within a single donation.
+   */
   export default ({
   	width = '100%',
   	pickedUp,
