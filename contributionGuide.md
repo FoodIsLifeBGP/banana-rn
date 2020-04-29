@@ -2,7 +2,7 @@
 
 ## Structure overview
 
-.
+```shell
 ├── App.styles.ts	(*contains global style*)
 ├── App.tsx 	(*entry point of project*)
 ├── README.md
@@ -27,6 +27,7 @@
 │   ├── state	(*encapsulates all the functions related to communication, data processing etc.*)
 │   └── util	(*contains all global variables likely to be reused in app (e.g. color scheme)*)
 └── tsconfig.json
+```
 
 ## Common development guidance
 
@@ -58,11 +59,12 @@ We would use an example of  `Title` as example:
 
 A component should have 3 files. In example of `Title`, a directory called `Title` should be placed under `src->elements` and has structure as below:
 
+```shell
 Title
 ├── Title.styles.ts
 ├── Title.tsx
-
 └── index.ts
+```
 
 - Index.ts (export the component)
 
