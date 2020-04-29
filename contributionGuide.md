@@ -3,11 +3,11 @@
 ## Structure Overview
 
 ```shell
-├── App.styles.ts	(*contains global style*)
-├── App.tsx 	(*entry point of project*)
+├── App.styles.ts	(* contains global styles *)
+├── App.tsx 	(* entry point of project *)
 ├── README.md
-├── app.json  (*contains settings for project (e.g. edit `extra->variant` as `client` to switch to client mode))*
-├── assets  (*contains image source and font used in application*)
+├── app.json  (* contains settings for project (e.g. 'donor'/'client' variants) *)
+├── assets  (* contains images and fonts used in application *)
 │   ├── documents
 │   ├── fonts
 │   ├── icon.png
@@ -20,12 +20,12 @@
 ├── package-lock.json
 ├── package.json
 ├── src
-│   ├── elements	(*mapped as @element module, contains basic components like button, icon, and navbar*)
-│   ├── library	(*mapped as @library module, contains elements that based on basic component and reusable in different screen*)
-│   ├── routes	(*contains router logic, check [there](https://reactnavigation.org/docs/4.x/getting-started) for documentations of react-navigation*)
-│   ├── screens	(*contains all the application screen*)
-│   ├── state	(*encapsulates all the functions related to communication, data processing etc.*)
-│   └── util	(*contains all global variables likely to be reused in app (e.g. color scheme)*)
+│   ├── elements	(* @element as alias, contains basic components like button, icon, and navbar *)
+│   ├── library	(* @library as alias, contains reusable compositions of elements *)
+│   ├── routes	(* contains router logic, check (https://reactnavigation.org/docs/4.x/getting-started) for documentations of react-navigation *)
+│   ├── screens	(* contains all the application's screens*)
+│   ├── state	(* global store/state files related to communication, data processing etc. *)
+│   └── util	(* utililty functions (e.g. requesting user permissions) and constants (e.g. color scheme) not specific to any component *)
 └── tsconfig.json
 ```
 
