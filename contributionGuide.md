@@ -1,6 +1,6 @@
-# Project structure Introduction && Contribution Guide
+# Project Structure Introduction & Contribution Guide
 
-## Structure overview
+## Structure Overview
 
 ```shell
 ├── App.styles.ts	(*contains global style*)
@@ -29,7 +29,7 @@
 └── tsconfig.json
 ```
 
-## Common development guidance
+## Common Development Guidance
 
 ### How to switch to client side
 
@@ -202,6 +202,6 @@ export default () => {
 
 ```
 
-### How to Create PR and use PR template
+### How to Create a PR and Use PR Templates
 
 @**[jacksonrya](https://github.com/jacksonrya)** provides a PR template [there](https://github.com/FoodIsLifeBGP/banana-rn/pull/49). You could create your PR under this format, and feel free to remove some section if that does not apply to your PR topic.
