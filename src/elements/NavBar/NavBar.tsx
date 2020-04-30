@@ -14,7 +14,7 @@ interface NavBarProps {
 	backDestination?: string;
 	showMenu?: boolean;
 	showBackButton?: boolean;
-	leftButton?: string;
+	leftButton?: 'qrCode'|'back';
 	showSelector?: boolean;
 	position?: 'map'|'list';
 	onMap?: () => any;
