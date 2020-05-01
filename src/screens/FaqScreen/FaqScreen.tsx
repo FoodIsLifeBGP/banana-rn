@@ -12,51 +12,54 @@ import {
 	SpacerInline,
 	Icon,
 } from '@elements';
+import { useNavigation } from 'react-navigation-hooks';
 import styles, {
 	QuestionListItem,
 	ICON_SIZE,
 } from './FaqScreen.styles';
 
-export default () => (
-	<View style={styles.outerContainer}>
-		<View style={{ width: '50%' }}>
-			<Header showMenu={true} />
-		</View>
-		{/* Delete spacer after TopBar/NavBar is fixed/ added */}
-		<SpacerInline height={1} />
+export default () => {
+	const { goBack } = useNavigation();
 
-		<ScrollView>
-			<ContentHeader title="FAQs" textStyle={{ textTransform: 'none' }} />
-
-			<View style={styles.bodyContainer}>
-				<View style={styles.questionList}>
-					{
-						questions.map((
-							{
-								question,
-								answer,
-							},
-							i,
-						) => (
-							<FaqListItem
-								key={question}
-								question={question}
-								answer={answer}
-								listIndex={i}
-							/>
-						))
-					}
-				</View>
-
-				{/* https://reactnavigation.org/docs/navigating/#going-back */}
-				{/* TODO: add style prop to LinkButton */}
-				<View style={styles.backButton}>
-					<LinkButton text="Back" onPress={() => console.log('programmatically go back')} />
-				</View>
+	return (
+		<View style={styles.outerContainer}>
+			<View style={{ width: '50%' }}>
+				<Header showMenu={true} />
 			</View>
-		</ScrollView>
-	</View>
-);
+			{/* Delete spacer after TopBar/NavBar is fixed/ added */}
+			<SpacerInline height={1} />
+
+			<ScrollView>
+				<ContentHeader title="FAQs" textStyle={{ textTransform: 'none' }} />
+
+				<View style={styles.bodyContainer}>
+					<View style={styles.questionList}>
+						{
+							questions.map((
+								{
+									question,
+									answer,
+								},
+								i,
+							) => (
+								<FaqListItem
+									key={question}
+									question={question}
+									answer={answer}
+									listIndex={i}
+								/>
+							))
+						}
+					</View>
+
+					<View style={styles.backButton}>
+						<LinkButton text="Back" onPress={() => goBack()} />
+					</View>
+				</View>
+			</ScrollView>
+		</View>
+	);
+};
 
 interface FAQItemProps {
 	question: string;
