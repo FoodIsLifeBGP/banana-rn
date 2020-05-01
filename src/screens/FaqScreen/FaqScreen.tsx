@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import {
 	Text,
 	TouchableHighlight,
-	TouchableHighlightProps,
 	View,
+	ScrollView,
 } from 'react-native';
 import {
 	ContentHeader,
@@ -12,8 +12,10 @@ import {
 	SpacerInline,
 	Icon,
 } from '@elements';
-import { ScrollView } from 'react-native-gesture-handler';
-import styles, { QuestionListItem, ICON_SIZE } from './FaqScreen.styles';
+import styles, {
+	QuestionListItem,
+	ICON_SIZE,
+} from './FaqScreen.styles';
 
 export default () => (
 	<View style={styles.outerContainer}>
@@ -29,7 +31,13 @@ export default () => (
 			<View style={styles.bodyContainer}>
 				<View style={styles.questionList}>
 					{
-						questions.map(({ question, answer }, i) => (
+						questions.map((
+							{
+								question,
+								answer,
+							},
+							i,
+						) => (
 							<FaqListItem
 								key={question}
 								question={question}
@@ -76,15 +84,30 @@ const FaqListItem = ({
 			<TouchableHighlight onPress={handlePress}>
 				<View style={QuestionListItem.questionContainer}>
 					<View style={QuestionListItem.questionIcon}>
-						<Icon name={isOpen ? 'condense' : 'expand'} size={ICON_SIZE} />
+						<Icon
+							name={isOpen
+								? 'condense'
+								: 'expand'}
+							size={ICON_SIZE}
+						/>
 
-						{/* <Icon name="singleBanana" size={ICON_SIZE} /> */}
+						{/* TODO: <Icon name="singleBanana" size={ICON_SIZE} /> */}
 					</View>
 					<Text style={QuestionListItem.questionText}>{question}</Text>
 				</View>
 			</TouchableHighlight>
 
-			<View style={[ QuestionListItem.answerTextContainer, { display: isOpen ? 'flex' : 'none' } ]}>
+			<View style={
+				[
+					QuestionListItem.answerTextContainer,
+					{
+						display: isOpen
+							? 'flex'
+							: 'none',
+					},
+				]
+			}
+			>
 				<Text style={QuestionListItem.answerText}>
 					{answer}
 				</Text>
@@ -98,9 +121,11 @@ const questions: Array<{ question: string; answer: string }> = [
 	{
 		question: 'What are the guidelines for donation items?',
 		// TODO: find data structure that enables rich text parsing, so we can dynamically add bold, italics, etc
-		answer: 'We are big on trust & safety. Please follow below. '
-			+ 'Items you can donate: considered not aesthetically-pleasing for market display or sale but still '
-			+ 'edible and in good condition. Items you cannot donate: that you would not be willing to eat yourself.',
+		answer: `
+We are big on trust & safety. Please follow below.
+Items you can donate: considered not aesthetically-pleasing for market display or sale but still \
+edible and in good condition. Items you cannot donate: that you would not be willing to eat yourself.
+		`,
 	},
 	{
 		question: 'Can I cancel or edit the published donations?',
