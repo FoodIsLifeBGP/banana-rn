@@ -20,6 +20,7 @@ export const ListItem = StyleSheet.create({
 	title: {
 		flexDirection: 'row',
 		alignItems: 'center',
+		marginBottom: 5,
 	},
 	titleText: {
 		...typography.h3,
