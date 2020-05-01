@@ -10,15 +10,16 @@ import {
 	ContentHeader,
 	Header,
 	SpacerInline,
+	Icon,
 } from '@elements';
+import { IconName } from '@elements/Icon';
 import styles, { ListItem } from './ContactScreen.styles';
 
-// TODO: Update interface to use IconName type
 const contactList: Array<{
 	title: string;
 	message: string;
 	link: string;
-	iconName: string;
+	iconName: IconName;
 }> = [
 	{
 		title: 'website',
@@ -74,7 +75,9 @@ export default () => (
 						<TouchableHighlight key={contact.title} onPress={() => Linking.openURL(contact.link)}>
 							<View style={[ ListItem.container, i === 0 && ListItem.firstContainer ]}>
 								<View style={ListItem.title}>
-									{/* <Icon style={ListItem.titleIcon} name={contact.iconName} size={24} /> */}
+									<View style={ListItem.titleIcon}>
+										<Icon name={contact.iconName} size={24} />
+									</View>
 
 									<Text style={ListItem.titleText}>
 										{contact.title}
