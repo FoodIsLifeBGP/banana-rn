@@ -24,8 +24,7 @@ const contactList: Array<{
 	{
 		title: 'website',
 		message: 'www.bananaapp.org',
-		// TODO: update to website, when built
-		link: 'https://bgpnow.wixsite.com/here/banana-app',
+		link: 'https://www.bananaapp.org',
 		iconName: 'website',
 	},
 	{
