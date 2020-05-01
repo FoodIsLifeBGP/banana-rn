@@ -44,7 +44,6 @@ const contactList: Array<{
 ];
 
 export default () => (
-	// TODO: add scrollview depending on how UI team wants specific elements to scroll (or not)
 	<View style={styles.outerContainer}>
 		<Header showMenu={true} />
 		{/* TODO: remove spacer after header is updated */}
