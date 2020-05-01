@@ -30,7 +30,7 @@ export default () => (
 				<View style={styles.questionList}>
 					{
 						questions.map(({ question, answer }, i) => (
-							<FaqLineItem
+							<FaqListItem
 								key={question}
 								question={question}
 								answer={answer}
@@ -56,8 +56,7 @@ interface FAQItemProps {
 	listIndex: number;
 }
 
-// TODO: Rename FaqListItem
-const FaqLineItem = ({
+const FaqListItem = ({
 	question,
 	answer,
 	listIndex,
