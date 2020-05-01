@@ -11,6 +11,7 @@ import {
 	SpacerInline,
 	Header,
 	ContentHeader,
+	Icon,
 } from '@elements';
 import styles, { HelpListItemStyles } from './HelpScreen.styles';
 
@@ -72,7 +73,9 @@ const HelpListItem = ({
 					{text}
 				</Text>
 
-				{/* <Icon style={HelpListItemStyles.icon} name="more" size={24} /> */}
+				<View style={HelpListItemStyles.icon}>
+					<Icon name="more" size={24} />
+				</View>
 			</View>
 		</TouchableHighlight>
 	);

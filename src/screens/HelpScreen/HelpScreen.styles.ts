@@ -10,6 +10,7 @@ export const HelpListItemStyles = StyleSheet.create({
 		paddingHorizontal: GRID_MARGIN,
 		paddingVertical: 15,
 		justifyContent: 'space-between',
+		alignItems: 'center',
 		backgroundColor: Colors.WHITE,
 		borderBottomWidth: 1,
 		borderBottomColor: Colors.LIGHT_GRAY,
