@@ -6,7 +6,7 @@ import {
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import useGlobal from '@state';
 import {
-	Title, SpacerInline, Header, LinkButton, Button,
+	Title, SpacerInline, LinkButton, Button, NavBar,
 } from '@elements';
 import QRCode from 'react-native-qrcode-svg';
 import * as colors from '@util/colors';
@@ -47,7 +47,7 @@ const DonationsDetailScreen = () => {
 	return (
 		<ScrollView style={styles.outerContainer}>
 			<View>
-				<Header showBackButton={true} />
+				<NavBar showBackButton={true} />
 				<SpacerInline height={20} />
 			</View>
 			<View style={styles.contentContainer}>

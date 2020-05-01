@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import useGlobal from '@state';
-import { Title, SpacerInline, Header } from '@elements';
+import { Title, SpacerInline, NavBar } from '@elements';
 import QRCode from 'react-native-qrcode-svg';
 import * as colors from '@util/colors';
 import styles from './ClaimDetailScreen.styles';

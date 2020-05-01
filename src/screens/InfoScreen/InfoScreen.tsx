@@ -1,5 +1,5 @@
 import {
-	Header, LinkButton, SpacerInline, Title,
+	NavBar, LinkButton, SpacerInline, Title,
 } from '@elements';
 import React, { FunctionComponent } from 'react';
 import { View } from 'react-native';
@@ -23,7 +23,7 @@ const InfoScreen: FunctionComponent<InfoScreenProps> = ({
 }) => (
 	<View style={styles.outerContainer}>
 		<View>
-			<Header showMenu={false} showBackButton={showBackButton} backDestination={backDestination} />
+			<NavBar showMenu={false} showBackButton={showBackButton} backDestination={backDestination} />
 			<Title text={title} />
 			<SpacerInline height={20} />
 			<View>

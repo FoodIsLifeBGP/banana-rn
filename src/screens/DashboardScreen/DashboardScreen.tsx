@@ -3,7 +3,7 @@ import { useNavigation } from 'react-navigation-hooks';
 import { View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import useGlobal from '@state';
-import { Title, SpacerInline, Header } from '@elements';
+import { Title, SpacerInline, NavBar } from '@elements';
 import { DonationsOrClaims } from '@library';
 import styles from './DashboardScreen.styles';
 import DonorDashboardScreen from '../DonorDashboardScreen';
@@ -22,7 +22,7 @@ const DashboardScreen = () => {
 	return (
 		<View style={styles.outerContainer}>
 			<View>
-				<Header showBackButton={false} />
+				<NavBar showBackButton={false} />
 				<Title text={title} />
 				<SpacerInline height={20} />
 			</View>
