@@ -17,7 +17,7 @@ import {
 	LinkButton,
 	FormTextInput,
 	SpacerInline,
-	Header,
+	NavBar,
 	Icon,
 	InputLabel,
 } from '@elements';
@@ -109,7 +109,7 @@ export default () => {
 	return (
 		<ScrollView contentContainerStyle={styles.outerContainer}>
 			<View>
-				<Header showMenu={false} backDestination="LoginScreen" />
+				<NavBar showMenu={false} backDestination="LoginScreen" />
 				<Title text="Registration." />
 				<Text style={styles.text}>
 					Add your details below.  Please give us 24-48 hours to verify your account.
