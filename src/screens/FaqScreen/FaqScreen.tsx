@@ -10,95 +10,89 @@ import {
 	Header,
 	LinkButton,
 	SpacerInline,
+	Icon,
 } from '@elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import styles, { QuestionListItem, ICON_SIZE } from './FaqScreen.styles';
 
-export default () => {
-	// Array of the 'open' state mapped to the FAQ questions.
-	const [ questionOpenStates, setQuestionOpenStates ] = useState(new Array(questions.length).fill(false));
-
-	return (
-		<View style={styles.outerContainer}>
-			<View style={{ width: '50%' }}>
-				<Header showMenu={true} />
-			</View>
-			{/* Delete spacer after TopBar/NavBar is fixed/ added */}
-			<SpacerInline height={1} />
-
-			<ScrollView>
-				<ContentHeader title="FAQs" textStyle={{ textTransform: 'none' }} />
-
-				<View style={styles.bodyContainer}>
-					<View style={styles.questionList}>
-						{
-							questions.map(({ question, answer }, i) => (
-								<FaqLineItem
-									// eslint-disable-next-line react/no-array-index-key
-									key={i}
-									question={question}
-									answer={answer}
-									open={questionOpenStates[i]}
-									listIndex={i}
-									onPress={() => {
-										// Toggle open status of question
-										const arr = [ ...questionOpenStates ];
-										arr[i] = !arr[i];
-										setQuestionOpenStates(arr);
-									}}
-								/>
-							))
-						}
-					</View>
-
-					{/* https://reactnavigation.org/docs/navigating/#going-back */}
-					{/* TODO: add style prop to LinkButton */}
-					<View style={styles.backButton}>
-						<LinkButton text="Back" onPress={() => console.log('programmatically go back')} />
-					</View>
-				</View>
-			</ScrollView>
+export default () => (
+	<View style={styles.outerContainer}>
+		<View style={{ width: '50%' }}>
+			<Header showMenu={true} />
 		</View>
-	);
-};
+		{/* Delete spacer after TopBar/NavBar is fixed/ added */}
+		<SpacerInline height={1} />
+
+		<ScrollView>
+			<ContentHeader title="FAQs" textStyle={{ textTransform: 'none' }} />
+
+			<View style={styles.bodyContainer}>
+				<View style={styles.questionList}>
+					{
+						questions.map(({ question, answer }, i) => (
+							<FaqLineItem
+								key={question}
+								question={question}
+								answer={answer}
+								listIndex={i}
+							/>
+						))
+					}
+				</View>
+
+				{/* https://reactnavigation.org/docs/navigating/#going-back */}
+				{/* TODO: add style prop to LinkButton */}
+				<View style={styles.backButton}>
+					<LinkButton text="Back" onPress={() => console.log('programmatically go back')} />
+				</View>
+			</View>
+		</ScrollView>
+	</View>
+);
 
 interface FAQItemProps {
 	question: string;
 	answer: string;
-	open: boolean;
 	listIndex: number;
-	onPress: TouchableHighlightProps['onPress'];
 }
 
 // TODO: Rename FaqListItem
 const FaqLineItem = ({
 	question,
 	answer,
-	open,
 	listIndex,
-	onPress,
-}: FAQItemProps) => (
-	<View style={[
-		QuestionListItem.container,
-		listIndex === 0 && QuestionListItem.firstContainer,
-	]}
-	>
-		<TouchableHighlight onPress={onPress}>
-			<View style={QuestionListItem.questionContainer}>
-				{/* <Icon style={QuestionListItem.questionIcon} name="singleBanana" size={ICON_SIZE} /> */}
-				{/* Replace View el (below) with Icon el (above) when Icon component using SVG is available */}
-				<View style={[ QuestionListItem.questionIcon, { backgroundColor: 'pink', width: ICON_SIZE, height: ICON_SIZE } ]} />
-				<Text style={QuestionListItem.questionText}>{question}</Text>
-			</View>
-		</TouchableHighlight>
+}: FAQItemProps) => {
+	const [ isOpen, setIsOpen ] = useState(false);
 
-		<View style={[ QuestionListItem.answerTextContainer, { display: open ? 'flex' : 'none' } ]}>
-			<Text style={QuestionListItem.answerText}>
-				{answer}
-			</Text>
+	const handlePress = () => {
+		setIsOpen(!isOpen);
+	};
+
+	return (
+		<View style={[
+			QuestionListItem.container,
+			listIndex === 0 && QuestionListItem.firstContainer,
+		]}
+		>
+			<TouchableHighlight onPress={handlePress}>
+				<View style={QuestionListItem.questionContainer}>
+					<View style={QuestionListItem.questionIcon}>
+						<Icon name={isOpen ? 'condense' : 'expand'} size={ICON_SIZE} />
+
+						{/* <Icon name="singleBanana" size={ICON_SIZE} /> */}
+					</View>
+					<Text style={QuestionListItem.questionText}>{question}</Text>
+				</View>
+			</TouchableHighlight>
+
+			<View style={[ QuestionListItem.answerTextContainer, { display: isOpen ? 'flex' : 'none' } ]}>
+				<Text style={QuestionListItem.answerText}>
+					{answer}
+				</Text>
+			</View>
 		</View>
-	</View>
-);
+	);
+};
 
 // Temporary structure, will be replaced by API call?
 const questions: Array<{ question: string; answer: string }> = [
