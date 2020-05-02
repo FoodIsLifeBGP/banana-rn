@@ -95,8 +95,7 @@ export default () => {
 					<Modal title="SOMETHING WENT WRONG" open={modalOn} onDismiss={handleDismiss} palette="secondary">
 						<View style={styles.content}>
 							{/* Placeholder for the item photo */}
-							<View style={styles.circle}
-							/>
+							<View style={styles.circle} />
 							<Text style={{ ...styles.textStyle, fontWeight: 'bold' }}>PLEASE TRY AGAIN</Text>
 							<View style={{ ...styles.errorContainer, marginVertical: 20 }}>
 								<Text style={styles.errorStyle}>QR Code Scan was not successful.</Text>
