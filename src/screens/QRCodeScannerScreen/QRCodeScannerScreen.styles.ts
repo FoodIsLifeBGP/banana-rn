@@ -17,21 +17,30 @@ export default StyleSheet.create({
 		color: colors.NAVY_BLUE,
 	},
 	textContainer: {
+		flex: 1,
+		marginVertical: 3,
+		color: colors.NAVY_BLUE,
+		justifyContent: 'center',
+		alignItems: 'center',
+		flexDirection: 'row',
+	},
+	textStyle: {
+		color: colors.NAVY_BLUE,
+		marginLeft: 3,
+	},
+	errorStyle: {
+		color: colors.NAVY_BLUE,
+	},
+	errorContainer: {
+		flex: 1,
 		marginVertical: 3,
 		color: colors.NAVY_BLUE,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
-	textStyle: {
-		color: colors.NAVY_BLUE,
-	},
 	buttonTextStyle: {
 		fontSize: 12,
 		paddingHorizontal: 15,
-	},
-	iconStyle: {
-		color: 'blue',
-		fontSize: 20,
 	},
 	circle: {
 		height: 75,
