@@ -13,7 +13,6 @@ const scaler = windowSquare / (windowSquare / 50);
 const widthMinusWindow = (width - windowSquare) / 2;
 const heightMinusWindow = ((height - windowSquare) / 2) - scaler;
 
-
 export default StyleSheet.create({
 	background: {
 		backgroundColor: colors.DARK_GRAY_TRANSPARENT,
@@ -103,5 +102,5 @@ export default StyleSheet.create({
 		borderLeftWidth: 0,
 		bottom: heightMinusWindow + scaler + 2,
 		right: widthMinusWindow,
-	},
+	}
 });

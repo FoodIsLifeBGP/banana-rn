@@ -16,17 +16,17 @@ export default () => {
 			<View style={styles.background} />
 			<View style={styles.xContainer}>
 				<TouchableWithoutFeedback onPress={() => navigate('DashboardScreen')}>
-					<Icon name="chevron-left" style={styles.x} />
+					<Icon name="chevron-left" size={48} color="gray" />
 				</TouchableWithoutFeedback>
 				<TouchableWithoutFeedback onPress={() => navigate('DashboardScreen')}>
-					<Icon name="close" style={styles.x} />
+					<Icon name="close" size={48} color="gray" />
 				</TouchableWithoutFeedback>
 			</View>
 			<View style={styles.textContainer}>
 				<Text style={styles.text}>
 					{`
-					Align QR code
-					within frame to scan
+						Align QR code
+						within frame to scan
 					`}
 				</Text>
 			</View>
