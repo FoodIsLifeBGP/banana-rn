@@ -41,6 +41,7 @@ module.exports = {
 					'@assets',
 					'@screens',
 					'@elements',
+					'@library',
 					'@util',
 					'@state',
 					'../',

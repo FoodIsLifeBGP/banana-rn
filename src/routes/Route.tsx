@@ -6,7 +6,9 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 import * as colors from '@util/colors';
 import getEnv from '@util/environment';
 
-// TODO: For some reason global imports aren't for these
+import { Icon } from '@elements';
+import { IconName } from '@elements/Icon';
+
 import LoginScreen from '../screens/LoginScreen';
 import DashboardScreen from '../screens/DashboardScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
@@ -17,9 +19,15 @@ import DonationScreen from '../screens/DashboardScreen/DonationScreen';
 import QRCodeScannerScreen from '../screens/QRCodeScannerScreen/QRCodeScannerScreen';
 import ClaimDetailScreen from '../screens/ClaimDetailScreen/ClaimDetailScreen';
 import LogoutScreen from '../screens/LogoutScreen';
+import DonationsDetailScreen from '../screens/DonationsDetailScreen/DonationsDetailScreen';
 
 import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
-import SvgImage from '../elements/SvgImage/SvgImage';
+
+const DrawerIcon = (name: IconName) => Icon({
+	name,
+	size: 18,
+	color: colors.WHITE,
+});
 
 // Logged-In Screens for Drawer Navigator
 export const MainStack = createStackNavigator(
@@ -29,6 +37,7 @@ export const MainStack = createStackNavigator(
 		DonationScreen,
 		QRCodeScannerScreen,
 		ClaimDetailScreen,
+		DonationsDetailScreen,
 	},
 	{
 		headerMode: 'none',
@@ -44,14 +53,14 @@ const donorOrClientDrawer = () => {
 			screen: QRCodeScannerScreen,
 			navigationOptions: {
 				drawerLabel: 'Scan QR Code',
-				drawerIcon: <SvgImage source={require('@assets/icons/ICON_QR-CODE.svg')} />,
+				drawerIcon: DrawerIcon('qrCode'),
 			},
 		},
 		DashboardScreen: {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: 'My Donations',
-				drawerIcon: <SvgImage source={require('@assets/icons/ICON_DONATIONS.svg')} />,
+				drawerIcon: DrawerIcon('donations'),
 			},
 		},
 	};
@@ -61,7 +70,7 @@ const donorOrClientDrawer = () => {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: 'My Claims',
-				drawerIcon: <SvgImage source={require('@assets/icons/ICON_CLAIMS.svg')} />,
+				drawerIcon: DrawerIcon('claims'),
 			},
 		},
 	};
@@ -71,28 +80,28 @@ const donorOrClientDrawer = () => {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: 'My Profile',
-				drawerIcon: <SvgImage source={require('@assets/icons/ICON_USER.svg')} />,
+				drawerIcon: DrawerIcon('user'),
 			},
 		},
 		SettingsScreen: {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: 'Settings',
-				drawerIcon: <SvgImage source={require('@assets/icons/ICON_SETTINGS.svg')} />,
+				drawerIcon: DrawerIcon('settings'),
 			},
 		},
 		HelpScreen: {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: 'Help',
-				drawerIcon: <SvgImage source={require('@assets/icons/ICON_HELP.svg')} />,
+				drawerIcon: DrawerIcon('help'),
 			},
 		},
 		LogoutScreen: {
 			screen: LogoutScreen,
 			navigationOptions: {
 				drawerLabel: 'Log Out',
-				drawerIcon: <SvgImage source={require('@assets/icons/ICON_LOGOUT.svg')} />,
+				drawerIcon: DrawerIcon('logout'),
 			},
 		},
 	};

@@ -9,7 +9,7 @@ export default () => {
 
 	return (
 		<TouchableOpacity onPress={toggleDrawer}>
-			<Icon name="menu" />
+			<Icon name="menu" size={36} />
 		</TouchableOpacity>
 	);
 };

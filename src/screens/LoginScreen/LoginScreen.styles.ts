@@ -1,34 +1,53 @@
 import { StyleSheet } from 'react-native';
 import * as colors from '@util/colors';
+import typography from '@util/typography';
+
+const SCREEN_HORIZONTAL_OFFSET = '5%';
 
 export default StyleSheet.create({
 	outerContainer: {
 		flex: 1,
-		backgroundColor: colors.BANANA_YELLOW,
-		paddingHorizontal: '15%',
+		flexBasis: '100%',
 	},
-	input: {
-		height: 50,
-		marginBottom: 15,
-		backgroundColor: 'white',
-		fontSize: 14,
-		fontFamily: 'open-sans-regular',
-		color: colors.NAVY_BLUE,
-		paddingLeft: 12,
-	},
-	passwordContainer: {
-		height: 50,
-		flexDirection: 'row',
-		justifyContent: 'flex-start',
-		backgroundColor: 'white',
-	},
-	iconContainer: {
+	header: {
+		flexGrow: 1,
+		flexShrink: 2,
+		flexBasis: '27%',
+		maxHeight: 300,
 		justifyContent: 'center',
-		alignItems: 'center',
-		width: 50,
+		paddingHorizontal: SCREEN_HORIZONTAL_OFFSET,
+		backgroundColor: colors.BANANA_YELLOW,
 	},
-	hideIcon: {
-		fontSize: 26,
-		color: colors.NAVY_BLUE,
+	bodyContainer: {
+		flexGrow: 4,
+		width: '100%',
+	},
+	bodyContentContainer: {
+		paddingTop: '5%',
+		alignItems: 'center',
+		paddingHorizontal: SCREEN_HORIZONTAL_OFFSET,
+	},
+	form: {
+		width: '100%',
+	},
+	inputEmail: {
+		marginBottom: 15,
+	},
+	buttonContainer: {
+		width: '100%',
+		flexDirection: 'row',
+		paddingHorizontal: '8%',
+		justifyContent: 'space-between',
+		// Below styling keeps the buttons close to the fields on all screen sizes
+		alignItems: 'flex-end',
+		flex: 1,
+		minHeight: 70,
+		maxHeight: 116,
+	},
+	forgotPassword: {
+		alignSelf: 'flex-end',
+	},
+	forgotPasswordText: {
+		...typography.body3,
 	},
 });

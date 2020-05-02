@@ -16,10 +16,14 @@ export default () => {
 			<View style={styles.background} />
 			<View style={styles.xContainer}>
 				<TouchableWithoutFeedback onPress={() => navigate('DashboardScreen')}>
+<<<<<<< HEAD
 					<Icon name="chevron-left" style={styles.x} />
 				</TouchableWithoutFeedback>
 				<TouchableWithoutFeedback onPress={() => navigate('DashboardScreen')}>
 					<Icon name="close" style={styles.x} />
+=======
+					<Icon name="close" size={24} />
+>>>>>>> 629d9b76d0f028bd7405157b3f127b1ce897134b
 				</TouchableWithoutFeedback>
 			</View>
 			<View style={styles.textContainer}>

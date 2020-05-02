@@ -1,13 +1,13 @@
 import React from 'react';
 import { TextInput, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { Title, SpacerInline, Header } from '@elements';
+import { Title, SpacerInline, NavBar } from '@elements';
 import Terms from '@assets/documents/SampleToS';
 import styles from './TermsScreen.styles';
 
 export default () => (
 	<View style={styles.outerContainer}>
-		<Header showMenu={false} />
+		<NavBar showMenu={false} />
 		<Title text="Terms and conditions" />
 		<SpacerInline height={20} />
 		<ScrollView contentContainerStyle={{ justifyContent: 'space-between' }}>

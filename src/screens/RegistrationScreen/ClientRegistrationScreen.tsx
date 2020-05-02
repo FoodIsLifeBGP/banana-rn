@@ -17,7 +17,7 @@ import {
 	LinkButton,
 	FormTextInput,
 	SpacerInline,
-	Header,
+	NavBar,
 	Icon,
 	InputLabel,
 } from '@elements';
@@ -59,7 +59,7 @@ export default () => {
 		<View style={styles.iconContainer}>
 			<Icon
 				name="chevron-down"
-				style={styles.chevronIcon}
+				size={24}
 			/>
 		</View>
 	);
@@ -109,7 +109,7 @@ export default () => {
 	return (
 		<ScrollView contentContainerStyle={styles.outerContainer}>
 			<View>
-				<Header showMenu={false} backDestination="LoginScreen" />
+				<NavBar showMenu={false} backDestination="LoginScreen" />
 				<Title text="Registration." />
 				<Text style={styles.text}>
 					Add your details below.  Please give us 24-48 hours to verify your account.
@@ -140,7 +140,7 @@ export default () => {
 						<TouchableWithoutFeedback
 							onPress={() => setHidePwd(!hidePwd)}
 						>
-							<Icon name={hidePwd ? 'lock' : 'unlock'} style={styles.icon} />
+							<Icon name={hidePwd ? 'lock' : 'unlock'} size={24} />
 						</TouchableWithoutFeedback>
 					</View>
 				</View>

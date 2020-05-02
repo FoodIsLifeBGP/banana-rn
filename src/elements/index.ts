@@ -1,5 +1,5 @@
 export { FormTextInput } from './FormTextInput';
-export { Header } from './Header';
+export { NavBar } from './NavBar';
 export { Icon } from './Icon';
 export { InputLabel } from './FormTextInput/InputLabel';
 export { Button } from './Button';
@@ -9,3 +9,4 @@ export { SpacerInline } from './SpacerInline';
 export { Title } from './Title';
 export { Paragraph } from './Paragraph';
 export { Modal } from './Modal';
+export { TheAlertModal } from './TheAlertModal';

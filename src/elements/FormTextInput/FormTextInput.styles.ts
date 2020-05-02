@@ -3,12 +3,13 @@ import typography from '@util/typography';
 import * as colors from '@util/colors';
 
 const INPUT_PADDING_HORIZONTAL = 10;
+const INPUT_HEIGHT = 48;
 
 export default StyleSheet.create({
 	input: {
 		...typography.body1,
 		width: '100%',
-		height: 48,
+		height: INPUT_HEIGHT,
 		marginBottom: 5,
 		paddingHorizontal: INPUT_PADDING_HORIZONTAL,
 		paddingVertical: 13,
@@ -32,5 +33,16 @@ export default StyleSheet.create({
 		// TODO: apply disabled color palette
 		backgroundColor: colors.LIGHT_GRAY_DISABLED,
 		color: colors.WHITE,
+	},
+	passwordVisibilityIcon: {
+		position: 'absolute',
+		right: 0,
+	},
+	passwordIconContainer: {
+		width: INPUT_HEIGHT, // Ensures clickable area fits accessibility standards
+		height: INPUT_HEIGHT,
+		alignItems: 'flex-end',
+		justifyContent: 'center',
+		paddingRight: 8,
 	},
 });
