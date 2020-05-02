@@ -26,10 +26,21 @@ export default () => {
 		},
 	};
 
+	const getTime = () => {
+		const date = new Date();
+		const hh = date.getHours();
+		const mm = date.getMinutes();
+		const AMPM = (hh > 12) ? 'PM' : 'AM';
+		return `${(hh > 12) ? hh % 12 : hh}: ${(mm < 10) ? '0' + mm : mm} ${AMPM} `;
+	};
+
+	const getDate = () => new Date().toDateString().slice(4).split(' ')
+		.join('/');
+
 	/* Random data */
 	const data = {
-		createdAt: new Date().toDateString().slice(4).split(' ')
-			.join('/'),
+		date: getDate(),
+		time: getTime(),
 		by: 'Ernest Bruno',
 		name: 'Banana',
 	};
@@ -60,17 +71,18 @@ export default () => {
 						<View style={styles.content}>
 							{/* Placeholder for the item photo */}
 							<View style={styles.circle} />
-							<Text style={{ ...styles.textStyle, fontWeight: 'bold' }}>{data.name}</Text>
+							<Text style={{ ...styles.textStyle, fontWeight: 'bold', marginBottom: 5 }}>{data.name.toUpperCase()}</Text>
 							<View style={styles.textContainer}>
+								<Icon name="user" color="blue" size={20} />
 								<Text style={styles.textStyle}>
-									<Icon name="image" style={styles.iconStyle} />
 									{data.by}
 								</Text>
 							</View>
 							<View style={{ ...styles.textContainer, marginBottom: 20 }}>
+								<Icon name="time" color="blue" size={20} />
 								<Text style={styles.textStyle}>
-									<Icon name="unlock" style={styles.iconStyle} />
-									{data.createdAt}
+									{data.time}
+									{data.date}
 								</Text>
 							</View>
 							<TextButton text="OK" textStyle={styles.buttonTextStyle} buttonStyle={buttonStyle} onPress={handleDismiss} />
@@ -86,10 +98,10 @@ export default () => {
 							<View style={styles.circle}
 							/>
 							<Text style={{ ...styles.textStyle, fontWeight: 'bold' }}>PLEASE TRY AGAIN</Text>
-							<View style={{ ...styles.textContainer, marginVertical: 20 }}>
-								<Text style={styles.textStyle}>QR Code Scan was not successful.</Text>
-								<Text style={styles.textStyle}>If this issue is not resolved,</Text>
-								<Text style={styles.textStyle}>Please contact us.</Text>
+							<View style={{ ...styles.errorContainer, marginVertical: 20 }}>
+								<Text style={styles.errorStyle}>QR Code Scan was not successful.</Text>
+								<Text style={styles.errorStyle}>If this issue is not resolved,</Text>
+								<Text style={styles.errorStyle}>Please contact us.</Text>
 							</View>
 							<TextButton text="OK" textStyle={styles.buttonTextStyle} buttonStyle={buttonStyle} onPress={handleDismiss} />
 						</View>
