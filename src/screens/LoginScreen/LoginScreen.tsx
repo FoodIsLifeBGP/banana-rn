@@ -70,6 +70,7 @@ export default () => {
 						onSubmitEditing={handleEmailInputSubmit}
 						autoCorrect={false}
 						enablesReturnKeyAutomatically={true}
+						autoCapitalize="none"
 						autoCompleteType="username"
 						textContentType="username"
 						keyboardType="email-address"
