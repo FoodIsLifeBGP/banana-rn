@@ -31,7 +31,7 @@ export default () => {
 		const hh = date.getHours();
 		const mm = date.getMinutes();
 		const AMPM = (hh > 12) ? 'PM' : 'AM';
-		return `${(hh > 12) ? hh % 12 : hh}: ${(mm < 10) ? '0' + mm : mm} ${AMPM} `;
+		return `${(hh > 12) ? hh % 12 : hh}: ${(mm < 10) ? '0'.concat(mm.toString()) : mm} ${AMPM} `;
 	};
 
 	const getDate = () => new Date().toDateString().slice(4).split(' ')
