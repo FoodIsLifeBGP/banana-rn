@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import {
 	ContentHeader,
-	Header,
+	NavBar,
 	LinkButton,
 	SpacerInline,
 	Icon,
@@ -24,10 +24,8 @@ export default () => {
 	return (
 		<View style={styles.outerContainer}>
 			<View style={{ width: '50%' }}>
-				<Header showMenu={true} />
+				<NavBar />
 			</View>
-			{/* Delete spacer after TopBar/NavBar is fixed/ added */}
-			<SpacerInline height={1} />
 
 			<ScrollView>
 				<ContentHeader title="FAQs" textStyle={{ textTransform: 'none' }} />

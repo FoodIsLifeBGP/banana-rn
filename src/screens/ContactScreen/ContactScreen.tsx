@@ -8,7 +8,7 @@ import {
 import { Linking } from 'expo';
 import {
 	ContentHeader,
-	Header,
+	NavBar,
 	SpacerInline,
 	Icon,
 } from '@elements';
@@ -45,9 +45,7 @@ const contactList: Array<{
 
 export default () => (
 	<View style={styles.outerContainer}>
-		<Header showMenu={true} />
-		{/* TODO: remove spacer after header is updated */}
-		<SpacerInline height={1} />
+		<NavBar />
 
 		<ContentHeader title="Contact Us" />
 

@@ -9,7 +9,7 @@ import { useNavigation } from 'react-navigation-hooks';
 import { Linking } from 'expo';
 import {
 	SpacerInline,
-	Header,
+	NavBar,
 	ContentHeader,
 	Icon,
 } from '@elements';
@@ -18,9 +18,7 @@ import styles, { HelpListItemStyles } from './HelpScreen.styles';
 
 export default () => (
 	<View style={styles.outerContainer}>
-		<Header showMenu={true} />
-		{/* Delete spacer after TopBar/NavBar is fixed/ added */}
-		<SpacerInline height={1} />
+		<NavBar />
 
 		<ContentHeader title="Help" headerSize="large" />
 
