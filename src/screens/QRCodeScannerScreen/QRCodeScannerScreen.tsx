@@ -6,7 +6,7 @@ import * as Permissions from 'expo-permissions';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
 import { Modal, TextButton, Icon } from '@elements';
-import { ButtonStyle } from '@elements/button';
+import { ButtonStyle } from '@elements/Button';
 
 import BarCodeMask from './BarCodeMask';
 import styles from './QRCodeScannerScreen.styles';
