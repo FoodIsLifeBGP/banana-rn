@@ -20,6 +20,7 @@ export default function Checkbox({
 			return (
 				<CheckBox
 					Component={TouchableWithoutFeedback}
+					checked={checked}
 					size={size}
 				/>
 			);
@@ -27,7 +28,7 @@ export default function Checkbox({
 		return (
 			<CheckBox
 				checked={checked}
-				onPress={setCheck}
+				onPress={() => setCheck}
 				size={size}
 			/>
 		);
