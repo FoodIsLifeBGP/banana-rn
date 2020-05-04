@@ -19,7 +19,7 @@ export default function Checkbox({
 		<CheckBox
 			Component={disabled ? TouchableWithoutFeedback : TouchableOpacity}
 			checked={checked}
-			onPress={disabled ? () => null : setCheck}
+			onPress={disabled ? () => null : () => setCheck()}
 			size={size}
 		/>
 	);
