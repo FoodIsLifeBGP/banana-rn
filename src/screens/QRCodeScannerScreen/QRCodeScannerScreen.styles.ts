@@ -10,7 +10,7 @@ export default StyleSheet.create({
 	modal: {
 		flex: 1,
 	},
-	content:{
+	content: {
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -49,5 +49,5 @@ export default StyleSheet.create({
 		borderColor: 'blue',
 		borderRadius: 50,
 		marginBottom: 10,
-	}
+	},
 });

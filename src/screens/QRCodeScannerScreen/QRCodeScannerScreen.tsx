@@ -60,6 +60,7 @@ export default () => {
 	const handleDismiss = () => {
 		setScanned({ data: '' });
 		setModalOn(false);
+		goBack();
 	};
 
 	// Switch for Modal Content.
@@ -71,7 +72,11 @@ export default () => {
 						<View style={styles.content}>
 							{/* Placeholder for the item photo */}
 							<View style={styles.circle} />
-							<Text style={{ ...styles.textStyle, fontWeight: 'bold', marginBottom: 5 }}>{data.name.toUpperCase()}</Text>
+							<Text
+								style={{ ...styles.textStyle, fontWeight: 'bold', marginBottom: 5 }}
+							>
+								{data.name.toUpperCase()}
+							</Text>
 							<View style={styles.textContainer}>
 								<Icon name="user" color="blue" size={20} />
 								<Text style={styles.textStyle}>
@@ -85,7 +90,12 @@ export default () => {
 									{data.date}
 								</Text>
 							</View>
-							<TextButton text="OK" textStyle={styles.buttonTextStyle} buttonStyle={buttonStyle} onPress={handleDismiss} />
+							<TextButton
+								text="OK"
+								textStyle={styles.buttonTextStyle}
+								buttonStyle={buttonStyle}
+								onPress={handleDismiss}
+							/>
 						</View>
 					</Modal>
 				</>
@@ -102,7 +112,12 @@ export default () => {
 								<Text style={styles.errorStyle}>If this issue is not resolved,</Text>
 								<Text style={styles.errorStyle}>Please contact us.</Text>
 							</View>
-							<TextButton text="OK" textStyle={styles.buttonTextStyle} buttonStyle={buttonStyle} onPress={handleDismiss} />
+							<TextButton
+								text="OK"
+								textStyle={styles.buttonTextStyle}
+								buttonStyle={buttonStyle}
+								onPress={handleDismiss}
+							/>
 						</View>
 					</Modal>
 				</>
