@@ -102,5 +102,5 @@ export default StyleSheet.create({
 		borderLeftWidth: 0,
 		bottom: heightMinusWindow + scaler + 2,
 		right: widthMinusWindow,
-	}
+	},
 });
