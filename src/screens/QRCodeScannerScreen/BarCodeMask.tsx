@@ -24,10 +24,10 @@ export default () => {
 			</View>
 			<View style={styles.textContainer}>
 				<Text style={styles.text}>
-					{`
 						Align QR code
-						within frame to scan
-					`}
+				</Text>
+				<Text style={styles.text}>
+					within frame to scan
 				</Text>
 			</View>
 		</>
