@@ -40,7 +40,6 @@ export default StyleSheet.create({
 		position: 'absolute',
 		bottom: 0,
 		width,
-		backgroundColor: 'red',
 		height: 250,
 		justifyContent: 'center',
 		alignItems: 'center',
