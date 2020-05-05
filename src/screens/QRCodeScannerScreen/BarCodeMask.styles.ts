@@ -36,7 +36,6 @@ export default StyleSheet.create({
 		fontSize: 48,
 	},
 	textContainer: {
-		position: 'absolute',
 		bottom: 0,
 		width: 375,
 		height: 250,
