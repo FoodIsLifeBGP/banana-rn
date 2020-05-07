@@ -105,7 +105,7 @@ export default () => {
 
 				<View style={styles.buttonContainer}>
 					<LinkButton text="Log In" onPress={handleLogin} />
-					<LinkButton text="Register" destination="RegistrationScreen" />
+					<LinkButton text="Register" textColor="DARK_GRAY" destination="RegistrationScreen" />
 				</View>
 			</ScrollView>
 		</KeyboardAvoidingView>
