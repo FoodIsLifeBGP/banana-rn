@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_13_210446) do
+ActiveRecord::Schema.define(version: 2020_05_08_164629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -46,14 +46,16 @@ ActiveRecord::Schema.define(version: 2019_12_13_210446) do
     t.string "address_state"
     t.integer "address_zip"
     t.string "account_status"
-    t.string "transportation_method"
     t.string "ethnicity"
     t.string "gender"
+    t.integer "document_id"
+    t.string "phone_number"
+    t.string "profile_pic_link"
   end
 
   create_table "documents", force: :cascade do |t|
     t.string "title"
-    t.text "contents"
+    t.text "location"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -84,9 +86,15 @@ ActiveRecord::Schema.define(version: 2019_12_13_210446) do
     t.integer "address_zip"
     t.string "business_license"
     t.string "account_status"
-    t.string "pickup_location"
+    t.string "pickup_instructions"
     t.decimal "latitude", precision: 10, scale: 6
     t.decimal "longitude", precision: 10, scale: 6
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone_number"
+    t.string "business_phone_number"
+    t.integer "business_doc_id"
+    t.string "profile_pic_link"
   end
 
   create_table "rpush_apps", force: :cascade do |t|
