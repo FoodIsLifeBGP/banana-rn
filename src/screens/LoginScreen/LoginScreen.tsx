@@ -9,11 +9,16 @@ import {
 	KeyboardAvoidingView,
 } from 'react-native';
 import useGlobal from '@state';
+import * as colors from '@util/colors';
 import {
-	Title,
+	Icon, 
 	LinkButton,
 	FormTextInput,
+	Modal,
+	TextButton,
+	Title
 } from '@elements';
+import { ButtonStyle } from '@elements/Button';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import styles from './LoginScreen.styles';
 
@@ -22,12 +27,19 @@ export default () => {
 	const [ state, actions ] = useGlobal() as any;
 	const { userIdentity } = state;
 	const { logIn } = actions;
+	const buttonStyle: ButtonStyle = {
+		default: {
+			background: colors.NAVY_BLUE,
+			foreground: colors.WHITE,
+		},
+	};
 
 	const passwordInputRef: RefObject<TextInput> = createRef();
 
 	const [ email, setEmail ] = useState(useNavigationParam('email') ?? '');
 	const [ password, setPassword ] = useState(useNavigationParam('password') ?? '');
 	const [ isPasswordVisible, setIsPasswordVisible ] = useState(false);
+	const [ modalOn, setModalOn ] = useState(false);
 
 	const clearEmailAndPassword = () => { setEmail(''); setPassword(''); };
 
@@ -48,7 +60,57 @@ export default () => {
 		}
 	};
 
-	const handleForgotPassword = () => { console.log('Handle forgot password.'); };
+	const handleForgotPassword = () => { 
+		setModalOn(true);
+
+		console.log('Handle forgot password.'); };
+
+	const handleForgotPasswordDismiss = () => {
+		setModalOn(false);
+		useNavigation();
+	}
+
+	// Switch for Modal Content.
+	const ModalContent = () => {
+		switch (userIdentity) {
+			case ('EmailPassword'): return (
+				<>
+					<Modal title="RESET PASSWORD" open={modalOn} onDismiss={handleForgotPasswordDismiss} palette="secondary">
+						<View>
+							<View>
+								<Icon name="email" color="blue" size={20} />
+								<FormTextInput
+									label="email"
+									placeholder="info@bananaapp.org"
+									value={email}
+									setValue={setEmail}
+									style={styles.inputEmail}
+									onSubmitEditing={handleEmailInputSubmit}
+									autoCorrect={false}
+									enablesReturnKeyAutomatically={true}
+									autoCapitalize="none"
+									autoCompleteType="username"
+									textContentType="username"
+									keyboardType="email-address"
+									returnKeyType="go"
+									blurOnSubmit={true} // Necessary to prevent focus from 'flickering'
+								/>
+							</View>
+							<TextButton
+								text="OK"
+								buttonStyle={buttonStyle}
+								onPress={handleForgotPasswordDismiss}
+							/>
+						</View>
+					</Modal>
+				</>
+			);
+			case ('Error'): return (
+				console.log('error on password reset')
+			);
+			default: return (<></>);
+		}
+	};
 
 	return (
 		<KeyboardAvoidingView style={styles.outerContainer} behavior="padding">
