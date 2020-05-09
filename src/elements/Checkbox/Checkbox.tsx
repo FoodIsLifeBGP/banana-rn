@@ -1,7 +1,10 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { Icon } from '@elements';
-import { NAVY_BLUE, LIGHT_GRAY_DISABLED } from '@util/colors';
+import {
+	NAVY_BLUE,
+	LIGHT_GRAY_DISABLED,
+} from '@util/colors';
 
 interface CheckboxProps {
 	/**
@@ -48,8 +51,12 @@ export default function Checkbox({
 			onPress={handlePress}
 		>
 			<Icon
-				name={checked ? 'checkboxOn' : 'checkboxOff'}
-				color={disabled ? LIGHT_GRAY_DISABLED : NAVY_BLUE}
+				name={checked
+					? 'checkboxOn'
+					: 'checkboxOff'}
+				color={disabled
+					? LIGHT_GRAY_DISABLED
+					: NAVY_BLUE}
 				size={size}
 			/>
 		</TouchableOpacity>
