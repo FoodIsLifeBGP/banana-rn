@@ -62,8 +62,9 @@ export default () => {
 
 	const handleForgotPassword = () => { 
 		setModalOn(true);
-
-		console.log('Handle forgot password.'); };
+		console.log('Handle forgot password.'); 
+		<ModalContent />		
+	};
 
 	const handleForgotPasswordDismiss = () => {
 		setModalOn(false);
@@ -72,45 +73,42 @@ export default () => {
 
 	// Switch for Modal Content.
 	const ModalContent = () => {
-		switch (userIdentity) {
-			case ('EmailPassword'): return (
-				<>
-					<Modal title="RESET PASSWORD" open={modalOn} onDismiss={handleForgotPasswordDismiss} palette="secondary">
+		return (
+			<>
+				<Modal title="RESET PASSWORD" open={modalOn} onDismiss={handleForgotPasswordDismiss} palette="secondary">
+					<View>
 						<View>
-							<View>
-								<Icon name="email" color="blue" size={20} />
-								<FormTextInput
-									label="email"
-									placeholder="info@bananaapp.org"
-									value={email}
-									setValue={setEmail}
-									style={styles.inputEmail}
-									onSubmitEditing={handleEmailInputSubmit}
-									autoCorrect={false}
-									enablesReturnKeyAutomatically={true}
-									autoCapitalize="none"
-									autoCompleteType="username"
-									textContentType="username"
-									keyboardType="email-address"
-									returnKeyType="go"
-									blurOnSubmit={true} // Necessary to prevent focus from 'flickering'
-								/>
-							</View>
-							<TextButton
-								text="OK"
-								buttonStyle={buttonStyle}
-								onPress={handleForgotPasswordDismiss}
+							<Icon name="email" color="blue" size={20} />
+							<FormTextInput
+								label="email"
+								placeholder="info@bananaapp.org"
+								value={email}
+								setValue={setEmail}
+								style={styles.inputEmail}
+								onSubmitEditing={handleEmailInputSubmit}
+								autoCorrect={false}
+								enablesReturnKeyAutomatically={true}
+								autoCapitalize="none"
+								textContentType="username"
+								keyboardType="email-address"
+								returnKeyType="go"
+								blurOnSubmit={true} // Necessary to prevent focus from 'flickering'
 							/>
 						</View>
-					</Modal>
-				</>
-			);
-			case ('Error'): return (
-				console.log('error on password reset')
-			);
-			default: return (<></>);
-		}
+						<TextButton
+							text="OK"
+							buttonStyle={buttonStyle}
+							onPress={handleForgotPasswordDismiss}
+						/>
+					</View>
+				</Modal>
+			</>
+		);
+		// case ('Error'): return (
+		// 	console.log('error on password reset')
+		// );
 	};
+
 
 	return (
 		<KeyboardAvoidingView style={styles.outerContainer} behavior="padding">
