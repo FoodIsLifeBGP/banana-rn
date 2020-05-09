@@ -8,6 +8,7 @@ interface CheckboxProps {
 	setChecked: Function;
 	size?: number; // default = 18
 	disabled?: boolean; // default = false
+	onPress?: Function;
 }
 
 export default function Checkbox({
@@ -15,11 +16,17 @@ export default function Checkbox({
 	setChecked,
 	size = 18,
 	disabled = false,
+	onPress = () => {},
 }: CheckboxProps) {
+	const handlePress = () => {
+		setChecked(!checked);
+		onPress();
+	};
+
 	return (
 		<TouchableOpacity
 			disabled={disabled}
-			onPress={() => { setChecked(!checked); }}
+			onPress={handlePress}
 		>
 			<Icon
 				name={checked ? 'checkboxOn' : 'checkboxOff'}
