@@ -1,6 +1,7 @@
 import React from 'react';
-import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
-import { CheckBox } from 'react-native-elements';
+import { TouchableOpacity } from 'react-native';
+import { Icon } from '@elements';
+import { NAVY_BLUE } from '@util/colors';
 
 interface CheckboxProps {
 	checked: boolean;
@@ -16,11 +17,15 @@ export default function Checkbox({
 	disabled = false,
 }: CheckboxProps) {
 	return (
-		<CheckBox
-			Component={disabled ? TouchableWithoutFeedback : TouchableOpacity}
-			checked={checked}
-			onPress={disabled ? () => null : () => setCheck()}
-			size={size}
-		/>
+		<TouchableOpacity
+			disabled={disabled}
+			onPress={() => { setCheck(!checked); }}
+		>
+			<Icon
+				name={checked ? 'arrowDown' : 'arrowUp'}
+				color={NAVY_BLUE}
+				size={size}
+			/>
+		</TouchableOpacity>
 	);
 }
