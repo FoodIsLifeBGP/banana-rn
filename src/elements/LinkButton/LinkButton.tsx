@@ -30,15 +30,15 @@ export default ({
 		<View style={styles.container}>
 			<TouchableOpacity
 				disabled={disabled}
-				activeOpacity={0.8}
+				activeOpacity={0.3}
 				onPress={buttonFunction}
 			>
 				<View
 					style={[
 						styles.textContainer,
 						{
-							backgroundColor: disabled
-								? colors.LIGHT_GRAY
+							borderColor: disabled
+								? colors.LIGHT_YELLOW
 								: borderColor,
 						},
 					]}
