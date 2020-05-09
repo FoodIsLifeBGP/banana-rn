@@ -30,7 +30,7 @@ export default function Checkbox({
 		>
 			<Icon
 				name={checked ? 'checkboxOn' : 'checkboxOff'}
-				color={NAVY_BLUE}
+				color={disabled ? LIGHT_GRAY_DISABLED : NAVY_BLUE}
 				size={size}
 			/>
 		</TouchableOpacity>
