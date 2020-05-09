@@ -37,7 +37,9 @@ export default ({
 					style={[
 						styles.textContainer,
 						{
-							borderColor: borderColor,
+							borderColor: disabled && borderColor == colors.BANANA_YELLOW
+								? colors.LIGHT_YELLOW
+								: borderColor,
 						},
 					]}
 				>
@@ -45,7 +47,9 @@ export default ({
 						style={[
 							styles.text,
 							{
-								color: textColor,
+								color: disabled && textColor == colors.NAVY_BLUE
+									? colors.LIGHT_GRAY_DISABLED
+									: textColor,
 							},
 						]}
 					>
