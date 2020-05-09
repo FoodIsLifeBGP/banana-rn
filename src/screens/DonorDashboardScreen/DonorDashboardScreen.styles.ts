@@ -7,9 +7,11 @@ const addButtonSize = 110;
 export default StyleSheet.create({
 	outerContainer: {
 		flex: 1,
-		justifyContent: 'space-between',
-		backgroundColor: colors.BANANA_YELLOW,
-		paddingHorizontal: '11%',
+		backgroundColor: colors.WHITE,
+	},
+	contentContainer: {
+		flex: 1,
+		padding: 20,
 	},
 	input: {
 		height: 50,

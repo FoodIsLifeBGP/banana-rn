@@ -1,7 +1,5 @@
 import React from 'react';
-import { useNavigation } from 'react-navigation-hooks';
-import { View, Text } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { View } from 'react-native';
 import useGlobal from '@state';
 import { Title, SpacerInline, NavBar } from '@elements';
 import { DonationsOrClaims } from '@library';
@@ -9,7 +7,6 @@ import styles from './DashboardScreen.styles';
 import DonorDashboardScreen from '../DonorDashboardScreen';
 
 const DashboardScreen = () => {
-	const { navigate } = useNavigation();
 	const [ state ] = useGlobal();
 	const { userIdentity } = state;
 
@@ -17,27 +14,19 @@ const DashboardScreen = () => {
 		return DonorDashboardScreen();
 	}
 
-	const title = 'Open Donations.';
+	const title = 'Donations';
 
 	return (
 		<View style={styles.outerContainer}>
-			<View>
-				<NavBar showBackButton={false} />
+
+			<NavBar showBackButton={false} />
+
+			<View style={styles.contentContainer}>
 				<Title text={title} />
 				<SpacerInline height={20} />
+				<DonationsOrClaims resource="claims" />
 			</View>
 
-			<DonationsOrClaims resource="claims" />
-
-			<View style={styles.addButton}>
-				<TouchableOpacity
-					onPress={() => navigate('DonationScreen', {})}
-				>
-					<Text style={styles.plus}>
-						+
-					</Text>
-				</TouchableOpacity>
-			</View>
 		</View>
 	);
 };
