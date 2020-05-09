@@ -37,7 +37,7 @@ export default ({ resource }: LocalProps) => {
 
 	if (!loaded) { return <Text>Loading...</Text>; }
 
-	return Array.isArray(donations) && donations !== []
+	return donations && Array.isArray(donations) && donations.length > 0
 		? (
 			<ScrollView>
 				{

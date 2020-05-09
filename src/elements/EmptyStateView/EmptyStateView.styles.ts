@@ -10,4 +10,9 @@ export default StyleSheet.create({
 		backgroundColor: colors.LIGHT_YELLOW,
 		padding: 40,
 	},
+	browser: {
+		height: 200,
+		width: 200,
+		resizeMode: 'contain',
+	},
 });
