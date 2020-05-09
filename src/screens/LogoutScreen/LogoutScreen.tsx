@@ -9,6 +9,6 @@ export default () => (
 		nextScreenDestination="LoginScreen"
 		showBackButton={false}
 	>
-		<Paragraph>We hope to see you soon!</Paragraph>
+		<Paragraph fontSize={20}>We hope to see you soon!</Paragraph>
 	</InfoScreen>
 );

@@ -10,11 +10,11 @@ export default () => (
 		nextScreenDestination="HelpScreen"
 		showBackButton={false}
 	>
-		<Paragraph>
+		<Paragraph fontSize={20}>
       Please allow 24-48 hours for your registration to be reviewed. We will
       send you an email once the application has been processed.
 		</Paragraph>
 		<SpacerInline height={40} />
-		<Paragraph emphasized={true}>THANK YOU!</Paragraph>
+		<Paragraph emphasized={true} fontSize={20}>THANK YOU!</Paragraph>
 	</InfoScreen>
 );
