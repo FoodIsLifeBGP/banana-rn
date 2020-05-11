@@ -5,5 +5,5 @@ class ClientSerializer < ActiveModel::Serializer
     :address_city,
     :address_state,
     :address_zip,
-    :email,
+    :email
 end
