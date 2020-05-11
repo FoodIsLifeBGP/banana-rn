@@ -108,7 +108,7 @@ class ClientsController < ApplicationController
       :email,
       :ethnicity,
       :gender,
-      :password,
+      :password
     )
   end
 end
