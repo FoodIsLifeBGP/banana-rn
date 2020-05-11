@@ -90,7 +90,7 @@ class DonorsController < ApplicationController
 			:email,
 			:organization_name,
 			:password,
-			:pickup_location,
+			:pickup_instructions
 		)
 	end
 end

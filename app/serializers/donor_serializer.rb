@@ -9,5 +9,5 @@ class DonorSerializer < ActiveModel::Serializer
     :donations,
     :email,
     :organization_name,
-    :pickup_location
+    :pickup_instructions
 end

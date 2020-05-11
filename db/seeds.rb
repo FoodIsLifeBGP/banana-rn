@@ -18,7 +18,7 @@ donor1 = Donor.create!(
 	address_zip: 98104,
 	business_license: "9198DD435AS3456",
 	account_status: "active",
-	pickup_location: "Front desk",
+	pickup_instructions: 'Please go to the front desk.'
 )
 donor2 = Donor.create(
 	organization_name: "Unapproved",
@@ -30,7 +30,7 @@ donor2 = Donor.create(
 	address_zip: 98134,
 	business_license: "DSJ0984DFGK32",
 	account_status: "pending",
-	pickup_location: 'Side entrance',
+	pickup_instructions: 'Please go to the front desk.'
 )
 donor3 = Donor.create(
 	organization_name: "ABC Grocery",
@@ -42,7 +42,7 @@ donor3 = Donor.create(
 	address_zip: 98005,
 	business_license: "123456789",
 	account_status: "approved",
-	pickup_location: 'Loading dock',
+	pickup_instructions: 'Please go to the front desk.'
 )
 donor4 = Donor.create(
 	organization_name: "Good Food Restaurant",
@@ -54,7 +54,7 @@ donor4 = Donor.create(
 	address_zip: 98101,
 	business_license: "123456789",
 	account_status: "approved",
-	pickup_location: 'Front register',
+	pickup_instructions: 'Please go to the front desk.'
 )
 donor5 = Donor.create(
 	organization_name: "A Coffeeshop",
@@ -66,8 +66,8 @@ donor5 = Donor.create(
 	address_zip: 98104,
 	business_license: "123456789",
 	account_status: "approved",
-	pickup_location: 'Back door',
-)
+	pickup_instructions: 'Please go to the front desk.'
+	)
 donor6 = Donor.create(
 	organization_name: "Chad's Deli",
 	email: "donor6@donor6.com",
@@ -78,7 +78,7 @@ donor6 = Donor.create(
 	address_zip: 98104,
 	business_license: "123456789",
 	account_status: "approved",
-	pickup_location: 'Side door',
+	pickup_instructions: 'Please go to the front desk.'
 )
 donor7 = Donor.create(
 	organization_name: "Fancy Foods",
@@ -90,7 +90,7 @@ donor7 = Donor.create(
 	address_zip: 98122,
 	business_license: "123456789",
 	account_status: "approved",
-	pickup_location: 'Customer Service desk',
+	pickup_instructions: 'Please go to the front desk.'
 )
 donor8 = Donor.create(
 	organization_name: "XYZ Grocery",
@@ -102,7 +102,7 @@ donor8 = Donor.create(
 	address_zip: 98102,
 	business_license: "123456789",
 	account_status: "approved",
-	pickup_location: 'Register 12',
+	pickup_instructions: 'Please go to the front desk.'
 )
 donor9 = Donor.create(
 	organization_name: "Dangerousway",
@@ -114,7 +114,7 @@ donor9 = Donor.create(
 	address_zip: 98101,
 	business_license: "123456789",
 	account_status: "approved",
-	pickup_location: 'Side',
+	pickup_instructions: 'Please go to the front desk.'
 )
 donor10 = Donor.create(
 	organization_name: "Macco Groceries",
@@ -126,7 +126,7 @@ donor10 = Donor.create(
 	address_zip: 98102,
 	business_license: "123456789",
 	account_status: "approved",
-	pickup_location: 'Side',
+	pickup_instructions: 'Please go to the front desk.'
 )
 
 puts "Seeding Donations..."
@@ -139,7 +139,7 @@ donation1 = Donation.create!(
 	duration_minutes: 60,
 	image_url: "",
 	donor_id: donor1.id,
-	pickup_location: donor1.pickup_location,
+	pickup_location: 'front desk',
 	canceled: false,
 )
 donation2 = Donation.create(
@@ -150,7 +150,7 @@ donation2 = Donation.create(
 	duration_minutes: 30,
 	image_url: "",
 	donor_id: donor2.id,
-	pickup_location: donor1.pickup_location,
+	pickup_location: 'front desk',
 	canceled: true,
 )
 donation3 = Donation.create(
@@ -161,7 +161,7 @@ donation3 = Donation.create(
 	duration_minutes: 60,
 	image_url: "",
 	donor_id: donor3.id,
-	pickup_location: donor1.pickup_location,
+	pickup_location: 'front desk',
 	canceled: true,
 )
 donation4 = Donation.create(
@@ -172,7 +172,7 @@ donation4 = Donation.create(
 	duration_minutes: 30,
 	image_url: "",
 	donor_id: donor1.id,
-	pickup_location: donor1.pickup_location,
+	pickup_location: 'front desk',
 	canceled: true,
 )
 donation5 = Donation.create(
@@ -183,7 +183,7 @@ donation5 = Donation.create(
 	duration_minutes: 30,
 	image_url: "",
 	donor_id: donor1.id,
-	pickup_location: donor1.pickup_location,
+	pickup_location: 'front desk',
 	canceled: true,
 )
 donation6 = Donation.create(
@@ -194,7 +194,7 @@ donation6 = Donation.create(
 	duration_minutes: 60,
 	image_url: "",
 	donor_id: donor2.id,
-	pickup_location: donor2.pickup_location,
+	pickup_location: 'front desk',
 	canceled: false,
 )
 donation7 = Donation.create(
@@ -205,7 +205,7 @@ donation7 = Donation.create(
 	duration_minutes: 60,
 	image_url: "",
 	donor_id: donor2.id,
-	pickup_location: donor2.pickup_location,
+	pickup_location: 'front desk',
 	canceled: false,
 )
 donation8 = Donation.create(
@@ -216,7 +216,7 @@ donation8 = Donation.create(
 	duration_minutes: 60,
 	image_url: "",
 	donor_id: donor3.id,
-	pickup_location: donor3.pickup_location,
+	pickup_location: 'front desk',
 	canceled: false,
 )
 donation9 = Donation.create(
@@ -227,7 +227,7 @@ donation9 = Donation.create(
 	duration_minutes: 60,
 	image_url: "",
 	donor_id: donor3.id,
-	pickup_location: donor3.pickup_location,
+	pickup_location: 'front desk',
 	canceled: false,
 )
 donation10 = Donation.create(
@@ -238,7 +238,7 @@ donation10 = Donation.create(
 	duration_minutes: 30,
 	image_url: "",
 	donor_id: donor4.id,
-	pickup_location: donor4.pickup_location,
+	pickup_location: 'front desk',
 	canceled: false,
 )
 donation11 = Donation.create(
@@ -249,7 +249,7 @@ donation11 = Donation.create(
 	duration_minutes: 30,
 	image_url: "",
 	donor_id: donor5.id,
-	pickup_location: donor5.pickup_location,
+	pickup_location: 'front desk',
 	canceled: false,
 )
 donation12 = Donation.create(
@@ -260,7 +260,7 @@ donation12 = Donation.create(
 	duration_minutes: 30,
 	image_url: "",
 	donor_id: donor6.id,
-	pickup_location: donor6.pickup_location,
+	pickup_location: 'front desk',
 	canceled: false,
 )
 donation13 = Donation.create(
@@ -271,7 +271,7 @@ donation13 = Donation.create(
 	duration_minutes: 60,
 	image_url: "",
 	donor_id: donor7.id,
-	pickup_location: donor7.pickup_location,
+	pickup_location: 'front desk',
 	canceled: false,
 )
 donation14 = Donation.create(
@@ -282,7 +282,7 @@ donation14 = Donation.create(
 	duration_minutes: 30,
 	image_url: "",
 	donor_id: donor8.id,
-	pickup_location: donor8.pickup_location,
+	pickup_location: 'front desk',
 	canceled: false,
 )
 donation15 = Donation.create(
@@ -293,7 +293,7 @@ donation15 = Donation.create(
 	duration_minutes: 60,
 	image_url: "",
 	donor_id: donor9.id,
-	pickup_location: donor9.pickup_location,
+	pickup_location: 'front desk',
 	canceled: false,
 )
 donation16 = Donation.create(
@@ -304,7 +304,7 @@ donation16 = Donation.create(
 	duration_minutes: 30,
 	image_url: "",
 	donor_id: donor10.id,
-	pickup_location: donor10.pickup_location,
+	pickup_location: 'front desk',
 	canceled: false,
 )
 donation17 = Donation.create(
@@ -315,7 +315,7 @@ donation17 = Donation.create(
 	duration_minutes: 30,
 	image_url: "",
 	donor_id: donor10.id,
-	pickup_location: donor10.pickup_location,
+	pickup_location: 'front desk',
 	canceled: false,
 )
 donation18 = Donation.create(
@@ -326,7 +326,7 @@ donation18 = Donation.create(
 	duration_minutes: 30,
 	image_url: "",
 	donor_id: donor9.id,
-	pickup_location: donor9.pickup_location,
+	pickup_location: 'front desk',
 	canceled: false,
 )
 donation19 = Donation.create(
@@ -337,7 +337,7 @@ donation19 = Donation.create(
 	duration_minutes: 60,
 	image_url: "",
 	donor_id: donor8.id,
-	pickup_location: donor8.pickup_location,
+	pickup_location: 'front desk',
 	canceled: false,
 )
 donation20 = Donation.create(
@@ -348,7 +348,7 @@ donation20 = Donation.create(
 	duration_minutes: 30,
 	image_url: "",
 	donor_id: donor7.id,
-	pickup_location: donor7.pickup_location,
+	pickup_location: 'front desk',
 	canceled: false,
 )
 donation21 = Donation.create(
@@ -359,7 +359,7 @@ donation21 = Donation.create(
 	duration_minutes: 60,
 	image_url: "",
 	donor_id: donor6.id,
-	pickup_location: donor6.pickup_location,
+	pickup_location: 'front desk',
 	canceled: false,
 )
 donation22 = Donation.create(
@@ -370,7 +370,7 @@ donation22 = Donation.create(
 	duration_minutes: 30,
 	image_url: "",
 	donor_id: donor5.id,
-	pickup_location: donor5.pickup_location,
+	pickup_location: 'front desk',
 	canceled: false,
 )
 donation23 = Donation.create(
@@ -381,7 +381,7 @@ donation23 = Donation.create(
 	duration_minutes: 30,
 	image_url: "",
 	donor_id: donor4.id,
-	pickup_location: donor4.pickup_location,
+	pickup_location: 'front desk',
 	canceled: false,
 )
 donation24 = Donation.create(
@@ -392,7 +392,7 @@ donation24 = Donation.create(
 	duration_minutes: 30,
 	image_url: "",
 	donor_id: donor4.id,
-	pickup_location: donor4.pickup_location,
+	pickup_location: 'front desk',
 	canceled: false,
 )
 
@@ -407,7 +407,6 @@ client1 = Client.create!(
 	address_state: "Washington",
 	address_zip: 98101,
 	account_status: "active",
-	transportation_method: "car",
 	ethnicity: "Black or African American",
 	gender: "Prefer Not to Answer",
 )
@@ -420,7 +419,6 @@ client2 = Client.create(
 	address_state: "Washington",
 	address_zip: 98121,
 	account_status: "pending",
-	transportation_method: "walk",
 	ethnicity: "White",
 	gender: "Female"
 )
@@ -433,7 +431,6 @@ client3 = Client.create(
 	address_state: "Washington",
 	address_zip: 98104,
 	account_status: "suspended",
-	transportation_method: "bike",
 	ethnicity: "Hispanic or Latino",
 	gender: "Male"
 )
