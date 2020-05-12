@@ -40,20 +40,21 @@ class ClientsController < ApplicationController
 
     client_lat = params[:client_lat].to_f
     client_long = params[:client_long].to_f
-    
-    mode = Client.find(params[:id].to_i).transportation_method
+
+    # TODO - transportation_method column was removed from Client table
+    # mode = Client.find(params[:id].to_i).transportation_method 
 
     @distance = 100.0
-    case mode
-    when 'walk'
-      @distance = 1.0
-    when 'bike'
-      @distance = 5.0
-    when 'public'
-      @distance = 5.0
-    when 'car'
-      @distance = 20.0
-    end
+    # case mode
+    # when 'walk'
+    #   @distance = 1.0
+    # when 'bike'
+    #   @distance = 5.0
+    # when 'public'
+    #   @distance = 5.0
+    # when 'car'
+    #   @distance = 20.0
+    # end
 
     puts 'travel distance:', @distance
 
@@ -107,8 +108,7 @@ class ClientsController < ApplicationController
       :email,
       :ethnicity,
       :gender,
-      :password,
-      :transportation_method,
+      :password
     )
   end
 end
