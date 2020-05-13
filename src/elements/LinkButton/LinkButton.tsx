@@ -33,21 +33,12 @@ export default ({
 				activeOpacity={0.3}
 				onPress={buttonFunction}
 			>
-				<View
-					style={[
-						styles.textContainer,
-						{
-							borderColor: disabled && borderColor === colors.BANANA_YELLOW
-								? colors.LIGHT_YELLOW
-								: borderColor,
-						},
-					]}
-				>
+				<View style={[ styles.textContainer, { borderColor } ]}>
 					<Text
 						style={[
 							styles.text,
 							{
-								color: disabled && textColor === colors.NAVY_BLUE
+								color: disabled
 									? colors.LIGHT_GRAY_DISABLED
 									: textColor,
 							},
