@@ -1,6 +1,6 @@
 import { Paragraph, SpacerInline } from '@elements';
 import React, { FunctionComponent } from 'react';
-import { Image, View } from 'react-native';
+import { Image, View, Platform } from 'react-native';
 import styles from './EmptyStateView.styles';
 
 interface EmptyStateViewProps {
@@ -24,7 +24,7 @@ const EmptyStateView: FunctionComponent<EmptyStateViewProps> = ({
 			)
 			: null}
 
-		<Image source={require('@assets/images/banana1.png')} />
+		<Image style={Platform.OS === 'web' ? styles.browser : null} source={require('@assets/images/banana1.png')} />
 
 		{lowerText
 			? (
