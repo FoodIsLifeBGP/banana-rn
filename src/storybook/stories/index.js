@@ -55,6 +55,9 @@ storiesOf('Button', module)
 				}
 			</Button>
 		);
+	},
+	{
+		notes: 'https://github.com/FoodIsLifeBGP/banana-rn/wiki/Button',
 	});
 
 storiesOf('NavBar', module)
@@ -70,7 +73,8 @@ storiesOf('NavBar', module)
 				position="map"
 			/>
 		</View>
-	), {
+	),
+	{
 		notes: 'https://github.com/FoodIsLifeBGP/banana-rn/wiki/NavBar-Introduction',
 	});
 
