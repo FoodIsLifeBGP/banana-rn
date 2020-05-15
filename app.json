@@ -28,7 +28,7 @@
     },
     "extra": {
       "variant": "donor",
-      "storybook": true
+      "storybook": false
     },
     "userInterfaceStyle": "automatic",
     "packagerOpts": {
