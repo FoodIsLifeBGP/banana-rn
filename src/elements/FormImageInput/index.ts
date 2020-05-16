@@ -1,3 +1,3 @@
-import FormImageInput from "./FormImageInput";
+import FormImageInput from './FormImageInput';
 
 export { FormImageInput };

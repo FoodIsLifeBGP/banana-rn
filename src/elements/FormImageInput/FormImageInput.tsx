@@ -1,55 +1,55 @@
 import React, {
 	Ref,
 	RefObject,
-	forwardRef
+	forwardRef,
 } from 'react';
 import {
 	View,
 	Image,
 	Text,
 	StyleProp,
-	ViewStyle
+	ViewStyle,
 } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { ImageInfo } from 'expo-image-picker/build/ImagePicker.types';
 
 import {
 	Icon,
-	InputLabel
+	InputLabel,
 } from '@elements';
 import { sourceImage } from '@util/ImageSourcer';
 import styles from './FormImageInput.styles';
 
-type UploadStatus = "none" | "pending" | "complete" | "error";
+type UploadStatus = 'none' | 'pending' | 'complete' | 'error';
 
 interface FormImageInputProps {
 	/** Label for the input. */
-	label: string,
+	label: string;
 
 	/** ImageInfo chosen from the image picker. */
-	value: ImageInfo | null,
+	value: ImageInfo | null;
 
 	/** Callback for when an image is chosen from the image picker. */
-	setValue: (img: ImageInfo) => void,
+	setValue: (img: ImageInfo) => void;
 
 	/* Status message of the image upload. */
-	status?: UploadStatus,
+	status?: UploadStatus;
 
 	/** Optional style of the component */
-	style?: StyleProp<ViewStyle>,
+	style?: StyleProp<ViewStyle>;
 
 	/** Whether or not there is an error associated with the given input value. */
 	error?: boolean;
 
 	/** User-facing message associated with an error. */
 	errorMessage?: string;
-};
+}
 
 const MessageFromStatus = {
 	none: 'No file uploaded',
 	pending: 'Pending file upload',
 	complete: 'File uploaded',
-	error: 'File upload failed'
+	error: 'File upload failed',
 };
 
 /**
@@ -64,16 +64,15 @@ const FormImageInput = (
 		style,
 		error = false,
 		errorMessage,
-	} : FormImageInputProps,
-	ref: Ref<TouchableWithoutFeedback>
+	}: FormImageInputProps,
+	ref: Ref<TouchableWithoutFeedback>,
 ) => {
-
 	const pickImage = async () => {
 		const imageResult = await sourceImage('cameraRoll');
 		if (imageResult && !imageResult.cancelled) {
 			setValue(imageResult as ImageInfo);
 		}
-	}
+	};
 
 	return (
 		<View style={style}>
@@ -81,35 +80,38 @@ const FormImageInput = (
 
 			<Text style={styles.statusRowText}>
 				<Text style={styles.statusLabelText}>
-					{"Status : "}
+					{'Status : '}
 				</Text>
 				{MessageFromStatus[status] || 'Unknown status'}
 			</Text>
 
 			<TouchableWithoutFeedback
-					onPress={pickImage}
-					ref={ref}
+				onPress={pickImage}
+				ref={ref}
 			>
 				{ value?.uri != null
-					? <Image
-						style={styles.image}
-						source={{uri: value.uri}}
-					/>
-					: <View style={styles.iconContainer}>
-						<Icon name="image" size={24} />
-					</View>
-				}
+					? (
+						<Image
+							style={styles.image}
+							source={{ uri: value.uri }}
+						/>
+					)
+					: (
+						<View style={styles.iconContainer}>
+							<Icon name="image" size={24} />
+						</View>
+					)}
 			</TouchableWithoutFeedback>
 
-			{error && (
+			{ error && (
 				<View style={styles.errorMessage}>
 					<Text style={styles.errorMessageText}>
 						{errorMessage}
 					</Text>
 				</View>
-			)}
+			) }
 		</View>
 	);
-}
+};
 
 export default forwardRef<TouchableWithoutFeedback, FormImageInputProps & { ref?: RefObject<TouchableWithoutFeedback> }>(FormImageInput);

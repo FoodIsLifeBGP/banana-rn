@@ -15,11 +15,11 @@ export default StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		width: '100%',
-		aspectRatio: 2.25
+		aspectRatio: 2.25,
 	},
 	image: {
-		width: "100%",
-		aspectRatio: 2.25
+		width: '100%',
+		aspectRatio: 2.25,
 	},
 	iconContainer: {
 		justifyContent: 'center',
@@ -28,17 +28,17 @@ export default StyleSheet.create({
 		height: 140,
 		borderColor: colors.NAVY_BLUE,
 		borderWidth: 4,
-		backgroundColor: colors.WHITE_TRANSPARENT
+		backgroundColor: colors.WHITE_TRANSPARENT,
 	},
 	statusRowText: {
 		...typography.body1,
 		width: '100%',
 		flexDirection: 'row',
 		marginTop: 0,
-		marginBottom: 2
+		marginBottom: 2,
 	},
 	statusLabelText: {
-		fontFamily: 'open-sans-bold'
+		fontFamily: 'open-sans-bold',
 	},
 	errorMessage: {
 		paddingHorizontal: ERROR_PADDING_HORIZONTAL,
@@ -46,5 +46,5 @@ export default StyleSheet.create({
 	errorMessageText: {
 		...typography.body5,
 		color: colors.RED,
-	}
+	},
 });
