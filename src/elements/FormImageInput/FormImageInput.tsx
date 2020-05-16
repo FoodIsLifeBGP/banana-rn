@@ -20,7 +20,7 @@ import {
 import { sourceImage } from '@util/ImageSourcer';
 import styles from './FormImageInput.styles';
 
-type UploadStatus = 'none' | 'pending' | 'complete' | 'error';
+type UploadStatus = 'none' | 'pending' | 'success' | 'failure';
 
 interface FormImageInputProps {
 	/** Label for the input. */
@@ -48,8 +48,8 @@ interface FormImageInputProps {
 const MessageFromStatus = {
 	none: 'No file uploaded',
 	pending: 'Pending file upload',
-	complete: 'File uploaded',
-	error: 'File upload failed',
+	success: 'File uploaded',
+	failure: 'File upload failed',
 };
 
 /**

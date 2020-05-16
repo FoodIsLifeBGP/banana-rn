@@ -97,7 +97,7 @@ export default () => {
 					label="Business License Verification"
 					value={image}
 					setValue={setImage}
-					status={image?.uri ? 'complete' : 'none'}
+					status={image?.uri ? 'success' : 'none'}
 				/>
 
 				<FormTextInput
