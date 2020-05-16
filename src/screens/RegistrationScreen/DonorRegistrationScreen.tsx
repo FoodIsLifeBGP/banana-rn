@@ -94,13 +94,10 @@ export default () => {
 				/>
 
 				<FormImageInput
-					label={"Business License Verification"}
+					label="Business License Verification"
 					value={image}
 					setValue={setImage}
-					status={!!image?.uri
-						? "File uploaded"
-						: "No file uploaded"
-					}
+					status={image?.uri ? 'complete' : 'none'}
 				/>
 
 				<FormTextInput

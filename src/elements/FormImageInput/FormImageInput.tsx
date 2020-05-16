@@ -20,6 +20,8 @@ import {
 import { sourceImage } from '@util/ImageSourcer';
 import styles from './FormImageInput.styles';
 
+type UploadStatus = "none" | "pending" | "complete" | "error";
+
 interface FormImageInputProps {
 	/** Label for the input. */
 	label: string,
@@ -31,7 +33,7 @@ interface FormImageInputProps {
 	setValue: (img: ImageInfo) => void,
 
 	/* Status message of the image upload. */
-	status: string,
+	status?: UploadStatus,
 
 	/** Optional style of the component */
 	style?: StyleProp<ViewStyle>,
@@ -43,6 +45,13 @@ interface FormImageInputProps {
 	errorMessage?: string;
 };
 
+const MessageFromStatus = {
+	none: 'No file uploaded',
+	pending: 'Pending file upload',
+	complete: 'File uploaded',
+	error: 'File upload failed'
+};
+
 /**
  * Input component for a form to select an image from storage to upload.
  */
@@ -51,7 +60,7 @@ const FormImageInput = (
 		label,
 		value,
 		setValue,
-		status,
+		status = 'none',
 		style,
 		error = false,
 		errorMessage,
@@ -74,7 +83,7 @@ const FormImageInput = (
 				<Text style={styles.statusLabelText}>
 					{"Status : "}
 				</Text>
-				{status}
+				{MessageFromStatus[status] || 'Unknown status'}
 			</Text>
 
 			<TouchableWithoutFeedback
