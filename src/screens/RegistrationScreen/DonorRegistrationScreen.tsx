@@ -4,23 +4,19 @@ import {
 	Alert,
 	ScrollView,
 	Text,
-	TextInput,
 	View,
 } from 'react-native';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Checkbox } from 'react-native-paper';
 import {
 	FormTextInput,
-	InputLabel,
+	FormImageInput,
 	NavBar,
 	LinkButton,
 	SpacerInline,
 	Title,
-	Icon,
 } from '@elements';
 import useGlobal from '@state';
 import * as colors from '@util/colors';
-import { sourceImage } from '@util/ImageSourcer';
 import { ImageInfo } from 'expo-image-picker/build/ImagePicker.types';
 import styles from './RegistrationScreen.styles';
 
@@ -97,30 +93,15 @@ export default () => {
 					setValue={setLicense}
 				/>
 
-				<View>
-					<InputLabel text="Business License Verification" />
-					<View style={styles.row}>
-						<View style={{ flex: 4 }}>
-							<TextInput
-								value={image.uri || ''}
-								style={styles.input}
-								autoCapitalize="none"
-							/>
-						</View>
-						<View style={styles.iconContainer}>
-							<TouchableWithoutFeedback
-								onPress={async () => {
-									const imageResponse = await sourceImage('cameraRoll');
-									if (imageResponse) {
-										setImage(imageResponse as ImageInfo);
-									}
-								}}
-							>
-								<Icon name="image" size={24} />
-							</TouchableWithoutFeedback>
-						</View>
-					</View>
-				</View>
+				<FormImageInput
+					label={"Business License Verification"}
+					value={image}
+					setValue={setImage}
+					status={!!image?.uri
+						? "File uploaded"
+						: "No file uploaded"
+					}
+				/>
 
 				<FormTextInput
 					label="Street Address"
