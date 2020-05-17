@@ -39,7 +39,7 @@ interface BasicTextInputProps extends TextInputProps {
 
 interface FormTextInputProps extends BasicTextInputProps {
 	/** Type text input. */
-	type?: 'default' | 'password' | 'phonenumber';
+	type?: 'default' | 'password' | 'phoneNumber';
 
 	/** Label for the input. */
 	label: string;
@@ -159,7 +159,7 @@ const FormTextInput = (
 	let tempInput;
 	if(type === 'password'){
 		tempInput = PasswordInput;
-	}else if (type === 'phonenumber'){
+	}else if (type === 'phoneNumber'){
 		tempInput = PhoneNumberInput;
 		/* To solve state infinite loop */
 		let tempValue = numberFormat(value);
