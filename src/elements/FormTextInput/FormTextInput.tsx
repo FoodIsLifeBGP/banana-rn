@@ -21,6 +21,7 @@ import {
 import { LIGHT_BLUE } from '@util/colors';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import styles from './FormTextInput.styles';
+import { AsYouType } from 'libphonenumber-js';
 
 interface BasicTextInputProps extends TextInputProps {
 	/** User-submitted value. */
@@ -38,7 +39,7 @@ interface BasicTextInputProps extends TextInputProps {
 
 interface FormTextInputProps extends BasicTextInputProps {
 	/** Type text input. */
-	type?: 'default' | 'password';
+	type?: 'default' | 'password' | 'phonenumber';
 
 	/** Label for the input. */
 	label: string;
@@ -115,6 +116,21 @@ const PasswordInput = (
 	);
 };
 
+const PhoneNumberInput = (
+	props: BasicTextInputProps,
+) => {
+	return(
+		<View>
+			<BasicTextInput
+				{...props}
+				textContentType="telephoneNumber"
+				keyboardType="phone-pad"
+				maxLength={14}
+			/>
+		</View>
+	);
+};
+
 /**
  * Input component for a form that includes a standardized label and text input.
  * Can render a field with an optional visible password if 'type' password is given.
@@ -133,9 +149,29 @@ const FormTextInput = (
 	}: FormTextInputProps,
 	ref: Ref<TextInput>,
 ) => {
-	const Input = type === 'password'
-		? PasswordInput
-		: BasicTextInput;
+
+	const parseDigits = string => (string.match(/\d+/g) || []).join('');
+	const numberFormat = (str: string | undefined) => {
+		const digits = parseDigits(str);
+		return new AsYouType('US').input(digits);
+	}
+
+	let tempInput;
+	if(type === 'password'){
+		tempInput = PasswordInput;
+	}else if (type === 'phonenumber'){
+		tempInput = PhoneNumberInput;
+		/* To solve state infinite loop */
+		let tempValue = numberFormat(value);
+		if (value && tempValue === value.trim()+')') {
+			value = tempValue.substr(0, 4);
+		}else{
+			value = tempValue;
+		}
+	}else{
+		tempInput = BasicTextInput;
+	}
+	const Input = tempInput;
 
 	return (
 		<View style={style}>
