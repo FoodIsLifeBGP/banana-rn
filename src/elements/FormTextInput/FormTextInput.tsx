@@ -20,6 +20,7 @@ import {
 } from '@elements';
 import { LIGHT_BLUE } from '@util/colors';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { AsYouType } from 'libphonenumber-js';
 import styles from './FormTextInput.styles';
 
 interface BasicTextInputProps extends TextInputProps {
@@ -38,7 +39,7 @@ interface BasicTextInputProps extends TextInputProps {
 
 interface FormTextInputProps extends BasicTextInputProps {
 	/** Type text input. */
-	type?: 'default' | 'password';
+	type?: 'default' | 'password' | 'phoneNumber';
 
 	/** Label for the input. */
 	label: string;
@@ -115,6 +116,19 @@ const PasswordInput = (
 	);
 };
 
+const PhoneNumberInput = (
+	props: BasicTextInputProps,
+) => (
+	<View>
+		<BasicTextInput
+			{...props}
+			textContentType="telephoneNumber"
+			keyboardType="phone-pad"
+			maxLength={14}
+		/>
+	</View>
+);
+
 /**
  * Input component for a form that includes a standardized label and text input.
  * Can render a field with an optional visible password if 'type' password is given.
@@ -133,9 +147,31 @@ const FormTextInput = (
 	}: FormTextInputProps,
 	ref: Ref<TextInput>,
 ) => {
-	const Input = type === 'password'
-		? PasswordInput
-		: BasicTextInput;
+	const parseDigits = string => (string.match(/\d+/g) || []).join('');
+	const numberFormat = (str: string | undefined) => {
+		const digits = parseDigits(str);
+		return new AsYouType('US').input(digits);
+	};
+
+	let tempInput;
+	let passedValue;
+	if (type === 'password') {
+		tempInput = PasswordInput;
+		passedValue = value;
+	} else if (type === 'phoneNumber') {
+		tempInput = PhoneNumberInput;
+		/* To solve state infinite loop */
+		const tempValue = numberFormat(value);
+		if (value && tempValue === `${value.trim()})`) {
+			passedValue = tempValue.substr(0, 4);
+		} else {
+			passedValue = tempValue;
+		}
+	} else {
+		tempInput = BasicTextInput;
+		passedValue = value;
+	}
+	const Input = tempInput;
 
 	return (
 		<View style={style}>
@@ -145,7 +181,7 @@ const FormTextInput = (
 				<Input
 					style={error && styles.inputError}
 					forwardedRef={ref}
-					value={value}
+					value={passedValue}
 					setValue={setValue}
 					inputStyle={inputStyle}
 					{...props}
