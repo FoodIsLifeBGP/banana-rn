@@ -10,7 +10,8 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "lint": "eslint --quiet --ext .tsx,.ts,.js .",
-    "typechecking": "tsc --noEmit"
+    "typechecking": "tsc --noEmit",
+    "storybook": "start-storybook -p 7007"
   },
   "dependencies": {
     "@babel/runtime": "^7.7.2",
@@ -47,13 +48,29 @@
     "react-navigation-hooks": "1.1.0",
     "react-navigation-stack": "1.10.3",
     "use-global-hook": "^0.1.12",
-    "xcode": "2.1.0"
+    "xcode": "2.1.0",
+    "prop-types": "latest"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addon-info": "^5.3.18",
+    "@storybook/addon-knobs": "^5.3.18",
+    "@storybook/addon-links": "^5.3.18",
+    "@storybook/addon-notes": "^5.3.18",
+    "@storybook/addon-ondevice-actions": "^5.3.18",
+    "@storybook/addon-ondevice-knobs": "^5.3.18",
+    "@storybook/addon-ondevice-notes": "^5.3.18",
+    "@storybook/addon-storysource": "^5.3.18",
+    "@storybook/addons": "^5.3.18",
+    "@storybook/react": "^5.3.18",
+    "@storybook/react-native": "^5.3.18",
+    "@storybook/react-native-server": "^5.3.18",
     "@types/react": "16.9.17",
     "@types/react-native": "0.57.65",
     "@typescript-eslint/eslint-plugin": "2.14.0",
     "@typescript-eslint/parser": "^2.14.0",
+    "babel-loader": "^8.1.0",
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-preset-expo": "^7.1.0",
     "eslint": "^6.8.0",
@@ -62,7 +79,9 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "react-docgen-typescript-loader": "^3.7.2",
     "react-native-svg-transformer": "^0.14.3",
+    "ts-loader": "^7.0.2",
     "typescript": "^3.6.3"
   },
   "private": true
