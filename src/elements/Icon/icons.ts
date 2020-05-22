@@ -11,6 +11,8 @@ const Bell: IconImport = require('@assets/icons/ICON_BELL.svg');
 const BellOn: IconImport = require('@assets/icons/ICON_BELL-ON.svg');
 const Bike: IconImport = require('@assets/icons/ICON_BIKE.svg');
 const Camera: IconImport = require('@assets/icons/ICON_CAMERA.svg');
+const CheckboxOff: IconImport = require('@assets/icons/ICON_CAMERA.svg');
+const CheckboxOn: IconImport = require('@assets/icons/ICON_CAMERA.svg');
 const Claims: IconImport = require('@assets/icons/ICON_CLAIMS.svg');
 const Close: IconImport = require('@assets/icons/ICON_CLOSE.svg');
 const Condense: IconImport = require('@assets/icons/ICON_CONDENSE.svg');
@@ -51,6 +53,8 @@ export const iconImports: Record<IconName, IconImport> = {
 	bellOn: BellOn,
 	bike: Bike,
 	camera: Camera,
+	checkboxOff: CheckboxOff,
+	checkboxOn: CheckboxOn,
 	claims: Claims,
 	close: Close,
 	condense: Condense,

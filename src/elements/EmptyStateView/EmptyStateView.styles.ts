@@ -3,18 +3,16 @@ import * as colors from '@util/colors';
 
 export default StyleSheet.create({
 	container: {
-		height: 35,
-		marginBottom: 15,
+		flex: 1,
+		justifyContent: 'center',
 		alignItems: 'center',
-	},
-	textContainer: {
-		height: 30,
-		width: 'auto',
-		borderBottomWidth: 3.5,
-	},
-	text: {
 		textAlign: 'center',
-		fontFamily: 'open-sans-bold',
-		fontSize: 20,
+		backgroundColor: colors.LIGHT_YELLOW,
+		padding: 40,
+	},
+	browser: {
+		height: 200,
+		width: 200,
+		resizeMode: 'contain',
 	},
 });

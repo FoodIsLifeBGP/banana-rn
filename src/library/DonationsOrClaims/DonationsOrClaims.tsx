@@ -3,7 +3,7 @@ import { useIsFocused } from 'react-navigation-hooks';
 import { ScrollView, View, Text } from 'react-native';
 import { Divider } from 'react-native-paper';
 import useGlobal from '@state';
-import { SpacerInline } from '@elements';
+import { SpacerInline, EmptyStateView } from '@elements';
 import DonationOrClaim from './DonationOrClaim';
 
 interface LocalProps {
@@ -23,6 +23,7 @@ export default ({ resource }: LocalProps) => {
 		const { userIdentity } = state;
 		const method = userIdentity === 'client' && resource === 'donations' ? getActiveDonationsForClient : getDonationsOrClaims;
 		const data = await method(resource);
+
 		if (data) {
 			await setDonationsOrClaims(data);
 			setLoaded(true);
@@ -37,7 +38,7 @@ export default ({ resource }: LocalProps) => {
 
 	if (!loaded) { return <Text>Loading...</Text>; }
 
-	return donationsOrClaims && Array.isArray(donationsOrClaims) && donationsOrClaims !== []
+	return donationsOrClaims && Array.isArray(donationsOrClaims) && donationsOrClaims.length > 0
 		? (
 			<ScrollView>
 				{
@@ -51,7 +52,7 @@ export default ({ resource }: LocalProps) => {
 							/>
 							{
 								i === (donationsOrClaims as any).length - 1
-									&& <Divider style={{ backgroundColor: 'blue' }} />
+								&& <Divider style={{ backgroundColor: 'blue' }} />
 							}
 						</View>
 					))
@@ -60,10 +61,9 @@ export default ({ resource }: LocalProps) => {
 			</ScrollView>
 		)
 		: (
-			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-				<View>
-					<Text>No donations to display</Text>
-				</View>
-			</View>
+			<EmptyStateView
+				upperText="No available donations near you."
+				lowerText={'We will notify you when new donations are available.\nOR\nPlease check back later.'}
+			/>
 		);
 };
