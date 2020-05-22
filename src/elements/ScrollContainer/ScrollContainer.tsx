@@ -3,8 +3,8 @@ import { ScrollView } from 'react-native';
 
 interface ScrollContainerProps {
 	onScrollToEnd: Function;
-	style: any;
-	children: any;
+	style: Record<string, any>;
+	children: Record<string, any>;
 }
 
 export default function ScrollContainer({
@@ -14,7 +14,8 @@ export default function ScrollContainer({
 }: ScrollContainerProps) {
 	const isCloseToBottom = ({ layoutMeasurement, contentOffset, contentSize }) => {
 		const paddingToBottom = 20;
-		return layoutMeasurement.height + contentOffset.y >= contentSize.height - paddingToBottom;
+		return layoutMeasurement.height + contentOffset.y
+      >= contentSize.height - paddingToBottom;
 	};
 
 	return (
