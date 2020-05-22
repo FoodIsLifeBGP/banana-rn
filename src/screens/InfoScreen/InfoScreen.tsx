@@ -1,5 +1,5 @@
 import {
-	NavBar, LinkButton, SpacerInline, Title,
+	LinkButton, SpacerInline, Title,
 } from '@elements';
 import React, { FunctionComponent } from 'react';
 import { View } from 'react-native';
@@ -17,15 +17,12 @@ const InfoScreen: FunctionComponent<InfoScreenProps> = ({
 	title,
 	nextScreenTitle,
 	nextScreenDestination,
-	backDestination,
-	showBackButton,
 	children,
 }) => (
 	<View style={styles.outerContainer}>
 		<View>
-			<NavBar showMenu={false} showBackButton={showBackButton} backDestination={backDestination} />
 			<Title text={title} />
-			<SpacerInline height={20} />
+			<SpacerInline height={40} />
 			<View>
 				{children}
 			</View>
@@ -35,7 +32,6 @@ const InfoScreen: FunctionComponent<InfoScreenProps> = ({
 			{ nextScreenTitle && nextScreenDestination && (
 				<LinkButton text={nextScreenTitle} destination={nextScreenDestination} />
 			)}
-			<SpacerInline height={40} />
 		</View>
 	</View>
 );
