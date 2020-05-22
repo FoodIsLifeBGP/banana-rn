@@ -1,4 +1,5 @@
 export { FormTextInput } from './FormTextInput';
+export { FormImageInput } from './FormImageInput';
 export { NavBar } from './NavBar';
 export { Icon } from './Icon';
 export { InputLabel } from './FormTextInput/InputLabel';
