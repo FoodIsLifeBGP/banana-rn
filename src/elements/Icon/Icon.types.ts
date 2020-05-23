@@ -29,6 +29,8 @@ export type IconName =
 	| 'bellOn'
 	| 'bike'
 	| 'camera'
+	| 'checkboxOff'
+	| 'checkboxOn'
 	| 'claims'
 	| 'close'
 	| 'condense'
