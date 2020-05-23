@@ -12,4 +12,3 @@ export { Paragraph } from './Paragraph';
 export { Modal } from './Modal';
 export { TheAlertModal } from './TheAlertModal';
 export { EmptyStateView } from './EmptyStateView';
-export { ScrollContainer } from './ScrollContainer';
