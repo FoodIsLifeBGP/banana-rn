@@ -13,7 +13,7 @@ export default {
 	password: {
 		length: {
 			minimum: 8,
-			message: 'must be at least 6 characters',
+			message: 'must be at least 8 characters',
 		},
 		presence: {
 			allowEmpty: false,
