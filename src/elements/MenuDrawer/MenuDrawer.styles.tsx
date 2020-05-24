@@ -23,13 +23,8 @@ export default StyleSheet.create({
 	drawerHeader: {
 		backgroundColor: colors.BANANA_YELLOW,
 		color: colors.WHITE,
-<<<<<<< HEAD
 		height: 120,
 		justifyContent: 'center',
-=======
-		height: 250,
-		justifyContent: 'flex-end',
->>>>>>> 7df1244... Change height of drawerHeader and its buffer, remove top border on items, and modify text styles (colors and size).
 	},
 	drawerHeaderBuffer: {
 		backgroundColor: colors.NAVY_BLUE,
@@ -57,17 +52,10 @@ export default StyleSheet.create({
 	username: {
 		fontSize: 24,
 		color: colors.NAVY_BLUE,
-<<<<<<< HEAD
 		textAlign: 'left',
 		marginBottom: 15,
 		fontWeight: '700',
 		textTransform: 'uppercase',
 		marginLeft: '25%',
-=======
-		textAlign: 'center',
-		marginBottom: 15,
-		fontWeight: '700',
-		textTransform: 'uppercase',
->>>>>>> 7df1244... Change height of drawerHeader and its buffer, remove top border on items, and modify text styles (colors and size).
 	},
 });

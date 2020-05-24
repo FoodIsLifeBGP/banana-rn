@@ -23,6 +23,21 @@ import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
 import SubMenu from '../elements/MenuDrawer/SubMenu/SubMenu';
 import MainMenu from '../elements/MenuDrawer/MainMenu/MainMenu';
 
+const subDrawerLabel = {
+	color: 'white',
+	textTransform: 'uppercase',
+	fontSize: 20,
+	marginLeft: 'auto',
+};
+
+const logoutLabel = {
+	...subDrawerLabel,
+	fontWeight: 'bold',
+	bottom: 0,
+	marginTop: 75,
+};
+
+
 // Logged-In Screens for Drawer Navigator
 export const MainStack = createStackNavigator(
 	{
