@@ -21,15 +21,14 @@ const MenuDrawer = props => {
 	return (
 		<ScrollView>
 			<View style={styles.drawerHeader}>
+				<Text style={styles.username}>Foods 4 U</Text>
 				<View style={styles.avatar}>
 					<Avatar.Image
 						size={100}
 						source={require('@assets/images/banana-icon.png')}
 					/>
 				</View>
-				<View style={styles.drawerHeaderBuffer}>
-					<Text style={styles.username}>Foods 4 U</Text>
-				</View>
+				<View style={styles.drawerHeaderBuffer} />
 			</View>
 			<SafeAreaView
 				style={styles.container}
