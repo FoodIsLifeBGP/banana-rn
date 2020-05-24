@@ -10,6 +10,16 @@ export default {
 			allowEmpty: false,
 		},
 	},
+	firstName: {
+		presence: {
+			allowEmpty: false,
+		},
+	},
+	lastName: {
+		presence: {
+			allowEmpty: false,
+		},
+	},
 	password: {
 		length: {
 			minimum: 8,
