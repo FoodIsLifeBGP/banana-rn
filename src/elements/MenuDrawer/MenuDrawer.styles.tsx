@@ -18,12 +18,12 @@ export default StyleSheet.create({
 	drawerHeader: {
 		backgroundColor: colors.BANANA_YELLOW,
 		color: colors.WHITE,
-		height: 300,
+		height: 250,
 		justifyContent: 'flex-end',
 	},
 	drawerHeaderBuffer: {
 		backgroundColor: colors.NAVY_BLUE,
-		height: 130,
+		height: 90,
 		paddingBottom: 30,
 	},
 	drawerBottomBuffer: {
@@ -32,8 +32,6 @@ export default StyleSheet.create({
 		paddingBottom: 30,
 	},
 	menuItem: {
-		borderTopColor: 'white',
-		borderTopWidth: 1,
 		marginLeft: 30,
 		marginRight: 30,
 		backgroundColor: colors.NAVY_BLUE,
@@ -41,16 +39,17 @@ export default StyleSheet.create({
 	labelText: {
 		color: colors.WHITE,
 		textTransform: 'uppercase',
-		fontSize: 18,
+		fontSize: 20,
 		textAlign: 'right',
 		width: '65%',
-		fontWeight: '500',
+		fontWeight: 'bold',
 	},
 	username: {
-		fontSize: 18,
-		color: colors.WHITE,
+		fontSize: 24,
+		color: colors.NAVY_BLUE,
 		textAlign: 'center',
-		marginTop: 60,
+		marginBottom: 15,
 		fontWeight: '700',
+		textTransform: 'uppercase',
 	},
 });
