@@ -9,6 +9,8 @@ import getEnv from '@util/environment';
 import { Icon } from '@elements';
 import { IconName } from '@elements/Icon';
 
+import { Text, View } from 'react-native';
+
 import LoginScreen from '../screens/LoginScreen';
 import DashboardScreen from '../screens/DashboardScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
@@ -29,6 +31,21 @@ const DrawerIcon = (name: IconName) => Icon({
 	size: 18,
 	color: colors.WHITE,
 });
+
+const subDrawerLabel = {
+	color: 'white',
+	textTransform: 'uppercase',
+	fontSize: 20,
+	marginLeft: 'auto',
+};
+
+const logoutLabel = {
+	...subDrawerLabel,
+	fontWeight: 'bold',
+	bottom: 0,
+	marginTop: 75,
+};
+
 
 // Logged-In Screens for Drawer Navigator
 export const MainStack = createStackNavigator(
@@ -61,8 +78,22 @@ const donorOrClientDrawer = () => {
 		DashboardScreen: {
 			screen: MainStack,
 			navigationOptions: {
-				drawerLabel: 'My Donations',
-				drawerIcon: DrawerIcon('donations'),
+				drawerLabel: 'Donations',
+				drawerIcon: DrawerIcon('claims'),
+			},
+		},
+		// Active
+		Active: {
+			screen: MainStack,
+			navigationOptions: {
+				drawerLabel: () => <Text style={{ ...subDrawerLabel, marginBottom: 15, marginTop: 10 }}> Active </Text>,
+			},
+		},
+		// History
+		History: {
+			screen: MainStack,
+			navigationOptions: {
+				drawerLabel: () => <Text style={{ ...subDrawerLabel, marginBottom: 10, marginTop: 15 }}> History </Text>,
 			},
 		},
 	};
@@ -71,13 +102,14 @@ const donorOrClientDrawer = () => {
 		DashboardScreen: {
 			screen: MainStack,
 			navigationOptions: {
-				drawerLabel: 'My Claims',
+				drawerLabel: 'Claims',
 				drawerIcon: DrawerIcon('claims'),
 			},
 		},
 	};
 
 	const COMMON_MENU = {
+		/* Temporarily Disabled
 		ProfileScreen: {
 			screen: MainStack,
 			navigationOptions: {
@@ -92,18 +124,19 @@ const donorOrClientDrawer = () => {
 				drawerIcon: DrawerIcon('settings'),
 			},
 		},
+		*/
 		HelpScreen: {
 			screen: MainStack,
 			navigationOptions: {
-				drawerLabel: 'Help',
+				drawerLabel: 'Contact Us',
 				drawerIcon: DrawerIcon('help'),
 			},
 		},
 		LogoutScreen: {
 			screen: LogoutScreen,
 			navigationOptions: {
-				drawerLabel: 'Log Out',
-				drawerIcon: DrawerIcon('logout'),
+				drawerLabel: () => <Text style={logoutLabel}>Log out</Text>,
+				drawerIcon: () => <View style={{ marginTop: logoutLabel.marginTop }}>{DrawerIcon('logout')}</View>,
 			},
 		},
 	};
