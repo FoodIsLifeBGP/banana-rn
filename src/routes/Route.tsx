@@ -23,18 +23,57 @@ import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
 import SubMenu from '../elements/MenuDrawer/SubMenu/SubMenu';
 import MainMenu from '../elements/MenuDrawer/MainMenu/MainMenu';
 
+const mainDrawerLabel = {
+	display: 'flex',
+	width: '100%',
+	paddingLeft: 5,
+	flexDirection: 'row',
+	alignItems: 'center',
+	justifyContent: 'space-between',
+	borderTopWidth: 1,
+	borderTopColor: 'white',
+	paddingTop: 20,
+	marginBottom: 15,
+	marginTop: 5,
+	letterSpacing: 0.5,
+	fontSize: 20,
+};
+
 const subDrawerLabel = {
 	color: 'white',
 	textTransform: 'uppercase',
-	fontSize: 20,
+	fontSize: mainDrawerLabel.fontSize,
 	marginLeft: 'auto',
+	marginRight: 5,
+	letterSpacing: mainDrawerLabel.letterSpacing,
 };
 
-const logoutLabel = {
-	...subDrawerLabel,
-	fontWeight: 'bold',
-	bottom: 0,
-	marginTop: 75,
+
+const subMenu = text => <Text style={{ ...subDrawerLabel, marginBottom: 10 }}>{text}</Text>;
+
+const mainMenu = (text, icon) => {
+	let menuStyle = {};
+	if (text === 'Contact Us') {
+		menuStyle = {
+			...mainDrawerLabel,
+			marginBottom: 50,
+		};
+	} else if (text === 'Log out') {
+		menuStyle = { ...mainDrawerLabel, borderTopWidth: 0, marginTop: 30 };
+	} else {
+		menuStyle = mainDrawerLabel;
+	}
+
+	return (
+		<View style={menuStyle}>
+			<View>
+				{DrawerIcon(icon)}
+			</View>
+			<View>
+				<Text style={{ ...subDrawerLabel, fontWeight: 'bold' }}>{text}</Text>
+			</View>
+		</View>
+	);
 };
 
 
