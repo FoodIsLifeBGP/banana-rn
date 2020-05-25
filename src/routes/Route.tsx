@@ -76,15 +76,14 @@ const donorOrClientDrawer = () => {
 		DonationScreen: {
 			screen: MainStack,
 			navigationOptions: {
-				drawerLabel: <MainMenu text="Donations" icon="claims" />,
+				drawerLabel: <MainMenu text="Donations" icon="donations" />,
 			},
 		},
 
 		DashboardScreen: {
 			screen: MainStack,
 			navigationOptions: {
-				drawerLabel: 'Claims',
-				drawerIcon: <MainMenu text="Claims" icon="claims" />,
+				drawerLabel: <MainMenu text="Claims" icon="claims" />,
 			},
 		},
 
