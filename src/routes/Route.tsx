@@ -56,14 +56,12 @@ const donorOrClientDrawer = () => {
 				drawerLabel: <MainMenu text="Donations" icon="claims" />,
 			},
 		},
-		// Active
 		Active: {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: <SubMenu text="Active" />,
 			},
 		},
-		// History
 		History: {
 			screen: MainStack,
 			navigationOptions: {
@@ -103,21 +101,6 @@ const donorOrClientDrawer = () => {
 	};
 
 	const COMMON_MENU = {
-		/* Temporarily Disabled
-		ProfileScreen: {
-			screen: MainStack,
-			navigationOptions: {
-				drawerLabel: 'My Profile',
-				drawerIcon: DrawerIcon('user'),
-			},
-		},
-		SettingsScreen: {
-			screen: MainStack,
-			navigationOptions: {
-				drawerLabel: mainMenu('Settings', 'settings'),
-			},
-		},
-		*/
 
 		HelpScreen: {
 			screen: MainStack,
