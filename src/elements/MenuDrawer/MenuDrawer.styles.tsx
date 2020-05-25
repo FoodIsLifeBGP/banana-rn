@@ -14,11 +14,12 @@ export default StyleSheet.create({
 		flex: 1,
 		backgroundColor: colors.NAVY_BLUE,
 		alignItems: 'flex-end',
+		marginTop: -20,
 	},
 	drawerHeader: {
 		backgroundColor: colors.BANANA_YELLOW,
 		color: colors.WHITE,
-		height: 250,
+		height: 230,
 		justifyContent: 'flex-end',
 	},
 	drawerHeaderBuffer: {
