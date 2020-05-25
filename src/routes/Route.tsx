@@ -6,11 +6,6 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 import * as colors from '@util/colors';
 import getEnv from '@util/environment';
 
-import { Icon } from '@elements';
-import { IconName } from '@elements/Icon';
-
-import { Text, View } from 'react-native';
-
 import LoginScreen from '../screens/LoginScreen';
 import DashboardScreen from '../screens/DashboardScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
@@ -25,66 +20,8 @@ import DonationsDetailScreen from '../screens/DonationsDetailScreen/DonationsDet
 import DonorDonationScreen from '../screens/DonorDashboardScreen/DonorDonationScreen';
 
 import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
-
-const DrawerIcon = (name: IconName) => Icon({
-	name,
-	size: 24,
-	color: colors.WHITE,
-});
-
-const mainDrawerLabel = {
-	display: 'flex',
-	width: '100%',
-	paddingLeft: 5,
-	flexDirection: 'row',
-	alignItems: 'center',
-	justifyContent: 'space-between',
-	borderTopWidth: 1,
-	borderTopColor: 'white',
-	paddingTop: 20,
-	marginBottom: 15,
-	marginTop: 5,
-	letterSpacing: 0.5,
-	fontSize: 20,
-};
-
-const subDrawerLabel = {
-	color: 'white',
-	textTransform: 'uppercase',
-	fontSize: mainDrawerLabel.fontSize,
-	marginLeft: 'auto',
-	marginRight: 5,
-	letterSpacing: mainDrawerLabel.letterSpacing,
-};
-
-
-const subMenu = text => <Text style={{ ...subDrawerLabel, marginBottom: 10 }}>{text}</Text>;
-
-const mainMenu = (text, icon) => {
-	let menuStyle = {};
-	if (text === 'Contact Us') {
-		menuStyle = {
-			...mainDrawerLabel,
-			marginBottom: 50,
-		};
-	} else if (text === 'Log out') {
-		menuStyle = { ...mainDrawerLabel, borderTopWidth: 0, marginTop: 30 };
-	} else {
-		menuStyle = mainDrawerLabel;
-	}
-
-	return (
-		<View style={menuStyle}>
-			<View>
-				{DrawerIcon(icon)}
-			</View>
-			<View>
-				<Text style={{ ...subDrawerLabel, fontWeight: 'bold' }}>{text}</Text>
-			</View>
-		</View>
-	);
-};
-
+import SubMenu from '../elements/MenuDrawer/SubMenu/SubMenu';
+import MainMenu from '../elements/MenuDrawer/MainMenu/MainMenu';
 
 // Logged-In Screens for Drawer Navigator
 export const MainStack = createStackNavigator(
@@ -110,27 +47,27 @@ const donorOrClientDrawer = () => {
 		QRCodeScannerScreen: {
 			screen: QRCodeScannerScreen,
 			navigationOptions: {
-				drawerLabel: mainMenu('Scan QR Code', 'qrCode'),
+				drawerLabel: <MainMenu text="Scan QR Code" icon="qrCode" />,
 			},
 		},
 		DashboardScreen: {
 			screen: MainStack,
 			navigationOptions: {
-				drawerLabel: mainMenu('Donations', 'claims'),
+				drawerLabel: <MainMenu text="Donations" icon="claims" />,
 			},
 		},
 		// Active
 		Active: {
 			screen: MainStack,
 			navigationOptions: {
-				drawerLabel: subMenu('Active'),
+				drawerLabel: <SubMenu text="Active" />,
 			},
 		},
 		// History
 		History: {
 			screen: MainStack,
 			navigationOptions: {
-				drawerLabel: subMenu('History'),
+				drawerLabel: <SubMenu text="History" />,
 			},
 		},
 	};
@@ -139,7 +76,7 @@ const donorOrClientDrawer = () => {
 		DonationScreen: {
 			screen: MainStack,
 			navigationOptions: {
-				drawerLabel: mainMenu('Donations', 'donations'),
+				drawerLabel: <MainMenu text="Donations" icon="claims" />,
 			},
 		},
 
@@ -147,21 +84,21 @@ const donorOrClientDrawer = () => {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: 'Claims',
-				drawerIcon: DrawerIcon('claims'),
+				drawerIcon: <MainMenu text="Claims" icon="claims" />,
 			},
 		},
 
 		Pending: {
 			screen: MainStack,
 			navigationOptions: {
-				drawerLabel: subMenu('Pending'),
+				drawerLabel: <SubMenu text="Pending" />,
 			},
 		},
 
 		History: {
 			screen: MainStack,
 			navigationOptions: {
-				drawerLabel: subMenu('History'),
+				drawerLabel: <SubMenu text="History" />,
 			},
 		},
 	};
@@ -186,14 +123,14 @@ const donorOrClientDrawer = () => {
 		HelpScreen: {
 			screen: MainStack,
 			navigationOptions: {
-				drawerLabel: mainMenu('Contact Us', 'help'),
+				drawerLabel: <MainMenu text="Contact Us" icon="help" />,
 			},
 		},
 
 		LogoutScreen: {
 			screen: LogoutScreen,
 			navigationOptions: {
-				drawerLabel: mainMenu('Log out', 'logout'),
+				drawerLabel: <MainMenu text="Log out" icon="logout" />,
 			},
 		},
 	};
