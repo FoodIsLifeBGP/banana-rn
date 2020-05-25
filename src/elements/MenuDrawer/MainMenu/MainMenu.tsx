@@ -35,7 +35,7 @@ const MainMenu = props => {
 				{DrawerIcon(props.icon)}
 			</View>
 			<View>
-				<Text style={ styles.menuText }>{props.text}</Text>
+				<Text style={styles.menuText}>{props.text}</Text>
 			</View>
 		</View>
 	);
