@@ -23,5 +23,5 @@ export default StyleSheet.create({
 		marginRight: 5,
 		fontWeight: 'bold',
 		fontSize: 20,
-	}
+	},
 });
