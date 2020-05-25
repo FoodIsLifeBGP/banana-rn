@@ -22,6 +22,7 @@ import DonorDonationScreen from '../screens/DonorDashboardScreen/DonorDonationSc
 import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
 import SubMenu from '../elements/MenuDrawer/SubMenu/SubMenu';
 import MainMenu from '../elements/MenuDrawer/MainMenu/MainMenu';
+<<<<<<< HEAD
 
 const mainDrawerLabel = {
 	display: 'flex',
@@ -76,6 +77,8 @@ const mainMenu = (text, icon) => {
 	);
 };
 
+=======
+>>>>>>> 1466eef... Modulize  mainMenu, subMenu and their styles -- put them in their own folders and as their own React elements and use them as appropriate.
 
 // Logged-In Screens for Drawer Navigator
 export const MainStack = createStackNavigator(
@@ -129,14 +132,23 @@ const donorOrClientDrawer = () => {
 		DonationScreen: {
 			screen: MainStack,
 			navigationOptions: {
+<<<<<<< HEAD
 				drawerLabel: <MainMenu text="Donations" icon="donations" />,
+=======
+				drawerLabel: <MainMenu text="Donations" icon="claims" />,
+>>>>>>> 1466eef... Modulize  mainMenu, subMenu and their styles -- put them in their own folders and as their own React elements and use them as appropriate.
 			},
 		},
 
 		DashboardScreen: {
 			screen: MainStack,
 			navigationOptions: {
+<<<<<<< HEAD
 				drawerLabel: <MainMenu text="Claims" icon="claims" />,
+=======
+				drawerLabel: 'Claims',
+				drawerIcon: <MainMenu text="Claims" icon="claims" />,
+>>>>>>> 1466eef... Modulize  mainMenu, subMenu and their styles -- put them in their own folders and as their own React elements and use them as appropriate.
 			},
 		},
 
@@ -161,6 +173,16 @@ const donorOrClientDrawer = () => {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: <MainMenu text="Contact Us" icon="help" />,
+<<<<<<< HEAD
+=======
+			},
+		},
+
+		LogoutScreen: {
+			screen: LogoutScreen,
+			navigationOptions: {
+				drawerLabel: <MainMenu text="Log out" icon="logout" />,
+>>>>>>> 1466eef... Modulize  mainMenu, subMenu and their styles -- put them in their own folders and as their own React elements and use them as appropriate.
 			},
 		},
 	};
