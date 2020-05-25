@@ -28,22 +28,61 @@ import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
 
 const DrawerIcon = (name: IconName) => Icon({
 	name,
-	size: 18,
+	size: 24,
 	color: colors.WHITE,
 });
+
+const mainDrawerLabel = {
+	display: 'flex',
+	width: '100%',
+	paddingLeft: 5,
+	flexDirection: 'row',
+	alignItems: 'center',
+	justifyContent: 'space-between',
+	borderTopWidth: 1,
+	borderTopColor: 'white',
+	paddingTop: 20,
+	marginBottom: 15,
+	marginTop: 5,
+	letterSpacing: 0.5,
+	fontSize: 20,
+};
 
 const subDrawerLabel = {
 	color: 'white',
 	textTransform: 'uppercase',
-	fontSize: 20,
+	fontSize: mainDrawerLabel.fontSize,
 	marginLeft: 'auto',
+	marginRight: 5,
+	letterSpacing: mainDrawerLabel.letterSpacing,
 };
 
-const logoutLabel = {
-	...subDrawerLabel,
-	fontWeight: 'bold',
-	bottom: 0,
-	marginTop: 75,
+
+const subMenu = text => <Text style={{ ...subDrawerLabel, marginBottom: 10 }}>{text}</Text>;
+
+const mainMenu = (text, icon) => {
+	let menuStyle = {};
+	if (text === 'Contact Us') {
+		menuStyle = {
+			...mainDrawerLabel,
+			marginBottom: 50,
+		};
+	} else if (text === 'Log out') {
+		menuStyle = { ...mainDrawerLabel, borderTopWidth: 0, marginTop: 30 };
+	} else {
+		menuStyle = mainDrawerLabel;
+	}
+
+	return (
+		<View style={menuStyle}>
+			<View>
+				{DrawerIcon(icon)}
+			</View>
+			<View>
+				<Text style={{ ...subDrawerLabel, fontWeight: 'bold' }}>{text}</Text>
+			</View>
+		</View>
+	);
 };
 
 
@@ -71,39 +110,58 @@ const donorOrClientDrawer = () => {
 		QRCodeScannerScreen: {
 			screen: QRCodeScannerScreen,
 			navigationOptions: {
-				drawerLabel: 'Scan QR Code',
-				drawerIcon: DrawerIcon('qrCode'),
+				drawerLabel: mainMenu('Scan QR Code', 'qrCode'),
 			},
 		},
 		DashboardScreen: {
 			screen: MainStack,
 			navigationOptions: {
-				drawerLabel: 'Donations',
-				drawerIcon: DrawerIcon('claims'),
+				drawerLabel: mainMenu('Donations', 'claims'),
 			},
 		},
 		// Active
 		Active: {
 			screen: MainStack,
 			navigationOptions: {
-				drawerLabel: () => <Text style={{ ...subDrawerLabel, marginBottom: 15, marginTop: 10 }}> Active </Text>,
+				drawerLabel: subMenu('Active'),
 			},
 		},
 		// History
 		History: {
 			screen: MainStack,
 			navigationOptions: {
-				drawerLabel: () => <Text style={{ ...subDrawerLabel, marginBottom: 10, marginTop: 15 }}> History </Text>,
+				drawerLabel: subMenu('History'),
 			},
 		},
 	};
 
 	const CLIENT_MENU = {
+		DonationScreen: {
+			screen: MainStack,
+			navigationOptions: {
+				drawerLabel: mainMenu('Donations', 'donations'),
+			},
+		},
+
 		DashboardScreen: {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: 'Claims',
 				drawerIcon: DrawerIcon('claims'),
+			},
+		},
+
+		Pending: {
+			screen: MainStack,
+			navigationOptions: {
+				drawerLabel: subMenu('Pending'),
+			},
+		},
+
+		History: {
+			screen: MainStack,
+			navigationOptions: {
+				drawerLabel: subMenu('History'),
 			},
 		},
 	};
@@ -120,23 +178,22 @@ const donorOrClientDrawer = () => {
 		SettingsScreen: {
 			screen: MainStack,
 			navigationOptions: {
-				drawerLabel: 'Settings',
-				drawerIcon: DrawerIcon('settings'),
+				drawerLabel: mainMenu('Settings', 'settings'),
 			},
 		},
 		*/
+
 		HelpScreen: {
 			screen: MainStack,
 			navigationOptions: {
-				drawerLabel: 'Contact Us',
-				drawerIcon: DrawerIcon('help'),
+				drawerLabel: mainMenu('Contact Us', 'help'),
 			},
 		},
+
 		LogoutScreen: {
 			screen: LogoutScreen,
 			navigationOptions: {
-				drawerLabel: () => <Text style={logoutLabel}>Log out</Text>,
-				drawerIcon: () => <View style={{ marginTop: logoutLabel.marginTop }}>{DrawerIcon('logout')}</View>,
+				drawerLabel: mainMenu('Log out', 'logout'),
 			},
 		},
 	};
