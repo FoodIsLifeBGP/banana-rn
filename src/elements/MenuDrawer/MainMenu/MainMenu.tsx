@@ -61,8 +61,12 @@ const MainMenu = props => {
 				{DrawerIcon(props.icon)}
 			</View>
 			<View>
+<<<<<<< HEAD
 				<Text style={ styles.menuText }>{props.text}</Text>
 >>>>>>> 4b6e506... Create React component that render MainMenu elements (Scan QR Code text and its icon, etc.)
+=======
+				<Text style={styles.menuText}>{props.text}</Text>
+>>>>>>> 154e7eb... Fix linter issues.
 			</View>
 		</View>
 	);

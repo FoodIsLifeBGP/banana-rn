@@ -28,6 +28,7 @@ export default StyleSheet.create({
 		fontWeight: 'bold',
 		fontSize: 20,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	},
 	logOut: {
 		borderTopWidth: 0,
@@ -37,3 +38,7 @@ export default StyleSheet.create({
 	}
 });
 >>>>>>> 4b6e506... Create React component that render MainMenu elements (Scan QR Code text and its icon, etc.)
+=======
+	},
+});
+>>>>>>> 154e7eb... Fix linter issues.
