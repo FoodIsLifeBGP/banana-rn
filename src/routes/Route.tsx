@@ -133,10 +133,14 @@ const donorOrClientDrawer = () => {
 			screen: MainStack,
 			navigationOptions: {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				drawerLabel: <MainMenu text="Donations" icon="donations" />,
 =======
 				drawerLabel: <MainMenu text="Donations" icon="claims" />,
 >>>>>>> 1466eef... Modulize  mainMenu, subMenu and their styles -- put them in their own folders and as their own React elements and use them as appropriate.
+=======
+				drawerLabel: <MainMenu text="Donations" icon="donations" />,
+>>>>>>> c9cb6ad... Move misplaced component to proper field.
 			},
 		},
 
@@ -144,11 +148,15 @@ const donorOrClientDrawer = () => {
 			screen: MainStack,
 			navigationOptions: {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				drawerLabel: <MainMenu text="Claims" icon="claims" />,
 =======
 				drawerLabel: 'Claims',
 				drawerIcon: <MainMenu text="Claims" icon="claims" />,
 >>>>>>> 1466eef... Modulize  mainMenu, subMenu and their styles -- put them in their own folders and as their own React elements and use them as appropriate.
+=======
+				drawerLabel: <MainMenu text="Claims" icon="claims" />,
+>>>>>>> c9cb6ad... Move misplaced component to proper field.
 			},
 		},
 
