@@ -29,6 +29,9 @@ const MainMenu = props => {
 		menuStyle = {
 			...styles.mainMenu,
 			marginBottom: 50,
+			borderBottomWidth: 1,
+			borderBottomColor: colors.WHITE,
+			paddingBottom: 20,
 		};
 	} else if (props.text === 'Log out') {
 		menuStyle = { ...styles.mainMenu, borderTopWidth: 0, marginTop: 30 };
