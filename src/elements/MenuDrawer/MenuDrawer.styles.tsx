@@ -15,16 +15,26 @@ export default StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: colors.NAVY_BLUE,
+<<<<<<< HEAD
 		marginTop: -20,
 		flexDirection: 'column',
 		justifyContent: 'space-between',
 		height: vh - (vh / 3),
+=======
+		alignItems: 'flex-end',
+		marginTop: -20,
+>>>>>>> 8f54caf... Change height of header, and add negative margin to container (might need to be changed later.)
 	},
 	drawerHeader: {
 		backgroundColor: colors.BANANA_YELLOW,
 		color: colors.WHITE,
+<<<<<<< HEAD
 		height: 120,
 		justifyContent: 'center',
+=======
+		height: 230,
+		justifyContent: 'flex-end',
+>>>>>>> 8f54caf... Change height of header, and add negative margin to container (might need to be changed later.)
 	},
 	drawerHeaderBuffer: {
 		backgroundColor: colors.NAVY_BLUE,
