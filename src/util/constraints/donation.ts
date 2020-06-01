@@ -1,4 +1,9 @@
 export default {
+	image: {
+		presence: {
+			allowEmpty: true,
+		},
+	},
 	itemName: {
 		presence: {
 			allowEmpty: false,

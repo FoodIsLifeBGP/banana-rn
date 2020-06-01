@@ -38,6 +38,11 @@ export default {
 			allowEmpty: false,
 		},
 	},
+	image: {
+		presence: {
+			allowEmpty: true,
+		},
+	},
 	street: {
 		presence: {
 			allowEmpty: false,
