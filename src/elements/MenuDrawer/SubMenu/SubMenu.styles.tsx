@@ -10,8 +10,12 @@ export default StyleSheet.create({
 		marginRight: 5,
 		letterSpacing: 0.5,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		marginBottom: 10,
 =======
 >>>>>>> 31f784e... Create React component that will render SubMenu elements (Active, History, etc.)
+=======
+		marginBottom: 10,
+>>>>>>> b81bef6... Clean up code.
 	},
 });

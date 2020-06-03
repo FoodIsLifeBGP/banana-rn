@@ -28,14 +28,18 @@ const MainMenu = props => {
 	if (props.text === 'Contact Us') {
 		menuStyle = {
 			...styles.mainMenu,
-			marginBottom: 50,
-			borderBottomWidth: 1,
-			borderBottomColor: colors.WHITE,
-			paddingBottom: 20,
+			...styles.contactUs,
 		};
 	} else if (props.text === 'Log out') {
+<<<<<<< HEAD
 		menuStyle = { ...styles.mainMenu, borderTopWidth: 0, marginTop: 30 };
 >>>>>>> 4b6e506... Create React component that render MainMenu elements (Scan QR Code text and its icon, etc.)
+=======
+		menuStyle = {
+			...styles.mainMenu,
+			...styles.logOut,
+		};
+>>>>>>> b81bef6... Clean up code.
 	} else {
 		menuStyle = styles.mainMenu;
 	}

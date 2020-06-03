@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import * as colors from '@util/colors';
+import MainMenu from './MainMenu';
 
 export default StyleSheet.create({
 	mainMenu: {
@@ -30,6 +31,7 @@ export default StyleSheet.create({
 <<<<<<< HEAD
 <<<<<<< HEAD
 	},
+<<<<<<< HEAD
 	logOut: {
 		borderTopWidth: 0,
 	},
@@ -42,3 +44,16 @@ export default StyleSheet.create({
 	},
 });
 >>>>>>> 154e7eb... Fix linter issues.
+=======
+	contactUs: {
+		marginBottom: 50,
+		borderBottomWidth: 1,
+		borderBottomColor: colors.WHITE,
+		paddingBottom: 20,
+	},
+	logOut: {
+		borderTopWidth: 0,
+		marginTop: 30,
+	},
+});
+>>>>>>> b81bef6... Clean up code.
