@@ -35,7 +35,7 @@ export default {
 			tooShort: 'needs 9 digits',
 		},
 		presence: {
-			allowEmpty: false,
+			allowEmpty: true,
 		},
 	},
 	image: {
