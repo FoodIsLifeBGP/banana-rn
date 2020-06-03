@@ -9,5 +9,6 @@ export default StyleSheet.create({
 		marginLeft: 'auto',
 		marginRight: 5,
 		letterSpacing: 0.5,
+		marginBottom: 10,
 	},
 });

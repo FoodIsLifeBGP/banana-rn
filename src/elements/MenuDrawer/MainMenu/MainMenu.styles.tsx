@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import * as colors from '@util/colors';
+import MainMenu from './MainMenu';
 
 export default StyleSheet.create({
 	mainMenu: {
@@ -23,5 +24,15 @@ export default StyleSheet.create({
 		marginRight: 5,
 		fontWeight: 'bold',
 		fontSize: 20,
+	},
+	contactUs: {
+		marginBottom: 50,
+		borderBottomWidth: 1,
+		borderBottomColor: colors.WHITE,
+		paddingBottom: 20,
+	},
+	logOut: {
+		borderTopWidth: 0,
+		marginTop: 30,
 	},
 });
