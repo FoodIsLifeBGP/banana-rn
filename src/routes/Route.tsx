@@ -189,8 +189,12 @@ const donorOrClientDrawer = () => {
 		LogoutScreen: {
 			screen: LogoutScreen,
 			navigationOptions: {
+<<<<<<< HEAD
 				drawerLabel: <MainMenu text="Log out" icon="logout" />,
 >>>>>>> 1466eef... Modulize  mainMenu, subMenu and their styles -- put them in their own folders and as their own React elements and use them as appropriate.
+=======
+				drawerLabel: <MainMenu text="Log Out" icon="logout" />,
+>>>>>>> 29632d9... Clean up code.
 			},
 		},
 	};
