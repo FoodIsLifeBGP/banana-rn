@@ -5,7 +5,11 @@ export default {
 		},
 		email: true,
 	},
-	organizationName: {
+	password: {
+		length: {
+			minimum: 8,
+			message: 'must be at least 8 characters',
+		},
 		presence: {
 			allowEmpty: false,
 		},
@@ -20,38 +24,25 @@ export default {
 			allowEmpty: false,
 		},
 	},
-	password: {
-		length: {
-			minimum: 8,
-			message: 'must be at least 8 characters',
-		},
+	businessName: {
 		presence: {
 			allowEmpty: false,
 		},
 	},
-	license: {
-		length: {
-			is: 9,
-			tooShort: 'needs 9 digits',
-		},
-		presence: {
-			allowEmpty: true,
-		},
-	},
-	image: {
-		presence: {
-			allowEmpty: true,
-		},
-	},
-	street: {
+	businessAddress: {
 		presence: {
 			allowEmpty: false,
 		},
 		format: {
-			pattern: /^\d+\s+.+\s+.+$/,
+			pattern: /^[a-zA-Z0-9\s,'-]*$/,
 		},
 	},
 	city: {
+		presence: {
+			allowEmpty: false,
+		},
+	},
+	state: {
 		presence: {
 			allowEmpty: false,
 		},
@@ -63,6 +54,11 @@ export default {
 		format: {
 			pattern: /^\d{5}$/,
 			message: '^Please enter a valid ZIP code',
+		},
+	},
+	pickupInstructions: {
+		presence: {
+			allowEmpty: false,
 		},
 	},
 };
