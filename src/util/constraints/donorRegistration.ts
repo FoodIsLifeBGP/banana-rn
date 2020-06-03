@@ -31,7 +31,7 @@ export default {
 	},
 	businessAddress: {
 		presence: {
-			allowEmpty: false,
+			allowEmpty: true,
 		},
 		format: {
 			pattern: /^[a-zA-Z0-9\s,'-]*$/,
