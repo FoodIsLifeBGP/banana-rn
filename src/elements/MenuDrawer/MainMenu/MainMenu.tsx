@@ -12,13 +12,13 @@ const MainMenu = props => {
 	if (props.text === 'Contact Us') {
 		menuStyle = {
 			...styles.mainMenu,
-			marginBottom: 50,
-			borderBottomWidth: 1,
-			borderBottomColor: colors.WHITE,
-			paddingBottom: 20,
+			...styles.contactUs,
 		};
 	} else if (props.text === 'Log out') {
-		menuStyle = { ...styles.mainMenu, borderTopWidth: 0, marginTop: 30 };
+		menuStyle = {
+			...styles.mainMenu,
+			...styles.logOut,
+		};
 	} else {
 		menuStyle = styles.mainMenu;
 	}
