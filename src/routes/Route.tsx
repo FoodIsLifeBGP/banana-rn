@@ -112,7 +112,7 @@ const donorOrClientDrawer = () => {
 		LogoutScreen: {
 			screen: LogoutScreen,
 			navigationOptions: {
-				drawerLabel: <MainMenu text="Log out" icon="logout" />,
+				drawerLabel: <MainMenu text="Log Out" icon="logout" />,
 			},
 		},
 	};
