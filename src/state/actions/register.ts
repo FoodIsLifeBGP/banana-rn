@@ -1,46 +1,56 @@
 import railsAxios from '@util/railsAxios';
+import clientConstraints from '@util/constraints/clientRegistration';
+import donorConstraints from '@util/constraints/donorRegistration';
+import validate from 'validate.js';
 
 interface DonorRegisterProps {
-	organizationName: string;
 	email: string;
 	password: string;
-	license: string;
-	street: string;
+	firstName: string;
+	lastName: string;
+	businessName: string;
+	businessAddress: string;
 	city: string;
 	state: string;
 	zip: string;
-	licenseVerificationImage: any;
+	pickupInstructions: string;
+	// license: string
+	// licenseVerificationImage: any
 }
 
 interface ClientRegisterProps {
 	email: string;
 	password: string;
-	street: string;
-	city: string;
-	state: string;
-	zip: string;
-	transportationMethod: string;
-	ethnicity: string;
-	gender: string;
+	firstName: string;
+	lastName: string;
+	// street: string;
+	// city: string;
+	// state: string;
+	// zip: string;
+	// transportationMethod: string;
+	// ethnicity: string;
+	// gender: string;
 }
 
 export const registerDonor = async (store, donor: DonorRegisterProps) => {
 	const { createUrl, userIdentity } = store.state;
 	const {
-		organizationName, email, password, license, street, city, state, zip,
+		email, password, firstName, lastName, businessName, businessAddress, city, state, zip, pickupInstructions,
 	} = donor;
 	try {
 		const response = await railsAxios().post(createUrl, JSON.stringify({
 			[userIdentity]: {
 				email,
 				password,
-				organization_name: organizationName,
-				business_license: license,
-				address_street: street,
+				first_name: firstName,
+				last_name: lastName,
+				organization_name: businessName,
+				address_street: businessAddress,
 				address_city: city,
-				address_zip: zip,
 				address_state: state,
+				address_zip: zip,
 				account_status: 'pending',
+				pickup_instructions: pickupInstructions,
 			},
 		}));
 
@@ -61,20 +71,15 @@ export const registerDonor = async (store, donor: DonorRegisterProps) => {
 export const registerClient = async (store, client: ClientRegisterProps) => {
 	const { createUrl, userIdentity } = store.state;
 	const {
-		email, password, street, city, state, zip, transportationMethod, ethnicity, gender,
+		email, password, firstName, lastName,
 	} = client;
 	try {
 		const response = await railsAxios().post(createUrl, JSON.stringify({
 			[userIdentity]: {
 				email,
 				password,
-				address_street: street,
-				address_city: city,
-				address_zip: zip,
-				address_state: state,
-				transportation_method: transportationMethod,
-				ethnicity,
-				gender,
+				first_name: firstName,
+				last_name: lastName,
 				account_status: 'pending',
 			},
 		}));
@@ -95,10 +100,14 @@ export const registerClient = async (store, client: ClientRegisterProps) => {
 
 const register = async (store, user) => {
 	const { userIdentity } = store.state;
+	const formErrors = userIdentity === 'donor'
+		? await validate(user, donorConstraints)
+		: await validate(user, clientConstraints);
+	if (formErrors) return { formErrors };
 	const statusCode = userIdentity === 'donor'
 		? await registerDonor(store, user)
 		: await registerClient(store, user);
-	return statusCode;
+	return { formErrors, statusCode };
 };
 
 export { register };
