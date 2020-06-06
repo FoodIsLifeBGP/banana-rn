@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Text } from 'react-native';
 import EndOfScrollWrapper from './EndOfScrollWrapper';
 import Checkbox from '../Checkbox/Checkbox';
@@ -30,12 +30,10 @@ export default function ScrollContainer({
 	styleDocumentText,
 	styleCheckboxLabel,
 }: ScrollContainerProps) {
-
-	return (
-		<EndOfScrollWrapper onScrollToEnd={onScrollToEnd} style={styleContainer}>
-			<Text style={styleDocumentText}>{documentText}</Text>
-			{ displayCheckbox &&
-				<Fragment>
+	const handleDisplayCheckbox = () => {
+		if (displayCheckbox) {
+			return (
+				<>
 					<Checkbox
 						checked={checked}
 						setChecked={setChecked}
@@ -43,8 +41,16 @@ export default function ScrollContainer({
 						onPress={onPress}
 					/>
 					<Text style={styleCheckboxLabel}>{checkboxLabel}</Text>
-				</Fragment>
-			}
+				</>
+			);
+		}
+		return null;
+	};
+
+	return (
+		<EndOfScrollWrapper onScrollToEnd={onScrollToEnd} style={styleContainer}>
+			<Text style={styleDocumentText}>{documentText}</Text>
+			{ handleDisplayCheckbox() }
 		</EndOfScrollWrapper>
 	);
 }
