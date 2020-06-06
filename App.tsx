@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, YellowBox } from 'react-native';
+import {
+	SafeAreaView, Text, View, YellowBox,
+} from 'react-native';
 import { Provider } from 'react-native-paper';
 import { AppearanceProvider } from 'react-native-appearance';
 import Constants from 'expo-constants';
 import * as Font from 'expo-font';
 import NavigationService from '@util/NavigationService';
+import getstorybook from '@util/storybook';
 import { TheAlertModal } from '@elements';
+import storybook from './src/storybook';
 import Route from './src/routes/Route';
 import styles from './App.styles';
+
 
 YellowBox.ignoreWarnings([
 	'Warning: componentWillReceiveProps has been renamed',
 	'Require cycle',
 ]);
 
-export default function App() {
+export default getstorybook() ? storybook : function App() {
 	const [ fontsLoaded, setFontsLoaded ] = useState(false);
 
 	const loadFonts = async () => {
@@ -35,7 +40,10 @@ export default function App() {
 		return (
 			<View style={styles.container}>
 				<Text style={styles.heading}>INCORRECT VARIANT SPECIFIED</Text>
-				<Text style={styles.text}>You must specify 'donor' or 'client' in app.json (expo.extra.variant).</Text>
+				<Text style={styles.text}>
+You must specify 'donor' or 'client' in app.json
+            (expo.extra.variant).
+				</Text>
 				<Text style={styles.text}>Refresh the app to see your changes.</Text>
 			</View>
 		);
@@ -46,11 +54,11 @@ export default function App() {
 			{/* All elements within AppearanceProvider will have access
 			 *  to the user-defined OS color theme preference: 'light', 'dark', 'no-preference'. */}
 			<Provider>
-				<View style={styles.container}>
+				<SafeAreaView style={styles.container}>
 					<Route ref={navRef => NavigationService.setTopLevelNavigator(navRef)} />
 					<TheAlertModal />
-				</View>
+				</SafeAreaView>
 			</Provider>
 		</AppearanceProvider>
 	);
-}
+};

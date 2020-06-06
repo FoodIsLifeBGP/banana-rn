@@ -62,8 +62,9 @@ export default ({
 			y = -1.25;
 		} else if (name.includes('bell')) {
 			y = -2;
+		} else if (name.includes('box')) {
+			y = -4;
 		}
-
 		return {
 			transform: [
 				{

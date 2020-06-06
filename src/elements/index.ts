@@ -1,5 +1,6 @@
 export { FormTextInput } from './FormTextInput';
-export { Header } from './Header';
+export { FormImageInput } from './FormImageInput';
+export { NavBar } from './NavBar';
 export { Icon } from './Icon';
 export { InputLabel } from './FormTextInput/InputLabel';
 export { Button } from './Button';
@@ -10,3 +11,4 @@ export { Title } from './Title';
 export { Paragraph } from './Paragraph';
 export { Modal } from './Modal';
 export { TheAlertModal } from './TheAlertModal';
+export { EmptyStateView } from './EmptyStateView';

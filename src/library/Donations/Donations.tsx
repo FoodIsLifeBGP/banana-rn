@@ -3,7 +3,7 @@ import { useIsFocused } from 'react-navigation-hooks';
 import { ScrollView, View, Text } from 'react-native';
 import { Divider } from 'react-native-paper';
 import useGlobal from '@state';
-import { SpacerInline } from '@elements';
+import { SpacerInline, EmptyStateView } from '@elements';
 import Donation from './Donation';
 
 interface LocalProps {
@@ -37,7 +37,7 @@ export default ({ resource }: LocalProps) => {
 
 	if (!loaded) { return <Text>Loading...</Text>; }
 
-	return Array.isArray(donations) && donations !== []
+	return donations && Array.isArray(donations) && donations.length > 0
 		? (
 			<ScrollView>
 				{
@@ -51,7 +51,7 @@ export default ({ resource }: LocalProps) => {
 							/>
 							{
 								i === (donations as any).length - 1
-									&& <Divider style={{ backgroundColor: 'blue' }} />
+								&& <Divider style={{ backgroundColor: 'blue' }} />
 							}
 						</View>
 					))
@@ -60,10 +60,6 @@ export default ({ resource }: LocalProps) => {
 			</ScrollView>
 		)
 		: (
-			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-				<View>
-					<Text>No donations to display</Text>
-				</View>
-			</View>
+			<EmptyStateView lowerText="You currently don't have any donations." />
 		);
 };

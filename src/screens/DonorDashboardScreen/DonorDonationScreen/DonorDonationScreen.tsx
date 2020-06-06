@@ -10,7 +10,7 @@ import {
 import { Switch } from 'react-native-paper';
 import useGlobal from '@state';
 import {
-	Header,
+	NavBar,
 	SpacerInline,
 	FormTextInput,
 	LinkButton,
@@ -86,7 +86,7 @@ export default () => {
 	return (
 		<View style={styles.outerContainer}>
 			<View>
-				<Header showMenu={false} />
+				<NavBar showMenu={false} />
 				<SpacerInline height={20} />
 
 				<View style={styles.iconRow}>
