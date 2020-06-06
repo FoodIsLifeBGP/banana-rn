@@ -95,8 +95,9 @@ const FormImageInput = (
 			>
 				{ value?.uri != null
 					? (
+						//console.log(style.circularImage);
 						<Image
-							style={shape === 'rectangular' ? styles.image : style.circularImage}
+							style={shape === 'rectangular' ? styles.image : styles.circularImage}
 							source={{ uri: value.uri }}
 						/>
 					)
