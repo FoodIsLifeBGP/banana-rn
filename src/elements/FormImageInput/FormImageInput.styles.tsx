@@ -21,6 +21,11 @@ export default StyleSheet.create({
 		width: '100%',
 		aspectRatio: 2.25,
 	},
+	circularImage: {
+		width: 140,
+		height: 140,
+		borderRadius: 140 / 2,
+	},
 	iconContainer: {
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -28,6 +33,16 @@ export default StyleSheet.create({
 		height: 140,
 		borderColor: colors.NAVY_BLUE,
 		borderWidth: 4,
+		backgroundColor: colors.WHITE_TRANSPARENT,
+	},
+	iconCircularContainer: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		width: 140,
+		height: 140,
+		borderRadius: 140 / 2,
+		borderWidth: 4,
+		borderColor: colors.NAVY_BLUE,
 		backgroundColor: colors.WHITE_TRANSPARENT,
 	},
 	statusRowText: {
