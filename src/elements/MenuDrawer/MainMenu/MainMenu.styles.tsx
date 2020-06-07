@@ -26,10 +26,10 @@ export default StyleSheet.create({
 		fontSize: 20,
 	},
 	contactUs: {
-		marginBottom: 50,
 		borderBottomWidth: 1,
 		borderBottomColor: colors.WHITE,
 		paddingBottom: 20,
+		// marginBottom: '50%',
 	},
 	logOut: {
 		borderTopWidth: 0,
