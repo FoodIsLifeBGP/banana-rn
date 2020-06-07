@@ -46,10 +46,10 @@ export default StyleSheet.create({
 >>>>>>> 154e7eb... Fix linter issues.
 =======
 	contactUs: {
-		marginBottom: 50,
 		borderBottomWidth: 1,
 		borderBottomColor: colors.WHITE,
 		paddingBottom: 20,
+		// marginBottom: '50%',
 	},
 	logOut: {
 		borderTopWidth: 0,
