@@ -1,4 +1,5 @@
 import React from 'react';
+import { View } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
@@ -106,6 +107,14 @@ const donorOrClientDrawer = () => {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: <MainMenu text="Contact Us" icon="help" />,
+			},
+		},
+
+		Filler: {
+			screen: MainStack,
+			navigationOptions: {
+				drawerLabel: <View style={{ marginVertical: '20%' }} />,
+				gesturesEnabled: false,
 			},
 		},
 
