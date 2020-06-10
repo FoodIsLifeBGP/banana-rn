@@ -18,6 +18,7 @@ import {
 import useGlobal from '@state';
 import * as colors from '@util/colors';
 import { ImageInfo } from 'expo-image-picker/build/ImagePicker.types';
+import { getStateList } from '@util/statesAbbr';
 import styles from './RegistrationScreen.styles';
 
 export default () => {
@@ -32,9 +33,10 @@ export default () => {
 	const [ organizationName, setOrganizationName ] = useState('');
 	const [ password, setPassword ] = useState('');
 	const [ street, setStreet ] = useState('');
-	const [ state, _setState ] = useState('WA');
+	const [ state, setState ] = useState('WA');
 	const [ termsOfService, setTermsOfService ] = useState(false);
 	const [ zip, setZip ] = useState('');
+	const stateList = getStateList();
 
 	const toggleTermsOfService = () => setTermsOfService(!termsOfService);
 
@@ -117,16 +119,17 @@ export default () => {
 					/>
 					<FormTextInput
 						label="State"
+						type="dropdown"
+						dropdownData={stateList}
 						value={state}
-						setValue={() => { }}
-						style={{ width: '15%' }}
-						autoCapitalize="words"
+						setValue={setState}
+						style={{ width: '20%' }}
 					/>
 					<FormTextInput
 						label="Zip"
 						value={zip}
 						setValue={setZip}
-						style={{ width: '35%' }}
+						style={{ width: '30%' }}
 						autoCapitalize="words"
 					/>
 				</View>
