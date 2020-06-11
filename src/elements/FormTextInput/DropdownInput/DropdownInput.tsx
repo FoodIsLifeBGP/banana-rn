@@ -48,12 +48,7 @@ const DropdownInput = (props: DropdownInputProps) => {
 				}
 
 			}
-			placeholder={{
-				label: 'WA',
-				value: 'WA',
-				color: colors.NAVY_BLUE,
-
-			}}
+			placeholder={{}}
 			value={value}
 			onValueChange={v => {
 				if (setValue) {

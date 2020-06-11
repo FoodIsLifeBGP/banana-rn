@@ -167,6 +167,7 @@ const FormTextInput = (
 		passedValue = value;
 	} else if (type === 'dropdown') {
 		tempInput = DropdownInput;
+		passedValue = value;
 	} else if (type === 'phoneNumber') {
 		tempInput = PhoneNumberInput;
 		/* To solve state infinite loop */
