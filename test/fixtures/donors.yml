@@ -1,13 +1,12 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 first:
   id: 1
-  email: client@client.com
+  email: donor@donor.com
   password_digest: $2a$12$hHrN9ZObSjBUT7f4Wg4Kh.EuRYd5sEyyih9zhur1VbFPTVv3zv4vO
-  first_name: Client
-  last_name: McClient
   address_street: 1411 4th Ave
   address_city: Seattle
   address_state: Washington
   address_zip: 98101
   account_status: active
-  ethnicity: White
+  business_license: 9198DD435AS3456
+  organization_name: Ralphs Grocery Store

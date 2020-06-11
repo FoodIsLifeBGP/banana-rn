@@ -14,7 +14,15 @@ class DonorsController < ApplicationController
 	end
 
 	def create
-		@donor = Donor.create!(donor_params)
+		begin
+			@donor = Donor.create!(donor_params)
+		rescue ActiveRecord::RecordInvalid => error
+			if error.message.include? "Email has already been taken"
+				return render json: { error: 'donor email already in use'}, status: :conflict
+			else
+				raise  # re-raise exception and stop further request processing
+			end
+		end
 		if @donor.valid?
 			@token = encode_token(donor_id: @donor.id)
 			session[:donor_id] = @donor.id
