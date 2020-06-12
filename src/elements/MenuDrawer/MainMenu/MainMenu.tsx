@@ -9,12 +9,20 @@ import styles from './MainMenu.styles';
 
 const MainMenu = props => {
 	let menuStyle = {};
-	if (props.text === 'Contact Us') {
+	const { icon, text } = props;
+
+	const DrawerIcon = (name: IconName) => Icon({
+		name,
+		size: 24,
+		color: colors.WHITE,
+	});
+
+	if (text === 'Contact Us') {
 		menuStyle = {
 			...styles.mainMenu,
 			...styles.contactUs,
 		};
-	} else if (props.text === 'Log out') {
+	} else if (text === 'Log Out') {
 		menuStyle = {
 			...styles.mainMenu,
 			...styles.logOut,
@@ -23,19 +31,14 @@ const MainMenu = props => {
 		menuStyle = styles.mainMenu;
 	}
 
-	const DrawerIcon = (name: IconName) => Icon({
-		name,
-		size: 24,
-		color: colors.WHITE,
-	});
 
 	return (
 		<View style={menuStyle}>
 			<View>
-				{DrawerIcon(props.icon)}
+				{DrawerIcon(icon)}
 			</View>
 			<View>
-				<Text style={styles.menuText}>{props.text}</Text>
+				<Text style={styles.menuText}>{text}</Text>
 			</View>
 		</View>
 	);
