@@ -25,16 +25,28 @@ const MainMenu = ({ icon, text }) => {
 =======
 const MainMenu = props => {
 	let menuStyle = {};
-	if (props.text === 'Contact Us') {
+	const { icon, text } = props;
+
+	const DrawerIcon = (name: IconName) => Icon({
+		name,
+		size: 24,
+		color: colors.WHITE,
+	});
+
+	if (text === 'Contact Us') {
 		menuStyle = {
 			...styles.mainMenu,
 			...styles.contactUs,
 		};
+<<<<<<< HEAD
 	} else if (props.text === 'Log out') {
 <<<<<<< HEAD
 		menuStyle = { ...styles.mainMenu, borderTopWidth: 0, marginTop: 30 };
 >>>>>>> 4b6e506... Create React component that render MainMenu elements (Scan QR Code text and its icon, etc.)
 =======
+=======
+	} else if (text === 'Log Out') {
+>>>>>>> 6f11d20... Remove unnecessary styles.
 		menuStyle = {
 			...styles.mainMenu,
 			...styles.logOut,
@@ -45,6 +57,7 @@ const MainMenu = props => {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	const DrawerIcon = (name: IconName) => Icon({
 		name,
@@ -52,10 +65,13 @@ const MainMenu = props => {
 		color: colors.WHITE,
 	});
 >>>>>>> 4b6e506... Create React component that render MainMenu elements (Scan QR Code text and its icon, etc.)
+=======
+>>>>>>> 6f11d20... Remove unnecessary styles.
 
 	return (
 		<View style={menuStyle}>
 			<View>
+<<<<<<< HEAD
 <<<<<<< HEAD
 				{DrawerIcon(icon)}
 			</View>
@@ -71,6 +87,12 @@ const MainMenu = props => {
 =======
 				<Text style={styles.menuText}>{props.text}</Text>
 >>>>>>> 154e7eb... Fix linter issues.
+=======
+				{DrawerIcon(icon)}
+			</View>
+			<View>
+				<Text style={styles.menuText}>{text}</Text>
+>>>>>>> 6f11d20... Remove unnecessary styles.
 			</View>
 		</View>
 	);
@@ -78,7 +100,11 @@ const MainMenu = props => {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 export default MainMenu;
 =======
 export default MainMenu;
 >>>>>>> 4b6e506... Create React component that render MainMenu elements (Scan QR Code text and its icon, etc.)
+=======
+export default MainMenu;
+>>>>>>> 6f11d20... Remove unnecessary styles.
