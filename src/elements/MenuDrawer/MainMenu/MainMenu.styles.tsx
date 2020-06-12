@@ -1,10 +1,15 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import * as colors from '@util/colors';
-import MainMenu from './MainMenu';
+
+// Get Window Height;
+// Used for placement of LogOut button.
+const wh = Dimensions.get('window').height;
+
+console.log(wh);
 
 export default StyleSheet.create({
 	mainMenu: {
-		display: 'flex',
+		flex: 1,
 		width: '100%',
 		paddingLeft: 5,
 		flexDirection: 'row',
@@ -29,10 +34,8 @@ export default StyleSheet.create({
 		borderBottomWidth: 1,
 		borderBottomColor: colors.WHITE,
 		paddingBottom: 20,
-		// marginBottom: '50%',
 	},
 	logOut: {
-		borderTopWidth: 0,
-		marginTop: 30,
+		borderTopWidth: 1,
 	},
 });
