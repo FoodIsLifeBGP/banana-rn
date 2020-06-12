@@ -186,6 +186,7 @@ const donorOrClientDrawer = () => {
 =======
 			},
 		},
+<<<<<<< HEAD
 
 		Filler: {
 			screen: MainStack,
@@ -206,6 +207,8 @@ const donorOrClientDrawer = () => {
 >>>>>>> 29632d9... Clean up code.
 			},
 		},
+=======
+>>>>>>> ec4c0b2... Add LogoutScreen as part of StackNavigator. Remove Filler and Logout menus from the drawer.
 	};
 
 	return USER_IDENTITY === 'donor'
