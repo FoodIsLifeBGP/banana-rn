@@ -34,6 +34,7 @@ export const MainStack = createStackNavigator(
 		QRCodeScannerScreen,
 		ClaimDetailScreen,
 		DonationsDetailScreen,
+		LogoutScreen,
 	},
 	{
 		headerMode: 'none',
@@ -107,21 +108,6 @@ const donorOrClientDrawer = () => {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: <MainMenu text="Contact Us" icon="help" />,
-			},
-		},
-
-		Filler: {
-			screen: MainStack,
-			navigationOptions: {
-				drawerLabel: <View style={{ marginVertical: '20%' }} />,
-				gesturesEnabled: false,
-			},
-		},
-
-		LogoutScreen: {
-			screen: LogoutScreen,
-			navigationOptions: {
-				drawerLabel: <MainMenu text="Log Out" icon="logout" />,
 			},
 		},
 	};
