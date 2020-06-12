@@ -17,12 +17,7 @@ const MainMenu = props => {
 		color: colors.WHITE,
 	});
 
-	if (text === 'Contact Us') {
-		menuStyle = {
-			...styles.mainMenu,
-			...styles.contactUs,
-		};
-	} else if (text === 'Log Out') {
+	if (text === 'Log Out' || text === 'Scan QR Code') {
 		menuStyle = {
 			...styles.mainMenu,
 			...styles.logOut,
