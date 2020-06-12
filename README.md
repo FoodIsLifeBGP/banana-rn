@@ -65,6 +65,17 @@ Once those are complete, run:
 10) Verify all the configurations (name, startup orientation, etc.) and click "Finish" when done.
 
 11) The configuration box will close and your new device should appear on your list of Virtual Devices. Select your choice, and click the green button under the "Actions" tab over on the right side of the window to launch the emulator.
+## Troubleshooting
+
+* If requests are not working in Android Simulator (axios responds with `NetworkError`), try replacing the `API_BASE_URL` variable in `src/util/environment.ts`:
+
+```javascript
+return ({
+		...
+		API_BASE_URL: __DEV__ ? 'http://10.0.2.2:3000' : 'https://banana-rails.herokuapp.com',
+		...
+	});
+```
 
 # Additional notes about environment
 
