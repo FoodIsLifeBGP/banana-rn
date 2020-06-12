@@ -29,12 +29,17 @@ export default StyleSheet.create({
 		marginTop: -20,
 		flexDirection: 'column',
 		justifyContent: 'space-between',
+<<<<<<< HEAD
 		height: vh - (vh / 2),
 >>>>>>> 8bf47d2... Add TouchableOpacity w MainMenu component to render LogOut button here instead of the doing it from the Route.tsx while still having original functionality. Styles also applied to match styles from other drawer items.
+=======
+		height: vh - (vh / 3),
+>>>>>>> a9ef917... Change height of drawer header, and change the heigh of contianer. Needs more testing.
 	},
 	drawerHeader: {
 		backgroundColor: colors.BANANA_YELLOW,
 		color: colors.WHITE,
+<<<<<<< HEAD
 <<<<<<< HEAD
 		height: 120,
 		justifyContent: 'center',
@@ -42,6 +47,10 @@ export default StyleSheet.create({
 		height: 230,
 		justifyContent: 'flex-end',
 >>>>>>> 8f54caf... Change height of header, and add negative margin to container (might need to be changed later.)
+=======
+		height: 120,
+		justifyContent: 'center',
+>>>>>>> a9ef917... Change height of drawer header, and change the heigh of contianer. Needs more testing.
 	},
 	drawerHeaderBuffer: {
 		backgroundColor: colors.NAVY_BLUE,
