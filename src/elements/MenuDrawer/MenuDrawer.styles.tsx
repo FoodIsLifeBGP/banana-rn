@@ -1,5 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import * as colors from '@util/colors';
+
+const vh = Dimensions.get('screen').height;
 
 export default StyleSheet.create({
 	avatar: {
@@ -13,8 +15,10 @@ export default StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: colors.NAVY_BLUE,
-		alignItems: 'flex-end',
 		marginTop: -20,
+		flexDirection: 'column',
+		justifyContent: 'space-between',
+		height: vh - (vh / 2),
 	},
 	drawerHeader: {
 		backgroundColor: colors.BANANA_YELLOW,

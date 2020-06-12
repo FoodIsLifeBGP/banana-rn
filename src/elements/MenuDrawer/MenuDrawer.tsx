@@ -4,19 +4,20 @@ import {
 	View,
 	ScrollView,
 	SafeAreaView,
+	TouchableOpacity,
 } from 'react-native';
 import { Avatar } from 'react-native-paper';
 import { DrawerItems } from 'react-navigation-drawer';
 import { useNavigation } from 'react-navigation-hooks';
 import useGlobal from '@state';
-import { SpacerInline } from '@elements';
+import MainMenu from './MainMenu/MainMenu';
 import styles from './MenuDrawer.styles';
+
 
 const MenuDrawer = props => {
 	const [ state, actions ] = useGlobal() as any;
 	const { navigate, toggleDrawer } = useNavigation();
 	const { logOut } = actions;
-	const loginScreen = 'LoginScreen';
 
 	return (
 		<ScrollView>
@@ -40,13 +41,22 @@ const MenuDrawer = props => {
 					onItemPress={async ({ route }) => {
 						toggleDrawer();
 						navigate(route.routeName);
-						if (route.routeName === loginScreen) {
-							await logOut();
-						}
 					}}
 				/>
-				<SpacerInline height={20} />
 			</SafeAreaView>
+			<TouchableOpacity
+				style={styles.menuItem}
+				onPress={async () => {
+					toggleDrawer();
+					navigate('LogoutScreen');
+					await logOut();
+				}}
+			>
+				<MainMenu
+					icon="logout"
+					text="Log Out"
+				/>
+			</TouchableOpacity>
 		</ScrollView>
 	);
 };
