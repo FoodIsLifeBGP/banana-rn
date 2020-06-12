@@ -30,12 +30,7 @@ export default StyleSheet.create({
 		fontWeight: 'bold',
 		fontSize: 20,
 	},
-	contactUs: {
-		borderBottomWidth: 1,
-		borderBottomColor: colors.WHITE,
-		paddingBottom: 20,
-	},
 	logOut: {
-		borderTopWidth: 1,
+		borderTopWidth: 0,
 	},
 });
