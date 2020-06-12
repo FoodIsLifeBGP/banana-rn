@@ -48,11 +48,13 @@ export default ({
 		}
 	};
 
+	// NOTE : null is returned here since using "display: none" does not work properly for android devices
+	if (!open) return null;
+
 	return (
 		<View style={[
 			style,
-			styles.wrapper,
-			!open && { display: 'none' },
+			styles.wrapper
 		]}
 		>
 			<TouchableOpacity
