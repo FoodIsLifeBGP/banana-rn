@@ -7,7 +7,6 @@ import ApplicationPendingScreen from '../ApplicationPendingScreen';
 import ApplicationApprovedScreen from '../ApplicationApprovedScreen';
 import ApplicationIncompleteScreen from '../ApplicationIncompleteScreen';
 import DashboardScreen from '../DashboardScreen';
-import TermsScreen from '../TermsScreen';
 
 export default () => {
 	const [ state ] = useGlobal();
@@ -21,7 +20,7 @@ export default () => {
 		case 'suspended': return <AccountSuspendedScreen />;
 		case 'pending': return <ApplicationPendingScreen />;
 		case 'approved': return <ApplicationApprovedScreen id={id} />;
-		case 'active': return <TermsScreen />;
+		case 'active': return <DashboardScreen />;
 		default: return <InfoScreen title="Login error" nextScreenDestination="LoginScreen" nextScreenTitle="Login" />;
 	}
 };
