@@ -64,7 +64,7 @@ Once those are complete, run:
 
 10) Verify all the configurations (name, startup orientation, etc.) and click "Finish" when done.
 
-11) The configuration box will close and your new device should appear on your list of Virtual Devices. Select your choice, and click the green button under the "Actions" tab over on the right side of the window to launch the emulator.
+11) The configuration box will close, and your new device should appear on your list of Virtual Devices. Select your choice, and click the green button under the "Actions" tab over on the right side of the window to launch the emulator.
 
 # Additional notes about environment
 
@@ -94,6 +94,16 @@ When the app opens, you will see the login screen.  Assuming you are still runni
 - email: `client@client.com`, password: `client`
 
 or create a new account.
+
+**Possible gotchas for new developers**
+- If you elect to use an android simulator for your testing, by default the client will try to use `localhost:3000` 
+as the network address to reach the [banana rails](https://github.com/FoodIsLifeBGP/banana-rails) 
+backend service. It won't be available at that location on the android simulator.  This issue will manifest itself 
+in a rather incongruous way with the client showing an alert message about a 
+[418](https://en.wikipedia.org/wiki/Hyper_Text_Coffee_Pot_Control_Protocol) http response code.  You can
+change `environments.ts`, use your web browser to test, or possibly tell react-native that it's not in dev mode. 
+- If you elect to use your web browser to test your changes, Firefox may just render a blank page.  Switching to 
+another browser should resolve the issue.  
 
 # The rest of The Banana App family:
 
