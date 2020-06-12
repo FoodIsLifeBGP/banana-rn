@@ -17,7 +17,10 @@ const MenuDrawer = props => {
 	const [ state, actions ] = useGlobal() as any;
 	const { navigate, toggleDrawer } = useNavigation();
 	const { logOut } = actions;
+<<<<<<< HEAD
 	const name = state.user.organization_name;
+=======
+>>>>>>> 8bf47d2... Add TouchableOpacity w MainMenu component to render LogOut button here instead of the doing it from the Route.tsx while still having original functionality. Styles also applied to match styles from other drawer items.
 
 	return (
 		<ScrollView>
