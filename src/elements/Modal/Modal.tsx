@@ -54,7 +54,7 @@ export default ({
 	return (
 		<View style={[
 			style,
-			styles.wrapper
+			styles.wrapper,
 		]}
 		>
 			<TouchableOpacity
