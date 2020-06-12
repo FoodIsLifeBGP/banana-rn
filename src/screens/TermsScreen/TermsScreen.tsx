@@ -3,6 +3,7 @@ import { TextInput, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Title, SpacerInline, NavBar } from '@elements';
 import Terms from '@assets/documents/SampleToS';
+import ScrollContainer from '../../elements/ScrollContainer/ScrollContainer'
 import styles from './TermsScreen.styles';
 
 export default () => (
@@ -10,18 +11,13 @@ export default () => (
 		<NavBar showMenu={false} />
 		<Title text="Terms and conditions" />
 		<SpacerInline height={20} />
-		<ScrollView contentContainerStyle={{ justifyContent: 'space-between' }}>
-			<View style={styles.documentContainer}>
-				<TextInput
-					style={styles.documentText}
-					multiline={true}
-					editable={false}
-					scrollEnabled={true}
-				>
-					{Terms}
-				</TextInput>
-			</View>
-		</ScrollView>
+		<ScrollContainer
+			documentText={Terms}
+			displayCheckbox={true}
+			setChecked={() => {}}
+			checked={false}
+			checkboxLabel={"I agree to the Terms & Conditions."}
+		/>
 		<SpacerInline height={80} />
 	</View>
 );

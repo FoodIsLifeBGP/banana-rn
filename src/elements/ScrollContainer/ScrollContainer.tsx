@@ -1,7 +1,9 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
+import { SpacerInline } from '@elements/SpacerInline';
 import EndOfScrollWrapper from './EndOfScrollWrapper';
 import Checkbox from '../Checkbox/Checkbox';
+import styles from './ScrollContainer.styles';
 
 interface ScrollContainerProps {
 	onScrollToEnd?: Function;
@@ -12,9 +14,6 @@ interface ScrollContainerProps {
 	checkboxSize?: number;
 	displayCheckbox?: boolean;
 	checkboxLabel?: string;
-	styleContainer?: any;
-	styleDocumentText?: any;
-	styleCheckboxLabel?: any;
 }
 
 export default function ScrollContainer({
@@ -26,31 +25,29 @@ export default function ScrollContainer({
 	displayCheckbox = true,
 	checked,
 	checkboxLabel,
-	styleContainer,
-	styleDocumentText,
-	styleCheckboxLabel,
 }: ScrollContainerProps) {
 	const handleDisplayCheckbox = () => {
 		if (displayCheckbox) {
 			return (
-				<>
+				<View style={styles.checkboxContainer}>
 					<Checkbox
 						checked={checked}
 						setChecked={setChecked}
 						size={checkboxSize}
 						onPress={onPress}
 					/>
-					<Text style={styleCheckboxLabel}>{checkboxLabel}</Text>
-				</>
+					<Text style={styles.checkboxLabel}>{checkboxLabel}</Text>
+				</View>
 			);
 		}
 		return null;
 	};
 
 	return (
-		<EndOfScrollWrapper onScrollToEnd={onScrollToEnd} style={styleContainer}>
-			<Text style={styleDocumentText}>{documentText}</Text>
+		<EndOfScrollWrapper onScrollToEnd={onScrollToEnd} style={styles.documentContainer}>
+			<Text style={styles.documentText}>{documentText}</Text>
 			{ handleDisplayCheckbox() }
+			<SpacerInline height={100} />
 		</EndOfScrollWrapper>
 	);
 }
