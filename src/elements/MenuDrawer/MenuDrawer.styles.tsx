@@ -18,13 +18,13 @@ export default StyleSheet.create({
 		marginTop: -20,
 		flexDirection: 'column',
 		justifyContent: 'space-between',
-		height: vh - (vh / 2),
+		height: vh - (vh / 3),
 	},
 	drawerHeader: {
 		backgroundColor: colors.BANANA_YELLOW,
 		color: colors.WHITE,
-		height: 230,
-		justifyContent: 'flex-end',
+		height: 120,
+		justifyContent: 'center',
 	},
 	drawerHeaderBuffer: {
 		backgroundColor: colors.NAVY_BLUE,
@@ -52,9 +52,10 @@ export default StyleSheet.create({
 	username: {
 		fontSize: 24,
 		color: colors.NAVY_BLUE,
-		textAlign: 'center',
+		textAlign: 'left',
 		marginBottom: 15,
 		fontWeight: '700',
 		textTransform: 'uppercase',
+		marginLeft: '25%',
 	},
 });
