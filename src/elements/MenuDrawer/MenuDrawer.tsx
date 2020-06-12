@@ -18,18 +18,13 @@ const MenuDrawer = props => {
 	const [ state, actions ] = useGlobal() as any;
 	const { navigate, toggleDrawer } = useNavigation();
 	const { logOut } = actions;
+	const name = state.user.organization_name;
 
 	return (
 		<ScrollView>
 			<View style={styles.drawerHeader}>
-				<Text style={styles.username}>Foods 4 U</Text>
-				<View style={styles.avatar}>
-					<Avatar.Image
-						size={100}
-						source={require('@assets/images/banana-icon.png')}
-					/>
-				</View>
-				<View style={styles.drawerHeaderBuffer} />
+				<Text style={{ ...styles.username, marginBottom: 0 }}>Hello,</Text>
+				<Text style={styles.username}>{name}</Text>
 			</View>
 			<SafeAreaView
 				style={styles.container}
