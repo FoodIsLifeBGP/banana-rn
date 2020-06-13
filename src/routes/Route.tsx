@@ -40,6 +40,7 @@ export const MainStack = createStackNavigator(
 		QRCodeScannerScreen,
 		ClaimDetailScreen,
 		DonationsDetailScreen,
+		ContactScreen,
 	},
 	{
 		headerMode: 'none',
@@ -92,10 +93,18 @@ const donorOrClientDrawer = () => {
 				drawerIcon: DrawerIcon('settings'),
 			},
 		},
-		HelpScreen: {
-			screen: MainStack,
+		// TODO: This will likely be implemented in alpha+ versions
+		// HelpScreen: {
+		// screen: MainStack,
+		// navigationOptions: {
+		// drawerLabel: 'Help',
+		// drawerIcon: DrawerIcon('help'),
+		// },
+		// },
+		ContactScreen: {
+			screen: ContactScreen,
 			navigationOptions: {
-				drawerLabel: 'Help',
+				drawerLabel: 'Contact Us',
 				drawerIcon: DrawerIcon('help'),
 			},
 		},
