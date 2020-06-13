@@ -2,10 +2,12 @@ import Constants from 'expo-constants';
 
 const DONOR = {
 	LOGIN_URL: '/donor_auth',
+	CREATE_URL: '/donors/create',
 };
 
 const CLIENT = {
 	LOGIN_URL: '/client_auth',
+	CREATE_URL: '/clients/create',
 };
 
 const getEnv = () => {

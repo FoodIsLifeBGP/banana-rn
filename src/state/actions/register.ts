@@ -78,9 +78,6 @@ export const registerClient = async (store, client: ClientRegisterProps) => {
 			[userIdentity]: {
 				email,
 				password,
-				first_name: firstName,
-				last_name: lastName,
-				account_status: 'pending',
 			},
 		}));
 		await store.setState({
