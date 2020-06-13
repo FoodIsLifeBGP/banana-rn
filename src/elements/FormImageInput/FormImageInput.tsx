@@ -43,6 +43,9 @@ interface FormImageInputProps {
 
 	/** User-facing message associated with an error. */
 	errorMessage?: string;
+
+	/** Shape of the image input */
+	shape?: 'rectangular' | 'circular';
 }
 
 const MessageFromStatus = {
@@ -64,6 +67,7 @@ const FormImageInput = (
 		style,
 		error = false,
 		errorMessage,
+		shape = 'rectangular',
 	}: FormImageInputProps,
 	ref: Ref<TouchableWithoutFeedback>,
 ) => {
@@ -92,12 +96,12 @@ const FormImageInput = (
 				{ value?.uri != null
 					? (
 						<Image
-							style={styles.image}
+							style={shape === 'rectangular' ? styles.image : styles.circularImage}
 							source={{ uri: value.uri }}
 						/>
 					)
 					: (
-						<View style={styles.iconContainer}>
+						<View style={shape === 'rectangular' ? styles.iconContainer : styles.iconCircularContainer}>
 							<Icon name="image" size={24} />
 						</View>
 					)}
