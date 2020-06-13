@@ -8,7 +8,7 @@ import Constants from 'expo-constants';
 import * as Font from 'expo-font';
 import NavigationService from '@util/NavigationService';
 import getstorybook from '@util/storybook';
-import { TheAlertModal } from '@elements';
+import { TheAlertModal, IncompleteFormAlert } from '@elements';
 import storybook from './src/storybook';
 import Route from './src/routes/Route';
 import styles from './App.styles';
@@ -57,6 +57,7 @@ You must specify 'donor' or 'client' in app.json
 				<SafeAreaView style={styles.container}>
 					<Route ref={navRef => NavigationService.setTopLevelNavigator(navRef)} />
 					<TheAlertModal />
+					<IncompleteFormAlert />
 				</SafeAreaView>
 			</Provider>
 		</AppearanceProvider>
