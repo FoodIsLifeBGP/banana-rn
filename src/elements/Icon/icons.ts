@@ -36,6 +36,7 @@ const Transit: IconImport = require('@assets/icons/ICON_TRANSIT.svg');
 const User: IconImport = require('@assets/icons/ICON_USER.svg');
 const Walk: IconImport = require('@assets/icons/ICON_WALK.svg');
 const Website: IconImport = require('@assets/icons/ICON_WEBSITE.svg');
+const Smile: IconImport = require('@assets/icons/ICON_SMILE.svg');
 
 export const deprecatedIconMap: Record<DeprecatedIconName, IconName> = {
 	'chevron-down': 'expand',
@@ -78,4 +79,5 @@ export const iconImports: Record<IconName, IconImport> = {
 	user: User,
 	walk: Walk,
 	website: Website,
+	smile: Smile,
 };

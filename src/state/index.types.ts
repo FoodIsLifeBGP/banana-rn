@@ -58,6 +58,11 @@ export interface Alert {
 	title: string;
 
 	/**
+	 * Type of the alert.
+	 */
+	type: 'default'|'coming soon';
+
+	/**
 	 * Message to the user.
 	 */
 	message: string;

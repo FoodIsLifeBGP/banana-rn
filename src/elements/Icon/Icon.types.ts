@@ -53,4 +53,5 @@ export type IconName =
 	| 'transit'
 	| 'user'
 	| 'walk'
-	| 'website';
+	| 'website'
+	| 'smile';
