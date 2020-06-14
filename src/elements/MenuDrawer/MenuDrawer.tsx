@@ -22,8 +22,19 @@ const MenuDrawer = props => {
 	return (
 		<ScrollView>
 			<View style={styles.drawerHeader}>
+<<<<<<< HEAD
 				<Text style={{ ...styles.username, marginBottom: 0 }}>Hello,</Text>
 				<Text style={styles.username}>{name}</Text>
+=======
+				<Text style={styles.username}>Foods 4 U</Text>
+				<View style={styles.avatar}>
+					<Avatar.Image
+						size={100}
+						source={require('@assets/images/banana-icon.png')}
+					/>
+				</View>
+				<View style={styles.drawerHeaderBuffer} />
+>>>>>>> 5436728... Place username above Avatar. Keeping buffer.
 			</View>
 			<SafeAreaView
 				style={styles.container}
