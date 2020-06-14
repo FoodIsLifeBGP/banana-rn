@@ -7,9 +7,8 @@ import * as colors from '@util/colors';
 
 import styles from './MainMenu.styles';
 
-const MainMenu = props => {
+const MainMenu = ({ icon, text }) => {
 	let menuStyle = {};
-	const { icon, text } = props;
 
 	const DrawerIcon = (name: IconName) => Icon({
 		name,

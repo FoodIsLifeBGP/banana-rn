@@ -1,12 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import * as colors from '@util/colors';
 
-// Get Window Height;
-// Used for placement of LogOut button.
-const wh = Dimensions.get('window').height;
-
-console.log(wh);
-
 export default StyleSheet.create({
 	mainMenu: {
 		flex: 1,
