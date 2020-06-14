@@ -6,7 +6,6 @@ import {
 	SafeAreaView,
 	TouchableOpacity,
 } from 'react-native';
-import { Avatar } from 'react-native-paper';
 import { DrawerItems } from 'react-navigation-drawer';
 import { useNavigation } from 'react-navigation-hooks';
 import useGlobal from '@state';
