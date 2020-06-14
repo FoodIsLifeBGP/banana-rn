@@ -17,36 +17,13 @@ const MenuDrawer = props => {
 	const [ state, actions ] = useGlobal() as any;
 	const { navigate, toggleDrawer } = useNavigation();
 	const { logOut } = actions;
-<<<<<<< HEAD
-<<<<<<< HEAD
 	const name = state.user.organization_name;
-=======
->>>>>>> 8bf47d2... Add TouchableOpacity w MainMenu component to render LogOut button here instead of the doing it from the Route.tsx while still having original functionality. Styles also applied to match styles from other drawer items.
-=======
-	const name = state.user.organization_name;
->>>>>>> 8bafe05... Remove Avatar and buffer, place greeting and name on Menu Header.
 
 	return (
 		<ScrollView>
 			<View style={styles.drawerHeader}>
-<<<<<<< HEAD
-<<<<<<< HEAD
 				<Text style={{ ...styles.username, marginBottom: 0 }}>Hello,</Text>
 				<Text style={styles.username}>{name}</Text>
-=======
-				<Text style={styles.username}>Foods 4 U</Text>
-				<View style={styles.avatar}>
-					<Avatar.Image
-						size={100}
-						source={require('@assets/images/banana-icon.png')}
-					/>
-				</View>
-				<View style={styles.drawerHeaderBuffer} />
->>>>>>> 5436728... Place username above Avatar. Keeping buffer.
-=======
-				<Text style={{ ...styles.username, marginBottom: 0 }}>Hello,</Text>
-				<Text style={styles.username}>{name}</Text>
->>>>>>> 8bafe05... Remove Avatar and buffer, place greeting and name on Menu Header.
 			</View>
 			<SafeAreaView
 				style={styles.container}

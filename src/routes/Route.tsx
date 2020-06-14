@@ -1,5 +1,4 @@
 import React from 'react';
-import { View } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
@@ -23,63 +22,6 @@ import DonorDonationScreen from '../screens/DonorDashboardScreen/DonorDonationSc
 import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
 import SubMenu from '../elements/MenuDrawer/SubMenu/SubMenu';
 import MainMenu from '../elements/MenuDrawer/MainMenu/MainMenu';
-<<<<<<< HEAD
-
-const mainDrawerLabel = {
-	display: 'flex',
-	width: '100%',
-	paddingLeft: 5,
-	flexDirection: 'row',
-	alignItems: 'center',
-	justifyContent: 'space-between',
-	borderTopWidth: 1,
-	borderTopColor: 'white',
-	paddingTop: 20,
-	marginBottom: 15,
-	marginTop: 5,
-	letterSpacing: 0.5,
-	fontSize: 20,
-};
-
-const subDrawerLabel = {
-	color: 'white',
-	textTransform: 'uppercase',
-	fontSize: mainDrawerLabel.fontSize,
-	marginLeft: 'auto',
-	marginRight: 5,
-	letterSpacing: mainDrawerLabel.letterSpacing,
-};
-
-
-const subMenu = text => <Text style={{ ...subDrawerLabel, marginBottom: 10 }}>{text}</Text>;
-
-const mainMenu = (text, icon) => {
-	let menuStyle = {};
-	if (text === 'Contact Us') {
-		menuStyle = {
-			...mainDrawerLabel,
-			marginBottom: 50,
-		};
-	} else if (text === 'Log out') {
-		menuStyle = { ...mainDrawerLabel, borderTopWidth: 0, marginTop: 30 };
-	} else {
-		menuStyle = mainDrawerLabel;
-	}
-
-	return (
-		<View style={menuStyle}>
-			<View>
-				{DrawerIcon(icon)}
-			</View>
-			<View>
-				<Text style={{ ...subDrawerLabel, fontWeight: 'bold' }}>{text}</Text>
-			</View>
-		</View>
-	);
-};
-
-=======
->>>>>>> 1466eef... Modulize  mainMenu, subMenu and their styles -- put them in their own folders and as their own React elements and use them as appropriate.
 
 // Logged-In Screens for Drawer Navigator
 export const MainStack = createStackNavigator(
@@ -133,31 +75,14 @@ const donorOrClientDrawer = () => {
 		DonationScreen: {
 			screen: MainStack,
 			navigationOptions: {
-<<<<<<< HEAD
-<<<<<<< HEAD
 				drawerLabel: <MainMenu text="Donations" icon="donations" />,
-=======
-				drawerLabel: <MainMenu text="Donations" icon="claims" />,
->>>>>>> 1466eef... Modulize  mainMenu, subMenu and their styles -- put them in their own folders and as their own React elements and use them as appropriate.
-=======
-				drawerLabel: <MainMenu text="Donations" icon="donations" />,
->>>>>>> c9cb6ad... Move misplaced component to proper field.
 			},
 		},
 
 		DashboardScreen: {
 			screen: MainStack,
 			navigationOptions: {
-<<<<<<< HEAD
-<<<<<<< HEAD
 				drawerLabel: <MainMenu text="Claims" icon="claims" />,
-=======
-				drawerLabel: 'Claims',
-				drawerIcon: <MainMenu text="Claims" icon="claims" />,
->>>>>>> 1466eef... Modulize  mainMenu, subMenu and their styles -- put them in their own folders and as their own React elements and use them as appropriate.
-=======
-				drawerLabel: <MainMenu text="Claims" icon="claims" />,
->>>>>>> c9cb6ad... Move misplaced component to proper field.
 			},
 		},
 
@@ -182,33 +107,8 @@ const donorOrClientDrawer = () => {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: <MainMenu text="Contact Us" icon="help" />,
-<<<<<<< HEAD
-=======
 			},
 		},
-<<<<<<< HEAD
-
-		Filler: {
-			screen: MainStack,
-			navigationOptions: {
-				drawerLabel: <View style={{ marginVertical: '20%' }} />,
-				gesturesEnabled: false,
-			},
-		},
-
-		LogoutScreen: {
-			screen: LogoutScreen,
-			navigationOptions: {
-<<<<<<< HEAD
-				drawerLabel: <MainMenu text="Log out" icon="logout" />,
->>>>>>> 1466eef... Modulize  mainMenu, subMenu and their styles -- put them in their own folders and as their own React elements and use them as appropriate.
-=======
-				drawerLabel: <MainMenu text="Log Out" icon="logout" />,
->>>>>>> 29632d9... Clean up code.
-			},
-		},
-=======
->>>>>>> ec4c0b2... Add LogoutScreen as part of StackNavigator. Remove Filler and Logout menus from the drawer.
 	};
 
 	return USER_IDENTITY === 'donor'
