@@ -1,3 +1,4 @@
+/* eslint-disable no-tabs */
 import React, { useState } from 'react';
 import { useNavigation } from 'react-navigation-hooks';
 import {
@@ -5,10 +6,10 @@ import {
 	View,
 	Text,
 	Alert,
-	TextInput,
+	TextInput, TouchableOpacity, KeyboardAvoidingView, Platform,
 } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import { Checkbox } from 'react-native-paper';
+import { Checkbox, Divider } from 'react-native-paper';
 import RNPickerSelect from 'react-native-picker-select';
 import useGlobal from '@state';
 import * as colors from '@util/colors';
@@ -24,256 +25,171 @@ import {
 import styles from './RegistrationScreen.styles';
 
 export default () => {
-	const { navigate } = useNavigation();
+	const { navigate, goBack } = useNavigation();
 	const [ _state, actions ] = useGlobal() as any;
 	const { register } = actions;
 
-	const transportationMethods = [
-		'Walk',
-		'Bike',
-		'Public',
-		'Car',
-	];
-
-	const ethnicities = [
-		'Prefer not to say',
-		'American Indian or Alaskan Native',
-		'Asian',
-		'Black or African American',
-		'Hispanic or Latino',
-		'Native Hawaiian/Pacific Islander',
-		'White',
-	];
-
-	const genders = [
-		'Prefer not to say',
-		'Female',
-		'Male',
-		'Non-binary',
-		'Other',
-	];
-
-	const itemizeList = list => list.map(item => ({ label: item, value: item }));
-
-	const ChevronDown = () => (
-		<View style={styles.iconContainer}>
-			<Icon
-				name="chevron-down"
-				size={24}
-			/>
-		</View>
-	);
-
-	const selectPlaceholder = {
-		label: 'Select...',
-		color: 'gray',
-		value: null,
-	};
-
-	const [ hidePwd, setHidePwd ] = useState(true);
 	const [ email, setEmail ] = useState('');
 	const [ password, setPassword ] = useState('');
-	const [ street, setStreet ] = useState('');
-	const [ city, setCity ] = useState('');
-	const [ state, setState ] = useState('WA');
-	const [ zip, setZip ] = useState('');
-	const [ transportationMethod, setTransportationMethod ] = useState();
-	const [ gender, setGender ] = useState();
-	const [ ethnicity, setEthnicity ] = useState();
+	const [ retypedPassword, setRetypedPassword ] = useState('');
 	const [ termsOfService, setTermsOfService ] = useState(false);
+	const [ firstName, setFirstName ] = useState('');
+	const [ lastName, setLastName ] = useState('');
 
 	const toggleTermsOfService = () => {
 		setTermsOfService(!termsOfService);
 	};
 
-	const validateAndSubmit = async () => {
-		if (!email.includes('@') || !email.includes('.')) { Alert.alert('Please enter a valid email address.'); return; }
-		if (password.length < 8) { Alert.alert('Please enter a password at least 8 characters long.'); return; }
-		if (!street || street.split(' ').length < 3) { Alert.alert('Please enter your street number and name.'); return; }
-		if (!city) { Alert.alert('Please enter your city.'); return; }
-		if (!(/^\d{5}$/.test(zip))) { Alert.alert('Please enter a valid 5-digit zip code.'); return; }
-		if (!transportationMethod) { Alert.alert('Please select your preferred method of transportation.'); return; }
-		if (!termsOfService) { Alert.alert('Please read and accept the terms of service to complete your registration.'); return; }
+	// object contains the error status and corresponding message
+	// modifications in errorObj trigger change in UI.
+	const errorObj = {
+		email: {
+			isTrue: false,
+			message: 'Unknown error occurred',
+		},
+		password: {
+			isTrue: false,
+			message: 'Unknown error occurred',
+		},
+		retypedPassword: {
+			isTrue: false,
+			message: 'Unknown error occurred',
+		},
+		firstName: {
+			isTrue: false,
+			message: 'Unknown error occurred',
+		},
+		lastName: {
+			isTrue: false,
+			message: 'Unknown error occurred',
+		},
+	};
 
-		const statusCode = await register({
-			email, password, street, city, state, zip, transportationMethod, ethnicity, gender,
-		});
-		switch (statusCode) {
-			case (201 || 202): Alert.alert('Registration complete! Please log in to continue.'); navigate('LoginScreen', { email, password }); return;
-			case 406: Alert.alert('Error: not accepted'); return;
-			case 500: Alert.alert('Internal server error, please try again later.'); return;
-			default: Alert.alert("Sorry, that didn't work, please try again later."); console.log(statusCode);
-		}
+
+	const validateAndSubmit = async () => {
+		// outdated code, commented for future reference
+		// if (!email.includes('@') || !email.includes('.')) { Alert.alert('Please enter a valid email address.'); return; }
+		// if (password.length < 8) { Alert.alert('Please enter a password at least 8 characters long.'); return; }
+		// if (!street || street.split(' ').length < 3) { Alert.alert('Please enter your street number and name.'); return; }
+		// if (!city) { Alert.alert('Please enter your city.'); return; }
+		// if (!(/^\d{5}$/.test(zip))) { Alert.alert('Please enter a valid 5-digit zip code.'); return; }
+		// if (!transportationMethod) { Alert.alert('Please select your preferred method of transportation.'); return; }
+		// if (!termsOfService) { Alert.alert('Please read and accept the terms of service to complete your registration.'); return; }
+		//
+		// const statusCode = await register({
+		// email, password, street, city, state, zip, transportationMethod, ethnicity, gender,
+		// });
+		// switch (statusCode) {
+		// 	case (201 || 202): Alert.alert('Registration complete! Please log in to continue.'); navigate('LoginScreen', { email, password }); return;
+		// 	case 406: Alert.alert('Error: not accepted'); return;
+		// 	case 500: Alert.alert('Internal server error, please try again later.'); return;
+		// 	default: Alert.alert("Sorry, that didn't work, please try again later."); console.log(statusCode);
+		// }
 	};
 
 	return (
-		<ScrollView contentContainerStyle={styles.outerContainer}>
-			<View>
-				<NavBar showMenu={false} backDestination="LoginScreen" />
-				<Title text="Registration." />
-				<Text style={styles.text}>
-					Add your details below.  Please give us 24-48 hours to verify your account.
-				</Text>
-				<SpacerInline height={20} />
+		<KeyboardAvoidingView
+			style={styles.keyboardAvoidContainer}
+			behavior="padding"
+			enabled={true}
+			keyboardVerticalOffset={100}
+
+		>
+			<View style={styles.header}>
+				<Title text="Registration" />
+			</View>
+			<ScrollView style={styles.scrollContainer}>
 
 				<FormTextInput
-					label="Email Address"
+					label="Email"
 					value={email}
 					setValue={setEmail}
 					style={styles.input}
+					placeholder="info@bannaapp.org"
+					error={errorObj.email.isTrue}
+					errorMessage={errorObj.email.message}
 				/>
-
-				<InputLabel text="Password" />
-				<View style={styles.passwordContainer}>
-					<View style={{ flex: 8 }}>
-						<TextInput
-							textContentType="password"
-							value={password}
-							secureTextEntry={hidePwd}
-							onChangeText={setPassword}
-							style={[ styles.input, styles.iconPadding ]}
-							autoCapitalize="none"
-							autoCorrect={false}
-						/>
-					</View>
-					<View style={styles.iconContainer}>
-						<TouchableWithoutFeedback
-							onPress={() => setHidePwd(!hidePwd)}
-						>
-							<Icon name={hidePwd ? 'lock' : 'unlock'} size={24} />
-						</TouchableWithoutFeedback>
-					</View>
-				</View>
 
 				<FormTextInput
-					label="Street Address"
-					value={street}
-					setValue={setStreet}
-					autoCapitalize="words"
+					label="Password"
+					value={password}
+					setValue={setPassword}
+					type="password"
 					style={styles.input}
+					error={errorObj.password.isTrue}
+					errorMessage={errorObj.password.message}
 				/>
 
-				<View style={styles.row}>
-					<FormTextInput
-						label="City"
-						value={city}
-						setValue={setCity}
-						style={[ styles.input, { width: '41%' } ]}
-						autoCapitalize="words"
-					/>
-					<FormTextInput
-						label="State"
-						value={state}
-						setValue={() => { }}
-						style={[ styles.input, { width: '18%' } ]}
-						autoCapitalize="words"
-						editable={false}
-					/>
-					<FormTextInput
-						label="Zip"
-						value={zip}
-						setValue={setZip}
-						style={[ styles.input, { width: '33%' } ]}
-						autoCapitalize="words"
-					/>
-				</View>
 
-				<InputLabel text="Ethnicity" />
-				<RNPickerSelect
-					value={ethnicity}
-					placeholder={selectPlaceholder}
-					onValueChange={(val, _i) => setEthnicity(val)}
-					textInputProps={{ style: [ styles.input, styles.iconPadding ] }}
-					Icon={() => <ChevronDown />}
-					items={itemizeList(ethnicities)}
+				<FormTextInput
+					label="Confirm Password"
+					value={retypedPassword}
+					setValue={setRetypedPassword}
+					style={styles.input}
+					type="password"
+					error={errorObj.retypedPassword.isTrue}
+					errorMessage={errorObj.retypedPassword.message}
 				/>
 
-				<InputLabel text="Ethnicity" />
-				<RNPickerSelect
-					value={ethnicity}
-					placeholder={selectPlaceholder}
-					onValueChange={(val, _i) => setEthnicity(val)}
-					textInputProps={{ style: [ styles.input, styles.iconPadding ] }}
-					Icon={() => <ChevronDown />}
-					items={itemizeList(ethnicities)}
+				<FormTextInput
+					label="First Name"
+					value={firstName}
+					setValue={setFirstName}
+					style={styles.input}
+					error={errorObj.firstName.isTrue}
+					errorMessage={errorObj.firstName.message}
 				/>
 
-				<InputLabel text="Ethnicity" />
-				<RNPickerSelect
-					value={ethnicity}
-					placeholder={selectPlaceholder}
-					onValueChange={(val, _i) => setEthnicity(val)}
-					textInputProps={{ style: [ styles.input, styles.iconPadding ] }}
-					Icon={() => <ChevronDown />}
-					items={itemizeList(ethnicities)}
+
+				<FormTextInput
+					label="Last Name"
+					value={lastName}
+					setValue={setLastName}
+					style={styles.input}
+					error={errorObj.lastName.isTrue}
+					errorMessage={errorObj.lastName.message}
+
 				/>
 
-				<InputLabel text="Ethnicity" />
-				<RNPickerSelect
-					value={ethnicity}
-					placeholder={selectPlaceholder}
-					onValueChange={(val, _i) => setEthnicity(val)}
-					textInputProps={{ style: [ styles.input, styles.iconPadding ] }}
-					Icon={() => <ChevronDown />}
-					items={itemizeList(ethnicities)}
-				/>
 
-				<View style={styles.row}>
-					<View style={{ width: '48%' }}>
-						<InputLabel text="Gender" />
-						<RNPickerSelect
-							value={gender}
-							onValueChange={(val, _i) => setGender(val)}
-							placeholder={selectPlaceholder}
-							textInputProps={{ style: [ styles.input, styles.iconPadding ] }}
-							Icon={() => <ChevronDown />}
-							items={itemizeList(genders)}
-						/>
-					</View>
-
-					<View style={{ width: '48%' }}>
-						<InputLabel text="Transportation" />
-						<RNPickerSelect
-							value={transportationMethod}
-							onValueChange={(val, _i) => setTransportationMethod(val)}
-							placeholder={selectPlaceholder}
-							textInputProps={{ style: styles.input }}
-							Icon={() => <ChevronDown />}
-							items={itemizeList(transportationMethods)}
-						/>
-					</View>
-				</View>
-
-				<SpacerInline height={10} />
 				<View style={styles.checkboxRow}>
 					<View style={styles.checkBox}>
-						<Checkbox
-							status={termsOfService ? 'checked' : 'unchecked'}
-							onPress={toggleTermsOfService}
-							color={colors.NAVY_BLUE}
-							uncheckedColor="white"
-						/>
+						<TouchableOpacity style={{ top: 3 }} onPress={toggleTermsOfService}>
+							<Icon
+								name={termsOfService ? 'checkboxOn' : 'checkboxOff'}
+								size={24}
+								color="none"
+							/>
+						</TouchableOpacity>
 					</View>
 					<SpacerInline width={10} />
-					<Text style={styles.text}>Accept</Text>
-					<SpacerInline width={10} />
-					<View style={{ top: 9 }}>
-						<LinkButton
-							text="Terms of Service"
-							destination="TermsScreen"
-						/>
+					<Text
+						style={styles.text}
+						onPress={toggleTermsOfService}
+
+					>
+						{'I agree to the '}
+					</Text>
+					<View>
+						<TouchableOpacity onPress={() => (navigate('TermsScreen'))}>
+							<Text style={[ styles.text, styles.textBold ]}>Terms & Conditions</Text>
+						</TouchableOpacity>
 					</View>
 				</View>
-			</View>
 
-			<View>
-				<SpacerInline height={20} />
-				<LinkButton
-					text="Register"
-					onPress={validateAndSubmit}
-				/>
-				<SpacerInline height={40} />
-			</View>
-		</ScrollView>
+				<View style={[ styles.row, { paddingHorizontal: '10%' } ]}>
+					<LinkButton
+						text="back"
+						onPress={() => goBack()}
+					/>
+					<LinkButton
+						text="Register"
+						onPress={() => alert('wait for data side implementation')}
+					/>
+				</View>
+				<SpacerInline height={50} />
+				<View style={{ flex: 1 }} />
+			</ScrollView>
+		</KeyboardAvoidingView>
 	);
 };
