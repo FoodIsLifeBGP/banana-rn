@@ -6,9 +6,6 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 import * as colors from '@util/colors';
 import getEnv from '@util/environment';
 
-import { Icon } from '@elements';
-import { IconName } from '@elements/Icon';
-
 import LoginScreen from '../screens/LoginScreen';
 import DashboardScreen from '../screens/DashboardScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
@@ -25,12 +22,6 @@ import DonorDonationScreen from '../screens/DonorDashboardScreen/DonorDonationSc
 import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
 import MainOption from '../elements/MenuDrawer/MainOption/MainOption';
 import SubOption from '../elements/MenuDrawer/SubOption/SubOption';
-
-const DrawerIcon = (name: IconName) => Icon({
-	name,
-	size: 18,
-	color: colors.WHITE,
-});
 
 // Logged-In Screens for Drawer Navigator
 export const MainStack = createStackNavigator(
