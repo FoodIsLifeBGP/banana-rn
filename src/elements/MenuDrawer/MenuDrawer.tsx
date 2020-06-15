@@ -4,32 +4,25 @@ import {
 	View,
 	ScrollView,
 	SafeAreaView,
+	TouchableOpacity,
 } from 'react-native';
-import { Avatar } from 'react-native-paper';
 import { DrawerItems } from 'react-navigation-drawer';
 import { useNavigation } from 'react-navigation-hooks';
 import useGlobal from '@state';
-import { SpacerInline } from '@elements';
+import MainOption from './MainOption/MainOption';
 import styles from './MenuDrawer.styles';
 
 const MenuDrawer = props => {
 	const [ state, actions ] = useGlobal() as any;
 	const { navigate, toggleDrawer } = useNavigation();
 	const { logOut } = actions;
-	const loginScreen = 'LoginScreen';
+	const name = state.user.organization_name;
 
 	return (
 		<ScrollView>
 			<View style={styles.drawerHeader}>
-				<View style={styles.avatar}>
-					<Avatar.Image
-						size={100}
-						source={require('@assets/images/banana-icon.png')}
-					/>
-				</View>
-				<View style={styles.drawerHeaderBuffer}>
-					<Text style={styles.username}>Foods 4 U</Text>
-				</View>
+				<Text style={{ ...styles.username, marginBottom: 0 }}>Hello,</Text>
+				<Text style={styles.username}>{name}</Text>
 			</View>
 			<SafeAreaView
 				style={styles.container}
@@ -41,13 +34,22 @@ const MenuDrawer = props => {
 					onItemPress={async ({ route }) => {
 						toggleDrawer();
 						navigate(route.routeName);
-						if (route.routeName === loginScreen) {
-							await logOut();
-						}
 					}}
 				/>
-				<SpacerInline height={20} />
 			</SafeAreaView>
+			<TouchableOpacity
+				style={styles.menuItem}
+				onPress={async () => {
+					toggleDrawer();
+					navigate('LogoutScreen');
+					await logOut();
+				}}
+			>
+				<MainOption
+					icon="logout"
+					text="Log Out"
+				/>
+			</TouchableOpacity>
 		</ScrollView>
 	);
 };
