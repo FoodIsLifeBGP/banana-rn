@@ -1,6 +1,5 @@
 import React from 'react';
-import { TextInput, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { View } from 'react-native';
 import { Title, SpacerInline, NavBar } from '@elements';
 import Terms from '@assets/documents/SampleToS';
 import ScrollContainer from '../../elements/ScrollContainer/ScrollContainer';
