@@ -12,10 +12,6 @@ export default () => (
 		<SpacerInline height={20} />
 		<ScrollContainer
 			documentText={Terms}
-			displayCheckbox={true}
-			setChecked={() => {}}
-			checked={false}
-			checkboxLabel="I agree to the Terms & Conditions"
 		/>
 		<SpacerInline height={80} />
 	</View>
