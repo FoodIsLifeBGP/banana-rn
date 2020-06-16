@@ -6,9 +6,6 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 import * as colors from '@util/colors';
 import getEnv from '@util/environment';
 
-import { Icon } from '@elements';
-import { IconName } from '@elements/Icon';
-
 import LoginScreen from '../screens/LoginScreen';
 import DashboardScreen from '../screens/DashboardScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
@@ -23,12 +20,8 @@ import DonationsDetailScreen from '../screens/DonationsDetailScreen/DonationsDet
 import DonorDonationScreen from '../screens/DonorDashboardScreen/DonorDonationScreen';
 
 import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
-
-const DrawerIcon = (name: IconName) => Icon({
-	name,
-	size: 18,
-	color: colors.WHITE,
-});
+import MainOption from '../elements/MenuDrawer/MainOption/MainOption';
+import SubOption from '../elements/MenuDrawer/SubOption/SubOption';
 
 // Logged-In Screens for Drawer Navigator
 export const MainStack = createStackNavigator(
@@ -41,6 +34,7 @@ export const MainStack = createStackNavigator(
 		ClaimDetailScreen,
 		DonationsDetailScreen,
 		ContactScreen,
+		LogoutScreen,
 	},
 	{
 		headerMode: 'none',
@@ -55,64 +49,64 @@ const donorOrClientDrawer = () => {
 		QRCodeScannerScreen: {
 			screen: QRCodeScannerScreen,
 			navigationOptions: {
-				drawerLabel: 'Scan QR Code',
-				drawerIcon: DrawerIcon('qrCode'),
+				drawerLabel: <MainOption text="Scan QR Code" icon="qrCode" />,
 			},
 		},
 		DashboardScreen: {
 			screen: MainStack,
 			navigationOptions: {
-				drawerLabel: 'My Donations',
-				drawerIcon: DrawerIcon('donations'),
+				drawerLabel: <MainOption text="Donations" icon="claims" />,
+			},
+		},
+		Active: {
+			screen: MainStack,
+			navigationOptions: {
+				drawerLabel: <SubOption text="Active" />,
+			},
+		},
+		History: {
+			screen: MainStack,
+			navigationOptions: {
+				drawerLabel: <SubOption text="History" />,
 			},
 		},
 	};
 
 	const CLIENT_MENU = {
-		DashboardScreen: {
+		DonationScreen: {
 			screen: MainStack,
 			navigationOptions: {
-				drawerLabel: 'My Claims',
-				drawerIcon: DrawerIcon('claims'),
+				drawerLabel: <MainOption text="Donations" icon="donations" />,
+			},
+		},
+
+		ClaimsScreen: {
+			screen: MainStack,
+			navigationOptions: {
+				drawerLabel: <MainOption text="Claims" icon="claims" />,
+			},
+		},
+
+		Pending: {
+			screen: MainStack,
+			navigationOptions: {
+				drawerLabel: <SubOption text="Pending" />,
+			},
+		},
+
+		History: {
+			screen: MainStack,
+			navigationOptions: {
+				drawerLabel: <SubOption text="History" />,
 			},
 		},
 	};
 
 	const COMMON_MENU = {
-		ProfileScreen: {
+		HelpScreen: {
 			screen: MainStack,
 			navigationOptions: {
-				drawerLabel: 'My Profile',
-				drawerIcon: DrawerIcon('user'),
-			},
-		},
-		SettingsScreen: {
-			screen: MainStack,
-			navigationOptions: {
-				drawerLabel: 'Settings',
-				drawerIcon: DrawerIcon('settings'),
-			},
-		},
-		// TODO: This will likely be implemented in alpha+ versions
-		// HelpScreen: {
-		// screen: MainStack,
-		// navigationOptions: {
-		// drawerLabel: 'Help',
-		// drawerIcon: DrawerIcon('help'),
-		// },
-		// },
-		ContactScreen: {
-			screen: ContactScreen,
-			navigationOptions: {
-				drawerLabel: 'Contact Us',
-				drawerIcon: DrawerIcon('help'),
-			},
-		},
-		LogoutScreen: {
-			screen: LogoutScreen,
-			navigationOptions: {
-				drawerLabel: 'Log Out',
-				drawerIcon: DrawerIcon('logout'),
+				drawerLabel: <MainOption text="Contact Us" icon="help" />,
 			},
 		},
 	};
