@@ -14,13 +14,4 @@ export default StyleSheet.create({
 	documentText: {
 		...typography.body4,
 	},
-	checkboxContainer: {
-		display: 'flex',
-		flexDirection: 'row',
-		paddingTop: 20,
-	},
-	checkboxLabel: {
-		...typography.body4,
-		paddingLeft: 10,
-	},
 });
