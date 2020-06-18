@@ -1,8 +1,7 @@
 import React from 'react';
 import {
 	Text,
-	View,
-	Image,
+	View
 } from 'react-native';
 import useGlobal from '@state';
 import {
@@ -14,15 +13,31 @@ import { useScheme } from '@util/colorSchemes';
 import typography from '@util/typography';
 import styles from './IncompleteFormAlert.styles';
 
-export default () => {
+
+interface IncompleteFormAlertProps {
+	onYes?: () => void;
+	onNo?: () => void;
+}
+
+export default ({
+	onYes = () => {},
+	onNo = () => {},
+}: IncompleteFormAlertProps) => {
+
 	const [ globalState, globalActions ] = useGlobal() as any;
 	const { alert }: { alert: Alert } = globalState;
 	const { clearAlert } = globalActions;
 
 	const scheme = useScheme();
 
-	const handleCloseButtonPress = () => {
+	const handleNo = () => {
 		clearAlert();
+		onNo();
+	};
+
+	const handleYes = () => {
+		clearAlert();
+		onYes();
 	};
 
 	const handleDismiss = () => {
@@ -42,14 +57,6 @@ export default () => {
 
 			<View style={styles.body}>
 
-				<View style={styles.imageWrapper}>
-					<Image
-						style={styles.imageContainer}
-						source={require('@assets/images/Ellipse.png')}
-					/>
-					<Text style={typography.h4}>BANANA</Text>
-				</View>
-
 				<View style={styles.textContainer}>
 					<Text style={typography.body1}>
 						{alert?.message || 'Uh oh, an unknown error occurred!'}
@@ -68,7 +75,7 @@ export default () => {
 								pressed: scheme.secondary,
 								disabled: scheme.disabled,
 							}}
-							onPress={handleCloseButtonPress}
+							onPress={handleNo}
 						/>
 					</View>
 					<View style={styles.rightButton}>
@@ -82,7 +89,7 @@ export default () => {
 								pressed: scheme.secondary,
 								disabled: scheme.disabled,
 							}}
-							onPress={handleCloseButtonPress}
+							onPress={handleYes}
 						/>
 					</View>
 				</View>
