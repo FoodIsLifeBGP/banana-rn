@@ -103,8 +103,14 @@ const donorOrClientDrawer = () => {
 	};
 
 	const COMMON_MENU = {
-		HelpScreen: {
-			screen: MainStack,
+		// HelpScreen: {
+		// screen: MainStack,
+		// navigationOptions: {
+		// drawerLabel: <MainOption text="Contact Us" icon="help" />,
+		// },
+		// },
+		ContactScreen: {
+			screen: ContactScreen,
 			navigationOptions: {
 				drawerLabel: <MainOption text="Contact Us" icon="help" />,
 			},
