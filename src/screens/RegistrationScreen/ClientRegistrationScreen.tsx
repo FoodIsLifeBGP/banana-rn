@@ -105,7 +105,7 @@ export default () => {
 					value={email}
 					setValue={setEmail}
 					style={styles.input}
-					placeholder="info@bannaapp.org"
+					placeholder="info@bananaapp.org"
 					error={errorObj.email.isTrue}
 					errorMessage={errorObj.email.message}
 				/>
@@ -183,6 +183,7 @@ export default () => {
 						onPress={() => goBack()}
 					/>
 					<LinkButton
+						disabled={!termsOfService}
 						text="Register"
 						onPress={() => alert('wait for data side implementation')}
 					/>

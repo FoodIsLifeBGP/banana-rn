@@ -176,7 +176,7 @@ export default () => {
 					value={email}
 					setValue={setEmail}
 					style={styles.input}
-					placeholder="info@bannaapp.org"
+					placeholder="info@bananaapp.org"
 					error={errorObj.email.isTrue}
 					errorMessage={errorObj.email.message}
 				/>
@@ -261,8 +261,8 @@ export default () => {
 						value={state}
 						setValue={setState}
 						style={{ width: '20%' }}
-						error={errorObj.city.isTrue}
-						errorMessage={errorObj.city.message}
+						error={errorObj.state.isTrue}
+						errorMessage={errorObj.state.message}
 					/>
 					<FormTextInput
 						label="Zip"
@@ -270,17 +270,17 @@ export default () => {
 						setValue={setZip}
 						style={{ width: '30%' }}
 						autoCapitalize="words"
-						error={errorObj.city.isTrue}
-						errorMessage={errorObj.city.message}
+						error={errorObj.zip.isTrue}
+						errorMessage={errorObj.zip.message}
 					/>
 				</View>
 				<FormTextInput
 					label="Pick up instructions"
-					value={address}
-					setValue={setAddress}
+					value={instructions}
+					setValue={setInstructions}
 					placeholder="Directions on where to pick up item"
-					error={errorObj.city.isTrue}
-					errorMessage={errorObj.city.message}
+					error={errorObj.instructions.isTrue}
+					errorMessage={errorObj.instructions.message}
 				/>
 
 				<View style={styles.checkboxRow}>
@@ -314,6 +314,7 @@ export default () => {
 						onPress={() => goBack()}
 					/>
 					<LinkButton
+						disabled={!termsOfService}
 						text="Register"
 						onPress={() => alert('wait for data side implementation')}
 					/>
