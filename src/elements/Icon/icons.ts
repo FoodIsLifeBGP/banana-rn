@@ -34,6 +34,7 @@ const Settings: IconImport = require('@assets/icons/ICON_SETTINGS.svg');
 const Time: IconImport = require('@assets/icons/ICON_TIME.svg');
 const Transit: IconImport = require('@assets/icons/ICON_TRANSIT.svg');
 const User: IconImport = require('@assets/icons/ICON_USER.svg');
+const Vector: IconImport = require('@assets/icons/ICON_VECTOR.svg');
 const Walk: IconImport = require('@assets/icons/ICON_WALK.svg');
 const Website: IconImport = require('@assets/icons/ICON_WEBSITE.svg');
 
@@ -76,6 +77,7 @@ export const iconImports: Record<IconName, IconImport> = {
 	time: Time,
 	transit: Transit,
 	user: User,
+	vector: Vector,
 	walk: Walk,
 	website: Website,
 };

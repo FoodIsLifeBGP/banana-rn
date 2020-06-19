@@ -52,5 +52,6 @@ export type IconName =
 	| 'time'
 	| 'transit'
 	| 'user'
+	| 'vector'
 	| 'walk'
 	| 'website';
