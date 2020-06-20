@@ -2,14 +2,12 @@ import { StyleSheet } from 'react-native';
 import * as colors from '@util/colors';
 
 export default StyleSheet.create({
-	floatingContainer:{
+	floatingContainer: {
 		position: 'absolute',
 		alignItems: 'center',
 		justifyContent: 'center',
 		height: 65,
 		width: 65,
-		left: 273,
-		top: 525,
 	},
 	ellipseContainer: {
 		position: 'absolute',
@@ -23,10 +21,9 @@ export default StyleSheet.create({
 	iconContainer: {
 		alignItems: 'center',
 		justifyContent: 'center',
-		height: 63.5,
-		width: 63.5,
-		borderRadius: 63.5 / 2,
+		height: 63,
+		width: 63,
+		borderRadius: 63 / 2,
 		borderColor: colors.BANANA_YELLOW,
-		margin: 3,
-	}
+	},
 });

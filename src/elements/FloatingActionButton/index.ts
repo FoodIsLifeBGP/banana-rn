@@ -1,2 +1,3 @@
 import FloatingActionButton from './FloatingActionButton';
-export {FloatingActionButton};
+
+export { FloatingActionButton };

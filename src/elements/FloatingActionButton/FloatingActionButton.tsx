@@ -3,22 +3,26 @@ import {
 	View,
 	Image,
 	TouchableOpacity,
-	Alert
+	Alert,
 } from 'react-native';
-import styles from './FloatingActionButton.styles';
 import { Button, Icon } from '@elements';
 import { ButtonStyle } from '@elements/Button';
-import { IconName } from '../Icon/Icon.types';
 import * as colors from '@util/colors';
+import styles from './FloatingActionButton.styles';
+import { IconName } from '../Icon/Icon.types';
 
 interface FloatingActionProps {
 	iconName: IconName;
+	top?: number;
+	left?: number;
 	size?: number;
 	onPress?: (any) => void;
 }
 
 export default ({
 	iconName,
+	top = 525,
+	left = 273,
 	size = 28.5,
 	onPress = () => {},
 }: FloatingActionProps) => {
@@ -31,13 +35,13 @@ export default ({
 		pressed: {
 			background: colors.LIGHT_YELLOW,
 			foreground: colors.LIGHT_YELLOW,
-		}
+		},
 	};
 	return (
-		<View style={styles.floatingContainer}>
+		<View style={[styles.floatingContainer, { top, left } ]}>
 			<View style={styles.ellipseContainer}>
 				<Button buttonStyle={buttonStyle} onPress={buttonFunction} style={styles.iconContainer}>
-					{foregroundColor => (<Icon name={iconName} size={size} color={foregroundColor}/>)}	
+					{foregroundColor => (<Icon name={iconName} size={size} color={foregroundColor} />)}
 				</Button>
 			</View>
 		</View>
