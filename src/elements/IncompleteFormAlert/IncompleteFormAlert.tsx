@@ -1,7 +1,7 @@
 import React from 'react';
 import {
 	Text,
-	View
+	View,
 } from 'react-native';
 import useGlobal from '@state';
 import {
@@ -23,7 +23,6 @@ export default ({
 	onYes = () => {},
 	onNo = () => {},
 }: IncompleteFormAlertProps) => {
-
 	const [ globalState, globalActions ] = useGlobal() as any;
 	const { alert }: { alert: Alert } = globalState;
 	const { clearAlert } = globalActions;
