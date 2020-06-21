@@ -18,8 +18,7 @@ export default ({ resource }: LocalProps) => {
 	const [ loaded, setLoaded ] = useState(false);
 
 	const getDonationsOrClaimsFromApi = async () => {
-		const { getDonations, getActiveDonationsForClient, getLocation } = actions;
-		const coords = await getLocation();
+		const { getDonations, getActiveDonationsForClient } = actions;
 		const { userIdentity } = state;
 		const method = userIdentity === 'client' && resource === 'donations' ? getActiveDonationsForClient : getDonations;
 		const data = await method(resource);
