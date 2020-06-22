@@ -73,6 +73,7 @@ export interface InitialState {
 	userIdentity: 'donor' | 'client';
 	apiBaseUrl: string;
 	loginUrl: string;
+	createUrl: string;
 	alert?: Alert;
 	jwt?: string;
 	user?: DonorState | ClientState | SharedProps;
