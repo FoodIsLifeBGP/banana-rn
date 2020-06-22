@@ -16,9 +16,10 @@ export interface DonorRegisterProps {
 	// licenseVerificationImage: any
 }
 
-interface ClientRegisterProps {
+export interface ClientRegisterProps {
 	email: string;
 	password: string;
+	retypedPassword: string;
 	firstName: string;
 	lastName: string;
 	// street: string;

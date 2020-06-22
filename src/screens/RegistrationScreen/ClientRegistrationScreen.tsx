@@ -5,14 +5,11 @@ import {
 	ScrollView,
 	View,
 	Text,
-	Alert,
-	TextInput, TouchableOpacity, KeyboardAvoidingView, Platform,
+	TouchableOpacity,
+	KeyboardAvoidingView,
 } from 'react-native';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import { Checkbox, Divider } from 'react-native-paper';
-import RNPickerSelect from 'react-native-picker-select';
+import { Divider } from 'react-native-paper';
 import useGlobal from '@state';
-import * as colors from '@util/colors';
 import {
 	Title,
 	LinkButton,
@@ -22,70 +19,44 @@ import {
 	Icon,
 	InputLabel,
 } from '@elements';
+import validate from 'validate.js';
+import clientConstraints from '@util/constraints/clientRegistration';
+import { ClientRegisterProps } from '@state/actions/register';
 import styles from './RegistrationScreen.styles';
+
 
 export default () => {
 	const { navigate, goBack } = useNavigation();
 	const [ _state, actions ] = useGlobal() as any;
 	const { register } = actions;
 
-	const [ email, setEmail ] = useState('');
-	const [ password, setPassword ] = useState('');
-	const [ retypedPassword, setRetypedPassword ] = useState('');
 	const [ termsOfService, setTermsOfService ] = useState(false);
-	const [ firstName, setFirstName ] = useState('');
-	const [ lastName, setLastName ] = useState('');
+	const [ validateError, setValidateError ] = useState({} as any);
+	const [ newClient, setNewClient ] = useState<ClientRegisterProps>({} as ClientRegisterProps);
 
 	const toggleTermsOfService = () => {
 		setTermsOfService(!termsOfService);
 	};
 
-	// object contains the error status and corresponding message
-	// modifications in errorObj trigger change in UI.
-	const errorObj = {
-		email: {
-			isTrue: false,
-			message: 'Unknown error occurred',
-		},
-		password: {
-			isTrue: false,
-			message: 'Unknown error occurred',
-		},
-		retypedPassword: {
-			isTrue: false,
-			message: 'Unknown error occurred',
-		},
-		firstName: {
-			isTrue: false,
-			message: 'Unknown error occurred',
-		},
-		lastName: {
-			isTrue: false,
-			message: 'Unknown error occurred',
-		},
+	const validateInputs = async () => {
+		const validateResults = validate(newClient, clientConstraints);
+		if (validateResults) {
+			setValidateError(validateResults);
+		} else {
+			const statusCode = await register(newClient);
+			// TODO: this code is a work in progress, we need to more robustly handle other status codes and probably log
+			// the user in seamlessly rather than redirect to the log-in screen, but I have verified am I able to
+			// register new donors to our database using this screen and its related code
+			if (statusCode === 201) {
+				navigate('LoginScreen', { email: newClient.email, password: newClient.password });
+			} else {
+				// not sure what the design plan is or surfacing additional errors
+				// eslint-disable-next-line no-console
+				console.log('Oops and error occurred! Maybe look at your rails console');
+			}
+		}
 	};
 
-
-	const validateAndSubmit = async () => {
-		// outdated code, commented for future reference
-		// if (!email.includes('@') || !email.includes('.')) { Alert.alert('Please enter a valid email address.'); return; }
-		// if (password.length < 8) { Alert.alert('Please enter a password at least 8 characters long.'); return; }
-		// if (!street || street.split(' ').length < 3) { Alert.alert('Please enter your street number and name.'); return; }
-		// if (!city) { Alert.alert('Please enter your city.'); return; }
-		// if (!(/^\d{5}$/.test(zip))) { Alert.alert('Please enter a valid 5-digit zip code.'); return; }
-		// if (!transportationMethod) { Alert.alert('Please select your preferred method of transportation.'); return; }
-		// if (!termsOfService) { Alert.alert('Please read and accept the terms of service to complete your registration.'); return; }
-		//
-		// const statusCode = await register({
-		// email, password, street, city, state, zip, transportationMethod, ethnicity, gender,
-		// });
-		// switch (statusCode) {
-		// 	case (201 || 202): Alert.alert('Registration complete! Please log in to continue.'); navigate('LoginScreen', { email, password }); return;
-		// 	case 406: Alert.alert('Error: not accepted'); return;
-		// 	case 500: Alert.alert('Internal server error, please try again later.'); return;
-		// 	default: Alert.alert("Sorry, that didn't work, please try again later."); console.log(statusCode);
-		// }
-	};
 
 	return (
 		<KeyboardAvoidingView
@@ -102,53 +73,56 @@ export default () => {
 
 				<FormTextInput
 					label="Email"
-					value={email}
-					setValue={setEmail}
+					value={newClient.email}
+					setValue={v => setNewClient({ ...newClient, email: v })}
 					style={styles.input}
 					placeholder="info@bananaapp.org"
-					error={errorObj.email.isTrue}
-					errorMessage={errorObj.email.message}
+					error={validateError.email}
+					errorMessage={validateError.email}
 				/>
 
 				<FormTextInput
 					label="Password"
-					value={password}
-					setValue={setPassword}
+					value={newClient.password}
+					setValue={v => setNewClient({ ...newClient, password: v })}
 					type="password"
 					style={styles.input}
-					error={errorObj.password.isTrue}
-					errorMessage={errorObj.password.message}
+					error={validateError.password}
+					errorMessage={validateError.password}
 				/>
 
 
 				<FormTextInput
 					label="Confirm Password"
-					value={retypedPassword}
-					setValue={setRetypedPassword}
+					value={newClient.retypedPassword}
+					setValue={v => setNewClient({ ...newClient, retypedPassword: v })}
 					style={styles.input}
 					type="password"
-					error={errorObj.retypedPassword.isTrue}
-					errorMessage={errorObj.retypedPassword.message}
+					error={validateError.retypedPassword}
+					errorMessage={validateError.retypedPassword}
+				/>
+
+				<Divider
+					style={{ marginVertical: 20 }}
 				/>
 
 				<FormTextInput
 					label="First Name"
-					value={firstName}
-					setValue={setFirstName}
+					value={newClient.firstName}
+					setValue={v => setNewClient({ ...newClient, firstName: v })}
 					style={styles.input}
-					error={errorObj.firstName.isTrue}
-					errorMessage={errorObj.firstName.message}
+					error={validateError.firstName}
+					errorMessage={validateError.firstName}
 				/>
 
 
 				<FormTextInput
 					label="Last Name"
-					value={lastName}
-					setValue={setLastName}
+					value={newClient.lastName}
+					setValue={v => setNewClient({ ...newClient, lastName: v })}
 					style={styles.input}
-					error={errorObj.lastName.isTrue}
-					errorMessage={errorObj.lastName.message}
-
+					error={validateError.lastName}
+					errorMessage={validateError.lastName}
 				/>
 
 
@@ -185,7 +159,7 @@ export default () => {
 					<LinkButton
 						disabled={!termsOfService}
 						text="Register"
-						onPress={() => alert('wait for data side implementation')}
+						onPress={validateInputs}
 					/>
 				</View>
 				<SpacerInline height={50} />
