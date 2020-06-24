@@ -11,7 +11,8 @@
     "eject": "expo eject",
     "lint": "eslint --quiet --ext .tsx,.ts,.js .",
     "typechecking": "tsc --noEmit",
-    "storybook": "start-storybook -p 7007"
+    "storybook": "start-storybook -p 7007",
+    "test": "jest"
   },
   "dependencies": {
     "@babel/runtime": "^7.7.2",
