@@ -2,7 +2,7 @@ module.exports = {
   env: {
     es6: true,
     node: true,
-    "jest/globals": true,
+    "jest/globals": true
   },
   extends: [
     'airbnb',
@@ -54,7 +54,7 @@ module.exports = {
 		'import/prefer-default-export': 0,
 		'indent': 'off',
 		'lines-between-class-members': 0,
-		'linebreak-style': [ 'error', 'unix' ],
+		'linebreak-style': [ 'error', 'windows' ],
 		'max-len': [ 1, 120 ],
 		'no-async-promise-executor': 1,
 		'no-confusing-arrow': [
