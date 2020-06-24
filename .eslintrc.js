@@ -54,7 +54,7 @@ module.exports = {
 		'import/prefer-default-export': 0,
 		'indent': 'off',
 		'lines-between-class-members': 0,
-		'linebreak-style': [ 'error', 'windows' ],
+		'linebreak-style': [ 'error', 'unix' ],
 		'max-len': [ 1, 120 ],
 		'no-async-promise-executor': 1,
 		'no-confusing-arrow': [
