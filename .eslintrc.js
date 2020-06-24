@@ -23,7 +23,8 @@ module.exports = {
   },
   plugins: [
     'react',
-		'@typescript-eslint',
+        '@typescript-eslint',
+    'jest'
   ],
   rules: {
 		// These rules are in alphabetical order, minus any symbols (i.e. @typescript goes under T).  Please preserve this when adding.
@@ -53,7 +54,7 @@ module.exports = {
 		'import/prefer-default-export': 0,
 		'indent': 'off',
 		'lines-between-class-members': 0,
-		'linebreak-style': [ 'error', 'unix' ],
+		'linebreak-style': [ 'error', 'windows' ],
 		'max-len': [ 1, 120 ],
 		'no-async-promise-executor': 1,
 		'no-confusing-arrow': [
