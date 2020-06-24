@@ -9,12 +9,14 @@ const {
 	USER_IDENTITY,
 	API_BASE_URL,
 	LOGIN_URL,
+	CREATE_URL,
 } = getEnv();
 
 export const initialState: InitialState = {
 	userIdentity: USER_IDENTITY,
 	apiBaseUrl: API_BASE_URL,
 	loginUrl: LOGIN_URL,
+	createUrl: CREATE_URL,
 	alert: undefined,
 	donationsOrClaims: [],
 	jwt: undefined,

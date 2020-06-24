@@ -1,11 +1,9 @@
 import railsAxios from '@util/railsAxios';
-import clientConstraints from '@util/constraints/clientRegistration';
-import donorConstraints from '@util/constraints/donorRegistration';
-import validate from 'validate.js';
 
-interface DonorRegisterProps {
+export interface DonorRegisterProps {
 	email: string;
 	password: string;
+	retypedPassword: string;
 	firstName: string;
 	lastName: string;
 	businessName: string;
@@ -18,9 +16,10 @@ interface DonorRegisterProps {
 	// licenseVerificationImage: any
 }
 
-interface ClientRegisterProps {
+export interface ClientRegisterProps {
 	email: string;
 	password: string;
+	retypedPassword: string;
 	firstName: string;
 	lastName: string;
 	// street: string;
@@ -60,6 +59,13 @@ export const registerDonor = async (store, donor: DonorRegisterProps) => {
 		});
 		return response.status || 'Error';
 	} catch (error) {
+		// TODO: testing with expo on your phone, error.response is undefined
+		if (error.response && error.response.status === 409) {
+			return 409;
+		}
+		// TODO: once the server side validations are in place we'll need to look for failed validations in the response
+		// for now to my knowledge there's only three possible responses--201 donor created, 409 donor email is already
+		// registered, and 500 and unhandled rails error
 		await store.setState({
 			jwt: '',
 			user: {},
@@ -98,16 +104,11 @@ export const registerClient = async (store, client: ClientRegisterProps) => {
 	}
 };
 
-const register = async (store, user) => {
+const register = (store, user) => {
 	const { userIdentity } = store.state;
-	const formErrors = userIdentity === 'donor'
-		? await validate(user, donorConstraints)
-		: await validate(user, clientConstraints);
-	if (formErrors) return { formErrors };
-	const statusCode = userIdentity === 'donor'
-		? await registerDonor(store, user)
-		: await registerClient(store, user);
-	return { formErrors, statusCode };
+	return userIdentity === 'donor'
+		? registerDonor(store, user)
+		: registerClient(store, user);
 };
 
 export { register };

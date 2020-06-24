@@ -4,30 +4,40 @@ import * as colors from '@util/colors';
 const inputHeight = 35;
 
 export default StyleSheet.create({
-	outerContainer: {
+	keyboardAvoidContainer: {
+		flex: 1,
+		flexDirection: 'column',
+		justifyContent: 'center',
+	},
+	header: {
+		width: '100%',
+		height: 180,
+		justifyContent: 'center',
+		paddingLeft: 20,
 		backgroundColor: colors.BANANA_YELLOW,
-		paddingHorizontal: '10%',
-		justifyContent: 'space-between',
+	},
+	scrollContainer: {
+		paddingHorizontal: '5%',
+		paddingTop: '10%',
+		flex: 1,
 	},
 	input: {
-		height: inputHeight,
 		marginBottom: 14,
-		paddingLeft: 10,
-		fontSize: 16,
-		fontFamily: 'open-sans-light',
-		color: colors.NAVY_BLUE,
-		backgroundColor: 'white',
 	},
 	text: {
 		fontFamily: 'open-sans-light',
-		fontSize: 14,
+		fontSize: 16,
 		marginTop: 4,
 		color: colors.NAVY_BLUE,
+	},
+	textBold: {
+		fontFamily: 'open-sans-bold',
 	},
 	checkboxRow: {
 		flexDirection: 'row',
 		alignItems: 'center',
-		justifyContent: 'center',
+		marginBottom: 40,
+
 	},
 	checkBox: {
 		backgroundColor: 'white',
