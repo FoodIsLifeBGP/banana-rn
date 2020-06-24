@@ -21,3 +21,11 @@ export interface Donation {
 	};
 	showDonation: (donation) => void;
 }
+
+export interface NewDonation {
+	name: string;
+	category: string;
+	totalAmount: string;
+	pickupAddress: string;
+	pickupInstructions: string;
+}
