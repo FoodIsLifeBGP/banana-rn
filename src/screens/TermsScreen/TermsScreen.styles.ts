@@ -4,8 +4,18 @@ import * as colors from '@util/colors';
 export default StyleSheet.create({
 	outerContainer: {
 		flex: 1,
-		backgroundColor: colors.BANANA_YELLOW,
+		backgroundColor: colors.WHITE,
 		paddingHorizontal: '10%',
+	},
+	titleContainer: {
+		height: 180,
+		backgroundColor: colors.BANANA_YELLOW,
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	title: {
+		width: 320,
+		height: 108,
 	},
 	input: {
 		height: 50,
