@@ -6,6 +6,6 @@ describe('Initial Test', () => {
 
 describe('Second Test', () => {
 	it('Second Test', () => {
-		expect(true).toBe(false);
+		expect(false).toBe(true);
 	});
 });
