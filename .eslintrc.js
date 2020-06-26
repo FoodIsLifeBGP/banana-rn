@@ -2,6 +2,7 @@ module.exports = {
   env: {
     es6: true,
     node: true,
+    "jest/globals": true
   },
   extends: [
     'airbnb',
@@ -22,7 +23,8 @@ module.exports = {
   },
   plugins: [
     'react',
-		'@typescript-eslint',
+    '@typescript-eslint',
+    'jest'
   ],
   rules: {
 		// These rules are in alphabetical order, minus any symbols (i.e. @typescript goes under T).  Please preserve this when adding.
