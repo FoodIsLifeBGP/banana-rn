@@ -105,6 +105,21 @@ change `environments.ts`, use your web browser to test, or possibly tell react-n
 - If you elect to use your web browser to test your changes, Firefox may just render a blank page.  Switching to 
 another browser should resolve the issue.  
 
+If you run into an error like this:
+```
+error Invalid regular expression: /(.*\\__fixtures__\\.*|node_modules[\\\]react[\\\]dist[\\\].*|website\\node_modules\\.*|heapCapture\\bundle\.js|.*\\__tests__\\.*)$/: Unterminated character class. Run CLI with --verbose flag for more details.
+
+Metro Bundler process exited with code 1
+Error: Metro Bundler process exited with code 1
+    at ChildProcess.<anonymous> (C:\@expo\xdl@56.2.7\src\Project.ts:1804:16)
+    at Object.onceWrapper (events.js:300:26)
+    at ChildProcess.emit (events.js:210:5)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:272:12)
+error Command failed with exit code 1.
+```
+Try to update the expo package `npm install -g expo-cli`
+Or try switching node versions (`12.10.0 => 12.9.0`)
+
 # The rest of The Banana App family:
 
 ## [Backend](https://github.com/FoodIsLifeBGP/banana-rails)
