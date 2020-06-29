@@ -4,7 +4,6 @@ import useGlobal from '@state';
 import { Title, SpacerInline, NavBar } from '@elements';
 import { DonationsOrClaims } from '@library';
 import styles from './DashboardScreen.styles';
-import DonorDashboardScreen from '../DonorDashboardScreen';
 
 const DashboardScreen = () => {
 	const [ state ] = useGlobal();
@@ -19,7 +18,14 @@ const DashboardScreen = () => {
 	return (
 		<View style={styles.outerContainer}>
 
-			<NavBar showBackButton={false} />
+			<NavBar 
+				showBackButton={false} 
+				leftButton="qrCode" 
+				showSelector={true} 
+				onMap={ () => {} }
+				onList={ () => {} }
+				position='list'
+			/>
 
 			<View style={styles.contentContainer}>
 				<Title text={title} />
