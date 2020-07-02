@@ -7,7 +7,7 @@ import { ButtonStyle } from '@elements/Button';
 import * as colors from '@util/colors';
 import Selector from '@elements/NavBar/Selector';
 import HamburgerPopupMenu from '../HamburgerPopupMenu';
-
+import useGlobal from "@state";
 import styles from './NavBar.styles';
 
 interface NavBarProps {
@@ -39,6 +39,7 @@ export default ({
 			foreground: colors.NAVY_BLUE,
 		},
 	};
+	const [ state, { updateAlert } ] = useGlobal() as any;
 
 	return (
 		<View style={styles.contentContainer}>
@@ -68,7 +69,11 @@ export default ({
 				showSelector && position && onMap && onList && <Selector position={position} onMap={onMap} onList={onList} />
 			}
 			<View style={styles.notiContainer}>
-				<Button buttonStyle={buttonStyle} style={{ marginTop: 4, marginRight: 8 }}>
+				<Button 
+					buttonStyle={buttonStyle} 
+					style={{ marginTop: 4, marginRight: 8 }}
+					onPress={ () => {updateAlert({type: 'coming soon', dismissable: false});} }
+				>
 					{foregroundColor => (<Icon size={36} color={foregroundColor} name="bell" />)}
 				</Button>
 				{showMenu && (<HamburgerPopupMenu />) }
