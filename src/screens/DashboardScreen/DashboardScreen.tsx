@@ -19,13 +19,13 @@ const DashboardScreen = () => {
 	return (
 		<View style={styles.outerContainer}>
 
-			<NavBar 
-				showBackButton={false} 
-				leftButton="qrCode" 
-				showSelector={true} 
-				onMap={ () => {} }
-				onList={ () => {} }
-				position='map'
+			<NavBar
+				showBackButton={false}
+				leftButton="qrCode"
+				showSelector={true}
+				onMap={() => {}}
+				onList={() => {}}
+				position="map"
 			/>
 
 			<View style={styles.contentContainer}>
