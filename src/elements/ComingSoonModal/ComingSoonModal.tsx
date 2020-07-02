@@ -101,4 +101,5 @@ export default () => {
 			</Modal>
 		);
 	}
+	return null;
 };
