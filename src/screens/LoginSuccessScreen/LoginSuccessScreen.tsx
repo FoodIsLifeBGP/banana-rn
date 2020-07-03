@@ -18,7 +18,7 @@ export default () => {
 	switch (user?.account_status) {
 		case 'incomplete': return <ApplicationIncompleteScreen />;
 		case 'suspended': return <AccountSuspendedScreen />;
-		case 'pending': return <ApplicationPendingScreen />;
+		case 'processing': return <ApplicationPendingScreen />;
 		case 'approved': return <ApplicationApprovedScreen id={id} />;
 		case 'active': return <DashboardScreen />;
 		default: return <InfoScreen title="Login error" nextScreenDestination="LoginScreen" nextScreenTitle="Login" />;

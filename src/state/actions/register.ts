@@ -48,29 +48,21 @@ export const registerDonor = async (store, donor: DonorRegisterProps) => {
 				address_city: city,
 				address_state: state,
 				address_zip: zip,
-				account_status: 'pending',
 				pickup_instructions: pickupInstructions,
 			},
 		}));
 
 		await store.setState({
 			jwt: response.data?.jwt || '',
-			user: donor,
+			user: response.data?.donor || {},
 		});
-		return response.status || 'Error';
+		return response.status;
 	} catch (error) {
-		// TODO: testing with expo on your phone, error.response is undefined
-		if (error.response && error.response.status === 409) {
-			return 409;
-		}
-		// TODO: once the server side validations are in place we'll need to look for failed validations in the response
-		// for now to my knowledge there's only three possible responses--201 donor created, 409 donor email is already
-		// registered, and 500 and unhandled rails error
 		await store.setState({
 			jwt: '',
 			user: {},
 		});
-		return 500;
+		return error.response.status;
 	}
 };
 
@@ -86,21 +78,19 @@ export const registerClient = async (store, client: ClientRegisterProps) => {
 				password,
 				first_name: firstName,
 				last_name: lastName,
-				account_status: 'pending',
 			},
 		}));
 		await store.setState({
 			jwt: response.data?.jwt || '',
-			user: client,
+			user: response.data?.client || {},
 		});
-		const { status } = response;
-		return status || 'Error';
+		return response.status;
 	} catch (error) {
 		await store.setState({
 			jwt: '',
 			user: {},
 		});
-		return 500;
+		return error.response.status;
 	}
 };
 

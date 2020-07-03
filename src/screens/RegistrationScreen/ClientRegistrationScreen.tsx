@@ -22,13 +22,14 @@ import {
 import validate from 'validate.js';
 import clientConstraints from '@util/constraints/clientRegistration';
 import { ClientRegisterProps } from '@state/actions/register';
+import { Alert } from '@state/index.types';
 import styles from './RegistrationScreen.styles';
 
 
 export default () => {
 	const { navigate, goBack } = useNavigation();
-	const [ _state, actions ] = useGlobal() as any;
-	const { register } = actions;
+	const [ state, actions ] = useGlobal() as any;
+	const { register, updateAlert } = actions;
 
 	const [ termsOfService, setTermsOfService ] = useState(false);
 	const [ validateError, setValidateError ] = useState({} as any);
@@ -44,15 +45,35 @@ export default () => {
 			setValidateError(validateResults);
 		} else {
 			const statusCode = await register(newClient);
-			// TODO: this code is a work in progress, we need to more robustly handle other status codes and probably log
-			// the user in seamlessly rather than redirect to the log-in screen, but I have verified am I able to
-			// register new donors to our database using this screen and its related code
-			if (statusCode === 201) {
-				navigate('LoginScreen', { email: newClient.email, password: newClient.password });
-			} else {
-				// not sure what the design plan is or surfacing additional errors
-				// eslint-disable-next-line no-console
-				console.log('Oops and error occurred! Maybe look at your rails console');
+			switch (statusCode) {
+				case 201: {
+					navigate('LoginSuccessScreen');
+					break;
+				}
+				case 500: {
+					updateAlert({
+						title: 'Error',
+						message: `Network Issues (Error code:${statusCode})`,
+						dismissable: true,
+					} as Alert);
+					console.log(state);
+					break;
+				}
+				case 409: {
+					updateAlert({
+						title: 'Error',
+						message: `This email address has already been used (Error code:${statusCode})`,
+						dismissable: true,
+					} as Alert);
+					break;
+				}
+				default: {
+					updateAlert({
+						title: 'Error',
+						message: `Unknown Error (Error code:${statusCode})`,
+						dismissable: true,
+					} as Alert);
+				}
 			}
 		}
 	};
