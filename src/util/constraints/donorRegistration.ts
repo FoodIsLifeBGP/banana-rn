@@ -17,9 +17,6 @@ export default {
 	},
 	retypedPassword: {
 		equality: 'password',
-		presence: {
-			allowEmpty: false,
-		},
 	},
 	firstName: {
 		presence: {

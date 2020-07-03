@@ -12,6 +12,7 @@ export { Paragraph } from './Paragraph';
 export { Modal } from './Modal';
 export { TheAlertModal } from './TheAlertModal';
 export { IncompleteFormAlert } from './IncompleteFormAlert';
+export { ComingSoonModal } from './ComingSoonModal';
 export { EmptyStateView } from './EmptyStateView';
 export { ContentHeader } from './ContentHeader';
 export { FloatingActionButton } from './FloatingActionButton';
