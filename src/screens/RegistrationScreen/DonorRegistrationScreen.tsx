@@ -6,6 +6,7 @@ import {
 	ScrollView,
 	Text, TouchableOpacity,
 	View,
+	Platform,
 } from 'react-native';
 import { Divider } from 'react-native-paper';
 import {
@@ -53,9 +54,9 @@ export default () => {
 	return (
 		<KeyboardAvoidingView
 			style={styles.keyboardAvoidContainer}
-			behavior="padding"
+			behavior={Platform.OS === 'ios' ? 'padding' : 'height'} // Android and iOS both interact with this prop differently
 			enabled={true}
-			keyboardVerticalOffset={100}
+			keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
 		>
 			<View style={styles.header}>
 				<Title text="Registration" />
