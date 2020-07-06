@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigation } from 'react-navigation-hooks';
 import {
-	KeyboardAvoidingView, Platform,
+	KeyboardAvoidingView,
 	ScrollView,
 	Text, TouchableOpacity,
 	View,
