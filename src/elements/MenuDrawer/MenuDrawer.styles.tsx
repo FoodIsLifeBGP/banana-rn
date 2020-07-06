@@ -1,5 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import * as colors from '@util/colors';
+
+const vh = Dimensions.get('screen').height;
 
 export default StyleSheet.create({
 	avatar: {
@@ -13,17 +15,20 @@ export default StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: colors.NAVY_BLUE,
-		alignItems: 'flex-end',
+		marginTop: -20,
+		flexDirection: 'column',
+		justifyContent: 'space-between',
+		height: vh - (vh / 3),
 	},
 	drawerHeader: {
 		backgroundColor: colors.BANANA_YELLOW,
 		color: colors.WHITE,
-		height: 300,
-		justifyContent: 'flex-end',
+		height: 120,
+		justifyContent: 'center',
 	},
 	drawerHeaderBuffer: {
 		backgroundColor: colors.NAVY_BLUE,
-		height: 130,
+		height: 90,
 		paddingBottom: 30,
 	},
 	drawerBottomBuffer: {
@@ -32,8 +37,6 @@ export default StyleSheet.create({
 		paddingBottom: 30,
 	},
 	menuItem: {
-		borderTopColor: 'white',
-		borderTopWidth: 1,
 		marginLeft: 30,
 		marginRight: 30,
 		backgroundColor: colors.NAVY_BLUE,
@@ -41,16 +44,18 @@ export default StyleSheet.create({
 	labelText: {
 		color: colors.WHITE,
 		textTransform: 'uppercase',
-		fontSize: 18,
+		fontSize: 20,
 		textAlign: 'right',
 		width: '65%',
 		fontWeight: '500',
 	},
 	username: {
-		fontSize: 18,
-		color: colors.WHITE,
-		textAlign: 'center',
-		marginTop: 60,
+		fontSize: 24,
+		color: colors.NAVY_BLUE,
+		textAlign: 'left',
+		marginBottom: 15,
 		fontWeight: '700',
+		textTransform: 'uppercase',
+		marginLeft: '25%',
 	},
 });
