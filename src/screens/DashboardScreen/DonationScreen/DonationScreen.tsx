@@ -5,7 +5,7 @@ import {
 	Text,
 	TouchableOpacity,
 	Image,
-	Alert, KeyboardAvoidingView, ScrollView,
+	Alert, KeyboardAvoidingView, ScrollView, Platform,
 } from 'react-native';
 import { Switch } from 'react-native-paper';
 import useGlobal from '@state';
@@ -19,7 +19,6 @@ import {
 import validate from 'validate.js';
 import { NewDonation } from '@screens/DashboardScreen/DonationScreen/DonationScreen.type';
 import { DropdownInput } from '@elements/FormTextInput/DropdownInput';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from './DonationScreen.styles';
 
 export default () => {
@@ -30,15 +29,16 @@ export default () => {
 	const { navigate } = useNavigation();
 
 	return (
-		<View>
+
+		<KeyboardAvoidingView
+			style={styles.keyboardAvoidContainer}
+			behavior={Platform.OS === 'ios' ? 'padding' : 'height'} // Android and iOS both interact with this prop differently
+			enabled={true}
+			keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
+		>
 			<NavBar showBackButton={true} />
-			<SpacerInline height={20} />
-			<Title text="Donate Food (Replace w/ Image)" />
-			<KeyboardAwareScrollView
-				resetScrollToCoords={{ x: 0, y: 0 }}
-				contentContainerStyle={styles.keyboardAvoidContainer}
-				scrollEnabled={true}
-			>
+			<ScrollView style={styles.scrollContainer}>
+				<Title text="Donate Food (Replace w/ Image)" />
 
 
 				<SpacerInline height={20} />
@@ -75,15 +75,14 @@ export default () => {
 					error={false}
 				/>
 
-				<View>
+				<View style={{ paddingBottom: '10%' }}>
 					<LinkButton
 						text="Publish"
 						onPress={() => console.log('Pressed')}
 					/>
 				</View>
-
-			</KeyboardAwareScrollView>
-		</View>
+			</ScrollView>
+		</KeyboardAvoidingView>
 
 	);
 };
