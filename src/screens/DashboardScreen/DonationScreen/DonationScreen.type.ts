@@ -23,7 +23,7 @@ export interface Donation {
 }
 
 export interface NewDonation {
-	name: string;
+	itemName: string;
 	category: string;
 	totalAmount: string;
 	pickupAddress: string;
