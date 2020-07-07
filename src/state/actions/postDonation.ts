@@ -14,9 +14,7 @@ interface DonationProps {
 	totalServings: string | number;
 }
 
-const postDonation = async (_store, {
-	donationId, donorId, jwt, name, durationInMinutes, totalServings, servingName, perPerson, pickupLocation, cancel,
-}: DonationProps) => {
+const postDonation = async (_store, { jwt }) => {
 	const endpoint = `/donations/${donationId ? `${donationId}/update` : 'create'}`;
 	const donation = JSON.stringify({
 		donation: {

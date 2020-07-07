@@ -33,6 +33,7 @@ export default () => {
 	const foodCategories: Array<string> = ['Bread', 'Dairy', 'Hot Meal', 'Produce', 'Protein', 'Others'];
 	newDonation.pickupAddress = `${user.address_street} ${user.address_city}, ${user.address_state} ${user.address_zip}`;
 	newDonation.pickupInstructions = user.pickup_instructions;
+	[newDonation.category] = foodCategories;
 
 	const validateInputs = async () => {
 		const validateResults = validate(newDonation, donationConstraints);
