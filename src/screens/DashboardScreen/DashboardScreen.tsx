@@ -19,7 +19,14 @@ const DashboardScreen = () => {
 	return (
 		<View style={styles.outerContainer}>
 
-			<NavBar showBackButton={false} />
+			<NavBar
+				showBackButton={false}
+				leftButton="qrCode"
+				showSelector={true}
+				onMap={() => {}}
+				onList={() => {}}
+				position="map"
+			/>
 
 			<View style={styles.contentContainer}>
 				<Title text={title} />

@@ -20,13 +20,14 @@ import { getStateList } from '@util/statesAbbr';
 import donorConstraints from '@util/constraints/donorRegistration';
 import validate from 'validate.js';
 import { DonorRegisterProps } from '@state/actions/register';
+import { Alert } from '@state/index.types';
 import styles from './RegistrationScreen.styles';
 
 export default () => {
 	const { navigate, goBack } = useNavigation();
 	const [ _state, actions ] = useGlobal() as any;
-	const { register } = actions;
-	const [ newDonor, setNewDonor ] = useState<DonorRegisterProps>({ state: 'WA' } as DonorRegisterProps);
+	const { register, updateAlert } = actions;
+	const [ newDonor, setNewDonor ] = useState<DonorRegisterProps>({} as DonorRegisterProps);
 	const [ validationErrors, setValidationErrors ] = useState({} as any);
 	const [ termsOfService, setTermsOfService ] = useState(false);
 	const stateList = getStateList();
@@ -38,15 +39,34 @@ export default () => {
 			setValidationErrors(validateResults);
 		} else {
 			const statusCode = await register(newDonor);
-			// TODO: this code is a work in progress, we need to more robustly handle other status codes and probably log
-			// the user in seamlessly rather than redirect to the log-in screen, but I have verified am I able to
-			// register new donors to our database using this screen and its related code
-			if (statusCode === 201) {
-				navigate('LoginScreen', { email: newDonor.email, password: newDonor.password });
-			} else {
-				// not sure what the design plan is for surfacing additional errors
-				// eslint-disable-next-line no-console
-				console.log('Oops and error occurred! Maybe look at your rails console');
+			switch (statusCode) {
+				case 201: {
+					navigate('LoginSuccessScreen');
+					break;
+				}
+				case 409: {
+					updateAlert({
+						title: 'Error',
+						message: `This email address has already been used (Error code:${statusCode})`,
+						dismissable: true,
+					} as Alert);
+					break;
+				}
+				case 500: {
+					updateAlert({
+						title: 'Error',
+						message: `Network Issues (Error code:${statusCode})`,
+						dismissable: true,
+					} as Alert);
+					break;
+				}
+				default: {
+					updateAlert({
+						title: 'Error',
+						message: `Unknown Error (Error code:${statusCode})`,
+						dismissable: true,
+					} as Alert);
+				}
 			}
 		}
 	};
