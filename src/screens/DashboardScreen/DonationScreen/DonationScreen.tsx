@@ -20,14 +20,13 @@ import styles from './DonationScreen.styles';
 export default () => {
 	const [ state, actions ] = useGlobal() as any;
 	const { user } = state;
-	const [ newDonation, setNewDonation ] = useState<NewDonation>({} as NewDonation);
+	const [ newDonation, setNewDonation ] = useState<NewDonation>({ pickupInstructions: user.pickup_instructions } as NewDonation);
 	const [ validateError, setValidateError ] = useState({} as any);
 	const { postDonation } = actions;
 	const { navigate } = useNavigation();
 
 	const foodCategories: Array<string> = [ 'Bread', 'Dairy', 'Hot Meal', 'Produce', 'Protein', 'Others' ];
 	newDonation.pickupAddress = `${user.address_street} ${user.address_city}, ${user.address_state} ${user.address_zip}`;
-	newDonation.pickupInstructions = user.pickup_instructions;
 
 	const validateInputs = async () => {
 		const validateResults = validate(newDonation, donationConstraints);
@@ -103,7 +102,7 @@ export default () => {
 					errorMessage={validateError.pickupInstructions}
 				/>
 
-				<View style={{ marginBottom: '10' }}>
+				<View style={styles.button}>
 					<LinkButton
 						text="Publish"
 						onPress={validateInputs}

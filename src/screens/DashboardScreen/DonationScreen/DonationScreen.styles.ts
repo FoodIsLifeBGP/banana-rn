@@ -21,4 +21,7 @@ export default StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 	},
+	button: {
+		marginBottom: 30,
+	},
 });
