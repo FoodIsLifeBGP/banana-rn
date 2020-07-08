@@ -1,38 +1,22 @@
 import railsAxios from '@util/railsAxios';
+import { NewDonation } from '@screens/DashboardScreen/DonationScreen/DonationScreen.type';
 
-interface DonationProps {
-	cancel?: boolean;
-	donationId?: number;
-	donorId: number;
-	durationInMinutes: number;
-	imageUrl?: string;
-	jwt: string;
-	name: string;
-	perPerson: string | number;
-	servingName: string;
-	pickupLocation: string;
-	totalServings: string | number;
-}
 
-const postDonation = async (_store, { jwt }) => {
-	const endpoint = `/donations/${donationId ? `${donationId}/update` : 'create'}`;
-	const donation = JSON.stringify({
+const postDonation = async (_store, donation: NewDonation) => {
+	const endpoint = '/donations/create';
+	const { user, jwt } = _store.state;
+	const payload = {
 		donation: {
-			food_name: name,
-			donor_id: donorId,
-			duration_minutes: durationInMinutes,
-			total_servings: totalServings,
-			measurement: servingName,
-			per_person: perPerson,
-			image_url: '',
-			pickup_location: pickupLocation,
-			canceled: cancel,
+			donor_id: user.id,
+			category: donation.category,
+			food_name: donation.itemName,
+			pickup_instructions: donation.pickupInstructions,
+			status: 'active',
+			total_amount: donation.totalAmount,
 		},
-	});
-
+	};
 	try {
-		const response = await railsAxios(jwt).post(endpoint, donation);
-
+		const response = await railsAxios(jwt).post(endpoint, payload);
 		return response.request.status || 'Error';
 	} catch (error) {
 		console.log(error);

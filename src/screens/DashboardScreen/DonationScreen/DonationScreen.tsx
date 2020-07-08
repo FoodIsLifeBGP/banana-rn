@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
+import { useNavigation } from 'react-navigation-hooks';
 import {
 	View,
-	Text,
-	TouchableOpacity,
-	Image,
-	Alert, KeyboardAvoidingView, ScrollView, Platform,
+	KeyboardAvoidingView, ScrollView, Platform,
 } from 'react-native';
-import { Switch } from 'react-native-paper';
 import useGlobal from '@state';
 import {
 	NavBar,
@@ -18,22 +14,20 @@ import {
 } from '@elements';
 import validate from 'validate.js';
 import { NewDonation } from '@screens/DashboardScreen/DonationScreen/DonationScreen.type';
-import { DropdownInput } from '@elements/FormTextInput/DropdownInput';
 import donationConstraints from '@util/constraints/donation';
 import styles from './DonationScreen.styles';
 
 export default () => {
 	const [ state, actions ] = useGlobal() as any;
-	const { user, jwt } = state;
+	const { user } = state;
 	const [ newDonation, setNewDonation ] = useState<NewDonation>({} as NewDonation);
 	const [ validateError, setValidateError ] = useState({} as any);
-	const { postDonation, logOut, getDonationsOrClaims } = actions;
+	const { postDonation } = actions;
 	const { navigate } = useNavigation();
 
-	const foodCategories: Array<string> = ['Bread', 'Dairy', 'Hot Meal', 'Produce', 'Protein', 'Others'];
+	const foodCategories: Array<string> = [ 'Bread', 'Dairy', 'Hot Meal', 'Produce', 'Protein', 'Others' ];
 	newDonation.pickupAddress = `${user.address_street} ${user.address_city}, ${user.address_state} ${user.address_zip}`;
 	newDonation.pickupInstructions = user.pickup_instructions;
-	[newDonation.category] = foodCategories;
 
 	const validateInputs = async () => {
 		const validateResults = validate(newDonation, donationConstraints);
@@ -41,7 +35,13 @@ export default () => {
 			setValidateError(validateResults);
 		} else {
 			setValidateError({});
-			await postDonation(newDonation);
+			const result = await postDonation(newDonation);
+			if (result === 201) {
+				navigate('DashboardScreen');
+			} else {
+				// TODO: communicate failures better
+				console.log('There was a problem creating the donation');
+			}
 		}
 	};
 	return (
@@ -67,14 +67,15 @@ export default () => {
 					autoFocus={true}
 				/>
 
-				<InputLabel text="Food Category" />
-				<View style={styles.input}>
-					<DropdownInput
-						value={newDonation.category}
-						setValue={s => setNewDonation({ ...newDonation, category: s })}
-						dropdownData={foodCategories}
-					/>
-				</View>
+				<FormTextInput
+					label="Food Category"
+					dropdownData={foodCategories}
+					setValue={s => setNewDonation({ ...newDonation, category: s })}
+					value={newDonation.category}
+					type="dropdown"
+					error={!!validateError.category}
+					errorMessage={validateError.category}
+				/>
 
 				<FormTextInput
 					label="Total Amount"

@@ -28,7 +28,7 @@ interface DropdownInputProps extends TextInputProps {
 
 const DropdownInput = (props: DropdownInputProps) => {
 	const {
-		style, value, setValue, dropdownData,
+		style, value, setValue, dropdownData, placeholder,
 	} = props;
 	const formattedData: Item[] = [];
 	dropdownData?.forEach(item => formattedData.push({ label: item, value: item }));
@@ -48,7 +48,7 @@ const DropdownInput = (props: DropdownInputProps) => {
 				}
 
 			}
-			placeholder={{}}
+			placeholder={placeholder}
 			value={value}
 			onValueChange={v => {
 				if (setValue) {
