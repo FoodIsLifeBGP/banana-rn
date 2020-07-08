@@ -68,9 +68,9 @@ Once those are complete, run:
 
 # Additional notes about environment
 
-Take note of `app.json` in the root.  This is where we specify whether to compile the donor or client app.
+Take note of `app.config.js` in the root.  This is where we specify whether to compile the donor or client app.
 
-```json
+```javascript
 {
   "expo": {
 	...
@@ -90,22 +90,22 @@ A tab in your web browser will open showing the Expo dashboard.  To open the app
 
 When the app opens, you will see the login screen.  Assuming you are still running the [Rails server](https://github.com/FoodIsLifeBGP/banana-rails) in the background, you can log in with the sample account for your variant:
 
-- email: `donor@donor.com`, password: `donor`
-- email: `client@client.com`, password: `client`
+- email: `donor@donor.com`, password: `donor@123`
+- email: `client@client.com`, password: `client@123`
 
 or create a new account.
 
+**Backend Choices**
+- `environments.ts` controls what rails server the app will try to talk to.
+- The default is an AWS server running the latest [banana rails](https://github.com/FoodIsLifeBGP/banana-rails) from the `prealpha/main` branch.
+- If you would like to talk to a different rails server (most likely your own in the event you have changes you want to test), create a file called
+`.env` in your project root and add `IP_ADDRESS=<your internal network ip>` at the top of the file.
+
 **Possible gotchas for new developers**
-- If you elect to use an android simulator for your testing, by default the client will try to use `localhost:3000` 
-as the network address to reach the [banana rails](https://github.com/FoodIsLifeBGP/banana-rails) 
-backend service. It won't be available at that location on the android simulator.  This issue will manifest itself 
-in a rather incongruous way with the client showing an alert message about a 
-[418](https://en.wikipedia.org/wiki/Hyper_Text_Coffee_Pot_Control_Protocol) http response code.  You can
-change `environments.ts`, use your web browser to test, or possibly tell react-native that it's not in dev mode. 
 - If you elect to use your web browser to test your changes, Firefox may just render a blank page.  Switching to 
 another browser should resolve the issue.  
 
-If you run into an error like this:
+- If you run into an error like this:
 ```
 error Invalid regular expression: /(.*\\__fixtures__\\.*|node_modules[\\\]react[\\\]dist[\\\].*|website\\node_modules\\.*|heapCapture\\bundle\.js|.*\\__tests__\\.*)$/: Unterminated character class. Run CLI with --verbose flag for more details.
 
