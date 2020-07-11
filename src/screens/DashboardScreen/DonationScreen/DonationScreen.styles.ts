@@ -13,6 +13,11 @@ export default StyleSheet.create({
 		paddingTop: '10%',
 		flex: 1,
 	},
+	imageInputContainer: {
+		width: '100%',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
 	input: {
 		marginBottom: 14,
 	},
