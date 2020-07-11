@@ -1,8 +1,7 @@
 export default ({ config }) => ({
 	...config,
 	extra: {
-		variant: process.env.APP_VARIANT ? process.env.APP_VARIANT : 'donor',
-		storybook: false,
+		...config.extra,
 		ipAddress: process.env.IP_ADDRESS,
 	},
 });
