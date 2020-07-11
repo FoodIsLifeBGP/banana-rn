@@ -10,11 +10,12 @@ import {
 	SpacerInline,
 	FormTextInput,
 	LinkButton,
-	InputLabel, Title,
+	InputLabel, Title, FormImageInput,
 } from '@elements';
 import validate from 'validate.js';
 import { NewDonation } from '@screens/DashboardScreen/DonationScreen/DonationScreen.type';
 import donationConstraints from '@util/constraints/donation';
+import { ImageInfo } from 'expo-image-picker/build/ImagePicker.types';
 import styles from './DonationScreen.styles';
 
 export default () => {
@@ -22,6 +23,7 @@ export default () => {
 	const { user } = state;
 	const [ newDonation, setNewDonation ] = useState<NewDonation>({ pickupInstructions: user.pickup_instructions } as NewDonation);
 	const [ validateError, setValidateError ] = useState({} as any);
+	const [ image, setImage ] = useState({} as ImageInfo);
 	const { postDonation } = actions;
 	const { navigate } = useNavigation();
 
@@ -44,7 +46,6 @@ export default () => {
 		}
 	};
 	return (
-
 		<KeyboardAvoidingView
 			style={styles.keyboardAvoidContainer}
 			behavior={Platform.OS === 'ios' ? 'padding' : 'height'} // Android and iOS both interact with this prop differently
@@ -53,7 +54,15 @@ export default () => {
 		>
 			<NavBar showBackButton={true} />
 			<ScrollView style={styles.scrollContainer}>
-				<Title text="Donate Food (Replace w/ Image)" />
+				<View style={styles.imageInputContainer}>
+					<FormImageInput
+						label=""
+						value={image}
+						setValue={setImage}
+						status={image?.uri ? 'success' : undefined}
+						shape="circular"
+					/>
+				</View>
 
 				<SpacerInline height={20} />
 				<FormTextInput
@@ -74,6 +83,7 @@ export default () => {
 					type="dropdown"
 					error={!!validateError.category}
 					errorMessage={validateError.category}
+					placeholder="Select one"
 				/>
 
 				<FormTextInput
