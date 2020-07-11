@@ -1,12 +1,12 @@
 /* eslint-disable no-tabs */
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useNavigation } from 'react-navigation-hooks';
 import {
 	KeyboardAvoidingView,
 	ScrollView,
 	Text, TouchableOpacity,
 	View,
-	Platform,
+	Platform, TextInput,
 } from 'react-native';
 import { Divider } from 'react-native-paper';
 import {
@@ -31,6 +31,15 @@ export default () => {
 	const [ validationErrors, setValidationErrors ] = useState({} as any);
 	const [ termsOfService, setTermsOfService ] = useState(false);
 	const stateList = getStateList();
+	const passwordRef = useRef<TextInput>(null);
+	const confirmPasswordRef = useRef<TextInput>(null);
+	const firstNameRef = useRef<TextInput>(null);
+	const lastNameRef = useRef<TextInput>(null);
+	const bizNameRef = useRef<TextInput>(null);
+	const bizAddressRef = useRef<TextInput>(null);
+	const cityRef = useRef<TextInput>(null);
+	const zipRef = useRef<TextInput>(null);
+	const pickUpRef = useRef<TextInput>(null);
 
 	const toggleTermsOfService = () => setTermsOfService(!termsOfService);
 	const validateInputs = async () => {
@@ -91,6 +100,8 @@ export default () => {
 					placeholder="info@bananaapp.org"
 					error={!!validationErrors.email}
 					errorMessage={validationErrors.email}
+					autoFocus={true}
+					onSubmitEditing={() => passwordRef?.current?.focus()}
 				/>
 
 				<FormTextInput
@@ -101,6 +112,8 @@ export default () => {
 					style={styles.input}
 					error={!!validationErrors.password}
 					errorMessage={validationErrors.password && validationErrors.password.join(', ')}
+					ref={passwordRef}
+					onSubmitEditing={() => confirmPasswordRef?.current?.focus()}
 				/>
 
 
@@ -112,6 +125,8 @@ export default () => {
 					type="password"
 					error={!!validationErrors.retypedPassword} // not doing anything right now
 					errorMessage={validationErrors.retypedPassword}
+					ref={confirmPasswordRef}
+					onSubmitEditing={() => firstNameRef?.current?.focus()}
 				/>
 				<Divider
 					style={{ marginVertical: 20 }}
@@ -124,6 +139,8 @@ export default () => {
 					style={styles.input}
 					error={!!validationErrors.firstName}
 					errorMessage={validationErrors.firstName}
+					ref={firstNameRef}
+					onSubmitEditing={() => lastNameRef?.current?.focus()}
 				/>
 
 
@@ -134,7 +151,8 @@ export default () => {
 					style={styles.input}
 					error={!!validationErrors.lastName}
 					errorMessage={validationErrors.lastName}
-
+					ref={lastNameRef}
+					onSubmitEditing={() => bizNameRef?.current?.focus()}
 				/>
 
 				<FormTextInput
@@ -144,6 +162,8 @@ export default () => {
 					style={styles.input}
 					error={!!validationErrors.businessName}
 					errorMessage={validationErrors.businessName}
+					ref={bizNameRef}
+					onSubmitEditing={() => bizAddressRef?.current?.focus()}
 				/>
 
 				<FormTextInput
@@ -153,7 +173,8 @@ export default () => {
 					style={styles.input}
 					error={!!validationErrors.businessAddress}
 					errorMessage={validationErrors.businessAddress}
-
+					ref={bizAddressRef}
+					onSubmitEditing={() => cityRef?.current?.focus()}
 				/>
 
 				<View style={[ styles.row, styles.input ]}>
@@ -165,6 +186,8 @@ export default () => {
 						autoCapitalize="words"
 						error={!!validationErrors.city}
 						errorMessage={validationErrors.city}
+						ref={cityRef}
+						onSubmitEditing={() => zipRef?.current?.focus()}
 					/>
 					<FormTextInput
 						label="State"
@@ -184,6 +207,8 @@ export default () => {
 						autoCapitalize="words"
 						error={!!validationErrors.zip}
 						errorMessage={validationErrors.zip}
+						ref={zipRef}
+						onSubmitEditing={() => pickUpRef?.current?.focus()}
 					/>
 				</View>
 				<FormTextInput
@@ -193,6 +218,7 @@ export default () => {
 					placeholder="Directions on where to pick up item"
 					error={!!validationErrors.pickupInstructions}
 					errorMessage={validationErrors.pickupInstructions}
+					ref={pickUpRef}
 				/>
 
 				<View style={styles.checkboxRow}>

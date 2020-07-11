@@ -7,6 +7,7 @@ import {
 	Text,
 	TextInput,
 	KeyboardAvoidingView,
+	Platform,
 } from 'react-native';
 import useGlobal from '@state';
 import {
@@ -51,7 +52,7 @@ export default () => {
 	const handleForgotPassword = () => { console.log('Handle forgot password.'); };
 
 	return (
-		<KeyboardAvoidingView style={styles.outerContainer} behavior="padding">
+		<KeyboardAvoidingView style={styles.outerContainer} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
 			<View style={styles.header}>
 				{/* TODO: use ContentHeader component when available */}
 				<Title text={`banana \n${userIdentity}`} />
