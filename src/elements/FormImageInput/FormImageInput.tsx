@@ -77,17 +77,19 @@ const FormImageInput = (
 			setValue(imageResult as ImageInfo);
 		}
 	};
-
 	return (
 		<View style={style}>
 			<InputLabel text={label} />
 
-			<Text style={styles.statusRowText}>
-				<Text style={styles.statusLabelText}>
-					{'Status : '}
+
+			{status !== 'none' ? (
+				<Text style={styles.statusRowText}>
+					<Text style={styles.statusLabelText}>
+						{'Status : '}
+					</Text>
+					{MessageFromStatus[status] || 'Unknown status'}
 				</Text>
-				{MessageFromStatus[status] || 'Unknown status'}
-			</Text>
+			) : null}
 
 			<TouchableWithoutFeedback
 				onPress={pickImage}

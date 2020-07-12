@@ -21,7 +21,7 @@ const DonorDashboardScreen = () => {
 			</View>
 
 			<View style={styles.addButton}>
-				<TouchableOpacity onPress={() => navigate('DonorDonationScreen', {})}>
+				<TouchableOpacity onPress={() => navigate('DonationScreen', {})}>
 					<Text style={styles.plus}>
 						+
 					</Text>
