@@ -8,7 +8,12 @@ import Constants from 'expo-constants';
 import * as Font from 'expo-font';
 import NavigationService from '@util/NavigationService';
 import getstorybook from '@util/storybook';
-import { TheAlertModal, IncompleteFormAlert, ComingSoonModal } from '@elements';
+import {
+	TheAlertModal,
+	IncompleteFormAlert,
+	ComingSoonModal,
+	CancelDonationModal,
+} from '@elements';
 import storybook from './src/storybook';
 import Route from './src/routes/Route';
 import styles from './App.styles';
@@ -59,6 +64,7 @@ You must specify 'donor' or 'client' in app.json
 					<TheAlertModal />
 					<IncompleteFormAlert />
 					<ComingSoonModal />
+					<CancelDonationModal />
 				</SafeAreaView>
 			</Provider>
 		</AppearanceProvider>
