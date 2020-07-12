@@ -44,10 +44,6 @@
         "md"
       ]
     },
-    "extra": {
-      "variant": "client",
-      "storybook": false
-    },
     "description": ""
   }
 }
