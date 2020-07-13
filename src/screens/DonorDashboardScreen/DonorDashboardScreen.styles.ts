@@ -43,7 +43,7 @@ export default StyleSheet.create({
 	},
 	plus: {
 		fontFamily: 'open-sans-bold',
-		fontSize: 50,
+		fontSize: 40,
 		color: colors.NAVY_BLUE,
 	},
 	activeHeader: {
