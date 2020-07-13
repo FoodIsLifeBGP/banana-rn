@@ -11,7 +11,7 @@ export default StyleSheet.create({
 	},
 	contentContainer: {
 		flex: 1,
-		padding: 20,
+		
 	},
 	input: {
 		height: 50,
@@ -42,9 +42,13 @@ export default StyleSheet.create({
 		...platformShadow(5),
 	},
 	plus: {
-		fontFamily: 'open-sans-light',
-		fontSize: 110,
-		color: colors.BANANA_YELLOW,
-		bottom: 24,
+		fontFamily: 'open-sans-bold',
+		fontSize: 50,
+		color: colors.NAVY_BLUE,
+	},
+	activeHeader: {
+		fontFamily: 'open-sans-regular',
+		fontSize: 20,
+		color: colors.NAVY_BLUE,
 	},
 });

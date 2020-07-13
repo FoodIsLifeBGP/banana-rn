@@ -4,6 +4,8 @@ import railsAxios from '@util/railsAxios';
 export const getDonations = async store => {
 	const { jwt, user } = store.state;
 	const endpoint = `/donors/${user.id}/get_donations`;
+
+
 	try {
 		const response = await railsAxios(jwt).get(endpoint);
 		const { data } = response;

@@ -25,5 +25,8 @@ export interface Donation {
 		per_person: number;
 		pickup_location: string;
 		total_servings: number;
+		status: string;
+		total_amount: number;
+		category: string;
 	};
 }
