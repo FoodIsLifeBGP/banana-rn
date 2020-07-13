@@ -21,18 +21,23 @@ const DonorDashboardScreen = () => {
 					<TouchableOpacity onPress={() => navigate('DonorDonationScreen', {})}>
 
 						<View style={{
-							width: '100%',
 							flexDirection: 'row',
+							justifyContent: 'space-between',
+							alignItems: 'flex-end',
+							borderStyle: 'solid',
+							borderWidth: 2,
 						}}
 						>
-							<Text style={styles.activeHeader}>Active</Text>
-							<View style={{ flex: 1 }} />
-							<Text style={styles.plus}>+</Text>
+							<View>
+								<Text style={styles.activeHeader}>Active</Text>
+							</View>
+
+							<View>
+								<Text style={styles.plus}>+</Text>
+							</View>
 						</View>
-						<Divider style={{ backgroundColor: 'blue' }} />
 					</TouchableOpacity>
 				</View>
-				<SpacerInline height={20} />
 				<Donations resource="donations" />
 			</View>
 

@@ -11,7 +11,7 @@ export default StyleSheet.create({
 	},
 	contentContainer: {
 		flex: 1,
-		
+		padding: 20,
 	},
 	input: {
 		height: 50,

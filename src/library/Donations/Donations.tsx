@@ -51,7 +51,6 @@ export default ({ resource }: LocalProps) => {
 						</View>
 					))
 				}
-				<SpacerInline height={200} />
 			</ScrollView>
 		)
 		: (
