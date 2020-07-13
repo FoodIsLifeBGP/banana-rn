@@ -22,9 +22,10 @@ export default StyleSheet.create({
 	},
 	infoContainer: {
 		height: 125,
-		// justifyContent: 'center',
+		justifyContent: 'center',
 		backgroundColor: colors.LIGHT_GRAY,
-		borderRadius: 15,
+		borderRadius: 10,
+		padding: 15,
 	},
 	infoText: {
 		fontFamily: 'open-sans-regular',

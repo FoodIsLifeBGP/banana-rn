@@ -21,15 +21,16 @@ const DonorDashboardScreen = () => {
 					<TouchableOpacity onPress={() => navigate('DonorDonationScreen', {})}>
 
 						<View style={{
+							flex: 1,
 							flexDirection: 'row',
 							justifyContent: 'space-between',
-							alignItems: 'flex-end',
-							borderStyle: 'solid',
-							borderWidth: 2,
+							alignItems: 'center',
+							marginBottom: -15,
+							marginTop: -15,
 						}}
 						>
 							<View>
-								<Text style={styles.activeHeader}>Active</Text>
+								<Text style={styles.activeHeader}>ACTIVE</Text>
 							</View>
 
 							<View>
@@ -39,14 +40,6 @@ const DonorDashboardScreen = () => {
 					</TouchableOpacity>
 				</View>
 				<Donations resource="donations" />
-			</View>
-
-			<View style={styles.addButton}>
-				<TouchableOpacity onPress={() => navigate('DonationScreen', {})}>
-					<Text style={styles.plus}>
-						+
-					</Text>
-				</TouchableOpacity>
 			</View>
 
 		</View>
