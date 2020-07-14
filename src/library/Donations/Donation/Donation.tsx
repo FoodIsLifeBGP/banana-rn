@@ -6,7 +6,7 @@ import {
 	TouchableOpacity,
 	Image,
 } from 'react-native';
-import { SpacerInline } from '@elements';
+import typography from '@util/typography';
 import { Donation } from './Donation.type';
 import styles from './Donation.styles';
 
@@ -30,54 +30,37 @@ const getImgFilename = (donationCategory: string) => {
 export default ({ donation }: Donation) => {
 	const { navigate } = useNavigation();
 	const {
-		claims,
-		created_at,
-		// duration_minutes,
 		food_name,
-		// image_url,
-		// measurement,
-		// per_person,
-		pickup_location,
-		// total_servings,
 		id,
 		total_amount,
-		status,
 		category,
 	} = donation;
 
 
 	const icon = getImgFilename(category);
 
-	// const icon = require('@assets/images/banana-icon.png');
-
-	// const startTime = new Date(created_at);
-	// const now = new Date();
-	// const minutesElapsed = Math.round(now.getTime() - (startTime.getTime()) / 1000 / 60);
-	// const timeLeft = minutesElapsed < duration_minutes
-	//	? duration_minutes - minutesElapsed
-	//	: 0;
 
 	return (
 		<TouchableOpacity
 			onPress={() => navigate('DonationScreen', { donation, id, edit: true })}
 		>
-			<View>
-				<View style={styles.infoContainer}>
+			<View style={styles.infoContainer}>
+				<View style={{
+					flexDirection: 'column', marginLeft: 10, alignItems: 'center', width: 100, justifyContent: 'center',
+				}}
+				>
+					<Text style={typography.h5}>{category}</Text>
+					<Image source={icon} style={styles.icon} />
+				</View>
+				<View style={{ flexDirection: 'column', justifyContent: 'center' }}>
 					<View>
-						<Text style={styles.infoTitle}>{category}</Text>
+						<Text style={typography.h3}>{food_name}</Text>
 					</View>
-					<View style={{ flexDirection: 'row' }}>
-						<View style={{ ...styles.iconContainer }}>
-							<Image source={icon} style={styles.icon} />
-						</View>
-						<View>
-							<Text style={styles.infoTextBold}>{food_name}</Text>
-							<Text style={styles.infoText}>{`About ${total_amount}`}</Text>
-						</View>
+					<View>
+						<Text style={typography.h5}>{`about ${total_amount}`}</Text>
 					</View>
 				</View>
 			</View>
-			<SpacerInline height={10} />
 		</TouchableOpacity>
 	);
 };
