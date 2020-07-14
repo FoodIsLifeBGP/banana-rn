@@ -69,7 +69,7 @@ Once those are complete, run:
 # Additional notes about environment
 
 As of mid July 2020, we have combined expo config across `app.json` and `app.config.js` so that we can publish our
-progress to expo.io so that non-developers can view the current state of the app and so that devs can change aspects
+progress to expo.io so that non-developers can view the current state of the app and also so that devs can change aspects
 of their config (donor vs. client) or what backend server they're using without having to make a change to a file under
 source control.  However, this means that you'll need to be using a newer version of expo--3.20+.  If you get an error: 
 `TypeError: Cannot read property 'variant' of undefined` chances are that your version of expo is not compatible with the
@@ -78,24 +78,20 @@ node version--sorry!
 
 Take note of `app.config.js` in the root.  This is where we specify whether to compile the donor or client app.  
 You can most easily switch between donor and client by creating a `.env` file in the project root and adding an entry
-for APP_VARIANT e.g. `APP_VARIANT=client` this way you can make this change locally without editing a file that's under
-git control.  
+for EXPO_APP_VARIANT e.g. `EXPO_APP_VARIANT=client` this way you can make this change locally without editing a file that's under
+git control.  Note that all variables in `.env` will need to be prefixed with EXPO_ since expo restricts things 
+[that way](https://docs.expo.io/guides/environment-variables/).
 
 ```javascript
 export default ({ config }) => ({
 	...config,
 	extra: {
-		ipAddress: process.env.IP_ADDRESS,
-		variant: process.env.APP_VARIANT ? process.env.APP_VARIANT : 'donor',
-		storybook: process.env.STORYBOOK ? process.env.STORYBOOK === 'true' : false,
+		ipAddress: process.env.EXPO_IP_ADDRESS,
+		variant: process.env.EXPO_APP_VARIANT ? process.env.EXPO_APP_VARIANT : 'donor',
+		storybook: process.env.EXPO_STORYBOOK ? process.env.EXPO_STORYBOOK === 'true' : false,
 	},
 });
 ```
-However, please be aware that values in `.env` values sometimes get cached by babel, the plugin we use to 
-substitute those values.  If you change the variant or ip address in your `.env` file and don't see that change reflected
-when you run expo, try setting the variable you're trying to change from the command line before your run expo, e.g.
-`APP_VARIANT=donor && expo r -c`, `IP_ADDRESS=192.169.0.1.1 && expo r -c` babel seems to aggressively cache the values in the
-`.env` file.
 
 
 Now run:
