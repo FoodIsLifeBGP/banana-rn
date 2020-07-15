@@ -1,52 +1,11 @@
-export default {
-	name: 'The Banana App',
-	slug: 'banana-app',
-	privacy: 'public',
-	sdkVersion: '36.0.0',
-	platforms: [
-		'ios',
-		'android',
-		'web',
-	],
-	version: '1.0.0',
-	orientation: 'portrait',
-	icon: './assets/icon.png',
-	splash: {
-		image: './assets/splash.png',
-		resizeMode: 'contain',
-		backgroundColor: '#083A9B',
-	},
-	updates: {
-		fallbackToCacheTimeout: 0,
-	},
-	assetBundlePatterns: [
-		'**/*',
-	],
-	ios: {
-		supportsTablet: true,
-	},
-	extra: {
-		variant: 'donor',
-		storybook: false,
-		ipAddress: process.env.IP_ADDRESS,
-	},
-	userInterfaceStyle: 'automatic',
-	packagerOpts: {
-		config: 'metro.config.js',
-		sourceExts: [
-			'expo.ts',
-			'expo.tsx',
-			'expo.js',
-			'expo.jsx',
-			'ts',
-			'tsx',
-			'js',
-			'jsx',
-			'json',
-			'wasm',
-			'svg',
-			'md',
-
-		],
-	},
+export default ({ config }) => {
+	require('dotenv').config();
+	return {
+		...config,
+		extra: {
+			ipAddress: process.env.EXPO_IP_ADDRESS,
+			variant: process.env.EXPO_APP_VARIANT ? process.env.EXPO_APP_VARIANT : 'donor',
+			storybook: process.env.EXPO_STORYBOOK ? process.env.EXPO_STORYBOOK === 'true' : false,
+		},
+	};
 };
