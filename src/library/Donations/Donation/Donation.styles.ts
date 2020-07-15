@@ -4,11 +4,6 @@ import * as colors from '@util/colors';
 const iconSize = 90;
 
 export default StyleSheet.create({
-	card: {
-		height: 120,
-		flexDirection: 'row',
-		alignItems: 'center',
-	},
 	iconContainer: {
 		height: iconSize,
 		width: iconSize,
@@ -21,14 +16,16 @@ export default StyleSheet.create({
 		borderWidth: 1,
 	},
 	icon: {
-		height: (iconSize * 0.50),
-		width: (iconSize * 0.7),
+		height: 60,
+		width: 60,
+		borderRadius: 30,
 	},
 	infoContainer: {
 		height: 125,
-		//justifyContent: 'center',
 		backgroundColor: colors.LIGHT_GRAY,
-		borderRadius: 15,
+		borderRadius: 10,
+		flexDirection: 'row',
+		marginBottom: 15,
 	},
 	infoText: {
 		fontFamily: 'open-sans-regular',
@@ -45,5 +42,5 @@ export default StyleSheet.create({
 		color: colors.NAVY_BLUE,
 		marginHorizontal: 10,
 		marginTop: 10,
-	}
+	},
 });

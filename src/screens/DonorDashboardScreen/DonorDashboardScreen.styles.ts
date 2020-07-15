@@ -11,7 +11,7 @@ export default StyleSheet.create({
 	},
 	contentContainer: {
 		flex: 1,
-		
+		padding: 20,
 	},
 	input: {
 		height: 50,
@@ -43,7 +43,7 @@ export default StyleSheet.create({
 	},
 	plus: {
 		fontFamily: 'open-sans-bold',
-		fontSize: 50,
+		fontSize: 40,
 		color: colors.NAVY_BLUE,
 	},
 	activeHeader: {
