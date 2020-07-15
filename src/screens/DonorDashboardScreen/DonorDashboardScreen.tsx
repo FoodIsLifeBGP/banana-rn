@@ -18,7 +18,7 @@ const DonorDashboardScreen = () => {
 			<View style={styles.contentContainer}>
 				<Title text={title} />
 				<View>
-					<TouchableOpacity onPress={() => navigate('DonorDonationScreen', {})}>
+					<TouchableOpacity onPress={() => navigate('DonationScreen', {})}>
 
 						<View style={{
 							flex: 1,
