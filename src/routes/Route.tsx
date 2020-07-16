@@ -75,6 +75,9 @@ const donorOrClientDrawer = () => {
 	const CLIENT_MENU = {
 		DonationScreen: {
 			screen: MainStack,
+			params: {
+				resource: 'donations',
+			},
 			navigationOptions: {
 				drawerLabel: <MainOption text="Donations" icon="donations" />,
 			},
@@ -82,6 +85,9 @@ const donorOrClientDrawer = () => {
 
 		ClaimsScreen: {
 			screen: MainStack,
+			params: {
+				resource: 'claims',
+			},
 			navigationOptions: {
 				drawerLabel: <MainOption text="Claims" icon="claims" />,
 			},

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useIsFocused } from 'react-navigation-hooks';
-import { ScrollView, View, Text } from 'react-native';
+import { ScrollView, View, FlatList, Text } from 'react-native';
 import { Divider } from 'react-native-paper';
 import useGlobal from '@state';
 import { SpacerInline, EmptyStateView } from '@elements';
@@ -44,14 +44,18 @@ export default ({ resource }: LocalProps) => {
 				{
 					(donationsOrClaims as any).map((donationOrClaim, i) => (
 						<View key={donationOrClaim.id}>
-							<Divider style={{ backgroundColor: 'blue' }} />
+							{
+								resource !== 'donations' 
+								&& <Divider style={{ backgroundColor: 'blue' }} />
+							}
 							<DonationOrClaim
 								donationOrClaim={donationOrClaim}
 								key={donationOrClaim.id}
 								resource={resource}
 							/>
 							{
-								i === (donationsOrClaims as any).length - 1
+								resource !== 'donations'
+								&& i === (donationsOrClaims as any).length - 1
 								&& <Divider style={{ backgroundColor: 'blue' }} />
 							}
 						</View>

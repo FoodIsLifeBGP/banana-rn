@@ -1,32 +1,49 @@
 import { StyleSheet } from 'react-native';
 import * as colors from '@util/colors';
 
-const iconSize = 90;
+const iconSize = 70;
+const imageSize = iconSize * 0.90;
 
 export default StyleSheet.create({
 	card: {
-		height: 120,
+		flexDirection: 'column',
+		alignItems: 'flex-start',
+		backgroundColor: 'lightgray',
+		marginBottom: 10,
+		padding: 10,
+		borderRadius: 16,
+	},
+	categoryText: {
+		width: iconSize + 20,
 		flexDirection: 'row',
-		alignItems: 'center',
+		justifyContent: 'center',
+		textAlign: 'center',
 	},
 	iconContainer: {
 		height: iconSize,
 		width: iconSize,
 		borderRadius: iconSize / 2,
-		backgroundColor: 'blue',
-		marginHorizontal: 10,
 		justifyContent: 'center',
 		alignItems: 'center',
-		borderColor: 'white',
-		borderWidth: 1,
+		marginStart: 10,
+		borderColor: 'blue',
+		borderWidth: iconSize - imageSize,
 	},
 	icon: {
-		height: (iconSize * 0.64),
-		width: (iconSize * 0.8),
+		height: imageSize,
+		width: imageSize,
+		borderRadius: (imageSize/ 2),
+	},
+	mainContainer: {
+		flexDirection: 'row',
 	},
 	infoContainer: {
 		flexDirection: 'column',
-		justifyContent: 'center',
+		justifyContent: 'space-evenly',
+		marginStart: 20,
+	},
+	infoBottomContainer: {
+		flexDirection: 'row',
 	},
 	infoText: {
 		fontFamily: 'open-sans-regular',
