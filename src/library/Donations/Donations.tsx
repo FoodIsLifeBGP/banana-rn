@@ -42,20 +42,15 @@ export default ({ resource }: LocalProps) => {
 				{
 					(donations as any).map((donation, i) => (
 						<View key={donation.id}>
-							<Divider style={{ backgroundColor: 'blue' }} />
 							<Donation
 								donation={donation}
 								key={donation.id}
 								resource="donations"
 							/>
-							{
-								i === (donations as any).length - 1
-								&& <Divider style={{ backgroundColor: 'blue' }} />
-							}
+							{i === (donations as any).length - 1}
 						</View>
 					))
 				}
-				<SpacerInline height={200} />
 			</ScrollView>
 		)
 		: (

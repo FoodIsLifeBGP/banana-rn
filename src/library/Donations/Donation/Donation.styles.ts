@@ -4,29 +4,28 @@ import * as colors from '@util/colors';
 const iconSize = 90;
 
 export default StyleSheet.create({
-	card: {
-		height: 120,
-		flexDirection: 'row',
-		alignItems: 'center',
-	},
 	iconContainer: {
 		height: iconSize,
 		width: iconSize,
 		borderRadius: iconSize / 2,
-		backgroundColor: 'blue',
+		backgroundColor: colors.BANANA_YELLOW,
 		marginHorizontal: 10,
 		justifyContent: 'center',
 		alignItems: 'center',
-		borderColor: 'white',
+		borderColor: 'blue',
 		borderWidth: 1,
 	},
 	icon: {
-		height: (iconSize * 0.64),
-		width: (iconSize * 0.8),
+		height: 60,
+		width: 60,
+		borderRadius: 30,
 	},
 	infoContainer: {
-		flexDirection: 'column',
-		justifyContent: 'center',
+		height: 125,
+		backgroundColor: colors.LIGHT_GRAY,
+		borderRadius: 10,
+		flexDirection: 'row',
+		marginBottom: 15,
 	},
 	infoText: {
 		fontFamily: 'open-sans-regular',
@@ -35,5 +34,13 @@ export default StyleSheet.create({
 	infoTextBold: {
 		fontFamily: 'open-sans-bold',
 		color: colors.NAVY_BLUE,
+	},
+	infoTitle: {
+		width: iconSize,
+		textAlign: 'center',
+		fontFamily: 'open-sans-bold',
+		color: colors.NAVY_BLUE,
+		marginHorizontal: 10,
+		marginTop: 10,
 	},
 });
