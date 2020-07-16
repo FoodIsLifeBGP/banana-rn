@@ -60,7 +60,7 @@ export interface Alert {
 	/**
 	 * Type of the alert.
 	 */
-	type: 'default'|'coming soon';
+	type: 'default'|'coming soon'|'cancel donation';
 
 	/**
 	 * Message to the user.

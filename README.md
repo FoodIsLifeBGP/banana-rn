@@ -68,20 +68,31 @@ Once those are complete, run:
 
 # Additional notes about environment
 
-Take note of `app.config.js` in the root.  This is where we specify whether to compile the donor or client app.
+As of mid July 2020, we have combined expo config across `app.json` and `app.config.js` so that we can publish our
+progress to expo.io so that non-developers can view the current state of the app and also so that devs can change aspects
+of their config (donor vs. client) or what backend server they're using without having to make a change to a file under
+source control.  However, this means that you'll need to be using a newer version of expo--3.20+.  If you get an error: 
+`TypeError: Cannot read property 'variant' of undefined` chances are that your version of expo is not compatible with the
+updated config.  You can update your expo with `npm install -g expo-cli ` and this may also require you to update your 
+node version--sorry!
+
+Take note of `app.config.js` in the root.  This is where we specify whether to compile the donor or client app.  
+You can most easily switch between donor and client by creating a `.env` file in the project root and adding an entry
+for EXPO_APP_VARIANT e.g. `EXPO_APP_VARIANT=client` this way you can make this change locally without editing a file that's under
+git control.  Note that all variables in `.env` will need to be prefixed with EXPO_ since expo restricts things 
+[that way](https://docs.expo.io/guides/environment-variables/).
 
 ```javascript
-{
-  "expo": {
-	...
-	"extra": {
-			"variant": "donor"
-		}
-  }
-}
+export default ({ config }) => ({
+	...config,
+	extra: {
+		ipAddress: process.env.EXPO_IP_ADDRESS,
+		variant: process.env.EXPO_APP_VARIANT ? process.env.EXPO_APP_VARIANT : 'donor',
+		storybook: process.env.EXPO_STORYBOOK ? process.env.EXPO_STORYBOOK === 'true' : false,
+	},
+});
 ```
 
-Use `"variant": "client"` to load the app in client mode.  Do not check in your changes to this field.
 
 Now run:
 - `expo start` (or `expo r`.  Later, you may want to use `expo r -c` to clear the cache.)
@@ -95,11 +106,11 @@ When the app opens, you will see the login screen.  Assuming you are still runni
 
 or create a new account.
 
-**Backend Choices**
+###Backend Choices
 - `environments.ts` controls what rails server the app will try to talk to.
 - The default is an AWS server running the latest [banana rails](https://github.com/FoodIsLifeBGP/banana-rails) from the `prealpha/main` branch.
 - If you would like to talk to a different rails server (most likely your own in the event you have changes you want to test), create a file called
-`.env` in your project root and add `IP_ADDRESS=<your internal network ip>` at the top of the file.
+`.env` in your project root and add `IP_ADDRESS=<your internal network ip>` to the file (you can also change the variant to client in the `.env` file.
 
 **Possible gotchas for new developers**
 - If you elect to use your web browser to test your changes, Firefox may just render a blank page.  Switching to 
