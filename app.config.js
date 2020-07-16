@@ -26,7 +26,7 @@ export default {
 		supportsTablet: true,
 	},
 	extra: {
-		variant: 'donor',
+		variant: 'client',
 		storybook: false,
 		ipAddress: process.env.IP_ADDRESS,
 	},
