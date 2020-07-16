@@ -1,4 +1,3 @@
-
 export default ({ config }) => {
 	require('dotenv').config();
 	return {
@@ -9,5 +8,4 @@ export default ({ config }) => {
 			storybook: process.env.EXPO_STORYBOOK ? process.env.EXPO_STORYBOOK === 'true' : false,
 		},
 	};
-
 };

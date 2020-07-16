@@ -8,7 +8,7 @@ import {
 	TouchableOpacity,
 	KeyboardAvoidingView,
 	Platform,
-	TextInput
+	TextInput,
 } from 'react-native';
 import { Divider } from 'react-native-paper';
 import useGlobal from '@state';
