@@ -10,7 +10,7 @@ import DonorDashboardScreen from '../DonorDashboardScreen';
 const DashboardScreen = () => {
 	const [ state ] = useGlobal();
 	const { userIdentity } = state;
-	let resource: 'donations' | 'claims' = useNavigationParam('resource') || 'donations';
+	const resource: 'donations' | 'claims' = useNavigationParam('resource') || 'donations';
 
 	if (userIdentity === 'donor') {
 		return DonorDashboardScreen();
@@ -35,7 +35,7 @@ const DashboardScreen = () => {
 			<View style={styles.contentContainer}>
 				<Title text={title} />
 				<SpacerInline height={20} />
-				<DonationsOrClaims resource={ resource } />
+				<DonationsOrClaims resource={resource} />
 			</View>
 
 		</View>

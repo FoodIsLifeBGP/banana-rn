@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useIsFocused } from 'react-navigation-hooks';
-import { ScrollView, View, FlatList, Text } from 'react-native';
+import {
+	ScrollView, View, Text,
+} from 'react-native';
 import { Divider } from 'react-native-paper';
 import useGlobal from '@state';
 import { SpacerInline, EmptyStateView } from '@elements';
@@ -19,7 +21,6 @@ export default ({ resource }: LocalProps) => {
 
 	const getDonationsOrClaimsFromApi = async () => {
 		const { getDonationsOrClaims, getActiveDonationsForClient, getLocation } = actions;
-		const coords = await getLocation();
 		const { userIdentity } = state;
 		const method = userIdentity === 'client' && resource === 'donations' ? getActiveDonationsForClient : getDonationsOrClaims;
 		const data = await method(resource);
@@ -36,7 +37,18 @@ export default ({ resource }: LocalProps) => {
 		}
 	}, [ isFocused ]);
 
-	if (!loaded) { return <Text>Loading...</Text>; }
+	if (!loaded) {
+		return <Text>Loading...</Text>;
+	}
+	// Assume location settings are not enabled if coordinates are not set and there are no failed requests.
+	if (resource === 'donations' && !state.user.coords && !state.user.alert) {
+		return (
+			<EmptyStateView
+				upperText="We are unable to get your current location."
+				lowerText="Please check your app settings to make sure location permissions are enabled."
+			/>
+		);
+	}
 
 	return donationsOrClaims && Array.isArray(donationsOrClaims) && donationsOrClaims.length > 0
 		? (
@@ -45,7 +57,7 @@ export default ({ resource }: LocalProps) => {
 					(donationsOrClaims as any).map((donationOrClaim, i) => (
 						<View key={donationOrClaim.id}>
 							{
-								resource !== 'donations' 
+								resource !== 'donations'
 								&& <Divider style={{ backgroundColor: 'blue' }} />
 							}
 							<DonationOrClaim
