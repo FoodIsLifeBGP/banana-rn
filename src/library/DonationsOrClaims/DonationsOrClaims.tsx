@@ -57,22 +57,13 @@ export default ({ resource }: LocalProps) => {
 		? (
 			<ScrollView>
 				{
-					(donationsOrClaims as any).map((donationOrClaim, i) => (
+					(donationsOrClaims as any).map((donationOrClaim) => (
 						<View key={donationOrClaim.id}>
-							{
-								resource !== 'donations'
-								&& <Divider style={{ backgroundColor: 'blue' }} />
-							}
 							<DonationOrClaim
 								donationOrClaim={donationOrClaim}
 								key={donationOrClaim.id}
 								resource={resource}
 							/>
-							{
-								resource !== 'donations'
-								&& i === (donationsOrClaims as any).length - 1
-								&& <Divider style={{ backgroundColor: 'blue' }} />
-							}
 						</View>
 					))
 				}
