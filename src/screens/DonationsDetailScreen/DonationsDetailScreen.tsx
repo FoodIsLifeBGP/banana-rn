@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
 import {
-	View, Text, Image, Dimensions, Alert, ScrollView,
+	View, Text, Image, ScrollView,
 } from 'react-native';
 import useGlobal from '@state';
 import {
-	Title, SpacerInline, LinkButton, Button, NavBar,
+	SpacerInline, LinkButton, NavBar,
 } from '@elements';
 import typography from '@util/typography';
 import { categoryImage } from '@util/donationCategory';
@@ -15,8 +15,18 @@ import styles from './DonationsDetailScreen.styles';
 const DonationsDetailScreen = () => {
 	const { navigate } = useNavigation();
 	const [ globalState, globalActions ] = useGlobal() as any;
-	const { userIdentity } = globalState;
+	const { cancelDonation } = globalActions;
 	const donation = useNavigationParam('donation');
+
+	const handleCancel = async () => {
+		const responseCode = await cancelDonation(donation.id);
+		if (responseCode !== 202) {
+			console.log('Handle this error better');
+		} else {
+			navigate('DashboardScreen');
+		}
+	};
+
 
 	return (
 		<ScrollView style={styles.outerContainer}>
@@ -66,7 +76,7 @@ const DonationsDetailScreen = () => {
 				</View>
 			</View>
 			<SpacerInline height={20} />
-			<LinkButton text="CANCEL DONATION" />
+			<LinkButton text="CANCEL DONATION" onPress={handleCancel} />
 		</ScrollView>
 	);
 };
