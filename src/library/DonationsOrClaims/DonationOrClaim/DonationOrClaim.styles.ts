@@ -32,7 +32,7 @@ export default StyleSheet.create({
 	icon: {
 		height: imageSize,
 		width: imageSize,
-		borderRadius: (imageSize/ 2),
+		borderRadius: (imageSize / 2),
 	},
 	mainContainer: {
 		flexDirection: 'row',
