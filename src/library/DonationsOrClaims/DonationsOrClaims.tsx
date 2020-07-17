@@ -23,18 +23,21 @@ export default ({ resource }: LocalProps) => {
 		const { getDonationsOrClaims, getActiveDonationsForClient, getLocation } = actions;
 		const { userIdentity } = state;
 		const method = userIdentity === 'client' && resource === 'donations' ? getActiveDonationsForClient : getDonationsOrClaims;
-		const data = await method(resource);
-
-		if (data) {
-			await setDonationsOrClaims(data);
-			setLoaded(true);
-		}
+		return await method(resource);
 	};
 
 	useEffect(() => {
+		let mounted = true;
 		if (isFocused) {
-			getDonationsOrClaimsFromApi();
+			getDonationsOrClaimsFromApi().then(data => {
+				if (mounted && Array.isArray(data)) {
+					setDonationsOrClaims(data);
+					setLoaded(true);
+				}
+			});
 		}
+		// Cleanup
+		return () => { mounted = false; };
 	}, [ isFocused ]);
 
 	if (!loaded) {
