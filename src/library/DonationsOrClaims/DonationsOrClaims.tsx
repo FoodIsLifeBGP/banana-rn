@@ -19,11 +19,11 @@ export default ({ resource }: LocalProps) => {
 	const [ donationsOrClaims, setDonationsOrClaims ] = useState(state.donationsOrClaims);
 	const [ loaded, setLoaded ] = useState(false);
 
-	const getDonationsOrClaimsFromApi = async () => {
+	const getDonationsOrClaimsFromApi = () => {
 		const { getDonationsOrClaims, getActiveDonationsForClient, getLocation } = actions;
 		const { userIdentity } = state;
 		const method = userIdentity === 'client' && resource === 'donations' ? getActiveDonationsForClient : getDonationsOrClaims;
-		return await method(resource);
+		return method(resource);
 	};
 
 	useEffect(() => {
