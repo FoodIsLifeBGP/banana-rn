@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useNavigation } from 'react-navigation-hooks';
 import {
 	View,
-	KeyboardAvoidingView, ScrollView, Platform,
+	KeyboardAvoidingView,
+	ScrollView,
+	Platform,
+	TextInput,
 } from 'react-native';
 import useGlobal from '@state';
 import {
 	NavBar,
 	SpacerInline,
 	FormTextInput,
-	LinkButton,
-	InputLabel, Title, FormImageInput,
+	LinkButton, FormImageInput,
 } from '@elements';
 import validate from 'validate.js';
 import { NewDonation } from '@screens/DashboardScreen/DonationScreen/DonationScreen.type';
@@ -19,15 +21,21 @@ import { ImageInfo } from 'expo-image-picker/build/ImagePicker.types';
 import styles from './DonationScreen.styles';
 
 export default () => {
-	const [ state, actions ] = useGlobal() as any;
+	const [state, actions] = useGlobal() as any;
 	const { user } = state;
-	const [ newDonation, setNewDonation ] = useState<NewDonation>({ pickupInstructions: user.pickup_instructions } as NewDonation);
-	const [ validateError, setValidateError ] = useState({} as any);
-	const [ image, setImage ] = useState({} as ImageInfo);
+	const [newDonation, setNewDonation] = useState<NewDonation>({ pickupInstructions: user.pickup_instructions } as NewDonation);
+	const [validateError, setValidateError] = useState({} as any);
+	const [image, setImage] = useState({} as ImageInfo);
 	const { postDonation } = actions;
 	const { navigate } = useNavigation();
 
-	const foodCategories: Array<string> = [ 'Bread', 'Dairy', 'Hot Meal', 'Produce', 'Protein', 'Others' ];
+	const foodCategoriesRef = useRef<TextInput>(null);
+	const totalAmountRef = useRef<TextInput>(null);
+	const pickupAddressRef = useRef<TextInput>(null);
+	const pickupInstructionRef = useRef<TextInput>(null);
+
+
+	const foodCategories: Array<string> = ['Bread', 'Dairy', 'Hot Meal', 'Produce', 'Protein', 'Others'];
 	newDonation.pickupAddress = `${user.address_street} ${user.address_city}, ${user.address_state} ${user.address_zip}`;
 
 	const validateInputs = async () => {
@@ -73,6 +81,7 @@ export default () => {
 					error={validateError.itemName}
 					errorMessage={validateError.itemName}
 					autoFocus={true}
+					onSubmitEditing={() => foodCategoriesRef?.current?.focus()}
 				/>
 
 				<FormTextInput
@@ -84,6 +93,9 @@ export default () => {
 					error={!!validateError.category}
 					errorMessage={validateError.category}
 					placeholder="Select one"
+					ref={foodCategoriesRef}
+					autoFocus={true}
+					onSubmitEditing={() => totalAmountRef?.current?.focus()}
 				/>
 
 				<FormTextInput
@@ -93,6 +105,9 @@ export default () => {
 					style={styles.input}
 					error={validateError.totalAmount}
 					errorMessage={validateError.totalAmount}
+					ref={totalAmountRef}
+					autoFocus={true}
+					onSubmitEditing={() => pickupAddressRef?.current?.focus()}
 				/>
 
 				<FormTextInput
@@ -101,6 +116,9 @@ export default () => {
 					setValue={s => setNewDonation({ ...newDonation, pickupAddress: s })}
 					style={styles.input}
 					editable={false}
+					ref={pickupAddressRef}
+					autoFocus={true}
+					onSubmitEditing={() => pickupInstructionRef?.current?.focus()}
 				/>
 
 				<FormTextInput
@@ -110,6 +128,8 @@ export default () => {
 					style={styles.input}
 					error={validateError.pickupInstructions}
 					errorMessage={validateError.pickupInstructions}
+					ref={pickupInstructionRef}
+					autoFocus={true}
 				/>
 
 				<View style={styles.button}>

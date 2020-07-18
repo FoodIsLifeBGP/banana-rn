@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
 import {
 	View,
@@ -6,6 +6,7 @@ import {
 	TouchableOpacity,
 	Image,
 	Alert,
+	TextInput,
 } from 'react-native';
 import { Switch } from 'react-native-paper';
 import useGlobal from '@state';
@@ -20,13 +21,17 @@ import * as colors from '@util/colors';
 import styles from './DonorDonationScreen.styles';
 
 export default () => {
-	const [ state, actions ] = useGlobal() as any;
+	const [state, actions] = useGlobal() as any;
 	const { user, jwt } = state;
 	const { postDonation, logOut, getDonationsOrClaims } = actions;
 	const { navigate } = useNavigation();
 	const donation = useNavigationParam('donation');
 	const edit = useNavigationParam('edit');
 	const donationId = useNavigationParam('id') || null;
+
+	const numPerPersonRef = useRef<TextInput>(null);
+	const NumServingsRef = useRef<TextInput>(null);
+	const pickupLocationRef = useRef<TextInput>(null);
 
 	const {
 		claims = '',
@@ -40,14 +45,14 @@ export default () => {
 		total_servings = '',
 	} = donation || {};
 
-	const [ name, setName ] = useState(food_name);
-	const [ durationInMinutes, setDurationInMinutes ] = useState(60);
-	const [ totalServings, setTotalServings ] = useState(total_servings);
-	const [ servingName, setServingName ] = useState(measurement);
-	const [ perPerson, setPerPerson ] = useState(per_person);
-	const [ pickupLocation, setPickupLocation ] = useState(pickup_location);
-	const [ cancel, setCancel ] = useState(false);
-	const [ stop, setStop ] = useState(false);
+	const [name, setName] = useState(food_name);
+	const [durationInMinutes, setDurationInMinutes] = useState(60);
+	const [totalServings, setTotalServings] = useState(total_servings);
+	const [servingName, setServingName] = useState(measurement);
+	const [perPerson, setPerPerson] = useState(per_person);
+	const [pickupLocation, setPickupLocation] = useState(pickup_location);
+	const [cancel, setCancel] = useState(false);
+	const [stop, setStop] = useState(false);
 
 	const icon = require('@assets/images/banana-icon.png');
 
@@ -136,6 +141,8 @@ export default () => {
 						value={servingName}
 						setValue={setServingName}
 						style={{ width: '40%' }}
+						autoFocus={true}
+						onSubmitEditing={() => numPerPersonRef?.current?.focus()}
 					/>
 
 					<FormTextInput
@@ -143,6 +150,9 @@ export default () => {
 						value={perPerson && perPerson.toString()}
 						setValue={setPerPerson}
 						style={{ width: '20%' }}
+						ref={numPerPersonRef}
+						autoFocus={true}
+						onSubmitEditing={() => NumServingsRef?.current?.focus()}
 					/>
 
 					<FormTextInput
@@ -150,6 +160,9 @@ export default () => {
 						value={totalServings && totalServings.toString()}
 						setValue={setTotalServings}
 						style={{ width: '20%' }}
+						ref={NumServingsRef}
+						autoFocus={true}
+						onSubmitEditing={() => pickupLocationRef?.current?.focus()}
 					/>
 
 					<FormTextInput
@@ -157,11 +170,13 @@ export default () => {
 						value={pickupLocation}
 						setValue={setPickupLocation}
 						style={{ width: '60%' }}
+						ref={pickupLocationRef}
+						autoFocus={true}
 					/>
 				</View>
 			</View>
 
-			{ edit && (
+			{edit && (
 				<>
 					<View style={{ flexDirection: 'column' }}>
 						<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
