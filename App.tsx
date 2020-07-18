@@ -9,15 +9,11 @@ import * as Font from 'expo-font';
 import NavigationService from '@util/NavigationService';
 import getstorybook from '@util/storybook';
 import {
-	TheAlertModal,
-	IncompleteFormAlert,
-	ComingSoonModal,
-	CancelDonationModal,
+	TheAlertModal, IncompleteFormAlert, ComingSoonModal, CancelDonationModal,
 } from '@elements';
 import storybook from './src/storybook';
 import Route from './src/routes/Route';
 import styles from './App.styles';
-
 
 YellowBox.ignoreWarnings([
 	'Warning: componentWillReceiveProps has been renamed',
