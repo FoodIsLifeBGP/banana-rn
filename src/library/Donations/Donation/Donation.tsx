@@ -46,7 +46,7 @@ export default ({ donation }: Donation) => {
 		>
 			<View style={styles.infoContainer}>
 				<View style={{
-					flexDirection: 'column', marginLeft: 10, alignItems: 'center', width: 100, justifyContent: 'center',
+					flexDirection: 'column', alignItems: 'center', width: 100, justifyContent: 'center',
 				}}
 				>
 					<Text style={typography.h5}>{category}</Text>
