@@ -3,10 +3,7 @@ import platformShadow from '@util/platformShadow';
 import * as colors from '@util/colors';
 
 const iconSize = 90;
-const screenHeight = Math.round(Dimensions.get('window').height);
-const screenWidth = Math.round(Dimensions.get('window').width);
 
-const addButtonSize = 110;
 
 export default StyleSheet.create({
 	outerContainer: {
@@ -20,22 +17,24 @@ export default StyleSheet.create({
 		alignContent: 'center',
 		alignItems: 'center',
 		flexDirection: 'column',
+		padding: 40,
+	},
+	infoContainer: {
+		flexDirection: 'column',
+		justifyContent: 'flex-start',
+		marginLeft: 30,
+	},
+	infoText: {
+		color: colors.NAVY_BLUE,
+		fontSize: 16,
+	},
+	infoPair: {
+		marginTop: 20,
 	},
 	iconContainer: {
-		height: iconSize,
-		width: iconSize,
-		borderRadius: iconSize / 2,
-		borderColor: colors.NAVY_BLUE,
-		backgroundColor: colors.DARK_GRAY,
-		borderWidth: 3,
-		marginHorizontal: 15,
+		marginVertical: 10,
 		justifyContent: 'center',
 		alignItems: 'center',
-	},
-	instructionsContainer: {
-		width: screenWidth,
-		flexDirection: 'column',
-		padding: 20,
 	},
 	timeContainer: {
 		borderTopColor: colors.LIGHT_GRAY_DISABLED,
@@ -44,8 +43,11 @@ export default StyleSheet.create({
 		borderBottomWidth: 2,
 	},
 	icon: {
-		height: (iconSize * 0.64),
-		width: (iconSize * 0.8),
+		height: 60,
+		width: 60,
+		borderRadius: 30,
+		borderColor: colors.NAVY_BLUE,
+		borderWidth: 2,
 	},
 
 	title: {
@@ -62,7 +64,6 @@ export default StyleSheet.create({
 	},
 
 	extensionContainer: {
-		width: screenWidth,
 		flexDirection: 'column',
 		padding: 20,
 	},
@@ -73,10 +74,6 @@ export default StyleSheet.create({
 		flexDirection: 'row',
 
 	},
-	text: {
-		color: colors.NAVY_BLUE,
-		fontSize: screenWidth * 0.045,
-	},
 
 	textBold: {
 		fontWeight: 'bold',
@@ -84,10 +81,6 @@ export default StyleSheet.create({
 
 	textUnderline: {
 		textDecorationLine: 'underline',
-	},
-
-	marginSmall: {
-		margin: screenWidth * 0.025,
 	},
 
 	backgroundColorYellow: {
@@ -129,7 +122,6 @@ export default StyleSheet.create({
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center',
-		fontSize: screenWidth * 0.045,
 		color: colors.NAVY_BLUE,
 	},
 

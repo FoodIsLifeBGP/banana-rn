@@ -7,25 +7,9 @@ import {
 	Image,
 } from 'react-native';
 import typography from '@util/typography';
+import { categoryImage } from '@util/donationCategory';
 import { Donation } from './Donation.type';
 import styles from './Donation.styles';
-
-const getImgFilename = (donationCategory: string) => {
-	switch (donationCategory) {
-		case 'Produce':
-			return require('@assets/images/Stock-image-produce.png');
-		case 'Bread':
-			return require('@assets/images/Stock-image-bread.png');
-		case 'Hot Meal':
-			return require('@assets/images/Stock-image-meals.png');
-		case 'Protein':
-			return require('@assets/images/Stock-image-protein.png');
-		case 'Dairy':
-			return require('@assets/images/Stock-image-dairy.png');
-		default:
-			return require('@assets/images/Stock-image-others.png');
-	}
-};
 
 export default ({ donation }: Donation) => {
 	const { navigate } = useNavigation();
@@ -37,12 +21,12 @@ export default ({ donation }: Donation) => {
 	} = donation;
 
 
-	const icon = getImgFilename(category);
+	const icon = categoryImage(category);
 
 
 	return (
 		<TouchableOpacity
-			onPress={() => navigate('DonationScreen', { donation, id, edit: true })}
+			onPress={() => navigate('DonationsDetailScreen', { donation, id, edit: true })}
 		>
 			<View style={styles.infoContainer}>
 				<View style={{
