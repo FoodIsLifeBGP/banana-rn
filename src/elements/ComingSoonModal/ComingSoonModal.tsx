@@ -29,6 +29,7 @@ export default () => {
 			clearAlert();
 		}
 	};
+
 	if (!alertObj) return null;
 	if (!alertObj.type || alertObj.type === 'default') {
 		return (

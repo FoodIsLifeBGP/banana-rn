@@ -90,10 +90,9 @@ export default ({
 				onDismiss={handleDismiss}
 			>
 				<View style={styles.body}>
-
 					<View style={styles.textContainer}>
 						<Text style={typography.body1}>
-							{alertObj?.message || 'This donation will be canceled'}
+							{alertObj?.message || 'This donation will be canceled.'}
 						</Text>
 					</View>
 
@@ -126,9 +125,7 @@ export default ({
 								onPress={handleYes}
 							/>
 						</View>
-
 					</View>
-
 				</View>
 			</Modal>
 		);

@@ -17,26 +17,20 @@ const DonorDashboardScreen = () => {
 
 			<View style={styles.contentContainer}>
 				<Title text={title} />
-				<View>
-					<View style={{
-						flex: 1,
-						flexDirection: 'row',
-						justifyContent: 'space-between',
-						alignItems: 'center',
-						marginBottom: -15,
-						marginTop: -15,
-					}}
-					>
-						<View>
-							<Text style={styles.activeHeader}>ACTIVE</Text>
-						</View>
-						<TouchableOpacity onPress={() => navigate('DonationScreen')}>
-							<View>
-								<Text style={styles.plus}>+</Text>
-							</View>
-						</TouchableOpacity>
+				<View style={{
+					flexDirection: 'row',
+					justifyContent: 'space-between',
+					alignItems: 'center',
+				}}
+				>
+					<View>
+						<Text style={styles.activeHeader}>ACTIVE</Text>
 					</View>
-
+					<TouchableOpacity onPress={() => navigate('DonationScreen', {})}>
+						<View>
+							<Text style={styles.plus}>+</Text>
+						</View>
+					</TouchableOpacity>
 				</View>
 				<Donations resource="donations" />
 			</View>

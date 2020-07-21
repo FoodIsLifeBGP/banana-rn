@@ -1,5 +1,5 @@
 /* eslint-disable no-tabs */
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useNavigation } from 'react-navigation-hooks';
 import {
 	ScrollView,
@@ -8,6 +8,7 @@ import {
 	TouchableOpacity,
 	KeyboardAvoidingView,
 	Platform,
+	TextInput,
 } from 'react-native';
 import { Divider } from 'react-native-paper';
 import useGlobal from '@state';
@@ -16,9 +17,7 @@ import {
 	LinkButton,
 	FormTextInput,
 	SpacerInline,
-	NavBar,
 	Icon,
-	InputLabel,
 } from '@elements';
 import validate from 'validate.js';
 import clientConstraints from '@util/constraints/clientRegistration';
@@ -29,12 +28,17 @@ import styles from './RegistrationScreen.styles';
 
 export default () => {
 	const { navigate, goBack } = useNavigation();
-	const [ state, actions ] = useGlobal() as any;
+	const [state, actions] = useGlobal() as any;
 	const { register, updateAlert } = actions;
 
-	const [ termsOfService, setTermsOfService ] = useState(false);
-	const [ validateError, setValidateError ] = useState({} as any);
-	const [ newClient, setNewClient ] = useState<ClientRegisterProps>({} as ClientRegisterProps);
+	const [termsOfService, setTermsOfService] = useState(false);
+	const [validateError, setValidateError] = useState({} as any);
+	const [newClient, setNewClient] = useState<ClientRegisterProps>({} as ClientRegisterProps);
+
+	const passwordRef = useRef<TextInput>(null);
+	const confirmPasswordRef = useRef<TextInput>(null);
+	const firstNameRef = useRef<TextInput>(null);
+	const lastNameRef = useRef<TextInput>(null);
 
 	const toggleTermsOfService = () => {
 		setTermsOfService(!termsOfService);
@@ -100,6 +104,8 @@ export default () => {
 					placeholder="info@bananaapp.org"
 					error={validateError.email}
 					errorMessage={validateError.email}
+					autoFocus={true}
+					onSubmitEditing={() => passwordRef?.current?.focus()}
 				/>
 
 				<FormTextInput
@@ -110,6 +116,8 @@ export default () => {
 					style={styles.input}
 					error={validateError.password}
 					errorMessage={validateError.password}
+					ref={passwordRef}
+					onSubmitEditing={() => confirmPasswordRef?.current?.focus()}
 				/>
 
 
@@ -121,6 +129,8 @@ export default () => {
 					type="password"
 					error={validateError.retypedPassword}
 					errorMessage={validateError.retypedPassword}
+					ref={confirmPasswordRef}
+					onSubmitEditing={() => firstNameRef?.current?.focus()}
 				/>
 
 				<Divider
@@ -134,6 +144,8 @@ export default () => {
 					style={styles.input}
 					error={validateError.firstName}
 					errorMessage={validateError.firstName}
+					ref={firstNameRef}
+					onSubmitEditing={() => lastNameRef?.current?.focus()}
 				/>
 
 
@@ -144,6 +156,7 @@ export default () => {
 					style={styles.input}
 					error={validateError.lastName}
 					errorMessage={validateError.lastName}
+					ref={lastNameRef}
 				/>
 
 
@@ -167,12 +180,12 @@ export default () => {
 					</Text>
 					<View>
 						<TouchableOpacity onPress={() => (navigate('TermsScreen'))}>
-							<Text style={[ styles.text, styles.textBold ]}>Terms & Conditions</Text>
+							<Text style={[styles.text, styles.textBold]}>Terms & Conditions</Text>
 						</TouchableOpacity>
 					</View>
 				</View>
 
-				<View style={[ styles.row, { paddingHorizontal: '10%' } ]}>
+				<View style={[styles.row, { paddingHorizontal: '10%' }]}>
 					<LinkButton
 						text="back"
 						onPress={() => goBack()}
