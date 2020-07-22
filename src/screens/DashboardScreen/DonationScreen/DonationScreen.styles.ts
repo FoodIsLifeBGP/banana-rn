@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import typography from '@util/typography';
 
 const iconSize = 90;
 
@@ -28,5 +29,16 @@ export default StyleSheet.create({
 	},
 	button: {
 		marginBottom: 30,
+	},
+	pickupAddressLabel: {
+		...typography.h3,
+		marginBottom: 14,
+	},
+	pickupAddressStyle: {
+		...typography.body1,
+		marginBottom: 14,
+		paddingHorizontal: 10,
+		paddingVertical: 13,
+		left: 10,
 	},
 });

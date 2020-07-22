@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigation } from 'react-navigation-hooks';
 import {
 	View,
-	KeyboardAvoidingView, ScrollView, Platform,
+	KeyboardAvoidingView, ScrollView, Platform, Text,
 } from 'react-native';
 import useGlobal from '@state';
 import {
@@ -95,13 +95,14 @@ export default () => {
 					errorMessage={validateError.totalAmount}
 				/>
 
-				<FormTextInput
-					label="Pickup Address"
-					value={newDonation.pickupAddress}
-					setValue={s => setNewDonation({ ...newDonation, pickupAddress: s })}
-					style={styles.input}
-					editable={false}
-				/>
+				<View>
+					<Text style={styles.pickupAddressLabel}>
+						PICKUP ADDRESS
+					</Text>
+					<Text style={styles.pickupAddressStyle}>
+						{newDonation.pickupAddress}
+					</Text>
+				</View>
 
 				<FormTextInput
 					label="Pickup Instructions"
