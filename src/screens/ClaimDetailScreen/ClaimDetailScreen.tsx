@@ -18,7 +18,6 @@ const ClaimDetailScreen = () => {
 	const [ globalState, globalActions ] = useGlobal() as any;
 	const { userIdentity } = globalState;
 	const claim = useNavigationParam('claim');
-	const { qr_code } = claim;
 	const itemName = 'banana';
 	const remainingNum = 2;
 	const distance = 0.3;
@@ -63,7 +62,7 @@ const ClaimDetailScreen = () => {
 			<View style={styles.QRCodeContainer}>
 				<QRCode
 					backgroundColor={colors.BANANA_YELLOW}
-					value={qr_code}
+					value="eyJjbGllbnRfaWQiOjEsImRvbmF0aW9uX2lkIjoxfQ=="
 					size={Math.min(screenWidth, screenHeight) / 3}
 				/>
 				<Text style={styles.text}>PLEASE PRESENT THIS TO YOUR DONOR</Text>

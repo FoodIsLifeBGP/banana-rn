@@ -21,6 +21,7 @@ export default ({ resource }: LocalProps) => {
 
 	const getDonationsOrClaimsFromApi = () => {
 		const { getDonationsOrClaims, getActiveDonationsForClient, getLocation } = actions;
+		getLocation();
 		const { userIdentity } = state;
 		const method = userIdentity === 'client' && resource === 'donations' ? getActiveDonationsForClient : getDonationsOrClaims;
 		return method(resource);
@@ -57,7 +58,7 @@ export default ({ resource }: LocalProps) => {
 		? (
 			<ScrollView>
 				{
-					(donationsOrClaims as any).map((donationOrClaim) => (
+					(donationsOrClaims as any).map(donationOrClaim => (
 						<View key={donationOrClaim.id}>
 							<DonationOrClaim
 								donationOrClaim={donationOrClaim}
