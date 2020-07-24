@@ -29,9 +29,7 @@ export default () => {
 	const { postDonation } = actions;
 	const { navigate } = useNavigation();
 
-	const foodCategoriesRef = useRef<TextInput>(null);
 	const totalAmountRef = useRef<TextInput>(null);
-	const pickupAddressRef = useRef<TextInput>(null);
 	const pickupInstructionRef = useRef<TextInput>(null);
 
 
@@ -81,7 +79,7 @@ export default () => {
 					error={validateError.itemName}
 					errorMessage={validateError.itemName}
 					autoFocus={true}
-					onSubmitEditing={() => foodCategoriesRef?.current?.focus()}
+					onSubmitEditing={() => totalAmountRef?.current?.focus()}
 				/>
 
 				<FormTextInput
@@ -93,9 +91,6 @@ export default () => {
 					error={!!validateError.category}
 					errorMessage={validateError.category}
 					placeholder="Select one"
-					ref={foodCategoriesRef}
-					autoFocus={true}
-					onSubmitEditing={() => totalAmountRef?.current?.focus()}
 				/>
 
 				<FormTextInput
@@ -105,9 +100,10 @@ export default () => {
 					style={styles.input}
 					error={validateError.totalAmount}
 					errorMessage={validateError.totalAmount}
+					keyboardType={'numeric'}
 					ref={totalAmountRef}
-					autoFocus={true}
-					onSubmitEditing={() => pickupAddressRef?.current?.focus()}
+					//autoFocus={true}
+					onSubmitEditing={() => pickupInstructionRef?.current?.focus()}
 				/>
 
 				<FormTextInput
@@ -116,9 +112,6 @@ export default () => {
 					setValue={s => setNewDonation({ ...newDonation, pickupAddress: s })}
 					style={styles.input}
 					editable={false}
-					ref={pickupAddressRef}
-					autoFocus={true}
-					onSubmitEditing={() => pickupInstructionRef?.current?.focus()}
 				/>
 
 				<FormTextInput
@@ -129,7 +122,7 @@ export default () => {
 					error={validateError.pickupInstructions}
 					errorMessage={validateError.pickupInstructions}
 					ref={pickupInstructionRef}
-					autoFocus={true}
+				//autoFocus={true}
 				/>
 
 				<View style={styles.button}>
