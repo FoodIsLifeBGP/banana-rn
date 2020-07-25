@@ -6,6 +6,7 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 import * as colors from '@util/colors';
 import getEnv from '@util/environment';
 
+import MakeClaimScreen from '../screens/MakeClaimScreen/MakeClaimScreen';
 import LoginScreen from '../screens/LoginScreen';
 import DashboardScreen from '../screens/DashboardScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
@@ -14,7 +15,6 @@ import ContactScreen from '../screens/ContactScreen';
 import LoginSuccessScreen from '../screens/LoginSuccessScreen';
 import DonationScreen from '../screens/DashboardScreen/DonationScreen';
 import QRCodeScannerScreen from '../screens/QRCodeScannerScreen/QRCodeScannerScreen';
-import ClaimDetailScreen from '../screens/ClaimDetailScreen/ClaimDetailScreen';
 import LogoutScreen from '../screens/LogoutScreen';
 import DonationsDetailScreen from '../screens/DonationsDetailScreen/DonationsDetailScreen';
 import DonorDonationScreen from '../screens/DonorDashboardScreen/DonorDonationScreen';
@@ -22,6 +22,7 @@ import DonorDonationScreen from '../screens/DonorDashboardScreen/DonorDonationSc
 import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
 import MainOption from '../elements/MenuDrawer/MainOption/MainOption';
 import SubOption from '../elements/MenuDrawer/SubOption/SubOption';
+import ClaimDetailsScreen from '../screens/ClaimDetailsScreen/ClaimDetailsScreen';
 
 // Logged-In Screens for Drawer Navigator
 export const MainStack = createStackNavigator(
@@ -31,7 +32,8 @@ export const MainStack = createStackNavigator(
 		DonationScreen,
 		DonorDonationScreen,
 		QRCodeScannerScreen,
-		ClaimDetailScreen,
+		ClaimDetailsScreen,
+		MakeClaimScreen,
 		DonationsDetailScreen,
 		ContactScreen,
 		LogoutScreen,

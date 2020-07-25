@@ -18,6 +18,7 @@ export { getLocation } from './getLocation';
 export { logIn, logOut } from './auth';
 export { postDonation } from './postDonation';
 export { cancelDonation } from './cancelDonation';
+export { claimDonation } from './claimDonation';
 export { register } from './register';
 export { scan } from './scan';
 export { updateAlert, clearAlert } from './alert';

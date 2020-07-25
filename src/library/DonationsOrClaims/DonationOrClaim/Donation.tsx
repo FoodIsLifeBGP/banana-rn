@@ -52,7 +52,7 @@ export default ({ donation }: Donation) => {
 
 	return (
 		<TouchableOpacity
-			onPress={() => navigate('ClaimDetailScreen', { donation, id })}
+			onPress={() => navigate('MakeClaimScreen', { donation, id })}
 		>
 			<View style={styles.card}>
 				<View style={styles.categoryText}>
