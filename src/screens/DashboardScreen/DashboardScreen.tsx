@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { useNavigationParam } from 'react-navigation-hooks';
+import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
 import useGlobal from '@state';
 import { Title, SpacerInline, NavBar } from '@elements';
 import { DonationsOrClaims } from '@library';
@@ -10,6 +10,7 @@ import DonorDashboardScreen from '../DonorDashboardScreen';
 const DashboardScreen = () => {
 	const [ state ] = useGlobal();
 	const { userIdentity } = state;
+	const { navigate } = useNavigation();
 	const resource: 'donations' | 'claims' = useNavigationParam('resource') || 'donations';
 
 	if (userIdentity === 'donor') {
@@ -26,9 +27,9 @@ const DashboardScreen = () => {
 					showBackButton={false}
 					leftButton="qrCode"
 					showSelector={true}
-					onMap={() => {}}
+					onMap={() => { navigate('MapScreen'); }}
 					onList={() => {}}
-					position="map"
+					position="list"
 				/>
 			)}
 

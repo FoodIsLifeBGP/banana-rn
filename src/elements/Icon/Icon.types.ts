@@ -25,6 +25,7 @@ export type IconName =
 	| 'arrowDown'
 	| 'arrowUp'
 	| 'back'
+	| 'bananaMarker'
 	| 'bell'
 	| 'bellOn'
 	| 'bike'

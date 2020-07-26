@@ -10,6 +10,7 @@ const Back: IconImport = require('@assets/icons/ICON_BACK.svg');
 const Bell: IconImport = require('@assets/icons/ICON_BELL.svg');
 const BellOn: IconImport = require('@assets/icons/ICON_BELL-ON.svg');
 const Bike: IconImport = require('@assets/icons/ICON_BIKE.svg');
+const BananaMarker: IconImport = require('@assets/icons/ICON_BANANA_MARKER.svg');
 const Camera: IconImport = require('@assets/icons/ICON_CAMERA.svg');
 const CheckboxOff: IconImport = require('@assets/icons/ICON_CHECKBOX-OFF.svg');
 const CheckboxOn: IconImport = require('@assets/icons/ICON_CHECKBOX-ON.svg');
@@ -53,6 +54,7 @@ export const iconImports: Record<IconName, IconImport> = {
 	back: Back,
 	bell: Bell,
 	bellOn: BellOn,
+	bananaMarker: BananaMarker,
 	bike: Bike,
 	camera: Camera,
 	checkboxOff: CheckboxOff,
@@ -82,4 +84,5 @@ export const iconImports: Record<IconName, IconImport> = {
 	vector: Vector,
 	walk: Walk,
 	website: Website,
+
 };

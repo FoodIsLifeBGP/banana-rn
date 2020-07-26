@@ -13,6 +13,7 @@ export interface Actions {
 }
 export { getActiveDonationsForClient } from './getActiveDonationsForClient';
 export { getDonationsOrClaims } from './getDonationsOrClaims';
+export { getDonationsForClient } from './getDonationsForClient';
 export { getDonations } from './getDonations';
 export { getLocation } from './getLocation';
 export { logIn, logOut } from './auth';
