@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
 import {
-	View, Text, Image, Dimensions, Alert, ScrollView,
+	ImageBackground, ScrollView, Text, View,
 } from 'react-native';
 import useGlobal from '@state';
-import {
-	SpacerInline, Icon, TextButton,
-} from '@elements';
-import QRCode from 'react-native-qrcode-svg';
+import { Icon, SpacerInline, TextButton } from '@elements';
 import * as colors from '@util/colors';
 import typography from '@util/typography';
 import { ButtonStyle } from '@elements/Button';
+import claimStyles from '@util/claimStyles';
 import styles from './MakeClaimScreen.styles';
 
 const MakeClaimScreen = () => {
@@ -50,39 +48,41 @@ const MakeClaimScreen = () => {
 
 	return (
 
-		<View style={styles.outerContainer}>
+		<View style={claimStyles.outerContainer}>
 			<ScrollView>
 				<View>
-					<Image source={require('@assets/images/bananas.jpg')} style={styles.header} />
+					<ImageBackground source={require('@assets/images/bananas.jpg')} style={claimStyles.header}>
+						<Text onPress={() => navigate('DashboardScreen')} style={[ typography.h2, claimStyles.closeLnk ]}>X</Text>
+					</ImageBackground>
 				</View>
-				<View style={styles.mainContent}>
-					<View style={styles.section}>
-						<View style={styles.title}>
+				<View style={claimStyles.mainContent}>
+					<View style={claimStyles.section}>
+						<View style={claimStyles.title}>
 							<Text style={typography.h3}>{donation.food_name}</Text>
 						</View>
-						<View style={styles.itemWithIcon}>
+						<View style={claimStyles.itemWithIcon}>
 							<Icon name="location" size={16} />
 							<Text style={typography.body4}>{donor.donor_name}</Text>
 						</View>
-						<View style={styles.itemWithIcon}>
+						<View style={claimStyles.itemWithIcon}>
 							<Icon name="distance" size={16} />
 							<Text style={typography.body4}>TODO: ??mi</Text>
 						</View>
 					</View>
-					<View style={styles.section}>
-						<View style={styles.title}>
+					<View style={claimStyles.section}>
+						<View style={claimStyles.title}>
 							<Text style={typography.h3}>Pick Up Info</Text>
 						</View>
-						<View style={styles.smallTitle}>
+						<View style={claimStyles.smallTitle}>
 							<Text style={typography.h4}>Address</Text>
 						</View>
-						<View style={styles.item}>
+						<View style={claimStyles.item}>
 							<Text style={typography.body4}>{`${donor.address_street} ${donor.address_city}, ${donor.address_state}, ${donor.address_zip}`}</Text>
 						</View>
-						<View style={styles.smallTitle}>
+						<View style={claimStyles.smallTitle}>
 							<Text style={typography.h4}>Instructions</Text>
 						</View>
-						<View style={styles.item}>
+						<View style={claimStyles.item}>
 							<Text style={typography.body4}>{donation.pickup_instructions}</Text>
 						</View>
 					</View>
@@ -90,17 +90,17 @@ const MakeClaimScreen = () => {
 						<View>
 							<Text style={typography.h3}>How to get There</Text>
 						</View>
-						<View style={styles.itemWithIcon}>
+						<View style={claimStyles.itemWithIcon}>
 							<Icon name="walk" size={16} />
 							<SpacerInline width={2} />
 							<Text style={typography.body4}>Walking ?? min</Text>
 						</View>
-						<View style={styles.itemWithIcon}>
+						<View style={claimStyles.itemWithIcon}>
 							<Icon name="transit" size={16} />
 							<SpacerInline width={2} />
 							<Text style={typography.body4}>Public Transit ?? min</Text>
 						</View>
-						<View style={styles.itemWithIcon}>
+						<View style={claimStyles.itemWithIcon}>
 							<Icon name="bike" size={16} />
 							<SpacerInline width={2} />
 							<Text style={typography.body4}>Bike ?? min</Text>
