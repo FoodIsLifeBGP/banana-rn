@@ -14,6 +14,7 @@ export type Claim = {
 
 export interface Donation {
 	donation: {
+		category: string;
 		claims: Claim['claim'][] | [];
 		created_at: Date;
 		donor_id: number;
@@ -24,6 +25,7 @@ export interface Donation {
 		measurement: string;
 		per_person: number;
 		pickup_location: string;
-		total_servings: number;
+		total_amount: number;
+		status: string;
 	};
 }

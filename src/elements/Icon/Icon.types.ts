@@ -49,8 +49,10 @@ export type IconName =
 	| 'more'
 	| 'qrCode'
 	| 'settings'
+	| 'smile'
 	| 'time'
 	| 'transit'
 	| 'user'
+	| 'vector'
 	| 'walk'
 	| 'website';

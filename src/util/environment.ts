@@ -2,10 +2,12 @@ import Constants from 'expo-constants';
 
 const DONOR = {
 	LOGIN_URL: '/donor_auth',
+	CREATE_URL: '/donors/create',
 };
 
 const CLIENT = {
 	LOGIN_URL: '/client_auth',
+	CREATE_URL: '/clients/create',
 };
 
 const getEnv = () => {
@@ -16,7 +18,7 @@ const getEnv = () => {
 	return ({
 		...variantSpecificProperties,
 		USER_IDENTITY: variant,
-		API_BASE_URL: __DEV__ ? 'http://localhost:3000' : 'https://banana-rails.herokuapp.com',
+		API_BASE_URL: Constants.manifest.extra.ipAddress ? `http://${Constants.manifest.extra.ipAddress}:3000` : 'http://ec2-54-167-200-156.compute-1.amazonaws.com:3000',
 	});
 };
 

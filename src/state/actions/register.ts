@@ -1,11 +1,9 @@
 import railsAxios from '@util/railsAxios';
-import clientConstraints from '@util/constraints/clientRegistration';
-import donorConstraints from '@util/constraints/donorRegistration';
-import validate from 'validate.js';
 
-interface DonorRegisterProps {
+export interface DonorRegisterProps {
 	email: string;
 	password: string;
+	retypedPassword: string;
 	firstName: string;
 	lastName: string;
 	businessName: string;
@@ -18,9 +16,10 @@ interface DonorRegisterProps {
 	// licenseVerificationImage: any
 }
 
-interface ClientRegisterProps {
+export interface ClientRegisterProps {
 	email: string;
 	password: string;
+	retypedPassword: string;
 	firstName: string;
 	lastName: string;
 	// street: string;
@@ -49,22 +48,21 @@ export const registerDonor = async (store, donor: DonorRegisterProps) => {
 				address_city: city,
 				address_state: state,
 				address_zip: zip,
-				account_status: 'pending',
 				pickup_instructions: pickupInstructions,
 			},
 		}));
 
 		await store.setState({
 			jwt: response.data?.jwt || '',
-			user: donor,
+			user: response.data?.donor || {},
 		});
-		return response.status || 'Error';
+		return response.status;
 	} catch (error) {
 		await store.setState({
 			jwt: '',
 			user: {},
 		});
-		return 500;
+		return error.response.status;
 	}
 };
 
@@ -80,34 +78,27 @@ export const registerClient = async (store, client: ClientRegisterProps) => {
 				password,
 				first_name: firstName,
 				last_name: lastName,
-				account_status: 'pending',
 			},
 		}));
 		await store.setState({
 			jwt: response.data?.jwt || '',
-			user: client,
+			user: response.data?.client || {},
 		});
-		const { status } = response;
-		return status || 'Error';
+		return response.status;
 	} catch (error) {
 		await store.setState({
 			jwt: '',
 			user: {},
 		});
-		return 500;
+		return error.response.status;
 	}
 };
 
-const register = async (store, user) => {
+const register = (store, user) => {
 	const { userIdentity } = store.state;
-	const formErrors = userIdentity === 'donor'
-		? await validate(user, donorConstraints)
-		: await validate(user, clientConstraints);
-	if (formErrors) return { formErrors };
-	const statusCode = userIdentity === 'donor'
-		? await registerDonor(store, user)
-		: await registerClient(store, user);
-	return { formErrors, statusCode };
+	return userIdentity === 'donor'
+		? registerDonor(store, user)
+		: registerClient(store, user);
 };
 
 export { register };

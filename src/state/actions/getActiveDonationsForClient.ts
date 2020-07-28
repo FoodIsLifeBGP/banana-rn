@@ -11,7 +11,8 @@ export const getActiveDonationsForClient = async store => {
 			const { data } = response;
 			const sortedData = data.sort((a, b) => a.created_at < b.created_at);
 			if (sortedData) {
-				await store.setState({ donationsOrClaims: sortedData });
+				const activeDonations = sortedData.filter(donation => donation.status === 'active');
+				await store.setState({ donationsOrClaims: activeDonations });
 				return sortedData;
 			}
 		} catch (error) {

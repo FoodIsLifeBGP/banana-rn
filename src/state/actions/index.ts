@@ -20,6 +20,7 @@ export { getDonations } from './getDonations';
 export { getLocation } from './getLocation';
 export { logIn, logOut } from './auth';
 export { postDonation } from './postDonation';
+export { cancelDonation } from './cancelDonation';
 export { register } from './register';
 export { scan } from './scan';
 export { updateAlert, clearAlert } from './alert';

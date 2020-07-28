@@ -18,8 +18,7 @@ export default ({ resource }: LocalProps) => {
 	const [ loaded, setLoaded ] = useState(false);
 
 	const getDonationsOrClaimsFromApi = async () => {
-		const { getDonations, getActiveDonationsForClient, getLocation } = actions;
-		const coords = await getLocation();
+		const { getDonations, getActiveDonationsForClient } = actions;
 		const { userIdentity } = state;
 		const method = userIdentity === 'client' && resource === 'donations' ? getActiveDonationsForClient : getDonations;
 		const data = await method(resource);
@@ -43,20 +42,15 @@ export default ({ resource }: LocalProps) => {
 				{
 					(donations as any).map((donation, i) => (
 						<View key={donation.id}>
-							<Divider style={{ backgroundColor: 'blue' }} />
 							<Donation
 								donation={donation}
 								key={donation.id}
 								resource="donations"
 							/>
-							{
-								i === (donations as any).length - 1
-								&& <Divider style={{ backgroundColor: 'blue' }} />
-							}
+							{i === (donations as any).length - 1}
 						</View>
 					))
 				}
-				<SpacerInline height={200} />
 			</ScrollView>
 		)
 		: (

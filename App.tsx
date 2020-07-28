@@ -8,11 +8,12 @@ import Constants from 'expo-constants';
 import * as Font from 'expo-font';
 import NavigationService from '@util/NavigationService';
 import getstorybook from '@util/storybook';
-import { TheAlertModal } from '@elements';
+import {
+	TheAlertModal, IncompleteFormAlert, ComingSoonModal, CancelDonationModal,
+} from '@elements';
 import storybook from './src/storybook';
 import Route from './src/routes/Route';
 import styles from './App.styles';
-
 
 YellowBox.ignoreWarnings([
 	'Warning: componentWillReceiveProps has been renamed',
@@ -57,6 +58,9 @@ You must specify 'donor' or 'client' in app.json
 				<SafeAreaView style={styles.container}>
 					<Route ref={navRef => NavigationService.setTopLevelNavigator(navRef)} />
 					<TheAlertModal />
+					<IncompleteFormAlert />
+					<ComingSoonModal />
+					<CancelDonationModal />
 				</SafeAreaView>
 			</Provider>
 		</AppearanceProvider>

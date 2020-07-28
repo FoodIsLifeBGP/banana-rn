@@ -4,6 +4,7 @@ import { View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Title, SpacerInline, NavBar } from '@elements';
 import { Donations } from '@library';
+import { Divider } from 'react-native-paper';
 import styles from './DonorDashboardScreen.styles';
 
 const DonorDashboardScreen = () => {
@@ -16,16 +17,22 @@ const DonorDashboardScreen = () => {
 
 			<View style={styles.contentContainer}>
 				<Title text={title} />
-				<SpacerInline height={20} />
+				<View style={{
+					flexDirection: 'row',
+					justifyContent: 'space-between',
+					alignItems: 'center',
+				}}
+				>
+					<View>
+						<Text style={styles.activeHeader}>ACTIVE</Text>
+					</View>
+					<TouchableOpacity onPress={() => navigate('DonationScreen', {})}>
+						<View>
+							<Text style={styles.plus}>+</Text>
+						</View>
+					</TouchableOpacity>
+				</View>
 				<Donations resource="donations" />
-			</View>
-
-			<View style={styles.addButton}>
-				<TouchableOpacity onPress={() => navigate('DonorDonationScreen', {})}>
-					<Text style={styles.plus}>
-						+
-					</Text>
-				</TouchableOpacity>
 			</View>
 
 		</View>

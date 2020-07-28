@@ -68,20 +68,31 @@ Once those are complete, run:
 
 # Additional notes about environment
 
-Take note of `app.json` in the root.  This is where we specify whether to compile the donor or client app.
+As of mid July 2020, we have combined expo config across `app.json` and `app.config.js` so that we can publish our
+progress to expo.io so that non-developers can view the current state of the app and also so that devs can change aspects
+of their config (donor vs. client) or what backend server they're using without having to make a change to a file under
+source control.  However, this means that you'll need to be using a newer version of expo--3.20+.  If you get an error: 
+`TypeError: Cannot read property 'variant' of undefined` chances are that your version of expo is not compatible with the
+updated config.  You can update your expo with `npm install -g expo-cli ` and this may also require you to update your 
+node version--sorry!
 
-```json
-{
-  "expo": {
-	...
-	"extra": {
-			"variant": "donor"
-		}
-  }
-}
+Take note of `app.config.js` in the root.  This is where we specify whether to compile the donor or client app.  
+You can most easily switch between donor and client by creating a `.env` file in the project root and adding an entry
+for EXPO_APP_VARIANT e.g. `EXPO_APP_VARIANT=client` this way you can make this change locally without editing a file that's under
+git control.  Note that all variables in `.env` will need to be prefixed with EXPO_ since expo restricts things 
+[that way](https://docs.expo.io/guides/environment-variables/).
+
+```javascript
+export default ({ config }) => ({
+	...config,
+	extra: {
+		ipAddress: process.env.EXPO_IP_ADDRESS,
+		variant: process.env.EXPO_APP_VARIANT ? process.env.EXPO_APP_VARIANT : 'donor',
+		storybook: process.env.EXPO_STORYBOOK ? process.env.EXPO_STORYBOOK === 'true' : false,
+	},
+});
 ```
 
-Use `"variant": "client"` to load the app in client mode.  Do not check in your changes to this field.
 
 Now run:
 - `expo start` (or `expo r`.  Later, you may want to use `expo r -c` to clear the cache.)
@@ -90,20 +101,35 @@ A tab in your web browser will open showing the Expo dashboard.  To open the app
 
 When the app opens, you will see the login screen.  Assuming you are still running the [Rails server](https://github.com/FoodIsLifeBGP/banana-rails) in the background, you can log in with the sample account for your variant:
 
-- email: `donor@donor.com`, password: `donor`
-- email: `client@client.com`, password: `client`
+- email: `donor@donor.com`, password: `donor@123`
+- email: `client@client.com`, password: `client@123`
 
 or create a new account.
 
+###Backend Choices
+- `environments.ts` controls what rails server the app will try to talk to.
+- The default is an AWS server running the latest [banana rails](https://github.com/FoodIsLifeBGP/banana-rails) from the `prealpha/main` branch.
+- If you would like to talk to a different rails server (most likely your own in the event you have changes you want to test), create a file called
+`.env` in your project root and add `IP_ADDRESS=<your internal network ip>` to the file (you can also change the variant to client in the `.env` file.
+
 **Possible gotchas for new developers**
-- If you elect to use an android simulator for your testing, by default the client will try to use `localhost:3000` 
-as the network address to reach the [banana rails](https://github.com/FoodIsLifeBGP/banana-rails) 
-backend service. It won't be available at that location on the android simulator.  This issue will manifest itself 
-in a rather incongruous way with the client showing an alert message about a 
-[418](https://en.wikipedia.org/wiki/Hyper_Text_Coffee_Pot_Control_Protocol) http response code.  You can
-change `environments.ts`, use your web browser to test, or possibly tell react-native that it's not in dev mode. 
 - If you elect to use your web browser to test your changes, Firefox may just render a blank page.  Switching to 
 another browser should resolve the issue.  
+
+- If you run into an error like this:
+```
+error Invalid regular expression: /(.*\\__fixtures__\\.*|node_modules[\\\]react[\\\]dist[\\\].*|website\\node_modules\\.*|heapCapture\\bundle\.js|.*\\__tests__\\.*)$/: Unterminated character class. Run CLI with --verbose flag for more details.
+
+Metro Bundler process exited with code 1
+Error: Metro Bundler process exited with code 1
+    at ChildProcess.<anonymous> (C:\@expo\xdl@56.2.7\src\Project.ts:1804:16)
+    at Object.onceWrapper (events.js:300:26)
+    at ChildProcess.emit (events.js:210:5)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:272:12)
+error Command failed with exit code 1.
+```
+Try to update the expo package `npm install -g expo-cli`
+Or try switching node versions (`12.10.0 => 12.9.0`)
 
 # The rest of The Banana App family:
 

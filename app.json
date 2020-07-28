@@ -26,10 +26,6 @@
     "ios": {
       "supportsTablet": true
     },
-    "extra": {
-      "variant": "donor",
-      "storybook": false
-    },
     "userInterfaceStyle": "automatic",
     "packagerOpts": {
       "config": "metro.config.js",
@@ -46,8 +42,8 @@
         "wasm",
         "svg",
         "md"
-
       ]
-    }
+    },
+    "description": ""
   }
 }

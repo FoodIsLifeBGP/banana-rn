@@ -17,13 +17,21 @@ export interface Donation {
 		claims: Claim['claim'][] | [];
 		created_at: Date;
 		donor_id: number;
-		duration_minutes: number;
 		food_name: string;
 		id: number;
-		image_url: string;
-		measurement: string;
-		per_person: number;
-		pickup_location: string;
-		total_servings: number;
+		category: string;
+		total_amount: string;
+		pickup_instructions: string;
+		status: string;
+		donor: DonorAddress['donor'];
+	};
+}
+
+export interface DonorAddress {
+	donor: {
+		address_city: string;
+		address_state: string;
+		address_zip: string;
+		address_street: string;
 	};
 }

@@ -75,6 +75,9 @@ const donorOrClientDrawer = () => {
 	const CLIENT_MENU = {
 		DonationScreen: {
 			screen: MainStack,
+			params: {
+				resource: 'donations',
+			},
 			navigationOptions: {
 				drawerLabel: <MainOption text="Donations" icon="donations" />,
 			},
@@ -82,6 +85,9 @@ const donorOrClientDrawer = () => {
 
 		ClaimsScreen: {
 			screen: MainStack,
+			params: {
+				resource: 'claims',
+			},
 			navigationOptions: {
 				drawerLabel: <MainOption text="Claims" icon="claims" />,
 			},
@@ -103,8 +109,14 @@ const donorOrClientDrawer = () => {
 	};
 
 	const COMMON_MENU = {
-		HelpScreen: {
-			screen: MainStack,
+		// HelpScreen: {
+		// screen: MainStack,
+		// navigationOptions: {
+		// drawerLabel: <MainOption text="Contact Us" icon="help" />,
+		// },
+		// },
+		ContactScreen: {
+			screen: ContactScreen,
 			navigationOptions: {
 				drawerLabel: <MainOption text="Contact Us" icon="help" />,
 			},

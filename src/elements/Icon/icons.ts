@@ -11,8 +11,8 @@ const Bell: IconImport = require('@assets/icons/ICON_BELL.svg');
 const BellOn: IconImport = require('@assets/icons/ICON_BELL-ON.svg');
 const Bike: IconImport = require('@assets/icons/ICON_BIKE.svg');
 const Camera: IconImport = require('@assets/icons/ICON_CAMERA.svg');
-const CheckboxOff: IconImport = require('@assets/icons/ICON_CAMERA.svg');
-const CheckboxOn: IconImport = require('@assets/icons/ICON_CAMERA.svg');
+const CheckboxOff: IconImport = require('@assets/icons/ICON_CHECKBOX-OFF.svg');
+const CheckboxOn: IconImport = require('@assets/icons/ICON_CHECKBOX-ON.svg');
 const Claims: IconImport = require('@assets/icons/ICON_CLAIMS.svg');
 const Close: IconImport = require('@assets/icons/ICON_CLOSE.svg');
 const Condense: IconImport = require('@assets/icons/ICON_CONDENSE.svg');
@@ -31,9 +31,11 @@ const MenuOn: IconImport = require('@assets/icons/ICON_MENU-ON.svg');
 const More: IconImport = require('@assets/icons/ICON_MORE.svg');
 const QrCode: IconImport = require('@assets/icons/ICON_QR-CODE.svg');
 const Settings: IconImport = require('@assets/icons/ICON_SETTINGS.svg');
+const Smile: IconImport = require('@assets/icons/ICON_SMILE.svg');
 const Time: IconImport = require('@assets/icons/ICON_TIME.svg');
 const Transit: IconImport = require('@assets/icons/ICON_TRANSIT.svg');
 const User: IconImport = require('@assets/icons/ICON_USER.svg');
+const Vector: IconImport = require('@assets/icons/ICON_VECTOR.svg');
 const Walk: IconImport = require('@assets/icons/ICON_WALK.svg');
 const Website: IconImport = require('@assets/icons/ICON_WEBSITE.svg');
 
@@ -73,9 +75,11 @@ export const iconImports: Record<IconName, IconImport> = {
 	more: More,
 	qrCode: QrCode,
 	settings: Settings,
+	smile: Smile,
 	time: Time,
 	transit: Transit,
 	user: User,
+	vector: Vector,
 	walk: Walk,
 	website: Website,
 };
