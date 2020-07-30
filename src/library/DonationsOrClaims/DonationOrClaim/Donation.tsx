@@ -52,14 +52,14 @@ export default ({ donation }: Donation) => {
 
 	return (
 		<TouchableOpacity
-			onPress={() => navigate('DonationsDetailScreen', { donation, id })}
+			onPress={() => navigate('MakeClaimScreen', { donation, id })}
 		>
 			<View style={styles.card}>
 				<View style={styles.categoryText}>
 					<Text style={typography.h4}>{category}</Text>
 				</View>
 				<View style={styles.mainContainer}>
-					<View style={[styles.iconContainer, { backgroundColor: timeLeft > 0 ? 'blue' : 'gray' }]}>
+					<View style={[ styles.iconContainer, { backgroundColor: timeLeft > 0 ? 'blue' : 'gray' } ]}>
 						<Image source={icon} style={styles.icon} />
 					</View>
 					<View style={styles.infoContainer}>
@@ -67,9 +67,9 @@ export default ({ donation }: Donation) => {
 						<View style={styles.infoBottomContainer}>
 							{/* TODO: Add pindrop icon. */}
 							<Icon name="arrowDown" size={18} />
-							<Text style={[typography.body3, { fontSize: 18, marginHorizontal: 4 }]}>{organization_name}</Text>
+							<Text style={[ typography.body3, { fontSize: 18, marginHorizontal: 4 } ]}>{organization_name}</Text>
 							<Icon name="distance" size={18} />
-							<Text style={[typography.body3, { fontSize: 18, marginHorizontal: 4 }]}>{`${distance.toFixed(1)} mi`}</Text>
+							<Text style={[ typography.body3, { fontSize: 18, marginHorizontal: 4 } ]}>{`${distance.toFixed(1)} mi`}</Text>
 						</View>
 					</View>
 				</View>

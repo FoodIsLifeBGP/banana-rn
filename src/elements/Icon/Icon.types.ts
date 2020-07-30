@@ -43,6 +43,7 @@ export type IconName =
 	| 'eyeOn'
 	| 'facebook'
 	| 'help'
+	| 'location'
 	| 'logout'
 	| 'menu'
 	| 'menuOn'

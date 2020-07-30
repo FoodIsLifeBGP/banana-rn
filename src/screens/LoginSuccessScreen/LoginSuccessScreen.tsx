@@ -12,7 +12,6 @@ export default () => {
 	const [ state ] = useGlobal();
 	const { user = {} as any, jwt = '' } = state;
 	const { id } = user;
-
 	if (!jwt || !user) { return <Text>Loading...</Text>; }
 
 	switch (user?.account_status) {
