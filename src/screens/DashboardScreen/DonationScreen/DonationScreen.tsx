@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigation } from 'react-navigation-hooks';
 import {
 	View,
-	KeyboardAvoidingView, ScrollView, Platform, Text,
+	KeyboardAvoidingView, ScrollView, Platform, Text, Image,
 } from 'react-native';
 import useGlobal from '@state';
 import {
@@ -10,12 +10,11 @@ import {
 	SpacerInline,
 	FormTextInput,
 	LinkButton,
-	InputLabel, Title, FormImageInput,
 } from '@elements';
 import validate from 'validate.js';
 import { NewDonation } from '@screens/DashboardScreen/DonationScreen/DonationScreen.type';
 import donationConstraints from '@util/constraints/donation';
-import { ImageInfo } from 'expo-image-picker/build/ImagePicker.types';
+import { categoryImage } from '@util/donationCategory';
 import styles from './DonationScreen.styles';
 
 export default () => {
@@ -23,7 +22,6 @@ export default () => {
 	const { user } = state;
 	const [ newDonation, setNewDonation ] = useState<NewDonation>({ pickupInstructions: user.pickup_instructions } as NewDonation);
 	const [ validateError, setValidateError ] = useState({} as any);
-	const [ image, setImage ] = useState({} as ImageInfo);
 	const { postDonation } = actions;
 	const { navigate } = useNavigation();
 
@@ -54,14 +52,9 @@ export default () => {
 		>
 			<NavBar showBackButton={true} />
 			<ScrollView style={styles.scrollContainer}>
+
 				<View style={styles.imageInputContainer}>
-					<FormImageInput
-						label=""
-						value={image}
-						setValue={setImage}
-						status={image?.uri ? 'success' : undefined}
-						shape="circular"
-					/>
+					<Image source={categoryImage(newDonation.category)} style={styles.icon} />
 				</View>
 
 				<SpacerInline height={20} />

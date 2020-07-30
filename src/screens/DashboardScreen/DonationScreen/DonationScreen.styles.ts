@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
 import typography from '@util/typography';
-
-const iconSize = 90;
+import * as colors from '@util/colors';
 
 export default StyleSheet.create({
 	keyboardAvoidContainer: {
@@ -18,6 +17,13 @@ export default StyleSheet.create({
 		width: '100%',
 		justifyContent: 'center',
 		alignItems: 'center',
+	},
+	icon: {
+		height: 60,
+		width: 60,
+		borderRadius: 30,
+		borderColor: colors.NAVY_BLUE,
+		borderWidth: 2,
 	},
 	input: {
 		marginBottom: 14,
