@@ -3,6 +3,7 @@ import { Marker } from 'react-native-maps';
 import { Animated, View } from 'react-native';
 import * as colors from '@util/colors';
 import React, { useEffect, useRef } from 'react';
+import styles from './SelfMarker.styles';
 
 
 interface SelfMarkerProps{
