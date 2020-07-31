@@ -22,6 +22,7 @@ export default () => {
 	const [ state, actions ] = useGlobal() as any;
 	const { user } = state;
 	const [ newDonation, setNewDonation ] = useState<NewDonation>({ pickupInstructions: user.pickup_instructions } as NewDonation);
+	const [ donationComplete, setDonationComplete ] = useState(false);
 	const [ validateError, setValidateError ] = useState({} as any);
 	const [ image, setImage ] = useState({} as ImageInfo);
 	const { postDonation } = actions;
@@ -52,7 +53,10 @@ export default () => {
 			enabled={true}
 			keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
 		>
-			<NavBar showBackButton={true} />
+			<NavBar 
+				showBackButton={true} 
+				preventBack={true}
+				prevBackMessage="incomplete form" />
 			<ScrollView style={styles.scrollContainer}>
 				<View style={styles.imageInputContainer}>
 					<FormImageInput

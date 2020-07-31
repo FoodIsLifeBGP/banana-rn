@@ -12,6 +12,8 @@ import styles from './NavBar.styles';
 
 interface NavBarProps {
 	backDestination?: string;
+	preventBack?: boolean;
+	prevBackMessage?: string;
 	showMenu?: boolean;
 	showBackButton?: boolean;
 	leftButton?: 'qrCode'|'back';
@@ -26,6 +28,8 @@ export default ({
 	showBackButton = true,
 	leftButton = 'back',
 	backDestination,
+	preventBack = false,
+	prevBackMessage,
 	showSelector,
 	position,
 	onMap,
@@ -45,7 +49,17 @@ export default ({
 		<View style={styles.contentContainer}>
 			<View style={styles.backContainer}>
 				{
-					leftButton === 'back' && showBackButton && (
+					leftButton === 'back' && showBackButton && preventBack && (
+					<Button
+						buttonStyle={buttonStyle}
+						onPress={() => { updateAlert({ type: prevBackMessage, dismissable: false }); }}
+					>
+						{foregroundColor => (<Icon size={36} color={foregroundColor} name="back" />)}
+					</Button>
+				)
+				}
+				{
+					leftButton === 'back' && showBackButton && !preventBack && (
 						<Button
 							buttonStyle={buttonStyle}
 							onPress={backDestination ? () => navigate(backDestination) : () => goBack()}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigation } from 'react-navigation-hooks';
 import {
 	Text,
 	View,
@@ -22,6 +23,7 @@ export default ({
 	onYes = () => {},
 	onNo = () => {},
 }: IncompleteFormAlertProps) => {
+	//const { navigate } = useNavigation();
 	const [ globalState, globalActions ] = useGlobal() as any;
 	const { alert: alertObj }: { alert: Alert } = globalState;
 	const { clearAlert } = globalActions;
