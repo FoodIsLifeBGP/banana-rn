@@ -19,6 +19,7 @@ interface NavBarProps {
 	position?: 'map'|'list';
 	onMap?: () => any;
 	onList?: () => any;
+	backButtonFn?: () => void;
 }
 
 export default ({
@@ -30,6 +31,7 @@ export default ({
 	position,
 	onMap,
 	onList,
+	backButtonFn,
 
 }: NavBarProps) => {
 	const { navigate, goBack } = useNavigation();
@@ -48,7 +50,7 @@ export default ({
 					leftButton === 'back' && showBackButton && (
 						<Button
 							buttonStyle={buttonStyle}
-							onPress={backDestination ? () => navigate(backDestination) : () => goBack()}
+							onPress={backButtonFn || (backDestination ? () => navigate(backDestination) : () => goBack())}
 						>
 							{foregroundColor => (<Icon size={36} color={foregroundColor} name="back" />)}
 						</Button>

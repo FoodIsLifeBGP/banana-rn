@@ -19,11 +19,12 @@ import styles from './DonationScreen.styles';
 
 export default () => {
 	const [ state, actions ] = useGlobal() as any;
+	const { updateAlert } = actions;
 	const { user } = state;
 	const [ newDonation, setNewDonation ] = useState<NewDonation>({ pickupInstructions: user.pickup_instructions } as NewDonation);
 	const [ validateError, setValidateError ] = useState({} as any);
 	const { postDonation } = actions;
-	const { navigate } = useNavigation();
+	const { navigate, goBack } = useNavigation();
 
 	const foodCategories: Array<string> = [ 'Bread', 'Dairy', 'Hot Meal', 'Produce', 'Protein', 'Others' ];
 	newDonation.pickupAddress = `${user.address_street} ${user.address_city}, ${user.address_state} ${user.address_zip}`;
@@ -50,7 +51,12 @@ export default () => {
 			enabled={true}
 			keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
 		>
-			<NavBar showBackButton={true} />
+			<NavBar
+				showBackButton={true}
+				backButtonFn={() => {
+					updateAlert({ type: 'incomplete form', dismissable: false, confirmFn: () => goBack() });
+				}}
+			/>
 			<ScrollView style={styles.scrollContainer}>
 
 				<View style={styles.imageInputContainer}>
