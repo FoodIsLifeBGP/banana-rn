@@ -26,9 +26,13 @@ export default () => {
 	const { postDonation } = actions;
 	const { navigate, goBack } = useNavigation();
 
+	const hasUnsavedChanges = Boolean(newDonation.itemName || newDonation.totalAmount);
+
 	const foodCategories: Array<string> = [ 'Bread', 'Dairy', 'Hot Meal', 'Produce', 'Protein', 'Others' ];
 	newDonation.pickupAddress = `${user.address_street} ${user.address_city}, ${user.address_state} ${user.address_zip}`;
-
+	const preventBack = () => {
+		updateAlert({ type: 'incomplete form', dismissable: false, confirmFn: () => goBack() });
+	}
 	const validateInputs = async () => {
 		const validateResults = validate(newDonation, donationConstraints);
 		if (validateResults) {
@@ -53,9 +57,7 @@ export default () => {
 		>
 			<NavBar
 				showBackButton={true}
-				backButtonFn={() => {
-					updateAlert({ type: 'incomplete form', dismissable: false, confirmFn: () => goBack() });
-				}}
+				backButtonFn={hasUnsavedChanges ? preventBack : undefined}
 			/>
 			<ScrollView style={styles.scrollContainer}>
 
