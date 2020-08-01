@@ -37,14 +37,6 @@ export default () => {
 	const getDate = () => new Date().toDateString().slice(4).split(' ')
 		.join('/');
 
-	/* Random data */
-	const data = {
-		date: getDate(),
-		time: getTime(),
-		by: 'Ernest Bruno',
-		name: 'Banana',
-	};
-
 	const getPermissions = async () => {
 		const { status } = await Permissions.askAsync(Permissions.CAMERA);
 		setHasCameraPermission(status === 'granted');
@@ -53,6 +45,13 @@ export default () => {
 	const handleBarCodeScanned = barcode => {
 		setScanned(barcode);
 		setModalOn(true);
+	};
+
+	const data = {
+		date: getDate(),
+		time: getTime(),
+		by: 'Ernest Bruno',
+		name: 'LUL',
 	};
 
 	// Triggers when user clicks outside of modal.
@@ -65,8 +64,9 @@ export default () => {
 
 	// Switch for Modal Content.
 	const ModalContent = () => {
-		switch (scanned.data) {
-			case ('Banana'): return (
+		let content;
+		if (scanned.data) {
+			content = (
 				<>
 					<Modal title="ITEM DONATED" open={modalOn} onDismiss={handleDismiss} palette="secondary">
 						<View style={styles.content}>
@@ -100,7 +100,8 @@ export default () => {
 					</Modal>
 				</>
 			);
-			case ('Error'): return (
+		} else {
+			content = (
 				<>
 					<Modal title="SOMETHING WENT WRONG" open={modalOn} onDismiss={handleDismiss} palette="secondary">
 						<View style={styles.content}>
@@ -122,8 +123,8 @@ export default () => {
 					</Modal>
 				</>
 			);
-			default: return (<></>);
 		}
+		return content;
 	};
 
 	const ScannerContent = () => {
