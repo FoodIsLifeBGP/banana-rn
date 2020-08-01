@@ -26,7 +26,7 @@ export default () => {
 	const { postDonation } = actions;
 	const { navigate, goBack } = useNavigation();
 
-	const hasUnsavedChanges = Boolean(newDonation.itemName || newDonation.totalAmount);
+	const hasUnsavedChanges = Boolean(newDonation.itemName || newDonation.totalAmount || newDonation.pickupInstructions !== user.pickup_instructions);
 
 	const foodCategories: Array<string> = [ 'Bread', 'Dairy', 'Hot Meal', 'Produce', 'Protein', 'Others' ];
 	newDonation.pickupAddress = `${user.address_street} ${user.address_city}, ${user.address_state} ${user.address_zip}`;
