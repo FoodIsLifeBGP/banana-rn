@@ -32,7 +32,7 @@ export default () => {
 	newDonation.pickupAddress = `${user.address_street} ${user.address_city}, ${user.address_state} ${user.address_zip}`;
 	const preventBack = () => {
 		updateAlert({ type: 'incomplete form', dismissable: false, confirmFn: () => goBack() });
-	}
+	};
 	const validateInputs = async () => {
 		const validateResults = validate(newDonation, donationConstraints);
 		if (validateResults) {
