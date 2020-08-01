@@ -8,25 +8,9 @@ import {
 } from 'react-native';
 import { Icon } from '@elements';
 import typography from '@util/typography';
+import { categoryImage } from '@util/donationCategory';
 import { Donation } from './DonationOrClaim.type';
 import styles from './DonationOrClaim.styles';
-
-const getImageForCategory = (category: string) => {
-	switch (category) {
-		case 'Bread':
-			return require('@assets/images/Stock-image-bread.png');
-		case 'Dairy':
-			return require('@assets/images/Stock-image-dairy.png');
-		case 'Hot Meal':
-			return require('@assets/images/Stock-image-meals.png');
-		case 'Produce':
-			return require('@assets/images/Stock-image-produce.png');
-		case 'Protein':
-			return require('@assets/images/Stock-image-protein.png');
-		default:
-			return require('@assets/images/Stock-image-others.png');
-	}
-};
 
 export default ({ donation }: Donation) => {
 	const { navigate } = useNavigation();
@@ -36,8 +20,9 @@ export default ({ donation }: Donation) => {
 		duration_minutes,
 		food_name,
 		id,
+		distance,
 	} = donation;
-	const icon = getImageForCategory(category);
+	const icon = categoryImage(category);
 
 	const startTime = new Date(created_at);
 	const now = new Date();
@@ -46,9 +31,7 @@ export default ({ donation }: Donation) => {
 		? duration_minutes - minutesElapsed
 		: 0;
 
-	// TODO: Get organization name and distance for donor.
-	const organization_name = 'Unknown';
-	const distance = 0.0;
+	const { donor_name } = donation.donor;
 
 	return (
 		<TouchableOpacity
@@ -65,11 +48,10 @@ export default ({ donation }: Donation) => {
 					<View style={styles.infoContainer}>
 						<Text style={typography.h3}>{food_name}</Text>
 						<View style={styles.infoBottomContainer}>
-							{/* TODO: Add pindrop icon. */}
-							<Icon name="arrowDown" size={18} />
-							<Text style={[ typography.body3, { fontSize: 18, marginHorizontal: 4 } ]}>{organization_name}</Text>
+							<Icon name="location" size={18} />
+							<Text style={[ typography.body3, { fontSize: 18, marginHorizontal: 4 } ]}>{donor_name}</Text>
 							<Icon name="distance" size={18} />
-							<Text style={[ typography.body3, { fontSize: 18, marginHorizontal: 4 } ]}>{`${distance.toFixed(1)} mi`}</Text>
+							<Text style={[ typography.body3, { fontSize: 18, marginHorizontal: 4 } ]}>{distance && `${distance.toFixed(1)} mi`}</Text>
 						</View>
 					</View>
 				</View>

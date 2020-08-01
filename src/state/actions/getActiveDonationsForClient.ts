@@ -1,8 +1,8 @@
 import railsAxios from '@util/railsAxios';
 
 export const getActiveDonationsForClient = async store => {
-	const { jwt } = store.state;
-	const endpoint = '/donations/active';
+	const { jwt, user } = store.state;
+	const endpoint = `/donations/active?client_lat=${user.coords.latitude}&client_long=${user.coords.longitude}`;
 	try {
 		const response = await railsAxios(jwt).get(endpoint);
 		const { data } = response;

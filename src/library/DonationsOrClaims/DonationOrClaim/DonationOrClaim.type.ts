@@ -27,5 +27,9 @@ export interface Donation {
 		pickup_location: string;
 		total_amount: number;
 		status: string;
+		distance: number;
+		donor: {
+			donor_name: string;
+		};
 	};
 }
