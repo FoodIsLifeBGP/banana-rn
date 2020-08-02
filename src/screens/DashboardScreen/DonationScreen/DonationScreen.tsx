@@ -19,15 +19,20 @@ import styles from './DonationScreen.styles';
 
 export default () => {
 	const [ state, actions ] = useGlobal() as any;
+	const { updateAlert } = actions;
 	const { user } = state;
 	const [ newDonation, setNewDonation ] = useState<NewDonation>({ pickupInstructions: user.pickup_instructions } as NewDonation);
 	const [ validateError, setValidateError ] = useState({} as any);
 	const { postDonation } = actions;
-	const { navigate } = useNavigation();
+	const { navigate, goBack } = useNavigation();
+
+	const hasUnsavedChanges = Boolean(newDonation.itemName || newDonation.totalAmount || newDonation.pickupInstructions !== user.pickup_instructions);
 
 	const foodCategories: Array<string> = [ 'Bread', 'Dairy', 'Hot Meal', 'Produce', 'Protein', 'Others' ];
 	newDonation.pickupAddress = `${user.address_street} ${user.address_city}, ${user.address_state} ${user.address_zip}`;
-
+	const preventBack = () => {
+		updateAlert({ type: 'incomplete form', dismissable: false, confirmFn: () => goBack() });
+	};
 	const validateInputs = async () => {
 		const validateResults = validate(newDonation, donationConstraints);
 		if (validateResults) {
@@ -50,7 +55,10 @@ export default () => {
 			enabled={true}
 			keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
 		>
-			<NavBar showBackButton={true} />
+			<NavBar
+				showBackButton={true}
+				backButtonFn={hasUnsavedChanges ? preventBack : undefined}
+			/>
 			<ScrollView style={styles.scrollContainer}>
 
 				<View style={styles.imageInputContainer}>
