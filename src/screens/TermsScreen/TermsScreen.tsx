@@ -6,12 +6,13 @@ import {
 	NavBar,
 	LinkButton,
 } from '@elements';
+import getEnv from '@util/environment';
 import Terms from '@assets/documents/SampleToS';
 import ScrollContainer from '../../elements/ScrollContainer/ScrollContainer';
 import styles from './TermsScreen.styles';
 
 export default () => {
-	const [button, setButton] = useState(true);
+	const [ button, setButton ] = useState(true);
 	return (
 		<>
 			<View style={styles.titleContainer}>
@@ -22,7 +23,7 @@ export default () => {
 			<View style={styles.outerContainer}>
 				<SpacerInline height={20} />
 				<ScrollContainer
-					documentText={Terms}
+					documentText={getEnv().USER_IDENTITY === 'client' ? Terms.client : Terms.donor}
 					onScrollToEnd={() => { setButton(false); }}
 				/>
 				<SpacerInline height={40} />
