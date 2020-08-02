@@ -17,7 +17,7 @@ Go to your project's root folder in Terminal (`cd ~/Desktop/the-banana-app`) and
 - `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash`
 - `nvm --version` (if this doesn't give an error, the previous command worked)
 - `nvm install node`
-- `npm i -g expo-cli`
+- `npm i -g expo-cli@3.23.0` (NOTE- the most recent version of expo-cli (3.23.1) currently does not work)
 
 Once those are complete, run:
 
