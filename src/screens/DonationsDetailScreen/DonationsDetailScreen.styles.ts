@@ -124,6 +124,10 @@ export default StyleSheet.create({
 		alignItems: 'center',
 		color: colors.NAVY_BLUE,
 	},
+	claimInfo: {
+		alignSelf: 'flex-start',
+		alignItems: 'center',
+	},
 
 
 });
