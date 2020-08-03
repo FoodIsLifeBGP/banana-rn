@@ -66,7 +66,7 @@ const MakeClaimScreen = () => {
 						</View>
 						<View style={claimStyles.itemWithIcon}>
 							<Icon name="distance" size={16} />
-							<Text style={typography.body4}>TODO: ??mi</Text>
+							<Text style={typography.body4}>{donation.distance && `${donation.distance.toFixed(1)} mi`}</Text>
 						</View>
 					</View>
 					<View style={claimStyles.section}>

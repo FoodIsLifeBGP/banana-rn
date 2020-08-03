@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useIsFocused } from 'react-navigation-hooks';
-import {
-	ScrollView, View, Text,
-} from 'react-native';
-import { Divider } from 'react-native-paper';
+import { ScrollView, Text, View } from 'react-native';
 import useGlobal from '@state';
-import { SpacerInline, EmptyStateView } from '@elements';
+import { EmptyStateView, SpacerInline } from '@elements';
 import DonationOrClaim from './DonationOrClaim';
 
 interface LocalProps {
@@ -19,9 +16,9 @@ export default ({ resource }: LocalProps) => {
 	const [ donationsOrClaims, setDonationsOrClaims ] = useState(state.donationsOrClaims);
 	const [ loaded, setLoaded ] = useState(false);
 
-	const getDonationsOrClaimsFromApi = () => {
+	const getDonationsOrClaimsFromApi = async () => {
 		const { getDonationsOrClaims, getActiveDonationsForClient, getLocation } = actions;
-		getLocation();
+		await getLocation();
 		const { userIdentity } = state;
 		const method = userIdentity === 'client' && resource === 'donations' ? getActiveDonationsForClient : getDonationsOrClaims;
 		return method(resource);
