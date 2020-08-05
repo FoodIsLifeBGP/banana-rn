@@ -1,23 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import * as colors from '@util/colors';
 import { useNavigation } from 'react-navigation-hooks';
-import { Text, View, StyleSheet } from 'react-native';
+import {
+	Text,
+	View,
+	StyleSheet,
+	Image,
+} from 'react-native';
 import * as Permissions from 'expo-permissions';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
+import useGlobal from '@state';
+
 import { Modal, TextButton, Icon } from '@elements';
 import { ButtonStyle } from '@elements/Button';
+import { categoryImage } from '@util/donationCategory';
 
 import BarCodeMask from './BarCodeMask';
 import styles from './QRCodeScannerScreen.styles';
 
 export default () => {
 	const { goBack } = useNavigation();
+	const [ state, actions ] = useGlobal() as any;
+	const { scan } = actions;
 	const [ hasCameraPermission, setHasCameraPermission ] = useState(false);
-	// Default value of data with empty string
-	// QR code's data prop usually holds a string.
-	const [ scanned, setScanned ] = useState({ data: '' });
 	const [ modalOn, setModalOn ] = useState(false);
+	const [ claimedDonation, setClaimedDonation ] = useState({ food_name: '', claim: { client_name: '' } });
+	// TBD.
+	// const [ scannerActive, setScannerActive ] = useState(true);
+	const [ icon, setIcon ] = useState(() => categoryImage(''));
+
 
 	const buttonStyle: ButtonStyle = {
 		default: {
@@ -37,57 +49,60 @@ export default () => {
 	const getDate = () => new Date().toDateString().slice(4).split(' ')
 		.join('/');
 
-	/* Random data */
-	const data = {
-		date: getDate(),
-		time: getTime(),
-		by: 'Ernest Bruno',
-		name: 'Banana',
-	};
-
 	const getPermissions = async () => {
 		const { status } = await Permissions.askAsync(Permissions.CAMERA);
 		setHasCameraPermission(status === 'granted');
 	};
 
 	const handleBarCodeScanned = barcode => {
-		setScanned(barcode);
-		setModalOn(true);
+		const match = state.donationsOrClaims.filter(d => d.status === 'claimed' && d.claim.qr_code === barcode.data);
+		if (match[0]) {
+			// TBD
+			// setScannerActive(false);
+			scan(barcode.data).then(res => {
+				if (res === 202) {
+					setClaimedDonation(match[0]);
+					setIcon(categoryImage(match[0].category));
+					setModalOn(true);
+				}
+			});
+		} else {
+			setModalOn(true);
+			console.log('No match found');
+		}
 	};
 
 	// Triggers when user clicks outside of modal.
 	// Resets value of scanned, and sets modalOn to false.
 	const handleDismiss = () => {
-		setScanned({ data: '' });
+		setClaimedDonation({ food_name: '', claim: { client_name: '' } });
 		setModalOn(false);
 		goBack();
 	};
 
 	// Switch for Modal Content.
 	const ModalContent = () => {
-		switch (scanned.data) {
-			case ('Banana'): return (
+		let content;
+		if (claimedDonation.food_name) {
+			content = (
 				<>
 					<Modal title="ITEM DONATED" open={modalOn} onDismiss={handleDismiss} palette="secondary">
 						<View style={styles.content}>
-							{/* Placeholder for the item photo */}
-							<View style={styles.circle} />
-							<Text
-								style={{ ...styles.textStyle, fontWeight: 'bold', marginBottom: 5 }}
-							>
-								{data.name.toUpperCase()}
+							<Image source={icon} style={styles.icon} />
+							<Text style={styles.claimTitle}>
+								{claimedDonation.food_name}
 							</Text>
-							<View style={styles.textContainer}>
+							<View style={{ ...styles.textContainer, marginBottom: -100 }}>
 								<Icon name="user" color="blue" size={20} />
 								<Text style={styles.textStyle}>
-									{data.by}
+									{claimedDonation.claim.client_name}
 								</Text>
 							</View>
-							<View style={{ ...styles.textContainer, marginBottom: 20 }}>
+							<View style={{ ...styles.textContainer, marginTop: 'auto', marginBottom: -80 }}>
 								<Icon name="time" color="blue" size={20} />
 								<Text style={styles.textStyle}>
-									{data.time}
-									{data.date}
+									{getTime()}
+									{getDate()}
 								</Text>
 							</View>
 							<TextButton
@@ -100,12 +115,12 @@ export default () => {
 					</Modal>
 				</>
 			);
-			case ('Error'): return (
+		} else {
+			content = (
 				<>
 					<Modal title="SOMETHING WENT WRONG" open={modalOn} onDismiss={handleDismiss} palette="secondary">
 						<View style={styles.content}>
-							{/* Placeholder for the item photo */}
-							<View style={styles.circle} />
+							<Image source={icon} style={styles.icon} />
 							<Text style={{ ...styles.textStyle, fontWeight: 'bold' }}>PLEASE TRY AGAIN</Text>
 							<View style={{ ...styles.errorContainer, marginVertical: 20 }}>
 								<Text style={styles.errorStyle}>QR Code Scan was not successful.</Text>
@@ -122,14 +137,15 @@ export default () => {
 					</Modal>
 				</>
 			);
-			default: return (<></>);
 		}
+		return content;
 	};
 
 	const ScannerContent = () => {
 		switch (hasCameraPermission) {
 			case true: return (
 				<>
+					{/* scannerActive conditional goes here  */}
 					<BarCodeScanner
 						onBarCodeScanned={handleBarCodeScanned}
 						style={StyleSheet.absoluteFillObject}
