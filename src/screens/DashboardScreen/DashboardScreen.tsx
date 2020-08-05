@@ -8,13 +8,7 @@ import styles from './DashboardScreen.styles';
 import DonorDashboardScreen from '../DonorDashboardScreen';
 
 const DashboardScreen = () => {
-	const [ state ] = useGlobal();
-	const { userIdentity } = state;
 	const resource: 'donations' | 'claims' = useNavigationParam('resource') || 'donations';
-
-	if (userIdentity === 'donor') {
-		return DonorDashboardScreen();
-	}
 
 	const title = (resource === 'donations') ? 'Donations' : 'Claims';
 
