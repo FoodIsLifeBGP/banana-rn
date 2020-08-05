@@ -6,28 +6,28 @@ import useGlobal from '@state';
 import {
 	EmptyStateView, NavBar, SpacerInline, Title,
 } from '@elements';
-import styles from './DashboardScreen.styles';
+import styles from './ClientClaimsScreen.styles';
 
-const DashboardScreen = () => {
+const ClientClaimsScreen = () => {
 	const isFocused = useIsFocused();
 	const [ state, actions ] = useGlobal() as any;
 
-	const [ donations, setDonations ] = useState(state.donationsOrClaims);
+	const [ claimedDonations, setClaimedDonations ] = useState(state.donationsOrClaims);
 	const [ loaded, setLoaded ] = useState(false);
 
-	const getActiveDonationsForLocation = async () => {
-		const { getActiveDonationsForClient, getLocation } = actions;
+	const getClaims = async () => {
+		const { getClaimedDonationsForClient, getLocation } = actions;
 		await getLocation();
-		const data = await getActiveDonationsForClient();
+		const data = await getClaimedDonationsForClient();
 		if (data) {
-			setDonations(data);
+			setClaimedDonations(data);
 			setLoaded(true);
 		}
 	};
 
 	useEffect(() => {
 		if (isFocused) {
-			getActiveDonationsForLocation();
+			getClaims();
 		}
 	}, [ isFocused ]);
 
@@ -35,7 +35,7 @@ const DashboardScreen = () => {
 		<View style={styles.outerContainer}>
 
 			<NavBar
-				showBackButton={false}
+				showBackButton={true}
 				showSelector={true}
 				onMap={() => {}}
 				onList={() => {}}
@@ -43,24 +43,19 @@ const DashboardScreen = () => {
 			/>
 
 			<View style={styles.contentContainer}>
-				<Title text="Donations" />
+				<Title text="Claims" />
 				<SpacerInline height={20} />
 				{ !loaded && <Text>Loading...</Text> }
-				{ loaded && !state.user.coords && !state.user.alert && (
-					<EmptyStateView
-						upperText="We are unable to get your current location."
-						lowerText="Please check your app settings to make sure location permissions are enabled."
-					/>
-				)}
-				{loaded && donations && Array.isArray(donations) && donations.length > 0
+				{loaded && claimedDonations && Array.isArray(claimedDonations) && claimedDonations.length > 0
 					? (
 						<ScrollView>
 							{
-								(donations as any).map(donation => (
-									<View key={donation.id}>
+								(claimedDonations as any).map(claimedDonation => (
+									<View key={claimedDonation.id}>
 										<Donation
-											donation={donation}
-											key={donation.id}
+											donation={claimedDonation}
+											key={claimedDonation.id}
+											isClaim={true}
 										/>
 									</View>
 								))
@@ -69,8 +64,7 @@ const DashboardScreen = () => {
 						</ScrollView>
 					) : (
 						<EmptyStateView
-							upperText="No available donations near you."
-							lowerText={'We will notify you when new donations are available.\nOR\nPlease check back later.'}
+							upperText="You don't currently have any outstanding claimed donations."
 						/>
 					)}
 			</View>
@@ -79,4 +73,4 @@ const DashboardScreen = () => {
 	);
 };
 
-export default DashboardScreen;
+export default ClientClaimsScreen;
