@@ -25,6 +25,7 @@ export interface Donation {
 		status: string;
 		donor: DonorAddress['donor'];
 	};
+	h?: boolean;
 }
 
 export interface DonorAddress {
