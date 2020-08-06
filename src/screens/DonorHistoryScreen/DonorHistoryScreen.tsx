@@ -44,7 +44,7 @@ const DonorHistoryScreen = () => {
 				</View>
 				{(donations && donations.length > 0) ? (
 					<ScrollView>
-						{(donations as any).sort((a, b) => a.created_at < b.created_at).map((donation, i) => (
+						{(donations as any).sort((a, b) => a.created_at < b.created_at).map(donation => (
 							<View key={donation.id}>
 								<Donation
 									donation={donation}
