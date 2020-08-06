@@ -18,6 +18,7 @@ import QRCodeScannerScreen from '../screens/QRCodeScannerScreen/QRCodeScannerScr
 import LogoutScreen from '../screens/LogoutScreen';
 import DonationsDetailScreen from '../screens/DonationsDetailScreen/DonationsDetailScreen';
 import DonorDonationScreen from '../screens/DonorDashboardScreen/DonorDonationScreen';
+import DonorHistoryScreen from '../screens/DonorHistoryScreen/DonorHistoryScreen';
 
 import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
 import MainOption from '../elements/MenuDrawer/MainOption/MainOption';
@@ -31,6 +32,7 @@ export const MainStack = createStackNavigator(
 		LoginSuccessScreen,
 		DonationScreen,
 		DonorDonationScreen,
+		DonorHistoryScreen,
 		QRCodeScannerScreen,
 		ClaimDetailsScreen,
 		MakeClaimScreen,
@@ -67,7 +69,7 @@ const donorOrClientDrawer = () => {
 			},
 		},
 		History: {
-			screen: MainStack,
+			screen: DonorHistoryScreen,
 			navigationOptions: {
 				drawerLabel: <SubOption text="History" />,
 			},
