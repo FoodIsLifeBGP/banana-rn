@@ -1,6 +1,9 @@
 import { StyleSheet } from 'react-native';
 import * as colors from '@util/colors';
 
+const iconSize = 70;
+const imageSize = iconSize * 0.90;
+
 export default StyleSheet.create({
 	container: {
 		flex: 1,
@@ -18,10 +21,7 @@ export default StyleSheet.create({
 	},
 	textContainer: {
 		flex: 1,
-		marginVertical: 3,
 		color: colors.NAVY_BLUE,
-		justifyContent: 'center',
-		alignItems: 'center',
 		flexDirection: 'row',
 	},
 	textStyle: {
@@ -40,14 +40,21 @@ export default StyleSheet.create({
 	},
 	buttonTextStyle: {
 		fontSize: 12,
-		paddingHorizontal: 15,
+		paddingHorizontal: 25,
 	},
-	circle: {
-		height: 75,
-		width: 75,
+	icon: {
+		height: imageSize,
+		width: imageSize,
+		borderRadius: (imageSize / 2),
+		borderColor: colors.NAVY_BLUE,
 		borderWidth: 2,
-		borderColor: 'blue',
-		borderRadius: 50,
-		marginBottom: 10,
+		marginBottom: 15,
+	},
+	claimTitle: {
+		color: colors.NAVY_BLUE,
+		marginLeft: 3,
+		fontWeight: 'bold',
+		marginBottom: 15,
+		fontSize: 20,
 	},
 });
