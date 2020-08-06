@@ -61,6 +61,7 @@ const DashboardScreen = () => {
 										<Donation
 											donation={donation}
 											key={donation.id}
+											isClaim={false}
 										/>
 									</View>
 								))

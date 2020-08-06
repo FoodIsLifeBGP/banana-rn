@@ -13,6 +13,9 @@ export interface Donation {
 	total_amount: number;
 	status: string;
 	distance: number;
+	claim: {
+		qr_code: string;
+	};
 	donor: {
 		donor_name: string;
 	};
