@@ -34,7 +34,7 @@ export default ({ donation, isClaim }: ClientDonationProps) => {
 			onPress={() => (!isClaim ? navigate('MakeClaimScreen', { donation, id })
 				: navigate('ClaimDetailsScreen', { donation }))}
 		>
-			<View style={styles.card}>
+			<View style={[ styles.card, { backgroundColor: !isClaim ? '#F0EEEE' : '#FFE145' } ]}>
 				<View style={styles.categoryText}>
 					<Text style={typography.h4}>{category}</Text>
 				</View>
