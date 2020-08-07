@@ -5,15 +5,16 @@ import { Text, View, StyleSheet } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
-import { Modal, TextButton, Icon } from '@elements';
+import { Modal, TextButton, Icon, LinkButton } from '@elements';
 import { ButtonStyle } from '@elements/Button';
+import openAppSettings from '@util/openAppSettings';
 
 import BarCodeMask from './BarCodeMask';
 import styles from './QRCodeScannerScreen.styles';
 
 export default () => {
 	const { goBack } = useNavigation();
-	const [ hasCameraPermission, setHasCameraPermission ] = useState(false);
+	const [ hasCameraPermission, setHasCameraPermission ] = useState<boolean | null>(null);
 	// Default value of data with empty string
 	// QR code's data prop usually holds a string.
 	const [ scanned, setScanned ] = useState({ data: '' });
@@ -48,6 +49,7 @@ export default () => {
 	const getPermissions = async () => {
 		const { status } = await Permissions.askAsync(Permissions.CAMERA);
 		setHasCameraPermission(status === 'granted');
+		console.log(status);
 	};
 
 	const handleBarCodeScanned = barcode => {
@@ -138,7 +140,17 @@ export default () => {
 					<ModalContent />
 				</>
 			);
-			case false: return <Text>No access to camera</Text>;
+			case false: return (
+				<>
+					<Text>No access to camera</Text>
+					<Text>The app needs access to the camera to scan QR codes.</Text>
+					<LinkButton
+						text="Open Settings"
+						onPress={() => openAppSettings().then(getPermissions)}
+					/>
+					<LinkButton text="Go Back" onPress={() => goBack()}/>
+				</>
+			);
 			default: return <Text>Requesting permission to access camera</Text>;
 		}
 	};
