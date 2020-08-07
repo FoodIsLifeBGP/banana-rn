@@ -8,7 +8,6 @@ export default StyleSheet.create({
 	card: {
 		flexDirection: 'column',
 		alignItems: 'flex-start',
-		backgroundColor: 'lightgray',
 		marginBottom: 10,
 		padding: 10,
 		borderRadius: 16,
