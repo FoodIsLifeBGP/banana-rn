@@ -21,7 +21,9 @@ const DonorHistoryScreen = () => {
 				address_city: user.address_city,
 				address_zip: user.address_zip,
 			};
-			const tempDonations = state.user.donations.map(d => ({ ...d, donor }));
+			const tempDonations = state.user.donations
+				.filter(d => [ 'closed', 'expired' ].includes(d.status))
+				.map(d => ({ ...d, donor }));
 			setDonations(tempDonations);
 		}
 	}, [ isFocused ]);
@@ -44,12 +46,12 @@ const DonorHistoryScreen = () => {
 				</View>
 				{(donations && donations.length > 0) ? (
 					<ScrollView>
-						{(donations as any).sort((a, b) => a.created_at < b.created_at).map(donation => (
+						{(donations as any).sort((a, b) => a.created_at > b.created_at).map(donation => (
 							<View key={donation.id}>
 								<Donation
 									donation={donation}
 									key={donation.id}
-									h={true}
+									isHistory={true}
 								/>
 							</View>
 						))}

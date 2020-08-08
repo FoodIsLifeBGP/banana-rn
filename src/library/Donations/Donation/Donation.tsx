@@ -8,25 +8,23 @@ import {
 } from 'react-native';
 import typography from '@util/typography';
 import { categoryImage } from '@util/donationCategory';
+import formatDate from '@util/formatDate';
 import { Icon } from '@elements';
 import { Donation } from './Donation.type';
 import styles from './Donation.styles';
 
-export default ({ donation, h }: Donation) => {
+export default ({ donation, isHistory }: Donation) => {
 	const { navigate } = useNavigation();
 	const {
 		food_name,
 		id,
 		total_amount,
 		category,
-		created_at,
+		updated_at,
 	} = donation;
 
 	const icon = categoryImage(category);
-	const date = new Date(created_at);
-	const mm = date.getMonth() < 10 ? `0${date.getMonth()}` : date.getMonth();
-	const dd = date.getDay() < 10 ? `0${date.getDay()}` : date.getMonth();
-	const yyyy = date.getFullYear();
+	const updatedAt = formatDate(updated_at);
 
 
 	return (
@@ -46,10 +44,10 @@ export default ({ donation, h }: Donation) => {
 						<Text style={typography.h3}>{food_name}</Text>
 					</View>
 					<View>
-						{h ? (
+						{isHistory ? (
 							<View style={{ flexDirection: 'row' }}>
 								<Icon name="time" color="blue" size={20} />
-								<Text style={{ ...typography.h5, marginLeft: 5 }}>{`${mm}/${dd}/${yyyy}`}</Text>
+								<Text style={{ ...typography.h5, marginLeft: 5 }}>{updatedAt}</Text>
 							</View>
 						) : <Text style={typography.h5}>{`about ${total_amount}`}</Text>}
 					</View>
