@@ -25,7 +25,7 @@ const DonationsDetailScreen = () => {
 		if (responseCode !== 202) {
 			console.log('Handle this error better');
 		} else {
-			navigate('DashboardScreen');
+			navigate('DonorDashboardScreen');
 		}
 	};
 

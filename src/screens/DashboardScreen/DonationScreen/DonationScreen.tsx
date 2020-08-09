@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useNavigation } from 'react-navigation-hooks';
 import {
 	View,
-	KeyboardAvoidingView, ScrollView, Platform, Text, Image,
+	KeyboardAvoidingView, ScrollView, Platform, Text, Image, TextInput,
 } from 'react-native';
 import useGlobal from '@state';
 import {
@@ -21,15 +21,22 @@ export default () => {
 	const [ state, actions ] = useGlobal() as any;
 	const { updateAlert } = actions;
 	const { user } = state;
-	const [ newDonation, setNewDonation ] = useState<NewDonation>({ pickupInstructions: user.pickup_instructions } as NewDonation);
+	const foodCategories: Array<string> = [ 'Bread', 'Dairy', 'Hot Meal', 'Produce', 'Protein', 'Others' ];
+	const emptyDonation: NewDonation = {
+		pickupAddress: `${user.address_street} ${user.address_city}, ${user.address_state} ${user.address_zip}`,
+		category: foodCategories[0],
+		itemName: '',
+		pickupInstructions: user.pickup_instructions,
+		totalAmount: '',
+	};
+
+	const [ newDonation, setNewDonation ] = useState<NewDonation>(emptyDonation);
 	const [ validateError, setValidateError ] = useState({} as any);
 	const { postDonation } = actions;
+
 	const { navigate, goBack } = useNavigation();
 
 	const hasUnsavedChanges = Boolean(newDonation.itemName || newDonation.totalAmount || newDonation.pickupInstructions !== user.pickup_instructions);
-
-	const foodCategories: Array<string> = [ 'Bread', 'Dairy', 'Hot Meal', 'Produce', 'Protein', 'Others' ];
-	newDonation.pickupAddress = `${user.address_street} ${user.address_city}, ${user.address_state} ${user.address_zip}`;
 	const preventBack = () => {
 		updateAlert({ type: 'incomplete form', dismissable: false, confirmFn: () => goBack() });
 	};
@@ -41,7 +48,8 @@ export default () => {
 			setValidateError({});
 			const result = await postDonation(newDonation);
 			if (result === 201) {
-				navigate('DashboardScreen');
+				setNewDonation(emptyDonation);
+				navigate('DonorDashboardScreen');
 			} else {
 				// TODO: communicate failures better
 				console.log('There was a problem creating the donation');
@@ -80,11 +88,11 @@ export default () => {
 					label="Food Category"
 					dropdownData={foodCategories}
 					setValue={s => setNewDonation({ ...newDonation, category: s })}
+					defaultValue={foodCategories[0]}
 					value={newDonation.category}
 					type="dropdown"
 					error={!!validateError.category}
 					errorMessage={validateError.category}
-					placeholder="Select one"
 				/>
 
 				<FormTextInput
