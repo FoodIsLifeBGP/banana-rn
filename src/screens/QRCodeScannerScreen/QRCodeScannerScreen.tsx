@@ -53,7 +53,6 @@ export default () => {
 	const getPermissions = async () => {
 		const { status } = await Permissions.askAsync(Permissions.CAMERA);
 		setHasCameraPermission(status === 'granted');
-		console.log(status);
 	};
 
 	const handleBarCodeScanned = barcode => {
