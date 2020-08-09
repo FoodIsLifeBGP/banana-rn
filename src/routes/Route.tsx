@@ -9,6 +9,7 @@ import getEnv from '@util/environment';
 import MakeClaimScreen from '../screens/MakeClaimScreen/MakeClaimScreen';
 import LoginScreen from '../screens/LoginScreen';
 import DashboardScreen from '../screens/DashboardScreen';
+import DonorDashboardScreen from '../screens/DonorDashboardScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
 import TermsScreen from '../screens/TermsScreen';
 import ContactScreen from '../screens/ContactScreen';
@@ -23,11 +24,14 @@ import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
 import MainOption from '../elements/MenuDrawer/MainOption/MainOption';
 import SubOption from '../elements/MenuDrawer/SubOption/SubOption';
 import ClaimDetailsScreen from '../screens/ClaimDetailsScreen/ClaimDetailsScreen';
+import ClientClaimsScreen from '../screens/ClientClaimsScreen';
 
 // Logged-In Screens for Drawer Navigator
 export const MainStack = createStackNavigator(
 	{
 		DashboardScreen,
+		ClientClaimsScreen,
+		DonorDashboardScreen,
 		LoginSuccessScreen,
 		DonationScreen,
 		DonorDonationScreen,
@@ -49,63 +53,31 @@ const donorOrClientDrawer = () => {
 
 	const DONOR_MENU = {
 		QRCodeScannerScreen: {
-			screen: QRCodeScannerScreen,
+			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: <MainOption text="Scan QR Code" icon="qrCode" />,
 			},
 		},
-		DashboardScreen: {
+		DonorDashboardScreen: {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: <MainOption text="Donations" icon="claims" />,
 			},
 		},
-		Active: {
-			screen: MainStack,
-			navigationOptions: {
-				drawerLabel: <SubOption text="Active" />,
-			},
-		},
-		History: {
-			screen: MainStack,
-			navigationOptions: {
-				drawerLabel: <SubOption text="History" />,
-			},
-		},
 	};
 
 	const CLIENT_MENU = {
-		DonationScreen: {
+		DashboardScreen: {
 			screen: MainStack,
-			params: {
-				resource: 'donations',
-			},
 			navigationOptions: {
 				drawerLabel: <MainOption text="Donations" icon="donations" />,
 			},
 		},
 
-		ClaimsScreen: {
+		ClientClaimsScreen: {
 			screen: MainStack,
-			params: {
-				resource: 'claims',
-			},
 			navigationOptions: {
 				drawerLabel: <MainOption text="Claims" icon="claims" />,
-			},
-		},
-
-		Pending: {
-			screen: MainStack,
-			navigationOptions: {
-				drawerLabel: <SubOption text="Pending" />,
-			},
-		},
-
-		History: {
-			screen: MainStack,
-			navigationOptions: {
-				drawerLabel: <SubOption text="History" />,
 			},
 		},
 	};

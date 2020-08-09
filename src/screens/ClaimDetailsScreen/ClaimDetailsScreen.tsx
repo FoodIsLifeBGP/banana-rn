@@ -12,11 +12,10 @@ import claimStyles from '@util/claimStyles';
 import styles from './ClaimDetailsScreen.styles';
 
 
-const ClaimDetailsScreen = () => {
-	const { navigate } = useNavigation();
+export default () => {
+	const { navigate, goBack } = useNavigation();
 	const donation = useNavigationParam('donation');
-	const claim = useNavigationParam('claim');
-	const { donor } = donation;
+	const { donor, claim } = donation;
 
 	const claimBtnStyle: ButtonStyle = {
 		default: {
@@ -93,10 +92,5 @@ const ClaimDetailsScreen = () => {
 				</View>
 			</ScrollView>
 		</View>
-
-
 	);
 };
-
-
-export default ClaimDetailsScreen;

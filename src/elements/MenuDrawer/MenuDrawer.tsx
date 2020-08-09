@@ -16,7 +16,7 @@ const MenuDrawer = props => {
 	const [ state, actions ] = useGlobal() as any;
 	const { navigate, toggleDrawer } = useNavigation();
 	const { logOut } = actions;
-	const name = state.user.organization_name;
+	const name = state.user.organization_name ? state.user.organization_name : state.user.first_name;
 
 	return (
 		<ScrollView>
