@@ -26,6 +26,7 @@ const EyeOff: IconImport = require('@assets/icons/ICON_EYE-OFF.svg');
 const EyeOn: IconImport = require('@assets/icons/ICON_EYE-ON.svg');
 const Facebook: IconImport = require('@assets/icons/ICON_FACEBOOK.svg');
 const Help: IconImport = require('@assets/icons/ICON_HELP.svg');
+const Location: IconImport = require('@assets/icons/ICON_LOCATION.svg');
 const Logout: IconImport = require('@assets/icons/ICON_LOGOUT.svg');
 const Menu: IconImport = require('@assets/icons/ICON_MENU.svg');
 const MenuOn: IconImport = require('@assets/icons/ICON_MENU-ON.svg');
@@ -71,6 +72,7 @@ export const iconImports: Record<IconName, IconImport> = {
 	eyeOn: EyeOn,
 	facebook: Facebook,
 	help: Help,
+	location: Location,
 	logout: Logout,
 	menu: Menu,
 	menuOn: MenuOn,

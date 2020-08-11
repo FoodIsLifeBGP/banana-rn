@@ -30,11 +30,13 @@ export default ({
 	const handleNo = () => {
 		clearAlert();
 		onNo();
+		alertObj.cancelFn && alertObj.cancelFn();
 	};
 
 	const handleYes = () => {
 		clearAlert();
 		onYes();
+		alertObj.confirmFn && alertObj.confirmFn();
 	};
 
 	const handleCloseButtonPress = () => {

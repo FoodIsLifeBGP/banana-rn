@@ -35,7 +35,7 @@ export default ({
 	open,
 	style = {},
 	top = DEFAULT_TOP_OFFSET,
-	palette = 'default',
+	palette = 'secondary',
 	onDismiss,
 	children,
 }: ModalProps) => {

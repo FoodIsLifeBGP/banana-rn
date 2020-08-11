@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
 import {
-	View, Text, Image, ScrollView,
+	Image, ScrollView, Text, View,
 } from 'react-native';
 import useGlobal from '@state';
 import {
-	SpacerInline, LinkButton, NavBar,
+	Icon, LinkButton, NavBar, SpacerInline,
 } from '@elements';
 import typography from '@util/typography';
 import { categoryImage } from '@util/donationCategory';
+import * as colors from '@util/colors';
 import styles from './DonationsDetailScreen.styles';
 
 
@@ -17,13 +18,14 @@ const DonationsDetailScreen = () => {
 	const [ globalState, globalActions ] = useGlobal() as any;
 	const { cancelDonation } = globalActions;
 	const donation = useNavigationParam('donation');
+	const hasClaim = !!donation.claim;
 
 	const handleCancel = async () => {
 		const responseCode = await cancelDonation(donation.id);
 		if (responseCode !== 202) {
 			console.log('Handle this error better');
 		} else {
-			navigate('DashboardScreen');
+			navigate('DonorDashboardScreen');
 		}
 	};
 
@@ -70,13 +72,14 @@ const DonationsDetailScreen = () => {
 					<Text style={typography.h3}>
 						RESERVED FOR
 					</Text>
-					<Text style={styles.infoText}>
-					Add claim info here
-					</Text>
+					<View style={styles.claimInfo}>
+						<Icon color={hasClaim ? colors.BANANA_YELLOW : colors.GRAY} name="smile" size={50} />
+						<Text style={typography.body3}>{hasClaim ? donation.claim.client_name : 'item not claimed'}</Text>
+					</View>
 				</View>
 			</View>
 			<SpacerInline height={20} />
-			<LinkButton text="CANCEL DONATION" onPress={handleCancel} />
+			<LinkButton text="CANCEL DONATION" onPress={handleCancel} disabled={hasClaim} />
 		</ScrollView>
 	);
 };

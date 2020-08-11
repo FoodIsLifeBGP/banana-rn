@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useNavigation } from 'react-navigation-hooks';
 import {
 	View,
-	KeyboardAvoidingView, ScrollView, Platform,
+	KeyboardAvoidingView, ScrollView, Platform, Text, Image, TextInput,
 } from 'react-native';
 import useGlobal from '@state';
 import {
@@ -10,26 +10,36 @@ import {
 	SpacerInline,
 	FormTextInput,
 	LinkButton,
-	InputLabel, Title, FormImageInput,
 } from '@elements';
 import validate from 'validate.js';
 import { NewDonation } from '@screens/DashboardScreen/DonationScreen/DonationScreen.type';
 import donationConstraints from '@util/constraints/donation';
-import { ImageInfo } from 'expo-image-picker/build/ImagePicker.types';
+import { categoryImage } from '@util/donationCategory';
 import styles from './DonationScreen.styles';
 
 export default () => {
 	const [ state, actions ] = useGlobal() as any;
+	const { updateAlert } = actions;
 	const { user } = state;
-	const [ newDonation, setNewDonation ] = useState<NewDonation>({ pickupInstructions: user.pickup_instructions } as NewDonation);
-	const [ validateError, setValidateError ] = useState({} as any);
-	const [ image, setImage ] = useState({} as ImageInfo);
-	const { postDonation } = actions;
-	const { navigate } = useNavigation();
-
 	const foodCategories: Array<string> = [ 'Bread', 'Dairy', 'Hot Meal', 'Produce', 'Protein', 'Others' ];
-	newDonation.pickupAddress = `${user.address_street} ${user.address_city}, ${user.address_state} ${user.address_zip}`;
+	const emptyDonation: NewDonation = {
+		pickupAddress: `${user.address_street} ${user.address_city}, ${user.address_state} ${user.address_zip}`,
+		category: foodCategories[0],
+		itemName: '',
+		pickupInstructions: user.pickup_instructions,
+		totalAmount: '',
+	};
 
+	const [ newDonation, setNewDonation ] = useState<NewDonation>(emptyDonation);
+	const [ validateError, setValidateError ] = useState({} as any);
+	const { postDonation } = actions;
+
+	const { navigate, goBack } = useNavigation();
+
+	const hasUnsavedChanges = Boolean(newDonation.itemName || newDonation.totalAmount || newDonation.pickupInstructions !== user.pickup_instructions);
+	const preventBack = () => {
+		updateAlert({ type: 'incomplete form', dismissable: false, confirmFn: () => goBack() });
+	};
 	const validateInputs = async () => {
 		const validateResults = validate(newDonation, donationConstraints);
 		if (validateResults) {
@@ -38,7 +48,8 @@ export default () => {
 			setValidateError({});
 			const result = await postDonation(newDonation);
 			if (result === 201) {
-				navigate('DashboardScreen');
+				setNewDonation(emptyDonation);
+				navigate('DonorDashboardScreen');
 			} else {
 				// TODO: communicate failures better
 				console.log('There was a problem creating the donation');
@@ -52,16 +63,14 @@ export default () => {
 			enabled={true}
 			keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
 		>
-			<NavBar showBackButton={true} />
+			<NavBar
+				showBackButton={true}
+				backButtonFn={hasUnsavedChanges ? preventBack : undefined}
+			/>
 			<ScrollView style={styles.scrollContainer}>
+
 				<View style={styles.imageInputContainer}>
-					<FormImageInput
-						label=""
-						value={image}
-						setValue={setImage}
-						status={image?.uri ? 'success' : undefined}
-						shape="circular"
-					/>
+					<Image source={categoryImage(newDonation.category)} style={styles.icon} />
 				</View>
 
 				<SpacerInline height={20} />
@@ -79,11 +88,11 @@ export default () => {
 					label="Food Category"
 					dropdownData={foodCategories}
 					setValue={s => setNewDonation({ ...newDonation, category: s })}
+					defaultValue={foodCategories[0]}
 					value={newDonation.category}
 					type="dropdown"
 					error={!!validateError.category}
 					errorMessage={validateError.category}
-					placeholder="Select one"
 				/>
 
 				<FormTextInput
@@ -95,13 +104,14 @@ export default () => {
 					errorMessage={validateError.totalAmount}
 				/>
 
-				<FormTextInput
-					label="Pickup Address"
-					value={newDonation.pickupAddress}
-					setValue={s => setNewDonation({ ...newDonation, pickupAddress: s })}
-					style={styles.input}
-					editable={false}
-				/>
+				<View>
+					<Text style={styles.pickupAddressLabel}>
+						PICKUP ADDRESS
+					</Text>
+					<Text style={styles.pickupAddressStyle}>
+						{newDonation.pickupAddress}
+					</Text>
+				</View>
 
 				<FormTextInput
 					label="Pickup Instructions"

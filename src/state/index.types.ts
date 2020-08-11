@@ -72,6 +72,10 @@ export interface Alert {
 	 * (i.e. tapping the content behind a modal).
 	 */
 	dismissable?: boolean;
+
+	cancelFn?: () => void;
+
+	confirmFn?: () => void;
 }
 
 export interface InitialState {
