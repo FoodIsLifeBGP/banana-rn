@@ -77,9 +77,10 @@ const MapScreen = () => {
 					const distance = 42;
 					return (
 						<DonationMarker
+							key={id}
 							coordinate={{
-								latitude: item.donor.latitude,
-								longitude: item.donor.longitude,
+								latitude: parseFloat(item.donor.latitude),
+								longitude: parseFloat(item.donor.longitude),
 							}}
 							onPress={() => alert('claimDetailScreen unimplemented')}
 							itemName={food_name}
