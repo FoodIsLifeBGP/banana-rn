@@ -7,8 +7,7 @@ export default {
 	},
 	password: {
 		format: {
-			message: `Minimum eight and maximum 10 characters,
-			at least one uppercase letter, one lowercase letter, one number and one special character:`,
+			message: 'must be 8-25 characters with a mix of upper & lowercase letters, numbers, and special characters',
 			pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!"#$%&'()*+,-./:;<=>?@^_`{|}~])[A-Za-z\d!"#$%&'()*+,-./:;<=>?@^_`{|}~]{8,25}$/,
 		},
 		presence: {
@@ -17,6 +16,9 @@ export default {
 	},
 	retypedPassword: {
 		equality: 'password',
+		presence: {
+			allowEmpty: false,
+		},
 	},
 	firstName: {
 		presence: {

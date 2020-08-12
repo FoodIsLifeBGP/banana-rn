@@ -50,7 +50,7 @@ interface FormTextInputProps extends BasicTextInputProps {
 	error?: boolean;
 
 	/** User-facing message associated with an error. */
-	errorMessage?: string;
+	errorMessage?: Array<string>;
 
 	/** Dropdown data for dropdownList */
 	dropdownData?: Array<string>;
@@ -201,7 +201,7 @@ const FormTextInput = (
 				{error && (
 					<View style={styles.errorMessage}>
 						<Text style={styles.errorMessageText}>
-							{errorMessage}
+							{errorMessage && errorMessage.length ? errorMessage[0] : ''}
 						</Text>
 					</View>
 				)}
