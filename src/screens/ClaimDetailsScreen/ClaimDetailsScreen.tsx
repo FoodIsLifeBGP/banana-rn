@@ -29,14 +29,10 @@ export default () => {
 
 	const address = `${donor.address_street} ${donor.address_city}, ${donor.address_state}, ${donor.address_zip}`;
 
-	const openGPS = (lat, lng, label) => {
-		const scheme = Platform.OS === 'ios' ? 'maps:0,0?q=' : 'geo:0,0?q=';
-		const latLng = `${lat},${lng}`;
-		console.log(`ios = ${scheme}${label}@${latLng}`);
-		console.log(`android = ${scheme}${latLng}(${label})`);
+	const openGPS = () => {
 		const url = Platform.select({
-			ios: `${scheme}${label}@${latLng}`,
-			android: `${scheme}${address}`,
+			ios: `maps:0,0?q=${donor.donor_name}@${donor.latitude},${donor.longitude}`,
+			android: `geo:0,0?q=${address}`,
 		});
 		Linking.openURL(url);
 	};
@@ -86,7 +82,7 @@ export default () => {
 							<Text style={typography.body4}>{donation.pickup_instructions}</Text>
 						</View>
 						<View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-							<TextButton text="Directions" buttonStyle={claimBtnStyle} onPress={() => openGPS(donor.latitude, donor.longitude, donor.donor_name)} />
+							<TextButton text="Directions" buttonStyle={claimBtnStyle} onPress={() => openGPS()} />
 						</View>
 					</View>
 					<View>
