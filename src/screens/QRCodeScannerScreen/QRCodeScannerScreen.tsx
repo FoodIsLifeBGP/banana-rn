@@ -12,7 +12,9 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 
 import useGlobal from '@state';
 
-import { Modal, TextButton, Icon, LinkButton } from '@elements';
+import {
+	Modal, TextButton, Icon, LinkButton,
+} from '@elements';
 import { ButtonStyle } from '@elements/Button';
 import { categoryImage } from '@util/donationCategory';
 import openAppSettings from '@util/openAppSettings';
@@ -163,7 +165,7 @@ export default () => {
 						text="Open Settings"
 						onPress={() => openAppSettings().then(getPermissions)}
 					/>
-					<LinkButton text="Go Back" onPress={() => goBack()}/>
+					<LinkButton text="Go Back" onPress={() => goBack()} />
 				</>
 			);
 			default: return <Text>Requesting permission to access camera</Text>;

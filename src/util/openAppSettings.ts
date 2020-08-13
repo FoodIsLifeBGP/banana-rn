@@ -13,7 +13,7 @@ export default Platform.select({
 			: 'host.exp.exponent';
 		await startActivityAsync(ACTION_APPLICATION_DETAILS_SETTINGS,
 			{
-				data: 'package:' + packageName,
+				data: `package:${packageName}`,
 			});
 	},
 	default: () => Promise.resolve(),
