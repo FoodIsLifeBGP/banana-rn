@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigationParam, useNavigation } from 'react-navigation-hooks';
 import {
-	Dimensions, ImageBackground, ScrollView, Text, View,
+	Dimensions, ImageBackground, ScrollView, Text, View, Platform, Linking,
 } from 'react-native';
 import { Icon, SpacerInline, TextButton } from '@elements';
 import QRCode from 'react-native-qrcode-svg';
@@ -23,10 +23,23 @@ export default () => {
 			foreground: colors.WHITE,
 		},
 	};
+
 	const screenHeight = Math.round(Dimensions.get('window').height);
 	const screenWidth = Math.round(Dimensions.get('window').width);
 
 	const address = `${donor.address_street} ${donor.address_city}, ${donor.address_state}, ${donor.address_zip}`;
+
+	const openGPS = (lat, lng, label) => {
+		const scheme = Platform.OS === 'ios' ? 'maps:0,0?q=' : 'geo:0,0?q=';
+		const latLng = `${lat},${lng}`;
+		console.log(`ios = ${scheme}${label}@${latLng}`);
+		console.log(`android = ${scheme}${latLng}(${label})`);
+		const url = Platform.select({
+			ios: `${scheme}${label}@${latLng}`,
+			android: `${scheme}${address}`,
+		});
+		Linking.openURL(url);
+	};
 	return (
 
 		<View style={claimStyles.outerContainer}>
@@ -73,7 +86,7 @@ export default () => {
 							<Text style={typography.body4}>{donation.pickup_instructions}</Text>
 						</View>
 						<View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-							<TextButton text="Directions" buttonStyle={claimBtnStyle} />
+							<TextButton text="Directions" buttonStyle={claimBtnStyle} onPress={() => openGPS(donor.latitude, donor.longitude, donor.donor_name)} />
 						</View>
 					</View>
 					<View>
