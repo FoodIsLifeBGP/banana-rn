@@ -12,25 +12,28 @@ interface DonationMarkerProps{
 	onPress: () => any;
 	itemName: string;
 	distance: number;
+	size: number;
 }
 
 export default ({
-	coordinate, onPress, itemName, distance,
+	coordinate, onPress, itemName, distance, size,
 }: DonationMarkerProps) => (
 	<Marker
 		coordinate={coordinate}
 		onPress={onPress}
 		style={styles.container}
 	>
-		<Icon name="bananaMarker" size={48} />
-		<View style={[ styles.textContainer, styles.smallMarginLeft ]}>
-			<Text style={[ styles.text, styles.textBold ]}>
-				{itemName}
-			</Text>
-			<Text style={[ styles.text ]}>
-				{`${distance} MI`}
-			</Text>
+		<Icon name="bananaMarker" size={size} />
+		{size > 24 && (
+			<View style={[ styles.textContainer, styles.smallMarginLeft ]}>
+				<Text style={[ styles.text, styles.textBold ]}>
+					{itemName}
+				</Text>
+				<Text style={[ styles.text ]}>
+					{`${distance} MI`}
+				</Text>
 
-		</View>
+			</View>
+		)}
 	</Marker>
 );
