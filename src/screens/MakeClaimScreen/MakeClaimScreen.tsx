@@ -1,5 +1,5 @@
-import React from 'react';
-import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
+import React, { useEffect, useState } from 'react';
+import { useIsFocused, useNavigation, useNavigationParam } from 'react-navigation-hooks';
 import {
 	ImageBackground, ScrollView, Text, View,
 } from 'react-native';
@@ -12,12 +12,16 @@ import claimStyles from '@util/claimStyles';
 import styles from './MakeClaimScreen.styles';
 
 const MakeClaimScreen = () => {
+	const isFocused = useIsFocused();
 	const { navigate } = useNavigation();
 	const [ globalState, globalActions ] = useGlobal() as any;
-	const { claimDonation } = globalActions;
+	const { claimDonation, getTravelTimes } = globalActions;
 	const { user } = globalState;
 	const donation = useNavigationParam('donation');
 	const { donor } = donation;
+	const pendingTravelTimes = { pedestrian: 'calculating..', publicTransport: 'calculating..', bicycle: 'calculating..' };
+	const unavailableTravelTimes = { pedestrian: 'not available', publicTransport: 'not available', bicycle: 'not available' };
+	const [ travelTimes, setTravelTimes ] = useState(pendingTravelTimes);
 
 	const cancelBtnStyle: ButtonStyle = {
 		default: {
@@ -45,6 +49,22 @@ const MakeClaimScreen = () => {
 	const handleCancel = () => {
 		navigate('DashboardScreen');
 	};
+
+	const fetchTravelTimes = async () => {
+		const result = await getTravelTimes(donation.donor_id, user.coords.latitude, user.coords.longitude);
+		if (result.status === 200) {
+			setTravelTimes(result.times);
+		} else {
+			setTravelTimes(unavailableTravelTimes);
+		}
+	};
+
+	useEffect(() => {
+		if (isFocused) {
+			fetchTravelTimes();
+		}
+	}, [ isFocused ]);
+
 
 	return (
 
@@ -93,17 +113,17 @@ const MakeClaimScreen = () => {
 						<View style={claimStyles.itemWithIcon}>
 							<Icon name="walk" size={16} />
 							<SpacerInline width={2} />
-							<Text style={typography.body4}>Walking ?? min</Text>
+							<Text style={typography.body4}>{`Walking ${travelTimes.pedestrian} min`}</Text>
 						</View>
 						<View style={claimStyles.itemWithIcon}>
 							<Icon name="transit" size={16} />
 							<SpacerInline width={2} />
-							<Text style={typography.body4}>Public Transit ?? min</Text>
+							<Text style={typography.body4}>{`Public Transit ${travelTimes.publicTransport} min`}</Text>
 						</View>
 						<View style={claimStyles.itemWithIcon}>
 							<Icon name="bike" size={16} />
 							<SpacerInline width={2} />
-							<Text style={typography.body4}>Bike ?? min</Text>
+							<Text style={typography.body4}>{`Bike ${travelTimes.bicycle} min`}</Text>
 						</View>
 					</View>
 				</View>
