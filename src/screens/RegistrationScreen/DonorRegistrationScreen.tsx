@@ -6,7 +6,7 @@ import {
 	ScrollView,
 	Text, TouchableOpacity,
 	View,
-	Platform, TextInput,
+	Platform, TextInput, Keyboard,
 } from 'react-native';
 import { Divider } from 'react-native-paper';
 import {
@@ -42,6 +42,12 @@ export default () => {
 	const pickUpRef = useRef<TextInput>(null);
 
 	const toggleTermsOfService = () => setTermsOfService(!termsOfService);
+
+	const registerPressHandler = async () => {
+		Keyboard.dismiss();
+		await validateInputs();
+	};
+
 	const validateInputs = async () => {
 		const validateResults = validate(newDonor, donorConstraints);
 		if (validateResults) {
@@ -91,7 +97,7 @@ export default () => {
 				<Title text="Registration" />
 			</View>
 
-			<ScrollView style={styles.scrollContainer}>
+			<ScrollView style={styles.scrollContainer} keyboardShouldPersistTaps={'handled'}>
 				<FormTextInput
 					label="Email"
 					value={newDonor.email}
@@ -111,7 +117,7 @@ export default () => {
 					type="password"
 					style={styles.input}
 					error={!!validationErrors.password}
-					errorMessage={validationErrors.password && validationErrors.password.join(', ')}
+					errorMessage={validationErrors.password}
 					ref={passwordRef}
 					onSubmitEditing={() => confirmPasswordRef?.current?.focus()}
 				/>
@@ -123,7 +129,7 @@ export default () => {
 					setValue={s => setNewDonor({ ...newDonor, retypedPassword: s })}
 					style={styles.input}
 					type="password"
-					error={!!validationErrors.retypedPassword} // not doing anything right now
+					error={!!validationErrors.retypedPassword}
 					errorMessage={validationErrors.retypedPassword}
 					ref={confirmPasswordRef}
 					onSubmitEditing={() => firstNameRef?.current?.focus()}
@@ -254,7 +260,7 @@ export default () => {
 					<LinkButton
 						disabled={!termsOfService}
 						text="Register"
-						onPress={validateInputs}
+						onPress={registerPressHandler}
 					/>
 				</View>
 				<SpacerInline height={50} />
