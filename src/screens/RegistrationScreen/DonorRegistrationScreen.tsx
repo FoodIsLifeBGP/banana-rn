@@ -97,7 +97,7 @@ export default () => {
 				<Title text="Registration" />
 			</View>
 
-			<ScrollView style={styles.scrollContainer} keyboardShouldPersistTaps={'handled'}>
+			<ScrollView style={styles.scrollContainer} keyboardShouldPersistTaps="handled">
 				<FormTextInput
 					label="Email"
 					value={newDonor.email}

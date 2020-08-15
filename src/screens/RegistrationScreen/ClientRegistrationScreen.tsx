@@ -100,7 +100,7 @@ export default () => {
 			<View style={styles.header}>
 				<Title text="Registration" />
 			</View>
-			<ScrollView style={styles.scrollContainer} keyboardShouldPersistTaps={'handled'}>
+			<ScrollView style={styles.scrollContainer} keyboardShouldPersistTaps="handled">
 
 				<FormTextInput
 					label="Email"
