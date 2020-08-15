@@ -13,9 +13,10 @@ import styles from './ClaimDetailsScreen.styles';
 
 
 export default () => {
-	const { navigate, goBack } = useNavigation();
+	const { navigate } = useNavigation();
 	const donation = useNavigationParam('donation');
-	const { donor, claim } = donation;
+	const claim = useNavigationParam('claim');
+	const { donor } = donation;
 
 	const claimBtnStyle: ButtonStyle = {
 		default: {
