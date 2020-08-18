@@ -87,9 +87,11 @@ export default () => {
 						<View style={claimStyles.item}>
 							<Text style={typography.body4}>{donation.pickup_instructions}</Text>
 						</View>
-						<View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-							<TextButton text="Directions" buttonStyle={claimBtnStyle} onPress={() => openGPS()} />
-						</View>
+						{claim.status !== 'closed' && (
+							<View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+								<TextButton text="Directions" buttonStyle={claimBtnStyle} onPress={() => openGPS()} />
+							</View>
+						)}
 					</View>
 					{claim.status !== 'closed' && (
 						<View>
