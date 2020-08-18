@@ -9,6 +9,7 @@ import {
 	KeyboardAvoidingView,
 	Platform,
 	TextInput,
+	Keyboard,
 } from 'react-native';
 import { Divider } from 'react-native-paper';
 import useGlobal from '@state';
@@ -42,6 +43,11 @@ export default () => {
 
 	const toggleTermsOfService = () => {
 		setTermsOfService(!termsOfService);
+	};
+
+	const registerPressHandler = async () => {
+		Keyboard.dismiss();
+		await validateInputs();
 	};
 
 	const validateInputs = async () => {
@@ -94,7 +100,7 @@ export default () => {
 			<View style={styles.header}>
 				<Title text="Registration" />
 			</View>
-			<ScrollView style={styles.scrollContainer}>
+			<ScrollView style={styles.scrollContainer} keyboardShouldPersistTaps="handled">
 
 				<FormTextInput
 					label="Email"
@@ -193,7 +199,7 @@ export default () => {
 					<LinkButton
 						disabled={!termsOfService}
 						text="Register"
-						onPress={validateInputs}
+						onPress={registerPressHandler}
 					/>
 				</View>
 				<SpacerInline height={50} />

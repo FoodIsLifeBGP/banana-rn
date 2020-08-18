@@ -4,6 +4,7 @@ export interface Actions {
 	getActiveDonationsForClient: () => Promise<Donation[] | []>;
 	getClaimedDonationsForClient: () => Promise<Donation[] | Claim[] | []>;
 	getDonations: () => Promise<Donation[] | []>;
+	getDonationHistory: () => Promise<Donation[] | []>;
 	getLocation: () => Promise<{ latitude: number; longitude: number }>;
 	logIn: () => Promise<StatusCode>;
 	logOut: () => Promise<void>;
@@ -13,16 +14,19 @@ export interface Actions {
 	requestResetToken: () => Promise<StatusCode>;
 	submitResetToken: () => Promise<StatusCode>;
 	submitNewPassword: () => Promise<StatusCode>;
+	getTravelTimes: () => Promise<{status: StatusCode; times: {}}>;
 }
 export { getActiveDonationsForClient } from './getActiveDonationsForClient';
 export { getClaimedDonationsForClient } from './getClaimedDonationsForClient';
 export { getDonationsForClient } from './getDonationsForClient';
 export { getDonations } from './getDonations';
+export { getDonationHistory } from './getDonationHistory';
 export { getLocation } from './getLocation';
 export { logIn, logOut } from './auth';
 export { postDonation } from './postDonation';
 export { cancelDonation } from './cancelDonation';
 export { claimDonation } from './claimDonation';
+export { getTravelTimes } from './hereApi';
 export { register } from './register';
 export { scan } from './scan';
 export { updateAlert, clearAlert } from './alert';

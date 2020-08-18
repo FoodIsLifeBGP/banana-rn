@@ -1,30 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { useIsFocused } from 'react-navigation-hooks';
+
 import { Title, NavBar, EmptyStateView } from '@elements';
 
 import Donation from '@library/Donations/Donation/Donation';
 import useGlobal from '@state';
 
+
 import styles from './DonorHistoryScreen.styles';
 
 const DonorHistoryScreen = () => {
 	const isFocused = useIsFocused();
-	const [ state ] = useGlobal() as any;
+	const [ state, actions ] = useGlobal() as any;
 	const [ donations, setDonations ] = useState([]);
+	const { getDonationHistory } = actions;
 
 	useEffect(() => {
 		if (isFocused) {
-			const { user } = state;
-			const donor = {
-				address_street: user.address_street,
-				address_city: user.address_city,
-				address_zip: user.address_zip,
-			};
-			const tempDonations = state.user.donations
-				.filter(d => [ 'closed', 'expired' ].includes(d.status))
-				.map(d => ({ ...d, donor }));
-			setDonations(tempDonations);
+			getDonationHistory().then(data => setDonations(data));
 		}
 	}, [ isFocused ]);
 
@@ -46,7 +40,7 @@ const DonorHistoryScreen = () => {
 				</View>
 				{(donations && donations.length > 0) ? (
 					<ScrollView>
-						{(donations as any).sort((a, b) => a.created_at > b.created_at).map(donation => (
+						{(donations as any).map(donation => (
 							<View key={donation.id}>
 								<Donation
 									donation={donation}
