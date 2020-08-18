@@ -62,10 +62,12 @@ export default () => {
 							<Icon name="location" size={16} />
 							<Text style={typography.body4}>{donor.donor_name}</Text>
 						</View>
-						<View style={claimStyles.itemWithIcon}>
-							<Icon name="distance" size={16} />
-							<Text style={typography.body4}>{donation.distance && `${donation.distance.toFixed(1)} mi`}</Text>
-						</View>
+						{donation.distance != null && (
+							<View style={claimStyles.itemWithIcon}>
+								<Icon name="distance" size={16} />
+								<Text style={typography.body4}>{donation.distance && `${donation.distance.toFixed(1)} mi`}</Text>
+							</View>
+						)}
 					</View>
 					<View style={claimStyles.section}>
 						<View style={claimStyles.title}>
@@ -89,19 +91,21 @@ export default () => {
 							<TextButton text="Directions" buttonStyle={claimBtnStyle} onPress={() => openGPS()} />
 						</View>
 					</View>
-					<View>
-						<View style={claimStyles.title}>
-							<Text style={typography.h3}>QR Code</Text>
+					{claim.status !== 'closed' && (
+						<View>
+							<View style={claimStyles.title}>
+								<Text style={typography.h3}>QR Code</Text>
+							</View>
+							<View style={styles.qrContainer}>
+								<QRCode
+									backgroundColor={colors.BANANA_YELLOW}
+									value={claim.qr_code}
+									size={Math.min(screenWidth, screenHeight) / 2}
+								/>
+								<Text style={styles.qrText}>PLEASE PRESENT THIS TO YOUR DONOR</Text>
+							</View>
 						</View>
-						<View style={styles.qrContainer}>
-							<QRCode
-								backgroundColor={colors.BANANA_YELLOW}
-								value={claim.qr_code}
-								size={Math.min(screenWidth, screenHeight) / 2}
-							/>
-							<Text style={styles.qrText}>PLEASE PRESENT THIS TO YOUR DONOR</Text>
-						</View>
-					</View>
+					)}
 				</View>
 			</ScrollView>
 		</View>

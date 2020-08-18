@@ -3,6 +3,7 @@ import { Donation, Claim, StatusCode } from '@state/index.types';
 export interface Actions {
 	getActiveDonationsForClient: () => Promise<Donation[] | []>;
 	getClaimedDonationsForClient: () => Promise<Donation[] | Claim[] | []>;
+	getClaimHistoryForClient: () => Promise<Donation[]| Claim[] | []>;
 	getDonations: () => Promise<Donation[] | []>;
 	getDonationHistory: () => Promise<Donation[] | []>;
 	getLocation: () => Promise<{ latitude: number; longitude: number }>;
@@ -18,6 +19,7 @@ export interface Actions {
 }
 export { getActiveDonationsForClient } from './getActiveDonationsForClient';
 export { getClaimedDonationsForClient } from './getClaimedDonationsForClient';
+export { getClaimHistoryForClient } from './getClaimHistoryForClient';
 export { getDonations } from './getDonations';
 export { getDonationHistory } from './getDonationHistory';
 export { getLocation } from './getLocation';

@@ -56,6 +56,7 @@ const ClientClaimsScreen = () => {
 											donation={claimedDonation}
 											key={claimedDonation.id}
 											isClaim={true}
+											isHistory={false}
 										/>
 									</View>
 								))

@@ -26,12 +26,14 @@ import MainOption from '../elements/MenuDrawer/MainOption/MainOption';
 import SubOption from '../elements/MenuDrawer/SubOption/SubOption';
 import ClaimDetailsScreen from '../screens/ClaimDetailsScreen/ClaimDetailsScreen';
 import ClientClaimsScreen from '../screens/ClientClaimsScreen';
+import ClientHistoryScreen from '../screens/ClientHistoryScreen';
 
 // Logged-In Screens for Drawer Navigator
 export const MainStack = createStackNavigator(
 	{
 		DashboardScreen,
 		ClientClaimsScreen,
+		ClientHistoryScreen,
 		DonorDashboardScreen,
 		LoginSuccessScreen,
 		DonationScreen,
@@ -86,6 +88,12 @@ const donorOrClientDrawer = () => {
 			screen: MainStack,
 			navigationOptions: {
 				drawerLabel: <MainOption text="Claims" icon="claims" />,
+			},
+		},
+		ClientHistoryScreen: {
+			screen: MainStack,
+			navigationOptions: {
+				drawerLabel: <SubOption text="History" />,
 			},
 		},
 	};
