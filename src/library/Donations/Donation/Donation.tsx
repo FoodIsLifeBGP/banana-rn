@@ -25,8 +25,6 @@ export default ({ donation, isHistory }: Donation) => {
 
 	const icon = categoryImage(category);
 	const updatedAt = formatDate(updated_at);
-
-
 	return (
 		<TouchableOpacity
 			onPress={() => navigate('DonationsDetailScreen', { donation, id, edit: true })}

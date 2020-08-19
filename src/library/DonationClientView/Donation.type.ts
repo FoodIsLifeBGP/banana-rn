@@ -2,6 +2,7 @@
 export interface Donation {
 	category: string;
 	created_at: Date;
+	updated_at: Date;
 	donor_id: number;
 	duration_minutes: number;
 	food_name: string;
@@ -19,4 +20,5 @@ export interface Donation {
 	donor: {
 		donor_name: string;
 	};
+	isHistory?: boolean;
 }
