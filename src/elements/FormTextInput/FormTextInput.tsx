@@ -21,7 +21,9 @@ import {
 import { LIGHT_BLUE } from '@util/colors';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { AsYouType } from 'libphonenumber-js';
+import RNPickerSelect from 'react-native-picker-select';
 import styles from './FormTextInput.styles';
+import { DropdownInput } from './DropdownInput';
 
 interface BasicTextInputProps extends TextInputProps {
 	/** User-submitted value. */
@@ -39,7 +41,7 @@ interface BasicTextInputProps extends TextInputProps {
 
 interface FormTextInputProps extends BasicTextInputProps {
 	/** Type text input. */
-	type?: 'default' | 'password' | 'phoneNumber';
+	type?: 'default' | 'password' | 'phoneNumber'|'dropdown';
 
 	/** Label for the input. */
 	label: string;
@@ -48,7 +50,10 @@ interface FormTextInputProps extends BasicTextInputProps {
 	error?: boolean;
 
 	/** User-facing message associated with an error. */
-	errorMessage?: string;
+	errorMessage?: Array<string>;
+
+	/** Dropdown data for dropdownList */
+	dropdownData?: Array<string>;
 }
 
 /**
@@ -129,6 +134,7 @@ const PhoneNumberInput = (
 	</View>
 );
 
+
 /**
  * Input component for a form that includes a standardized label and text input.
  * Can render a field with an optional visible password if 'type' password is given.
@@ -143,6 +149,7 @@ const FormTextInput = (
 		errorMessage,
 		style,
 		inputStyle,
+		dropdownData,
 		...props
 	}: FormTextInputProps,
 	ref: Ref<TextInput>,
@@ -157,6 +164,9 @@ const FormTextInput = (
 	let passedValue;
 	if (type === 'password') {
 		tempInput = PasswordInput;
+		passedValue = value;
+	} else if (type === 'dropdown') {
+		tempInput = DropdownInput;
 		passedValue = value;
 	} else if (type === 'phoneNumber') {
 		tempInput = PhoneNumberInput;
@@ -184,13 +194,14 @@ const FormTextInput = (
 					value={passedValue}
 					setValue={setValue}
 					inputStyle={inputStyle}
+					dropdownData={dropdownData || []}
 					{...props}
 				/>
 
 				{error && (
 					<View style={styles.errorMessage}>
 						<Text style={styles.errorMessageText}>
-							{errorMessage}
+							{errorMessage && errorMessage.length ? errorMessage[0] : ''}
 						</Text>
 					</View>
 				)}

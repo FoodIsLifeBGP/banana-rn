@@ -1,49 +1,35 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
 import {
-	View, Text, Image, Dimensions, Alert, ScrollView,
+	Image, ScrollView, Text, View,
 } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import useGlobal from '@state';
 import {
-	Title, SpacerInline, LinkButton, Button, NavBar,
+	Icon, LinkButton, NavBar, SpacerInline,
 } from '@elements';
-import QRCode from 'react-native-qrcode-svg';
+import typography from '@util/typography';
+import { categoryImage } from '@util/donationCategory';
 import * as colors from '@util/colors';
-import { ClaimingProgressBar } from '@elements/ClaimingProgressBar';
-import { ButtonStyle } from '@elements/Button';
-import TimeBoard from './TimeBoard';
 import styles from './DonationsDetailScreen.styles';
-
-const icon = require('@assets/images/banana-icon.png');
 
 
 const DonationsDetailScreen = () => {
 	const { navigate } = useNavigation();
 	const [ globalState, globalActions ] = useGlobal() as any;
-	const { userIdentity } = globalState;
-	// retrive data
+	const { cancelDonation } = globalActions;
 	const donation = useNavigationParam('donation');
-	const id = useNavigationParam('id');
-	const itemName = donation.food_name;
-	const remainingNum = donation.total_servings;
-	// below are parameters that still missing in given data, substituted by hardcode
-	const bunchNum = 1;
-	const distance = 0.3;
-	const remainingMin = 30;
-	const remainingSec = 30;
-	const picupAddress = '15000 NE 24th street';
-	const pickupInstructions = 'FRONTDESK';
-	// always ahead of current time by 45 mins
-	const deadlinetime = new Date(Date.now() + 1000 * 60 * 45);
-	const claimedUserList = Array(4).fill(0).map((_, index) => ({ name: `bananaLover${index}` }));
-	const screenWidth = Math.round(Dimensions.get('window').width);
-	const buttonStyle: ButtonStyle = {
-		default: {
-			background: colors.NAVY_BLUE,
-			foreground: colors.WHITE,
-		},
+	const hasClaim = !!donation.claim;
+
+	const handleCancel = async () => {
+		const responseCode = await cancelDonation(donation.id);
+		if (responseCode !== 202) {
+			console.log('Handle this error better');
+		} else {
+			navigate('DonorDashboardScreen');
+		}
 	};
+
+
 	return (
 		<ScrollView style={styles.outerContainer}>
 			<View>
@@ -51,91 +37,49 @@ const DonationsDetailScreen = () => {
 				<SpacerInline height={20} />
 			</View>
 			<View style={styles.contentContainer}>
-				<Text style={[ styles.text, styles.textBold, styles.marginSmall ]}>
-					PRODUCE
+				<Text style={typography.h5}>
+					{donation.category}
 				</Text>
 				<View style={styles.iconContainer}>
-					<Image source={icon} style={styles.icon} />
+					<Image source={categoryImage(donation.category)} style={styles.icon} />
 				</View>
-				<Text style={[ styles.text, styles.textBold, styles.marginSmall ]}>
-					{itemName.toUpperCase()}
+				<Text style={[ typography.h4 ]}>
+					{donation.food_name}
 				</Text>
-				<Text style={[ styles.text, styles.marginSmall ]}>
-					{`${bunchNum} BUNCH · TOTAL ${remainingNum} SERVINGS` }
+				<Text style={[ typography.h5 ]}>
+					{`About ${donation.total_amount}`}
 				</Text>
+			</View>
 
-				<ClaimingProgressBar width={screenWidth * 0.9} left={9} reserved={5} pickedUp={4} />
-				<TimeBoard deadline={deadlinetime} />
-				<View style={styles.extensionContainer}>
-
-
-					<Text style={[ styles.marginSmall, styles.textBold, styles.text ]}>
-					TIME EXTENSION
-					</Text>
-					<View style={styles.extensionBtnContainer}>
-						<Button
-							buttonStyle={buttonStyle}
-							// missing corresponding API
-							onPress={() => alert('time extended')}
-							style={{ width: '30%' }}
-						>
-							{
-								foregroundColor => (
-									<Text style={{ color: foregroundColor, fontWeight: 'bold' }}>
-                                    15 MIN
-									</Text>
-								)
-							}
-						</Button>
-
-						<Button
-							buttonStyle={buttonStyle}
-							// missing corresponding API
-							onPress={() => alert('time extended')}
-							style={{ width: '30%' }}
-						>
-							{
-								foregroundColor => (
-									<Text style={{ color: foregroundColor, fontWeight: 'bold' }}>
-									30 MIN
-									</Text>
-								)
-							}
-						</Button>
-					</View>
-				</View>
-				<View style={styles.instructionsContainer}>
-					<Text style={[ styles.marginSmall, styles.textBold, styles.text ]}>
+			<View style={styles.infoContainer}>
+				<View style={styles.infoPair}>
+					<Text style={typography.h3}>
 						PICKUP ADDRESS
 					</Text>
-					<Text style={[ styles.marginSmall, styles.text ]}>
-						{`${picupAddress}`}
+					<Text style={styles.infoText}>
+						{`${donation.donor.address_street} ${donation.donor.address_city}, ${donation.donor.address_state} ${donation.donor.address_zip}`}
 					</Text>
-					<Text style={[ styles.marginSmall, styles.textBold, styles.text ]}>
+				</View>
+				<View style={styles.infoPair}>
+					<Text style={typography.h3}>
 						PICKUP INSTRUCTIONS
 					</Text>
-					<Text style={[ styles.marginSmall, styles.text ]}>
-						{`${pickupInstructions}`}
+					<Text style={styles.infoText}>
+						{donation.pickup_instructions}
 					</Text>
-					<Text style={[ styles.marginSmall, styles.textBold, styles.text ]}>
+				</View>
+				<View style={styles.infoPair}>
+					<Text style={typography.h3}>
 						RESERVED FOR
 					</Text>
-					<ScrollView horizontal={true}>
-						{
-							claimedUserList.map(item => (
-								<View style={styles.marginSmall}>
-									<View style={styles.iconContainer}>
-										<Image source={icon} style={styles.icon} />
-									</View>
-									<Text style={styles.text}>{item.name}</Text>
-								</View>
-							))
-						}
-					</ScrollView>
-
+					<View style={styles.claimInfo}>
+						<Icon color={hasClaim ? colors.BANANA_YELLOW : colors.GRAY} name="smile" size={50} />
+						<Text style={typography.body3}>{hasClaim ? donation.claim.client_name : 'item not claimed'}</Text>
+					</View>
 				</View>
 			</View>
-			<LinkButton text="CANCEL DONATION" />
+			<SpacerInline height={20} />
+			<LinkButton text="CANCEL DONATION" onPress={handleCancel} disabled={hasClaim} />
 		</ScrollView>
 	);
 };

@@ -1,30 +1,79 @@
-import React from 'react';
-import { View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { ScrollView, Text, View } from 'react-native';
+import { useIsFocused } from 'react-navigation-hooks';
+import Donation from '@library/DonationClientView/Donation';
 import useGlobal from '@state';
-import { Title, SpacerInline, NavBar } from '@elements';
-import { DonationsOrClaims } from '@library';
+import {
+	EmptyStateView, NavBar, SpacerInline, Title,
+} from '@elements';
 import styles from './DashboardScreen.styles';
-import DonorDashboardScreen from '../DonorDashboardScreen';
 
 const DashboardScreen = () => {
-	const [ state ] = useGlobal();
-	const { userIdentity } = state;
+	const isFocused = useIsFocused();
+	const [ state, actions ] = useGlobal() as any;
 
-	if (userIdentity === 'donor') {
-		return DonorDashboardScreen();
-	}
+	const [ donations, setDonations ] = useState(state.donationsOrClaims);
+	const [ loaded, setLoaded ] = useState(false);
 
-	const title = 'Donations';
+	const getActiveDonationsForLocation = async () => {
+		const { getActiveDonationsForClient, getLocation } = actions;
+		await getLocation();
+		const data = await getActiveDonationsForClient();
+		if (data) {
+			setDonations(data);
+			setLoaded(true);
+		}
+	};
+
+	useEffect(() => {
+		if (isFocused) {
+			getActiveDonationsForLocation();
+		}
+	}, [ isFocused ]);
 
 	return (
 		<View style={styles.outerContainer}>
 
-			<NavBar showBackButton={false} />
+			<NavBar
+				showBackButton={false}
+				showSelector={true}
+				onMap={() => {}}
+				onList={() => {}}
+				position="list"
+			/>
 
 			<View style={styles.contentContainer}>
-				<Title text={title} />
+				<Title text="Donations" />
 				<SpacerInline height={20} />
-				<DonationsOrClaims resource="claims" />
+				{ !loaded && <Text>Loading...</Text> }
+				{ loaded && !state.user.coords && !state.user.alert && (
+					<EmptyStateView
+						upperText="We are unable to get your current location."
+						lowerText="Please check your app settings to make sure location permissions are enabled."
+					/>
+				)}
+				{loaded && donations && Array.isArray(donations) && donations.length > 0
+					? (
+						<ScrollView>
+							{
+								(donations as any).map(donation => (
+									<View key={donation.id}>
+										<Donation
+											donation={donation}
+											key={donation.id}
+											isClaim={false}
+										/>
+									</View>
+								))
+							}
+							<SpacerInline height={200} />
+						</ScrollView>
+					) : (
+						<EmptyStateView
+							upperText="No available donations near you."
+							lowerText={'We will notify you when new donations are available.\nOR\nPlease check back later.'}
+						/>
+					)}
 			</View>
 
 		</View>

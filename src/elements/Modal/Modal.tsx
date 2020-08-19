@@ -35,7 +35,7 @@ export default ({
 	open,
 	style = {},
 	top = DEFAULT_TOP_OFFSET,
-	palette = 'default',
+	palette = 'secondary',
 	onDismiss,
 	children,
 }: ModalProps) => {
@@ -48,11 +48,13 @@ export default ({
 		}
 	};
 
+	// NOTE : null is returned here since using "display: none" does not work properly for android devices
+	if (!open) return null;
+
 	return (
 		<View style={[
 			style,
 			styles.wrapper,
-			!open && { display: 'none' },
 		]}
 		>
 			<TouchableOpacity

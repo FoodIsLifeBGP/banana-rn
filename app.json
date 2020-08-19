@@ -24,11 +24,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-    },
-    "extra": {
-      "variant": "donor",
-      "storybook": false
+			"supportsTablet": true,
+			"bundleIdentifier": "com.thebegoodproject.org.bananaapp"
     },
     "userInterfaceStyle": "automatic",
     "packagerOpts": {
@@ -46,8 +43,8 @@
         "wasm",
         "svg",
         "md"
-
       ]
-    }
+    },
+    "description": ""
   }
 }

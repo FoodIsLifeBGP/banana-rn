@@ -29,7 +29,6 @@ export default () => {
 			clearAlert();
 		}
 	};
-
 	return (
 		<Modal
 			style={styles.container}

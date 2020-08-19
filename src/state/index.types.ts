@@ -58,6 +58,11 @@ export interface Alert {
 	title: string;
 
 	/**
+	 * Type of the alert.
+	 */
+	type: 'default'|'incomplete form'|'coming soon'|'cancel donation';
+
+	/**
 	 * Message to the user.
 	 */
 	message: string;
@@ -67,12 +72,17 @@ export interface Alert {
 	 * (i.e. tapping the content behind a modal).
 	 */
 	dismissable?: boolean;
+
+	cancelFn?: () => void;
+
+	confirmFn?: () => void;
 }
 
 export interface InitialState {
 	userIdentity: 'donor' | 'client';
 	apiBaseUrl: string;
 	loginUrl: string;
+	createUrl: string;
 	alert?: Alert;
 	jwt?: string;
 	user?: DonorState | ClientState | SharedProps;

@@ -7,20 +7,20 @@ import ApplicationPendingScreen from '../ApplicationPendingScreen';
 import ApplicationApprovedScreen from '../ApplicationApprovedScreen';
 import ApplicationIncompleteScreen from '../ApplicationIncompleteScreen';
 import DashboardScreen from '../DashboardScreen';
+import DonorDashboardScreen from '../DonorDashboardScreen';
 
 export default () => {
 	const [ state ] = useGlobal();
-	const { user = {} as any, jwt = '' } = state;
+	const { user = {} as any, jwt = '', userIdentity } = state;
 	const { id } = user;
-
 	if (!jwt || !user) { return <Text>Loading...</Text>; }
 
 	switch (user?.account_status) {
 		case 'incomplete': return <ApplicationIncompleteScreen />;
 		case 'suspended': return <AccountSuspendedScreen />;
-		case 'pending': return <ApplicationPendingScreen />;
+		case 'processing': return <ApplicationPendingScreen />;
 		case 'approved': return <ApplicationApprovedScreen id={id} />;
-		case 'active': return <DashboardScreen />;
+		case 'active': return userIdentity === 'client' ? <DashboardScreen /> : <DonorDashboardScreen />;
 		default: return <InfoScreen title="Login error" nextScreenDestination="LoginScreen" nextScreenTitle="Login" />;
 	}
 };

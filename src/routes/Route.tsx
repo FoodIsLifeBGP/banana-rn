@@ -6,40 +6,43 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 import * as colors from '@util/colors';
 import getEnv from '@util/environment';
 
-import { Icon } from '@elements';
-import { IconName } from '@elements/Icon';
-
+import MakeClaimScreen from '../screens/MakeClaimScreen/MakeClaimScreen';
 import LoginScreen from '../screens/LoginScreen';
 import DashboardScreen from '../screens/DashboardScreen';
+import DonorDashboardScreen from '../screens/DonorDashboardScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
 import TermsScreen from '../screens/TermsScreen';
 import ContactScreen from '../screens/ContactScreen';
 import LoginSuccessScreen from '../screens/LoginSuccessScreen';
 import DonationScreen from '../screens/DashboardScreen/DonationScreen';
 import QRCodeScannerScreen from '../screens/QRCodeScannerScreen/QRCodeScannerScreen';
-import ClaimDetailScreen from '../screens/ClaimDetailScreen/ClaimDetailScreen';
 import LogoutScreen from '../screens/LogoutScreen';
 import DonationsDetailScreen from '../screens/DonationsDetailScreen/DonationsDetailScreen';
 import DonorDonationScreen from '../screens/DonorDashboardScreen/DonorDonationScreen';
+import DonorHistoryScreen from '../screens/DonorHistoryScreen/DonorHistoryScreen';
 
 import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
-
-const DrawerIcon = (name: IconName) => Icon({
-	name,
-	size: 18,
-	color: colors.WHITE,
-});
+import MainOption from '../elements/MenuDrawer/MainOption/MainOption';
+import SubOption from '../elements/MenuDrawer/SubOption/SubOption';
+import ClaimDetailsScreen from '../screens/ClaimDetailsScreen/ClaimDetailsScreen';
+import ClientClaimsScreen from '../screens/ClientClaimsScreen';
 
 // Logged-In Screens for Drawer Navigator
 export const MainStack = createStackNavigator(
 	{
 		DashboardScreen,
+		ClientClaimsScreen,
+		DonorDashboardScreen,
 		LoginSuccessScreen,
 		DonationScreen,
 		DonorDonationScreen,
+		DonorHistoryScreen,
 		QRCodeScannerScreen,
-		ClaimDetailScreen,
+		ClaimDetailsScreen,
+		MakeClaimScreen,
 		DonationsDetailScreen,
+		ContactScreen,
+		LogoutScreen,
 	},
 	{
 		headerMode: 'none',
@@ -52,17 +55,21 @@ const donorOrClientDrawer = () => {
 
 	const DONOR_MENU = {
 		QRCodeScannerScreen: {
-			screen: QRCodeScannerScreen,
-			navigationOptions: {
-				drawerLabel: 'Scan QR Code',
-				drawerIcon: DrawerIcon('qrCode'),
-			},
-		},
-		DashboardScreen: {
 			screen: MainStack,
 			navigationOptions: {
-				drawerLabel: 'My Donations',
-				drawerIcon: DrawerIcon('donations'),
+				drawerLabel: <MainOption text="Scan QR Code" icon="qrCode" />,
+			},
+		},
+		DonorDashboardScreen: {
+			screen: MainStack,
+			navigationOptions: {
+				drawerLabel: <MainOption text="Donations" icon="claims" />,
+			},
+		},
+		DonorHistoryScreen: {
+			screen: MainStack,
+			navigationOptions: {
+				drawerLabel: <SubOption text="History" />,
 			},
 		},
 	};
@@ -71,39 +78,29 @@ const donorOrClientDrawer = () => {
 		DashboardScreen: {
 			screen: MainStack,
 			navigationOptions: {
-				drawerLabel: 'My Claims',
-				drawerIcon: DrawerIcon('claims'),
+				drawerLabel: <MainOption text="Donations" icon="donations" />,
+			},
+		},
+
+		ClientClaimsScreen: {
+			screen: MainStack,
+			navigationOptions: {
+				drawerLabel: <MainOption text="Claims" icon="claims" />,
 			},
 		},
 	};
 
 	const COMMON_MENU = {
-		ProfileScreen: {
-			screen: MainStack,
+		// HelpScreen: {
+		// screen: MainStack,
+		// navigationOptions: {
+		// drawerLabel: <MainOption text="Contact Us" icon="help" />,
+		// },
+		// },
+		ContactScreen: {
+			screen: ContactScreen,
 			navigationOptions: {
-				drawerLabel: 'My Profile',
-				drawerIcon: DrawerIcon('user'),
-			},
-		},
-		SettingsScreen: {
-			screen: MainStack,
-			navigationOptions: {
-				drawerLabel: 'Settings',
-				drawerIcon: DrawerIcon('settings'),
-			},
-		},
-		HelpScreen: {
-			screen: MainStack,
-			navigationOptions: {
-				drawerLabel: 'Help',
-				drawerIcon: DrawerIcon('help'),
-			},
-		},
-		LogoutScreen: {
-			screen: LogoutScreen,
-			navigationOptions: {
-				drawerLabel: 'Log Out',
-				drawerIcon: DrawerIcon('logout'),
+				drawerLabel: <MainOption text="Contact Us" icon="help" />,
 			},
 		},
 	};

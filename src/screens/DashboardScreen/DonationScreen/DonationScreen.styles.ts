@@ -1,62 +1,50 @@
 import { StyleSheet } from 'react-native';
+import typography from '@util/typography';
 import * as colors from '@util/colors';
-import platformShadow from '@util/platformShadow';
-
-const iconSize = 90;
 
 export default StyleSheet.create({
-	outerContainer: {
+	keyboardAvoidContainer: {
 		flex: 1,
-		justifyContent: 'space-between',
-		backgroundColor: colors.BANANA_YELLOW,
-		paddingHorizontal: '11%',
+		flexDirection: 'column',
+		justifyContent: 'center',
 	},
-	card: {
-		height: 120,
-		flexDirection: 'row',
-		alignItems: 'center',
+	scrollContainer: {
+		paddingHorizontal: '5%',
+		paddingTop: '10%',
+		flex: 1,
 	},
-	iconRow: {
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-	},
-	iconContainer: {
-		height: iconSize,
-		width: iconSize,
-		borderRadius: iconSize / 2,
-		backgroundColor: colors.NAVY_BLUE,
-		marginRight: 10,
+	imageInputContainer: {
+		width: '100%',
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
 	icon: {
-		height: (iconSize * 0.64),
-		width: (iconSize * 0.8),
-	},
-	infoContainer: {
-		flexDirection: 'column',
-	},
-	infoText: {
-		fontFamily: 'open-sans-regular',
-		color: colors.NAVY_BLUE,
-	},
-	timeLimitButton: {
-		backgroundColor: colors.NAVY_BLUE,
-		color: colors.BANANA_YELLOW,
-		width: '47.5%',
+		height: 60,
+		width: 60,
+		borderRadius: 30,
+		borderColor: colors.NAVY_BLUE,
 		borderWidth: 2,
-		height: 30,
-		justifyContent: 'center',
-		alignItems: 'center',
-		...platformShadow(5),
 	},
-	buttonText: {
-		fontFamily: 'open-sans-regular',
-		fontSize: 13,
-		color: colors.BANANA_YELLOW,
+	input: {
+		marginBottom: 14,
 	},
-	createContainer: {
-		justifyContent: 'center',
-		alignItems: 'center',
+	row: {
+		width: '100%',
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+	},
+	button: {
+		marginBottom: 30,
+	},
+	pickupAddressLabel: {
+		...typography.h3,
+		marginBottom: 14,
+	},
+	pickupAddressStyle: {
+		...typography.body1,
+		marginBottom: 14,
+		paddingHorizontal: 10,
+		paddingVertical: 13,
+		left: 10,
 	},
 });

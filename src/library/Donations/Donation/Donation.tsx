@@ -6,50 +6,51 @@ import {
 	TouchableOpacity,
 	Image,
 } from 'react-native';
+import typography from '@util/typography';
+import { categoryImage } from '@util/donationCategory';
+import formatDate from '@util/formatDate';
+import { Icon } from '@elements';
 import { Donation } from './Donation.type';
 import styles from './Donation.styles';
 
-export default ({ donation }: Donation) => {
+export default ({ donation, isHistory }: Donation) => {
 	const { navigate } = useNavigation();
 	const {
-		claims,
-		created_at,
-		duration_minutes,
 		food_name,
-		image_url,
-		measurement,
-		per_person,
-		pickup_location,
-		total_servings,
 		id,
+		total_amount,
+		category,
+		updated_at,
 	} = donation;
-	const icon = require('@assets/images/banana-icon.png');
 
-	const startTime = new Date(created_at);
-	const now = new Date();
-	const minutesElapsed = Math.round(now.getTime() - (startTime.getTime()) / 1000 / 60);
-	const timeLeft = minutesElapsed < duration_minutes
-		? duration_minutes - minutesElapsed
-		: 0;
+	const icon = categoryImage(category);
+	const updatedAt = formatDate(updated_at);
+
 
 	return (
 		<TouchableOpacity
-			onPress={() => navigate('DonationScreen', { donation, id, edit: true })}
+			onPress={() => navigate('DonationsDetailScreen', { donation, id, edit: true })}
 		>
-			<View style={{ ...styles.card }}>
-				<View style={{ ...styles.iconContainer, backgroundColor: timeLeft > 0 ? 'blue' : 'gray' }}>
+			<View style={styles.infoContainer}>
+				<View style={{
+					flexDirection: 'column', alignItems: 'center', width: 100, justifyContent: 'center',
+				}}
+				>
+					<Text style={typography.h5}>{category}</Text>
 					<Image source={icon} style={styles.icon} />
 				</View>
-				<View style={styles.infoContainer}>
-					<Text style={styles.infoTextBold}>{`Status: ${timeLeft > 0 ? 'Active' : 'Inactive'}`}</Text>
-					<View style={{ flexDirection: 'row' }}>
-						<Text style={styles.infoText}>{food_name}</Text>
-						{/* TODO: properly pluralize per_person here */}
-						<Text style={styles.infoText} numberOfLines={1}>{`: ${per_person} ${measurement}/person`}</Text>
+				<View style={{ flexDirection: 'column', justifyContent: 'center' }}>
+					<View>
+						<Text style={typography.h3}>{food_name}</Text>
 					</View>
-					<Text style={styles.infoText}>{`${(claims && claims.length) || 0}/${total_servings} servings claimed`}</Text>
-					<Text style={styles.infoText}>{`${timeLeft} min. remaining`}</Text>
-					<Text style={styles.infoText} numberOfLines={1}>{`Pickup: ${pickup_location}`}</Text>
+					<View>
+						{isHistory ? (
+							<View style={{ flexDirection: 'row' }}>
+								<Icon name="time" color="blue" size={20} />
+								<Text style={{ ...typography.h5, marginLeft: 5 }}>{updatedAt}</Text>
+							</View>
+						) : <Text style={typography.h5}>{`about ${total_amount}`}</Text>}
+					</View>
 				</View>
 			</View>
 		</TouchableOpacity>

@@ -1,4 +1,6 @@
-import React, { useState, RefObject, createRef } from 'react';
+import React, {
+	useState, RefObject, createRef, useEffect,
+} from 'react';
 import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
 import {
 	ScrollView,
@@ -7,6 +9,8 @@ import {
 	Text,
 	TextInput,
 	KeyboardAvoidingView,
+	AsyncStorage,
+	Platform,
 } from 'react-native';
 import useGlobal from '@state';
 import {
@@ -16,28 +20,57 @@ import {
 } from '@elements';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import styles from './LoginScreen.styles';
+import ResetPassword from './ResetPassword';
+import { PasswordResetStage } from './ResetPassword/ResetPassword';
+
 
 export default () => {
 	const { navigate } = useNavigation();
 	const [ state, actions ] = useGlobal() as any;
 	const { userIdentity } = state;
 	const { logIn } = actions;
-
 	const passwordInputRef: RefObject<TextInput> = createRef();
-
 	const [ email, setEmail ] = useState(useNavigationParam('email') ?? '');
 	const [ password, setPassword ] = useState(useNavigationParam('password') ?? '');
-	const [ isPasswordVisible, setIsPasswordVisible ] = useState(false);
-
 	const clearEmailAndPassword = () => { setEmail(''); setPassword(''); };
-
 	const handleEmailInputSubmit = () => passwordInputRef.current?.focus();
+	const [ showModal, setShowModal ] = useState(false);
+	const [ passwordResetStage, setPasswordResetStage ] = useState<PasswordResetStage | undefined>(undefined);
+
+	useEffect(() => {
+		const retrievePasswordResetStage = async () => {
+			try {
+				const value = await AsyncStorage.getItem('PASSWORD RESET STAGE') as PasswordResetStage;
+				if (value === PasswordResetStage.VERIFY) {
+					setPasswordResetStage(value);
+				}
+			} catch (error) {
+				// Not important error
+			}
+		};
+		retrievePasswordResetStage();
+	}, []);
+
+	const storePasswordResetStage = async (newStage: PasswordResetStage) => {
+		try {
+			await AsyncStorage.setItem('PASSWORD RESET STAGE', newStage);
+			setPasswordResetStage(newStage);
+		} catch (error) {
+			// Not important error
+		}
+	};
+
+	const clearPasswordResetStage = () => {
+		setPasswordResetStage(undefined);
+		AsyncStorage.removeItem('PASSWORD RESET STAGE');
+	};
 
 	const handleLogin = async () => {
 		const statusCode = await logIn({ email, password });
 		switch (statusCode) {
 			case 202: {
 				await clearEmailAndPassword();
+				clearPasswordResetStage();
 				navigate('LoginSuccessScreen');
 				return;
 			}
@@ -48,10 +81,15 @@ export default () => {
 		}
 	};
 
-	const handleForgotPassword = () => { console.log('Handle forgot password.'); };
+	const handleForgotPassword = () => {
+		setShowModal(true);
+	};
+	const handleDismissModal = () => {
+		setShowModal(false);
+	};
 
 	return (
-		<KeyboardAvoidingView style={styles.outerContainer} behavior="padding">
+		<KeyboardAvoidingView style={styles.outerContainer} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
 			<View style={styles.header}>
 				{/* TODO: use ContentHeader component when available */}
 				<Title text={`banana \n${userIdentity}`} />
@@ -108,6 +146,15 @@ export default () => {
 					<LinkButton text="Register" destination="RegistrationScreen" />
 				</View>
 			</ScrollView>
+			{showModal && (
+				<ResetPassword
+					onSuccess={clearPasswordResetStage}
+					onDismiss={handleDismissModal}
+					initialStage={passwordResetStage}
+					onRequest={storePasswordResetStage}
+					onBack={clearPasswordResetStage}
+				/>
+			)}
 		</KeyboardAvoidingView>
 	);
 };

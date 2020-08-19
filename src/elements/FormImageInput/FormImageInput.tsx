@@ -43,6 +43,9 @@ interface FormImageInputProps {
 
 	/** User-facing message associated with an error. */
 	errorMessage?: string;
+
+	/** Shape of the image input */
+	shape?: 'rectangular' | 'circular';
 }
 
 const MessageFromStatus = {
@@ -64,6 +67,7 @@ const FormImageInput = (
 		style,
 		error = false,
 		errorMessage,
+		shape = 'rectangular',
 	}: FormImageInputProps,
 	ref: Ref<TouchableWithoutFeedback>,
 ) => {
@@ -73,17 +77,19 @@ const FormImageInput = (
 			setValue(imageResult as ImageInfo);
 		}
 	};
-
 	return (
 		<View style={style}>
 			<InputLabel text={label} />
 
-			<Text style={styles.statusRowText}>
-				<Text style={styles.statusLabelText}>
-					{'Status : '}
+
+			{status !== 'none' ? (
+				<Text style={styles.statusRowText}>
+					<Text style={styles.statusLabelText}>
+						{'Status : '}
+					</Text>
+					{MessageFromStatus[status] || 'Unknown status'}
 				</Text>
-				{MessageFromStatus[status] || 'Unknown status'}
-			</Text>
+			) : null}
 
 			<TouchableWithoutFeedback
 				onPress={pickImage}
@@ -92,12 +98,12 @@ const FormImageInput = (
 				{ value?.uri != null
 					? (
 						<Image
-							style={styles.image}
+							style={shape === 'rectangular' ? styles.image : styles.circularImage}
 							source={{ uri: value.uri }}
 						/>
 					)
 					: (
-						<View style={styles.iconContainer}>
+						<View style={shape === 'rectangular' ? styles.iconContainer : styles.iconCircularContainer}>
 							<Icon name="image" size={24} />
 						</View>
 					)}

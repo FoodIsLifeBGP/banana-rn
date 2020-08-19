@@ -1,9 +1,4 @@
 export default {
-	image: {
-		presence: {
-			allowEmpty: true,
-		},
-	},
 	itemName: {
 		presence: {
 			allowEmpty: false,
@@ -14,13 +9,19 @@ export default {
 			allowEmpty: false,
 		},
 	},
-	totalAmount: {
-		allowEmpty: false,
-	},
 	pickupAddress: {
-		allowEmpty: false,
+		presence: {
+			allowEmpty: false,
+		},
 	},
 	pickupInstructions: {
-		allowEmpty: false,
+		presence: {
+			allowEmpty: false,
+		},
+	},
+	totalAmount: {
+		presence: {
+			allowEmpty: false,
+		},
 	},
 };

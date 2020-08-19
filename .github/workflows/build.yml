@@ -19,3 +19,7 @@ jobs:
       run: |
         npm i typescript
         npm run typechecking
+    - name: Tests
+      run: |
+        npm i jest jest-expo
+        npm test
