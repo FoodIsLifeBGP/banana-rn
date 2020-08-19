@@ -36,10 +36,6 @@ const ClientClaimsScreen = () => {
 
 			<NavBar
 				showBackButton={true}
-				showSelector={true}
-				onMap={() => {}}
-				onList={() => {}}
-				position="list"
 			/>
 
 			<View style={styles.contentContainer}>

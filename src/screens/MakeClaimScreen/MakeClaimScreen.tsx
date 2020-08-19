@@ -13,7 +13,7 @@ import styles from './MakeClaimScreen.styles';
 
 const MakeClaimScreen = () => {
 	const isFocused = useIsFocused();
-	const { navigate } = useNavigation();
+	const { navigate, goBack } = useNavigation();
 	const [ globalState, globalActions ] = useGlobal() as any;
 	const { claimDonation, getTravelTimes } = globalActions;
 	const { user } = globalState;
@@ -47,7 +47,7 @@ const MakeClaimScreen = () => {
 	};
 
 	const handleCancel = () => {
-		navigate('DashboardScreen');
+		goBack();
 	};
 
 	const fetchTravelTimes = async () => {
@@ -72,7 +72,7 @@ const MakeClaimScreen = () => {
 			<ScrollView>
 				<View>
 					<ImageBackground source={require('@assets/images/bananas.jpg')} style={claimStyles.header}>
-						<Text onPress={() => navigate('DashboardScreen')} style={[ typography.h2, claimStyles.closeLnk ]}>X</Text>
+						<Text onPress={() => goBack()} style={[ typography.h2, claimStyles.closeLnk ]}>X</Text>
 					</ImageBackground>
 				</View>
 				<View style={claimStyles.mainContent}>

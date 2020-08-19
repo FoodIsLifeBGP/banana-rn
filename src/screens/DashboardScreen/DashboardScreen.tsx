@@ -38,7 +38,6 @@ const DashboardScreen = () => {
 				showBackButton={false}
 				showSelector={true}
 				onMap={() => { navigate('MapScreen'); }}
-				onList={() => { }}
 				position="list"
 			/>
 

@@ -5,48 +5,43 @@ import React, { useState } from 'react';
 
 interface SelectorProps {
 	position: 'map'|'list';
-	onMap: () => any;
-	onList: () => any;
+	onMap?: () => any | undefined;
+	onList?: () => any | undefined;
 }
-export default (({ position, onMap, onList }: SelectorProps) => {
-	const [ page, setPage ] = useState(position);
-	return (
-		<View style={styles.selectorContainer}>
-			<TouchableOpacity
-				style={[
-					styles.selector,
-					page === 'map' ? styles.selectorSelected : {},
-				]}
-				onPress={() => {
-					setPage('map');
-					onMap && onMap();
-				}}
+export default (({ position, onMap, onList }: SelectorProps) => (
+	<View style={styles.selectorContainer}>
+		<TouchableOpacity
+			style={[
+				styles.selector,
+				position === 'map' ? styles.selectorSelected : {},
+			]}
+			onPress={() => {
+				onMap && onMap();
+			}}
+		>
+			<Text style={
+				position === 'map' ? styles.textSelected : styles.text
+			}
 			>
-				<Text style={
-					page === 'map' ? styles.textSelected : styles.text
-				}
-				>
-					map
-				</Text>
-			</TouchableOpacity>
-			<TouchableOpacity
-				style={[
-					styles.selector,
-					page === 'list' ? styles.selectorSelected : {},
-				]}
-				onPress={() => {
-					setPage('list');
-					onList && onList();
-				}}
+				map
+			</Text>
+		</TouchableOpacity>
+		<TouchableOpacity
+			style={[
+				styles.selector,
+				position === 'list' ? styles.selectorSelected : {},
+			]}
+			onPress={() => {
+				onList && onList();
+			}}
+		>
+			<Text style={
+				position === 'list' ? styles.textSelected : styles.text
+			}
 			>
-				<Text style={
-					page === 'list' ? styles.textSelected : styles.text
-				}
-				>
-					list
-				</Text>
-			</TouchableOpacity>
-		</View>
-	);
-});
+				list
+			</Text>
+		</TouchableOpacity>
+	</View>
+));
 
