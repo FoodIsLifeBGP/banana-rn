@@ -13,7 +13,7 @@ import styles from './ClaimDetailsScreen.styles';
 
 
 export default () => {
-	const { navigate } = useNavigation();
+	const { goBack } = useNavigation();
 	const donation = useNavigationParam('donation');
 	let { claim } = donation;
 	const { donor } = donation;
@@ -46,7 +46,7 @@ export default () => {
 			<ScrollView>
 				<View>
 					<ImageBackground source={require('@assets/images/bananas.jpg')} style={claimStyles.header}>
-						<Text onPress={() => navigate('DashboardScreen')} style={[ typography.h2, claimStyles.closeLnk ]}>X</Text>
+						<Text onPress={() => goBack()} style={[ typography.h2, claimStyles.closeLnk ]}>X</Text>
 					</ImageBackground>
 				</View>
 				<View style={claimStyles.mainContent}>
