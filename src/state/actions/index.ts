@@ -18,6 +18,7 @@ export interface Actions {
 }
 export { getActiveDonationsForClient } from './getActiveDonationsForClient';
 export { getClaimedDonationsForClient } from './getClaimedDonationsForClient';
+export { getDonationsForClient } from './getDonationsForClient';
 export { getDonations } from './getDonations';
 export { getDonationHistory } from './getDonationHistory';
 export { getLocation } from './getLocation';

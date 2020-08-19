@@ -20,6 +20,7 @@ import LogoutScreen from '../screens/LogoutScreen';
 import DonationsDetailScreen from '../screens/DonationsDetailScreen/DonationsDetailScreen';
 import DonorDonationScreen from '../screens/DonorDashboardScreen/DonorDonationScreen';
 import DonorHistoryScreen from '../screens/DonorHistoryScreen/DonorHistoryScreen';
+import MapScreen from '../screens/MapScreen/MapScreen';
 
 import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
 import MainOption from '../elements/MenuDrawer/MainOption/MainOption';
@@ -43,6 +44,7 @@ export const MainStack = createStackNavigator(
 		DonationsDetailScreen,
 		ContactScreen,
 		LogoutScreen,
+		MapScreen,
 	},
 	{
 		headerMode: 'none',

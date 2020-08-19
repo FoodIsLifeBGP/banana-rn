@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
-import { useIsFocused } from 'react-navigation-hooks';
+import { useIsFocused, useNavigation } from 'react-navigation-hooks';
 import Donation from '@library/DonationClientView/Donation';
 import useGlobal from '@state';
 import {
@@ -11,7 +11,7 @@ import styles from './DashboardScreen.styles';
 const DashboardScreen = () => {
 	const isFocused = useIsFocused();
 	const [ state, actions ] = useGlobal() as any;
-
+	const { navigate } = useNavigation();
 	const [ donations, setDonations ] = useState(state.donationsOrClaims);
 	const [ loaded, setLoaded ] = useState(false);
 
@@ -37,8 +37,7 @@ const DashboardScreen = () => {
 			<NavBar
 				showBackButton={false}
 				showSelector={true}
-				onMap={() => {}}
-				onList={() => {}}
+				onMap={() => { navigate('MapScreen'); }}
 				position="list"
 			/>
 
