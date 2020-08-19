@@ -12,9 +12,12 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 
 import useGlobal from '@state';
 
-import { Modal, TextButton, Icon } from '@elements';
+import {
+	Modal, TextButton, Icon, LinkButton,
+} from '@elements';
 import { ButtonStyle } from '@elements/Button';
 import { categoryImage } from '@util/donationCategory';
+import openAppSettings from '@util/openAppSettings';
 
 import BarCodeMask from './BarCodeMask';
 import styles from './QRCodeScannerScreen.styles';
@@ -23,7 +26,7 @@ export default () => {
 	const { goBack } = useNavigation();
 	const [ state, actions ] = useGlobal() as any;
 	const { scan } = actions;
-	const [ hasCameraPermission, setHasCameraPermission ] = useState(false);
+	const [ hasCameraPermission, setHasCameraPermission ] = useState<boolean | null>(null);
 	const [ modalOn, setModalOn ] = useState(false);
 	const [ claimedDonation, setClaimedDonation ] = useState({ food_name: '', claim: { client_name: '' } });
 	// TBD.
@@ -154,7 +157,17 @@ export default () => {
 					<ModalContent />
 				</>
 			);
-			case false: return <Text>No access to camera</Text>;
+			case false: return (
+				<>
+					<Text>No access to camera</Text>
+					<Text>The app needs access to the camera to scan QR codes.</Text>
+					<LinkButton
+						text="Open Settings"
+						onPress={() => openAppSettings().then(getPermissions)}
+					/>
+					<LinkButton text="Go Back" onPress={() => goBack()} />
+				</>
+			);
 			default: return <Text>Requesting permission to access camera</Text>;
 		}
 	};

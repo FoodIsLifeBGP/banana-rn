@@ -17,3 +17,4 @@ export { CancelDonationModal } from './CancelDonationModal';
 export { EmptyStateView } from './EmptyStateView';
 export { ContentHeader } from './ContentHeader';
 export { FloatingActionButton } from './FloatingActionButton';
+export { BananaMap } from './BananaMap';

@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigation } from 'react-navigation-hooks';
-import { View, Text, SafeAreaView } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { View } from 'react-native';
 import { Button, Icon } from '@elements';
 import { ButtonStyle } from '@elements/Button';
 import * as colors from '@util/colors';
@@ -17,8 +16,8 @@ interface NavBarProps {
 	leftButton?: 'qrCode'|'back';
 	showSelector?: boolean;
 	position?: 'map'|'list';
-	onMap?: () => any;
-	onList?: () => any;
+	onMap?: () => any | undefined;
+	onList?: () => any | undefined;
 	backButtonFn?: () => void;
 }
 
@@ -68,7 +67,7 @@ export default ({
 				}
 			</View>
 			{
-				showSelector && position && onMap && onList && <Selector position={position} onMap={onMap} onList={onList} />
+				showSelector && position && <Selector position={position} onMap={onMap} onList={onList} />
 			}
 			<View style={styles.notiContainer}>
 				<Button
