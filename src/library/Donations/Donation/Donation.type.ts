@@ -24,7 +24,9 @@ export interface Donation {
 		pickup_instructions: string;
 		status: string;
 		donor: DonorAddress['donor'];
+		updated_at: Date;
 	};
+	isHistory?: boolean;
 }
 
 export interface DonorAddress {

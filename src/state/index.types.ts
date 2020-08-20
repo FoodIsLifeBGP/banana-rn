@@ -92,3 +92,8 @@ export interface InitialState {
 export interface StatusCode {
 	code: 200 | 202 | 400 | 403 | 404 | 418 | 500;
 }
+
+export interface Location {
+	latitude: number;
+	longitude: number;
+}

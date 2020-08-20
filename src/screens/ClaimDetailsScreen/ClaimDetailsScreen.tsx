@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigationParam, useNavigation } from 'react-navigation-hooks';
 import {
-	Dimensions, ImageBackground, ScrollView, Text, View,
+	Dimensions, ImageBackground, ScrollView, Text, View, Platform, Linking,
 } from 'react-native';
 import { Icon, SpacerInline, TextButton } from '@elements';
 import QRCode from 'react-native-qrcode-svg';
@@ -12,11 +12,14 @@ import claimStyles from '@util/claimStyles';
 import styles from './ClaimDetailsScreen.styles';
 
 
-const ClaimDetailsScreen = () => {
-	const { navigate } = useNavigation();
+export default () => {
+	const { goBack } = useNavigation();
 	const donation = useNavigationParam('donation');
-	const claim = useNavigationParam('claim');
+	let { claim } = donation;
 	const { donor } = donation;
+	if (!claim) {
+		claim = useNavigationParam('claim');
+	}
 
 	const claimBtnStyle: ButtonStyle = {
 		default: {
@@ -24,17 +27,26 @@ const ClaimDetailsScreen = () => {
 			foreground: colors.WHITE,
 		},
 	};
+
 	const screenHeight = Math.round(Dimensions.get('window').height);
 	const screenWidth = Math.round(Dimensions.get('window').width);
 
 	const address = `${donor.address_street} ${donor.address_city}, ${donor.address_state}, ${donor.address_zip}`;
+
+	const openGPS = () => {
+		const url = Platform.select({
+			ios: `maps:0,0?q=${donor.donor_name}@${donor.latitude},${donor.longitude}`,
+			android: `geo:0,0?q=${address}`,
+		});
+		Linking.openURL(url);
+	};
 	return (
 
 		<View style={claimStyles.outerContainer}>
 			<ScrollView>
 				<View>
 					<ImageBackground source={require('@assets/images/bananas.jpg')} style={claimStyles.header}>
-						<Text onPress={() => navigate('DashboardScreen')} style={[ typography.h2, claimStyles.closeLnk ]}>X</Text>
+						<Text onPress={() => goBack()} style={[ typography.h2, claimStyles.closeLnk ]}>X</Text>
 					</ImageBackground>
 				</View>
 				<View style={claimStyles.mainContent}>
@@ -50,10 +62,12 @@ const ClaimDetailsScreen = () => {
 							<Icon name="location" size={16} />
 							<Text style={typography.body4}>{donor.donor_name}</Text>
 						</View>
-						<View style={claimStyles.itemWithIcon}>
-							<Icon name="distance" size={16} />
-							<Text style={typography.body4}>{donation.distance && `${donation.distance.toFixed(1)} mi`}</Text>
-						</View>
+						{donation.distance != null && (
+							<View style={claimStyles.itemWithIcon}>
+								<Icon name="distance" size={16} />
+								<Text style={typography.body4}>{donation.distance && `${donation.distance.toFixed(1)} mi`}</Text>
+							</View>
+						)}
 					</View>
 					<View style={claimStyles.section}>
 						<View style={claimStyles.title}>
@@ -73,30 +87,29 @@ const ClaimDetailsScreen = () => {
 						<View style={claimStyles.item}>
 							<Text style={typography.body4}>{donation.pickup_instructions}</Text>
 						</View>
-						<View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-							<TextButton text="Directions" buttonStyle={claimBtnStyle} />
-						</View>
+						{claim.status !== 'closed' && (
+							<View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+								<TextButton text="Directions" buttonStyle={claimBtnStyle} onPress={() => openGPS()} />
+							</View>
+						)}
 					</View>
-					<View>
-						<View style={claimStyles.title}>
-							<Text style={typography.h3}>QR Code</Text>
+					{claim.status !== 'closed' && (
+						<View>
+							<View style={claimStyles.title}>
+								<Text style={typography.h3}>QR Code</Text>
+							</View>
+							<View style={styles.qrContainer}>
+								<QRCode
+									backgroundColor={colors.BANANA_YELLOW}
+									value={claim.qr_code}
+									size={Math.min(screenWidth, screenHeight) / 2}
+								/>
+								<Text style={styles.qrText}>PLEASE PRESENT THIS TO YOUR DONOR</Text>
+							</View>
 						</View>
-						<View style={styles.qrContainer}>
-							<QRCode
-								backgroundColor={colors.BANANA_YELLOW}
-								value={claim.qr_code}
-								size={Math.min(screenWidth, screenHeight) / 2}
-							/>
-							<Text style={styles.qrText}>PLEASE PRESENT THIS TO YOUR DONOR</Text>
-						</View>
-					</View>
+					)}
 				</View>
 			</ScrollView>
 		</View>
-
-
 	);
 };
-
-
-export default ClaimDetailsScreen;
