@@ -19,7 +19,7 @@ export default () => {
 		case 'incomplete': return <ApplicationIncompleteScreen />;
 		case 'suspended': return <AccountSuspendedScreen />;
 		case 'processing': return <ApplicationPendingScreen />;
-		case 'approved': return <ApplicationApprovedScreen id={id} />;
+		case 'approved': return <ApplicationApprovedScreen id={id} jwt={jwt} />;
 		case 'active': return userIdentity === 'client' ? <DashboardScreen /> : <DonorDashboardScreen />;
 		default: return <InfoScreen title="Login error" nextScreenDestination="LoginScreen" nextScreenTitle="Login" />;
 	}
