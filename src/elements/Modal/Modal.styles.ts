@@ -54,9 +54,6 @@ export default StyleSheet.create({
 		backgroundColor: colors.WHITE,
 	},
 	bodyContent: {
-		// borderWidth: 5,
-		// borderStyle: 'solid',
-		// borderColor: 'black',
 		overflow: 'scroll',
 		flexGrow: 1,
 		width: '100%',
