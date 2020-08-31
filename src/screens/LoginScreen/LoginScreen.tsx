@@ -22,6 +22,7 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import styles from './LoginScreen.styles';
 import ResetPassword from './ResetPassword';
 import { PasswordResetStage } from './ResetPassword/ResetPassword';
+import GeneralError from '@elements/Modal/GeneralError/GeneralError';
 
 
 export default () => {
@@ -147,13 +148,14 @@ export default () => {
 				</View>
 			</ScrollView>
 			{showModal && (
-				<ResetPassword
-					onSuccess={clearPasswordResetStage}
-					onDismiss={handleDismissModal}
-					initialStage={passwordResetStage}
-					onRequest={storePasswordResetStage}
-					onBack={clearPasswordResetStage}
-				/>
+				<GeneralError />
+				// <ResetPassword
+				// 	onSuccess={clearPasswordResetStage}
+				// 	onDismiss={handleDismissModal}
+				// 	initialStage={passwordResetStage}
+				// 	onRequest={storePasswordResetStage}
+				// 	onBack={clearPasswordResetStage}
+				// />
 			)}
 		</KeyboardAvoidingView>
 	);
