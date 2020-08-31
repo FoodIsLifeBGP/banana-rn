@@ -19,7 +19,8 @@ import {
 	FormTextInput,
 } from '@elements';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import GeneralError from '@elements/Modal/GeneralError/GeneralError';
+import GeneralError from '@elements/GeneralErrorModal/GeneralErrorModal';
+import { ComingSoonModal } from '@elements/ComingSoonModal';
 import styles from './LoginScreen.styles';
 import ResetPassword from './ResetPassword';
 import { PasswordResetStage } from './ResetPassword/ResetPassword';

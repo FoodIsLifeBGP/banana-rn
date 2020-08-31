@@ -3,8 +3,8 @@ import { View, Text } from 'react-native';
 import { SpacerInline } from '@elements/SpacerInline';
 import { TextButton } from '@elements/Button/TextButton';
 import { useScheme } from '@util/colorSchemes';
-import Modal from '../Modal';
-import styles from './GeneralError.styles';
+import Modal from '../Modal/Modal';
+import styles from './GeneralErrorModal.styles';
 
 
 interface GeneralErrorProps {
