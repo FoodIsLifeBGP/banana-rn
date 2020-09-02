@@ -50,7 +50,7 @@ export const MainStack = createStackNavigator(
 	},
 	{
 		headerMode: 'none',
-		initialRouteName: 'DashboardScreen',
+		initialRouteName: 'LoginSuccessScreen',
 	},
 );
 
