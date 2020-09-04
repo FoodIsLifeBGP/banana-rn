@@ -51,7 +51,7 @@ export default ({
 							buttonStyle={buttonStyle}
 							onPress={backButtonFn || (backDestination ? () => navigate(backDestination) : () => goBack())}
 						>
-							{foregroundColor => (<Icon size={36} color={foregroundColor} name="back" />)}
+							{foregroundColor => (<Icon size={32} color={foregroundColor} name="back" />)}
 						</Button>
 					)
 				}
@@ -61,7 +61,7 @@ export default ({
 							buttonStyle={buttonStyle}
 							onPress={() => navigate('QRCodeScannerScreen')}
 						>
-							{foregroundColor => (<Icon size={36} color={foregroundColor} name="qrCode" />)}
+							{foregroundColor => (<Icon size={32} color={foregroundColor} name="qrCode" />)}
 						</Button>
 					)
 				}
@@ -75,7 +75,7 @@ export default ({
 					style={{ marginTop: 4, marginRight: 8 }}
 					onPress={() => { updateAlert({ type: 'coming soon', dismissable: false }); }}
 				>
-					{foregroundColor => (<Icon size={36} color={foregroundColor} name="bell" />)}
+					{foregroundColor => (<Icon size={32} color={foregroundColor} name="bell" />)}
 				</Button>
 				{showMenu && (<HamburgerPopupMenu />) }
 			</View>
