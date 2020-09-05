@@ -25,7 +25,7 @@ const DonationsDetailScreen = () => {
 		const responseCode = await cancelDonation(donation.id);
 		if (responseCode !== 202) {
 			console.log('Handle this error better');
-			//Add Common UH-OH modal here
+			// Add Common UH-OH modal here
 		} else {
 			navigate('DonorDashboardScreen');
 		}
@@ -81,9 +81,11 @@ const DonationsDetailScreen = () => {
 				</View>
 			</View>
 			<SpacerInline height={20} />
-			<LinkButton text="CANCEL DONATION" 
-						onPress = {() =>  updateAlert({ type: 'cancel donation', dismissable: false, confirmFn: () => handleCancel()})}
-						disabled={hasClaim} />
+			<LinkButton
+				text="CANCEL DONATION"
+				onPress={() => updateAlert({ type: 'cancel donation', dismissable: false, confirmFn: () => handleCancel() })}
+				disabled={hasClaim}
+			/>
 		</ScrollView>
 	);
 };

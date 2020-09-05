@@ -41,7 +41,6 @@ export default ({
 		clearAlert();
 		onYes();
 		alertObj.confirmFn && alertObj.confirmFn();
-		
 	};
 
 	const handleCloseButtonPress = () => {
