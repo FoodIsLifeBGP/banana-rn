@@ -60,7 +60,7 @@ export interface Alert {
 	/**
 	 * Type of the alert.
 	 */
-	type: 'default'|'incomplete form'|'coming soon'|'cancel donation';
+	type: 'default'|'incomplete form'|'coming soon'|'cancel donation'|'donation cancelled'|'donation published';
 
 	/**
 	 * Message to the user.

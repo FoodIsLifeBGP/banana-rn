@@ -19,11 +19,13 @@ const DonationsDetailScreen = () => {
 	const { cancelDonation } = globalActions;
 	const donation = useNavigationParam('donation');
 	const hasClaim = !!donation.claim;
+	const [ state, { updateAlert } ] = useGlobal() as any;
 
 	const handleCancel = async () => {
 		const responseCode = await cancelDonation(donation.id);
 		if (responseCode !== 202) {
 			console.log('Handle this error better');
+			//Add Common UH-OH modal here
 		} else {
 			navigate('DonorDashboardScreen');
 		}
@@ -79,7 +81,9 @@ const DonationsDetailScreen = () => {
 				</View>
 			</View>
 			<SpacerInline height={20} />
-			<LinkButton text="CANCEL DONATION" onPress={handleCancel} disabled={hasClaim} />
+			<LinkButton text="CANCEL DONATION" 
+						onPress = {() =>  updateAlert({ type: 'cancel donation', dismissable: false, confirmFn: () => handleCancel()})}
+						disabled={hasClaim} />
 		</ScrollView>
 	);
 };
