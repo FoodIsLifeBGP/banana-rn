@@ -48,7 +48,7 @@ export default () => {
 			setValidateError({});
 			const result = await postDonation(newDonation);
 			if (result === 201) {
-				updateAlert({ type: 'donation published', dismissable: false  });
+				updateAlert({ type: 'donation published', dismissable: false });
 				setNewDonation(emptyDonation);
 				navigate('DonorDashboardScreen');
 			} else {
