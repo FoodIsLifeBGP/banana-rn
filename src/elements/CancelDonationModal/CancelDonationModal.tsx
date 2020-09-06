@@ -16,25 +16,31 @@ import styles from './CancelDonationModal.styles';
 interface CancelDonationModalProps {
 	onYes?: () => void;
 	onNo?: () => void;
+	okay?: () => void;
 }
 
 export default ({
 	onYes = () => {},
 	onNo = () => {},
+	okay = () => {},
+
 }: CancelDonationModalProps) => {
 	const [ globalState, globalActions ] = useGlobal() as any;
 	const { alert: alertObj }: { alert: Alert } = globalState;
 	const { clearAlert } = globalActions;
 	const scheme = useScheme();
+	const [ state, { updateAlert } ] = useGlobal() as any;
 
 	const handleNo = () => {
 		clearAlert();
 		onNo();
+		alertObj.cancelFn && alertObj.cancelFn();
 	};
 
 	const handleYes = () => {
 		clearAlert();
 		onYes();
+		alertObj.confirmFn && alertObj.confirmFn();
 	};
 
 	const handleCloseButtonPress = () => {
@@ -45,6 +51,12 @@ export default ({
 		if (alertObj.dismissable) {
 			clearAlert();
 		}
+	};
+
+	const handleOkay = () => {
+		clearAlert();
+		okay();
+		alertObj.confirmFn && alertObj.confirmFn();
 	};
 
 	if (!alertObj) return null;
@@ -92,10 +104,9 @@ export default ({
 				<View style={styles.body}>
 					<View style={styles.textContainer}>
 						<Text style={typography.body1}>
-							{alertObj?.message || 'This donation will be canceled.'}
+							{alertObj?.message || 'This donation will be cancelled.'}
 						</Text>
 					</View>
-
 					<View style={styles.buttonWrapper}>
 						<View style={styles.leftButton}>
 							<TextButton
@@ -123,6 +134,41 @@ export default ({
 									disabled: scheme.disabled,
 								}}
 								onPress={handleYes}
+							/>
+						</View>
+					</View>
+				</View>
+			</Modal>
+		);
+	}
+	if (alertObj.type === 'donation published') {
+		return (
+			<Modal
+				style={styles.container}
+				title={alertObj?.title || 'DONATION PUBLISHED'}
+				palette="secondary"
+				open={alertObj !== undefined}
+				onDismiss={handleDismiss}
+			>
+				<View style={styles.body}>
+					<View style={styles.textContainer}>
+						<Text style={typography.body1}>
+							{alertObj?.message || 'Donation was published successfully. Thanks for your participation.'}
+						</Text>
+					</View>
+					<View style={styles.buttonWrapper}>
+						<View style={styles.leftButton}>
+							<TextButton
+								text="OKAY"
+								style={{
+									width: 120,
+								}}
+								buttonStyle={{
+									default: scheme.tertiary,
+									pressed: scheme.secondary,
+									disabled: scheme.disabled,
+								}}
+								onPress={handleOkay}
 							/>
 						</View>
 					</View>
