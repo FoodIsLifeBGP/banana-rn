@@ -6,7 +6,7 @@ import { Icon } from '@elements';
 import styles from './BarCodeMask.styles';
 
 export default () => {
-	const { navigate } = useNavigation();
+	const { goBack } = useNavigation();
 	return (
 		<>
 			<View style={styles.reticleUL} />
@@ -15,10 +15,10 @@ export default () => {
 			<View style={styles.reticleDR} />
 			<View style={styles.background} />
 			<View style={styles.xContainer}>
-				<TouchableWithoutFeedback onPress={() => navigate('DashboardScreen')}>
+				<TouchableWithoutFeedback onPress={() => goBack()}>
 					<Icon name="chevron-left" size={48} color="gray" />
 				</TouchableWithoutFeedback>
-				<TouchableWithoutFeedback onPress={() => navigate('DashboardScreen')}>
+				<TouchableWithoutFeedback onPress={() => goBack()}>
 					<Icon name="close" size={48} color="gray" />
 				</TouchableWithoutFeedback>
 			</View>
