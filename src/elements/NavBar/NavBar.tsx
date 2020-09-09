@@ -6,6 +6,7 @@ import { ButtonStyle } from '@elements/Button';
 import * as colors from '@util/colors';
 import Selector from '@elements/NavBar/Selector';
 import useGlobal from '@state';
+import { NAVBAR_ICON_SIZE } from '@util/constants';
 import HamburgerPopupMenu from '../HamburgerPopupMenu';
 import styles from './NavBar.styles';
 
@@ -51,7 +52,7 @@ export default ({
 							buttonStyle={buttonStyle}
 							onPress={backButtonFn || (backDestination ? () => navigate(backDestination) : () => goBack())}
 						>
-							{foregroundColor => (<Icon size={32} color={foregroundColor} name="back" />)}
+							{foregroundColor => (<Icon size={NAVBAR_ICON_SIZE} color={foregroundColor} name="back" />)}
 						</Button>
 					)
 				}
@@ -61,7 +62,7 @@ export default ({
 							buttonStyle={buttonStyle}
 							onPress={() => navigate('QRCodeScannerScreen')}
 						>
-							{foregroundColor => (<Icon size={32} color={foregroundColor} name="qrCode" />)}
+							{foregroundColor => (<Icon size={NAVBAR_ICON_SIZE} color={foregroundColor} name="qrCode" />)}
 						</Button>
 					)
 				}
@@ -75,7 +76,7 @@ export default ({
 					style={{ marginTop: 4, marginRight: 8 }}
 					onPress={() => { updateAlert({ type: 'coming soon', dismissable: false }); }}
 				>
-					{foregroundColor => (<Icon size={32} color={foregroundColor} name="bell" />)}
+					{foregroundColor => (<Icon size={NAVBAR_ICON_SIZE} color={foregroundColor} name="bell" />)}
 				</Button>
 				{showMenu && (<HamburgerPopupMenu />) }
 			</View>
