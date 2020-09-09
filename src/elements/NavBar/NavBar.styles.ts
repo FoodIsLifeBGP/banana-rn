@@ -1,4 +1,5 @@
 import { Platform, StyleSheet, Dimensions } from 'react-native';
+import Constants from 'expo-constants';
 import * as colors from '@util/colors';
 
 const screenWidth = Math.round(Dimensions.get('window').width);
@@ -12,11 +13,12 @@ export default StyleSheet.create({
 	},
 	contentContainer: {
 		backgroundColor: colors.LIGHT_GRAY,
-		height: 60,
+		height: 56 + Constants.statusBarHeight,
 		width: screenWidth,
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
+		paddingTop: Constants.statusBarHeight,
 		borderBottomWidth: 2,
 		borderColor: colors.NAVY_BLUE,
 
@@ -38,6 +40,7 @@ export default StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		flexBasis: 100,
+		marginRight: 15,
 	},
 	selectorContainer: {
 		flexDirection: 'row',
