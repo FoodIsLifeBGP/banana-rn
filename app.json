@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "The Banana App",
-    "slug": "banana-app-donor",
+    "slug": "banana-app",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
