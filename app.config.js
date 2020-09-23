@@ -7,6 +7,7 @@ export default ({ config }) => {
 			variant: process.env.EXPO_APP_VARIANT ? process.env.EXPO_APP_VARIANT : 'donor',
 			storybook: process.env.EXPO_STORYBOOK ? process.env.EXPO_STORYBOOK === 'true' : false,
 			useDefaultLocation: process.env.EXPO_USE_DEFAULT_LOCATION ? process.env.EXPO_USE_DEFAULT_LOCATION === 'true' : false,
+			productionBuild: process.env.PRODUCTION_BUILD ? process.env.PRODUCTION_BUILD === 'true' : false,
 		},
 	};
 };

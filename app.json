@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "The Banana App",
-    "slug": "banana-app",
+    "slug": "banana-app-donor",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
@@ -24,8 +24,8 @@
       "**/*"
     ],
     "ios": {
-			"supportsTablet": true,
-			"bundleIdentifier": "com.thebegoodproject.org.bananaapp"
+      "supportsTablet": true,
+      "bundleIdentifier": "com.thebegoodproject.org.bananaapp"
     },
     "userInterfaceStyle": "automatic",
     "packagerOpts": {
