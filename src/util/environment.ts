@@ -18,8 +18,15 @@ const getEnv = () => {
 	return ({
 		...variantSpecificProperties,
 		USER_IDENTITY: variant,
-		API_BASE_URL: Constants.manifest.extra.ipAddress ? `http://${Constants.manifest.extra.ipAddress}:3000` : 'https://dev.bananaapp.org',
+		API_BASE_URL: getServerEndPoint(),
 	});
 };
 
+const getServerEndPoint = () => {
+	if (Constants.manifest.extra.productionBuild) {
+		return 'https://api.bananaapp.org';
+	}
+	return Constants.manifest.extra.ipAddress ? `http://${Constants.manifest.extra.ipAddress}:3000`
+		: 'https://dev.bananaapp.org';
+};
 export default getEnv;
