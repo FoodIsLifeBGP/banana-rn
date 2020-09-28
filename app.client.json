@@ -1,0 +1,53 @@
+{
+  "expo": {
+    "name": "Banana App - Food Pickup",
+    "slug": "banana-app-client",
+    "privacy": "public",
+    "sdkVersion": "36.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "0.1.4a3",
+    "orientation": "portrait",
+    "icon": "./assets/iconClient.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#083A9B"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+			"supportsTablet": true,
+			"bundleIdentifier": "com.thebegoodproject.org.bananaapp-client"
+    },
+    "userInterfaceStyle": "automatic",
+    "packagerOpts": {
+      "config": "metro.config.js",
+      "sourceExts": [
+        "expo.ts",
+        "expo.tsx",
+        "expo.js",
+        "expo.jsx",
+        "ts",
+        "tsx",
+        "js",
+        "jsx",
+        "json",
+        "wasm",
+        "svg",
+        "md"
+      ]
+    },
+		"description": "The Banana App provides donors (supermarkets, groceries, produce stands, restaurants) a time-sensitive platform to donate items that are considered not aesthetically-pleasing for market display or sale but still edible and in good condition. Items will be given directly to verified clients (low-income family, homeless individuals) upon successful application.",
+		"extra": {
+			"variant": "client"
+		}
+  }
+}

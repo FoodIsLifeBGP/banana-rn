@@ -1,0 +1,53 @@
+{
+  "expo": {
+    "name": "Banana App - Food Donation",
+    "slug": "banana-app-donor",
+    "privacy": "public",
+    "sdkVersion": "36.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "0.1.7",
+    "orientation": "portrait",
+    "icon": "./assets/iconDonor.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FFE145"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+			"supportsTablet": true,
+			"bundleIdentifier": "com.thebegoodproject.org.bananaapp"
+    },
+    "userInterfaceStyle": "automatic",
+    "packagerOpts": {
+      "config": "metro.config.js",
+      "sourceExts": [
+        "expo.ts",
+        "expo.tsx",
+        "expo.js",
+        "expo.jsx",
+        "ts",
+        "tsx",
+        "js",
+        "jsx",
+        "json",
+        "wasm",
+        "svg",
+        "md"
+      ]
+    },
+    "description": "The Banana App provides donors (supermarkets, groceries, produce stands, restaurants) a time-sensitive platform to donate items that are considered not aesthetically-pleasing for market display or sale but still edible and in good condition. Items will be given directly to verified clients (low-income family, homeless individuals) upon successful application.",
+		"extra": {
+			"variant": "donor"
+		}
+	}
+}

@@ -2,6 +2,35 @@
 
 Banana App is an open-source, not-for-profit project of The Be Good Foundation.  We can reduce hunger by simplifying food donation.  We make it easy for grocery stores and restaurants to donate good food that would otherwise be disposed of.  Users will be able to find active donations, view the business's food rating, and claim a portion.
 
+---
+- BANANA APP
+	- [Installation (Mac/OSX)](#installation-(mac/osx))
+	- [Installation (Windows)](#installation-(windows))
+		- [Setting up Code Environment for Windows](#setting-up-code-environment-for-windows)
+		- [Setting up Android Simulator](#setting-up-android-simulator)
+	- [Additional notes about environment](#Additional-notes-about-environment)
+		- [Back End Choices](#backend-choices)
+		- [Possible gotchas for new developers](#possible-gotchas-for-new-developers)
+- [The rest of The Banana App family:](#the-rest-of-the-banana-app-family:)
+	- [Back End](#backend)
+	- [Admin](#admin)
+- [Contributing](#contributing)
+- [Dev Notes](#dev-notes)
+	- [Variant-Specific Code](#variant-specific-code)
+	- [Editor](#editor)
+	- [Absolute imports](#absolute-imports)
+	- [State Management](#state-management)
+	- [Writing Actions](#writing-actions)
+	- [Environment Variables](#environment-variables)
+	- [Icons](#icons)
+		- [Adding New Icons](#adding-new-icons)
+		- ['Animated' Icons](#'animated'-icons)
+	- [SVGs](#svgs)
+- [Deployment](#deployment)
+	- [Apple App Store](#apple-app-store)
+	- [Google Play](#google-play)
+---
+
 # Installation (Mac/OSX)
 
 Step 0 is to [install the backend](https://github.com/FoodIsLifeBGP/banana-rails).  Follow those instructions to make sure you have everything needed to install this repo (like the Xcode command line tools).
@@ -25,7 +54,7 @@ Once those are complete, run:
 
 # Installation (Windows)
 
-**SETTING UP CODE ENVIRONMENT FOR WINDOWS**
+#### **SETTING UP CODE ENVIRONMENT FOR WINDOWS**
 
 1) Go to [this website](https://github.com/coreybutler/nvm-windows) and follow the instructions for installing Node Version Manager for Windows 
 
@@ -42,7 +71,7 @@ Once those are complete, run:
 6) Make sure you've traversed to the right directory (most likely Desktop) and run `git clone https://github.com/FoodIsLifeBGP/banana-rn && cd banana-rn && npm i`
 
 
-**SETTING UP ANDROID SIMULATOR**
+#### **SETTING UP ANDROID SIMULATOR**
 
 1) Download the latest version of Android Studio [here](https://developer.android.com/studio/) and complete the installation. No other configurations needed.
 
@@ -106,13 +135,13 @@ When the app opens, you will see the login screen.  Assuming you are still runni
 
 or create a new account.
 
-###Backend Choices
+### Backend Choices
 - `environments.ts` controls what rails server the app will try to talk to.
 - The default is an AWS server running the latest [banana rails](https://github.com/FoodIsLifeBGP/banana-rails) from the `prealpha/main` branch.
 - If you would like to talk to a different rails server (most likely your own in the event you have changes you want to test), create a file called
 `.env` in your project root and add `IP_ADDRESS=<your internal network ip>` to the file (you can also change the variant to client in the `.env` file.
 
-**Possible gotchas for new developers**
+#### **Possible gotchas for new developers**
 - If you elect to use your web browser to test your changes, Firefox may just render a blank page.  Switching to 
 another browser should resolve the issue.  
 
@@ -133,8 +162,9 @@ Or try switching node versions (`12.10.0 => 12.9.0`)
 
 # The rest of The Banana App family:
 
-## [Backend](https://github.com/FoodIsLifeBGP/banana-rails)
-## Admin (TBD)
+## [Back End](https://github.com/FoodIsLifeBGP/banana-rails) - Ruby on Rails/Postgres Back End
+## [Admin](https://github.com/FoodIsLifeBGP/banana-admin) - React / Storybook
+---
 
 # Contributing
 
@@ -229,7 +259,7 @@ const ExampleComponent = () => {
 ```
    - Remember, useGlobalHook takes care of passing the state, so only put what you're updating in the arguments here.
 
-## Environment variables
+## Environment Variables
 
 The variant field in `app.json/expo/extra` is used to set some psuedo-environment variables.  These values are then immediately loaded into state, so they're only to be used before state is initialized.  That is to say, hopefully you will never have to use them.  But if you do, they live in `/src/util/environment.ts`.  The API URL root also lives here.
 - `import getEnv from '@util/environment';`
@@ -246,7 +276,7 @@ import { Icon } from '@/elements';
 <Icon name="arrowDown" color="pink" size={24} />
 ```
 
-### Adding new icons
+### Adding New Icons
 
 Any new SVG icons will have to follow some standards in order to work with the icon system.
 
@@ -261,7 +291,7 @@ Any new SVG icons will have to follow some standards in order to work with the i
    - This fill color is overwritten with JS.
 4. Be wary of declaring presentation attributes within a `style` attribute. These cannot be overwritten.
 
-#### 'Animated' Icons
+### 'Animated' Icons
 
 Some icons need to seamlessly replace each other in order to simulate animation.
 
@@ -302,3 +332,55 @@ if (Platform.os === 'web') {
 	<SvgImage ... />
 }
 ```
+
+# Deployment
+
+## **Apple App Store**
+
+### Client
+* The following variables are set in 'app.client.json'
+	* “name": "The Banana App - Client"
+	* “version”: “this should be set dependent on the current version found on https://appstoreconnect.apple.com”
+	* "slug": "banana-app-client"
+	* "bundleIdentifier": "com.thebegoodproject.org.bananaapp-client"
+
+### Donor
+* The following variables are set in 'app.donor.json'
+	* "name": "The Banana App - Donor"
+	* “version”: “this should be set dependent on the current version found on https://appstoreconnect.apple.com”
+	* "slug": "banana-app-donor",
+	* "bundleIdentifier": "com.thebegoodproject.org.bananaapp"
+
+### Deployment Steps:
+1. ```npm install```
+2. Increment the version according to version number in the appropriate file:
+```
+'app.client.json' || 'app.donor.json'
+```
+3. Start the desired app to ensure there are no errors:
+```
+expo start --config app.client.json ||  expo start --config app.donor.json
+```
+4. In your browser choose “Run on iOS simulator”
+5. Create your desired build of the app to upload:
+```
+expo build:ios --config app.client.json
+``` 
+OR
+```
+expo build:ios --config app.donor.json
+```
+* Choose “archive” when asked to “Choose the build type you would like”
+* Follow prompts
+* The build could take a while depending on how many builds are already in the queue - **Average time in my experience is 15 - 60 minutes**
+* If the build was successful, you will see a message stating “Successfully built standalone app: https://expo.io/artifacts/xxxxxxxx-xxxxxxx-xxxxx-xxxxxxxx”
+6. Download the build file from the expo link
+7. Launch Xcode
+	* In the "Xcode" menu choose "Open Developer Tool" -> "Application Loader"
+8. Drag and drop your downloaded ".ipa" file into the Application Loader and follow the prompts
+9. Complete the process on [App Store Connect](https://appstoreconnect.apple.com)
+
+## **Google Play**
+
+---
+[back to top](#BANANA-APP:-Donor/Client-Apps-(React-Native/Typescript))
