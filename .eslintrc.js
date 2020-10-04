@@ -51,6 +51,7 @@ module.exports = {
 				]
 			}
 		],
+
 		'import/prefer-default-export': 0,
 		'indent': 'off',
 		'lines-between-class-members': 0,
@@ -105,6 +106,7 @@ module.exports = {
 		],
 		'react/jsx-props-no-spreading': 1,
 		'react/prop-types': 0,
+		"react/require-default-props": 0,
 		'semi': ['error', 'always'],
 		'@typescript-eslint/camelcase': 'off',
 		'@typescript-eslint/explicit-function-return-type': [0],

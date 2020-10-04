@@ -15,12 +15,6 @@ interface DropdownInputProps extends TextInputProps {
 	/** Callback used with every keystroke within the input. */
 	setValue: TextInputProps['onChangeText'];
 
-	/** Styling to override default input styling. */
-	inputStyle?: StyleProp<TextStyle>;
-
-	/** Reference to the text input for programmatic manipulation. */
-	forwardedRef?: Ref<TextInput>;
-
 	/** Dropdown data for dropdownList */
 	dropdownData?: Array<string>;
 
