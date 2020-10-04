@@ -3,7 +3,6 @@
     "name": "Banana App - Food Donation",
     "slug": "banana-app-donor",
     "privacy": "public",
-    "sdkVersion": "38.0.0",
     "platforms": [
       "ios",
       "android",

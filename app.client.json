@@ -3,7 +3,6 @@
     "name": "Banana App - Food Pickup",
     "slug": "banana-app-client",
     "privacy": "public",
-    "sdkVersion": "38.0.0",
     "platforms": [
       "ios",
       "android",
