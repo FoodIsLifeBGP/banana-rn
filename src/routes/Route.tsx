@@ -141,8 +141,7 @@ export const FullAppStack = createStackNavigator(
 	},
 	{
 		defaultNavigationOptions: {
-			header: null,
-			gesturesEnabled: false,
+			gestureEnabled: false,
 		},
 		headerMode: 'none',
 		initialRouteName: 'LoginScreen',

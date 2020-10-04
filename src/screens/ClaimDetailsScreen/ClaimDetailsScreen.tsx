@@ -37,6 +37,7 @@ export default () => {
 		const url = Platform.select({
 			ios: `maps:0,0?q=${donor.donor_name}@${donor.latitude},${donor.longitude}`,
 			android: `geo:0,0?q=${address}`,
+			default: `geo:0,0?q=${address}`,
 		});
 		Linking.openURL(url);
 	};

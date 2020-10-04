@@ -6,7 +6,7 @@ import { NAVBAR_ICON_SIZE } from '@util/constants';
 
 
 export default () => {
-	const { toggleDrawer } = useNavigation();
+	const { toggleDrawer } = useNavigation() as any;
 
 	return (
 		<TouchableOpacity onPress={toggleDrawer}>
