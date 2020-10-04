@@ -3,7 +3,7 @@
     "name": "The Banana App",
     "slug": "banana-app",
     "privacy": "public",
-    "sdkVersion": "36.0.0",
+    "sdkVersion": "38.0.0",
     "platforms": [
       "ios",
       "android",
