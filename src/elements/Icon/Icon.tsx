@@ -99,6 +99,7 @@ export default ({
 						/>
 					)
 					: (
+						// eslint-disable-next-line react/jsx-pascal-case
 						<IconSvg.default
 							style={[
 								getDimensions(),

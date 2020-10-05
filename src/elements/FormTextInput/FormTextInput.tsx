@@ -97,7 +97,6 @@ const PasswordInput = (
 		<View>
 			<BasicTextInput
 				{...props}
-
 				secureTextEntry={!isPasswordVisible}
 				autoCorrect={false}
 				textContentType="password"
