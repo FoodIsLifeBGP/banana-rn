@@ -38,14 +38,16 @@ export default ({
 	>
 		{
 			foregroundColor => (
-				<Text style={[
-					{
-						...typography.h4,
-						textAlign: 'center',
-						color: foregroundColor,
-					},
-					textStyle,
-				]}
+				<Text
+					style={[
+						{
+							...typography.h4,
+							textAlign: 'center',
+							color: foregroundColor,
+						},
+						textStyle,
+					]}
+					allowFontScaling={false}
 				>
 					{text}
 				</Text>
