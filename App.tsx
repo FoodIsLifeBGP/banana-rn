@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
-	SafeAreaView, Text, View, YellowBox,
+	LogBox,
+	SafeAreaView, Text, View,
 } from 'react-native';
 import { Provider } from 'react-native-paper';
 import { AppearanceProvider } from 'react-native-appearance';
@@ -15,7 +16,7 @@ import storybook from './src/storybook';
 import Route from './src/routes/Route';
 import styles from './App.styles';
 
-YellowBox.ignoreWarnings([
+LogBox.ignoreLogs([
 	'Warning: componentWillReceiveProps has been renamed',
 	'Require cycle',
 ]);
