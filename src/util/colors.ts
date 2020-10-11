@@ -11,3 +11,5 @@ export const LIGHT_GRAY_DISABLED = '#C4C4C4';
 export const DARK_GRAY = 'rgb(60, 60, 60)';
 export const DARK_GRAY_TRANSPARENT = 'rgba(60, 60, 60, .5)';
 export const RED = '#E10000';
+export const MODAL_BACKGROUND = 'rgba(0, 0, 0, .3)';
+export const MODAL_SHADOW = 'rgba(0, 0, 0, .25)';
