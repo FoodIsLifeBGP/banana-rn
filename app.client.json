@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Banana App - Food Pickup",
+    "name": "Banana App - Client",
     "slug": "banana-app-client",
     "privacy": "public",
     "platforms": [
@@ -28,7 +28,7 @@
     },
     "android": {
       "package": "com.thebegoodproject.org.bananaapp_client",
-      "versionCode": 1
+      "versionCode": 3
     },
     "userInterfaceStyle": "automatic",
     "packagerOpts": {

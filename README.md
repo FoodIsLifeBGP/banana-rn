@@ -381,6 +381,28 @@ expo build:ios --config app.donor.json
 9. Complete the process on [App Store Connect](https://appstoreconnect.apple.com)
 
 ## **Google Play**
+1. ```npm install```
+2. Increment the version according to version number in the appropriate file:
+```
+'app.client.json' || 'app.donor.json'
+```
+3. Start the desired app to ensure there are no errors:
+```
+expo start --config app.client.json ||  expo start --config app.donor.json
+```
+4. In your browser choose “Run on iOS simulator”
+5. Create your desired build of the app to upload:
+```
+expo build:android --config app.client.json
+``` 
+OR
+```
+expo build:android --config app.donor.json
+```
+6. Choose "app-bundle" when the console prompts you to choose the build type.
+7. Once the build finishes on Expo's servers, download the app bundle to your local machine.
+8. Log in to the BGP's Google Play Console account and create a new release using the console (I am leaving out specific 
+instructions since Google's UI is subject to change, but you should be able to figure it out).
 
 ---
 [back to top](#BANANA-APP:-Donor/Client-Apps-(React-Native/Typescript))
