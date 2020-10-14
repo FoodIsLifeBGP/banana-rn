@@ -108,6 +108,7 @@ export default () => {
 					errorMessage={validationErrors.email}
 					autoFocus={true}
 					onSubmitEditing={() => passwordRef?.current?.focus()}
+					autoCapitalize="none"
 				/>
 
 				<FormTextInput
