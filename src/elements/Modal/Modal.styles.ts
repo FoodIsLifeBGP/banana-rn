@@ -17,7 +17,7 @@ export default StyleSheet.create({
 		width: '100%',
 		height: '100%',
 		position: 'absolute',
-		backgroundColor: colors.WHITE_TRANSPARENT,
+		backgroundColor: colors.MODAL_BACKGROUND,
 	},
 	container: {
 		width: '100%',
@@ -28,7 +28,7 @@ export default StyleSheet.create({
 		alignItems: 'center',
 		overflow: 'hidden',
 		borderRadius: 10,
-		shadowColor: 'rgba(0, 0, 0, 0.25)',
+		shadowColor: colors.MODAL_SHADOW,
 		shadowOffset: {
 			width: 0,
 			height: 4,
