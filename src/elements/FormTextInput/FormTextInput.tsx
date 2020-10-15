@@ -21,7 +21,6 @@ import {
 import { LIGHT_BLUE } from '@util/colors';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { AsYouType } from 'libphonenumber-js';
-import RNPickerSelect from 'react-native-picker-select';
 import styles from './FormTextInput.styles';
 import { DropdownInput } from './DropdownInput';
 
