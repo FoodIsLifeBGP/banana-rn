@@ -28,7 +28,12 @@
     },
     "android": {
       "package": "com.thebegoodproject.org.bananaapp_client",
-      "versionCode": 3
+      "versionCode": 4,
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyAnll5nIw3_HffbVG0-BogqpvzBv2CGj2Y"
+        }
+      }
     },
     "userInterfaceStyle": "automatic",
     "packagerOpts": {
