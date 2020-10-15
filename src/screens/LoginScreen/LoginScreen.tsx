@@ -9,9 +9,9 @@ import {
 	Text,
 	TextInput,
 	KeyboardAvoidingView,
-	AsyncStorage,
 	Platform,
 } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import useGlobal from '@state';
 import {
 	Title,

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-	LogBox,
+	LogBox, Platform,
 	SafeAreaView, Text, View,
 } from 'react-native';
 import { Provider } from 'react-native-paper';
@@ -8,20 +8,20 @@ import { AppearanceProvider } from 'react-native-appearance';
 import Constants from 'expo-constants';
 import * as Font from 'expo-font';
 import NavigationService from '@util/NavigationService';
-import getstorybook from '@util/storybook';
 import {
 	TheAlertModal, IncompleteFormAlert, ComingSoonModal, CancelDonationModal,
 } from '@elements';
-import storybook from './src/storybook';
 import Route from './src/routes/Route';
 import styles from './App.styles';
 
-LogBox.ignoreLogs([
-	'Warning: componentWillReceiveProps has been renamed',
-	'Require cycle',
-]);
+if (Platform.OS !== 'web') {
+	LogBox.ignoreLogs([
+		'Warning: componentWillReceiveProps has been renamed',
+		'Require cycle',
+	]);
+}
 
-export default getstorybook() ? storybook : function App() {
+export default function App() {
 	const [ fontsLoaded, setFontsLoaded ] = useState(false);
 
 	const loadFonts = async () => {
@@ -43,8 +43,8 @@ export default getstorybook() ? storybook : function App() {
 			<View style={styles.container}>
 				<Text style={styles.heading}>INCORRECT VARIANT SPECIFIED</Text>
 				<Text style={styles.text}>
-You must specify 'donor' or 'client' in app.json
-            (expo.extra.variant).
+					You must specify 'donor' or 'client' in app.json
+					(expo.extra.variant).
 				</Text>
 				<Text style={styles.text}>Refresh the app to see your changes.</Text>
 			</View>
@@ -66,4 +66,4 @@ You must specify 'donor' or 'client' in app.json
 			</Provider>
 		</AppearanceProvider>
 	);
-};
+}
