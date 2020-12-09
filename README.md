@@ -4,6 +4,7 @@ Banana App is an open-source, not-for-profit project of The Be Good Foundation. 
 
 ---
 - BANANA APP
+	- [View them on the App Store](#view-them-on-the-app-store)
 	- [Installation (Mac/OSX)](#installation-(mac/osx))
 	- [Installation (Windows)](#installation-(windows))
 		- [Setting up Code Environment for Windows](#setting-up-code-environment-for-windows)
@@ -31,6 +32,13 @@ Banana App is an open-source, not-for-profit project of The Be Good Foundation. 
 	- [Google Play](#google-play)
 ---
 
+# View them on the App Store
+* Client App  
+[![Client App](https://github.com/FoodIsLifeBGP/banana-rn/blob/prealpha/main/assets/iconClient.png?raw=true)](https://apps.apple.com/tt/app/banana-app-client/id1528875793?ign-mpt=uo=2)
+
+* Donor App  
+[![Donor App](https://github.com/FoodIsLifeBGP/banana-rn/blob/prealpha/main/assets/iconDonor.png?raw=true)](https://apps.apple.com/tt/app/banana-app-donor/id1528276436)
+---
 # Installation (Mac/OSX)
 
 Step 0 is to [install the backend](https://github.com/FoodIsLifeBGP/banana-rails).  Follow those instructions to make sure you have everything needed to install this repo (like the Xcode command line tools).
