@@ -60,7 +60,7 @@ Install Xcode for the iOS simulator.  This takes a while.
 
 1) To confirm installation on either mac or windows, open up your Command Prompt and run `nvm --version` and it should return the version of your NVM and a list of its usage.
 
-2) Once that's done, run `nvm use` (Banana App's config are compatible with Node version <= 12.10.0) and if you dont have the necessary version follow the prompt and install it (e.g. `nvm install 12.13.0`).
+2) Once that's done, run `nvm use` (Banana App's config are compatible with Node version <= 12.10.0) and if you dont have the necessary version follow the prompt to install it (e.g. `nvm install 12.13.0`).
    [NOTE: Run `nvm list` or `nvm ls` to see all of your saved versions of Node. You can use the same command `nvm use [version]` to switch].
 
 3) Run `npm i -g expo-cli` to enable expo cli globally.
