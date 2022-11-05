@@ -33,50 +33,39 @@ Banana App is an open-source, not-for-profit project of The Be Good Foundation. 
 ---
 
 # View them on the App Store
-* Client App  
+* Client App
 [![Client App](https://github.com/FoodIsLifeBGP/banana-rn/blob/prealpha/main/assets/iconClient.png?raw=true)](https://apps.apple.com/tt/app/banana-app-client/id1528875793?ign-mpt=uo=2)
 
-* Donor App  
+* Donor App
 [![Donor App](https://github.com/FoodIsLifeBGP/banana-rn/blob/prealpha/main/assets/iconDonor.png?raw=true)](https://apps.apple.com/tt/app/banana-app-donor/id1528276436)
 ---
-# Installation (Mac/OSX)
 
 Step 0 is to [install the backend](https://github.com/FoodIsLifeBGP/banana-rails).  Follow those instructions to make sure you have everything needed to install this repo (like the Xcode command line tools).
 
+Step 1 is to navigate to your project's root folder in the terminal (e.g. `cd ~/Projects/banana-rn`)
+
+# Installation (Mac/OSX)
+
+First we install NVM and Node
+- `npm i -g nvm` OR `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash`
+
 Install Xcode for the iOS simulator.  This takes a while.
-
 - https://developer.apple.com/xcode/
-
-First we install NVM, Node, and the Expo CLI.
-
-Go to your project's root folder in Terminal (`cd ~/Desktop/the-banana-app`) and run:
-
-- `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash`
-- `nvm --version` (if this doesn't give an error, the previous command worked)
-- `nvm install node`
-- `npm i -g expo-cli`
-
-Once those are complete, run:
-
-- `git clone https://github.com/FoodIsLifeBGP/banana-rn && cd banana-rn && npm i`
 
 # Installation (Windows)
 
-#### **SETTING UP CODE ENVIRONMENT FOR WINDOWS**
-
-1) Go to [this website](https://github.com/coreybutler/nvm-windows) and follow the instructions for installing Node Version Manager for Windows 
-
+- Go to [this website](https://github.com/coreybutler/nvm-windows) and follow the instructions for installing Node Version Manager for Windows
 ***NOTE: This is necessary as the Banana app uses an older version of Node. This is also very convenient as it will let you switch between previous (or current) versions of Node depending on which project you're working on.***
+#### **SETTING UP CODE ENVIRONMENT (OS AGNOSTIC)**
 
-2) To confirm installation, open up your Command Prompt and run `nvm --version` and it should return the version of your NVM and a list of its usage.
+1) To confirm installation on either mac or windows, open up your Command Prompt and run `nvm --version` and it should return the version of your NVM and a list of its usage.
 
-3) Once that's done, run `nvm install node@12.10.0` (Banana App's config are compatible with Node version <= 12.10.0) and Agree to all the prompts to complete installation.
+2) Once that's done, run `nvm use` (Banana App's config are compatible with Node version <= 12.10.0) and if you dont have the necessary version follow the prompt and install it (e.g. `nvm install 12.13.0`).
+   [NOTE: Run `nvm list` or `nvm ls` to see all of your saved versions of Node. You can use the same command `nvm use [version]` to switch].
 
-4) Run `nvm use 12.10.0` to make sure that your machine is using Node version 12.10.0. [NOTE: Run `nvm list` to see all the versions of Node that your NVM know and you can use the same command `nvm use [version]` to switch].
+3) Run `npm i -g expo-cli` to enable expo cli globally.
 
-5) Run `npm i -g expo-cli` to enable expo cli globally.
-
-6) Make sure you've traversed to the right directory (most likely Desktop) and run `git clone https://github.com/FoodIsLifeBGP/banana-rn && cd banana-rn && npm i`
+4) Make sure you've traversed to your desired project directory and run `git clone https://github.com/FoodIsLifeBGP/banana-rn && cd banana-rn && npm i`
 
 
 #### **SETTING UP ANDROID SIMULATOR**
@@ -108,15 +97,15 @@ Once those are complete, run:
 As of mid July 2020, we have combined expo config across `app.json` and `app.config.js` so that we can publish our
 progress to expo.io so that non-developers can view the current state of the app and also so that devs can change aspects
 of their config (donor vs. client) or what backend server they're using without having to make a change to a file under
-source control.  However, this means that you'll need to be using a newer version of expo--3.20+.  If you get an error: 
+source control.  However, this means that you'll need to be using a newer version of expo--3.20+.  If you get an error:
 `TypeError: Cannot read property 'variant' of undefined` chances are that your version of expo is not compatible with the
-updated config.  You can update your expo with `npm install -g expo-cli ` and this may also require you to update your 
+updated config.  You can update your expo with `npm install -g expo-cli ` and this may also require you to update your
 node version--sorry!
 
-Take note of `app.config.js` in the root.  This is where we specify whether to compile the donor or client app.  
+Take note of `app.config.js` in the root.  This is where we specify whether to compile the donor or client app.
 You can most easily switch between donor and client by creating a `.env` file in the project root and adding an entry
 for EXPO_APP_VARIANT e.g. `EXPO_APP_VARIANT=client` this way you can make this change locally without editing a file that's under
-git control.  Note that all variables in `.env` will need to be prefixed with EXPO_ since expo restricts things 
+git control.  Note that all variables in `.env` will need to be prefixed with EXPO_ since expo restricts things
 [that way](https://docs.expo.io/guides/environment-variables/).
 
 ```javascript
@@ -150,8 +139,8 @@ or create a new account.
 `.env` in your project root and add `IP_ADDRESS=<your internal network ip>` to the file (you can also change the variant to client in the `.env` file.
 
 #### **Possible gotchas for new developers**
-- If you elect to use your web browser to test your changes, Firefox may just render a blank page.  Switching to 
-another browser should resolve the issue.  
+- If you elect to use your web browser to test your changes, Firefox may just render a blank page.  Switching to
+another browser should resolve the issue.
 
 - If you run into an error like this:
 ```
@@ -180,7 +169,7 @@ Fork the repo, make your changes on `master`, and submit a PR.  Add all the cont
 
 In order to merge your PR, the code will need to pass linting and typechecking.  The style guide is extended from AirBnB's.  To check your branch before making a pull request, run the following:
 - `npm i -g eslint`
-- `npm i -g typescript` (>= 3.7.3)  
+- `npm i -g typescript` (>= 3.7.3)
 
   - If you are upgrading Typescript in VS Code, make sure to select which TS you're using:
     1. Open a .ts or .tsx file
@@ -222,7 +211,7 @@ If you are ever having trouble running the app after pulling an update, try
 Absolute imports are available for the following folders: `assets`, `elements`, `screens`, `util`, and `state`.  Use the `@` symbol to access them (i.e. `import Component from '@screens/component`).
 
   - To add more, use examples from and update the relevant fields in: `.eslintrc.js`, `babel.config.js`, `tsconfig.json`
-  
+
 TODO: make absolute imports work for the MenuDrawer.  Any new elements should be configured so they can be imported as such:
 - `import { NewElement, OldElement } from '@elements';`
 
@@ -247,7 +236,7 @@ export const increase = async (store, amount) => {
 	});
 };
 ```
-4. Import & access the store in your component: 
+4. Import & access the store in your component:
 ```ts
 const [ state, actions ] = useGlobal();
 ```
@@ -303,7 +292,7 @@ Any new SVG icons will have to follow some standards in order to work with the i
 
 Some icons need to seamlessly replace each other in order to simulate animation.
 
-Note: The term **Base icon** means the main part of the icon versions that don't change. Think the hamburger menu lines, not the red notification dot. 
+Note: The term **Base icon** means the main part of the icon versions that don't change. Think the hamburger menu lines, not the red notification dot.
 
 1. Viewbox dimensions must envelope all SVG versions of the icon.
 2. Each icon version must share the same viewbox dimensions.
@@ -373,7 +362,7 @@ expo start --config app.client.json ||  expo start --config app.donor.json
 5. Create your desired build of the app to upload:
 ```
 expo build:ios --config app.client.json
-``` 
+```
 OR
 ```
 expo build:ios --config app.donor.json
@@ -402,14 +391,14 @@ expo start --config app.client.json ||  expo start --config app.donor.json
 5. Create your desired build of the app to upload:
 ```
 expo build:android --config app.client.json
-``` 
+```
 OR
 ```
 expo build:android --config app.donor.json
 ```
 6. Choose "app-bundle" when the console prompts you to choose the build type.
 7. Once the build finishes on Expo's servers, download the app bundle to your local machine.
-8. Log in to the BGP's Google Play Console account and create a new release using the console (I am leaving out specific 
+8. Log in to the BGP's Google Play Console account and create a new release using the console (I am leaving out specific
 instructions since Google's UI is subject to change, but you should be able to figure it out).
 
 ---
