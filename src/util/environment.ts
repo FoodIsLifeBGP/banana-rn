@@ -24,9 +24,9 @@ const getEnv = () => {
 
 const getServerEndPoint = () => {
 	if (Constants.manifest.extra.productionBuild) {
-		return 'https://api.bananaapp.org';
+		return 'https://api.thebegoodproject.org';
 	}
 	return Constants.manifest.extra.ipAddress ? `http://${Constants.manifest.extra.ipAddress}:3000`
-		: 'https://dev.bananaapp.org';
+		: 'https://api.thebegoodproject.org';
 };
 export default getEnv;
