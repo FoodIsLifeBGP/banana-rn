@@ -4,7 +4,7 @@ import {
 	SafeAreaView, Text, View,
 } from 'react-native';
 import { Provider } from 'react-native-paper';
-import { AppearanceProvider } from 'react-native-appearance';
+// import { AppearanceProvider } from 'react-native-appearance';
 import Constants from 'expo-constants';
 import * as Font from 'expo-font';
 import NavigationService from '@util/NavigationService';
@@ -22,6 +22,8 @@ if (Platform.OS !== 'web') {
 }
 
 export default function App() {
+	// const theme = useColorScheme();
+	// const isLightTheme = theme === 'light';
 	const [ fontsLoaded, setFontsLoaded ] = useState(false);
 
 	const loadFonts = async () => {
@@ -52,18 +54,16 @@ export default function App() {
 	}
 
 	return fontsLoaded && (
-		<AppearanceProvider>
-			{/* All elements within AppearanceProvider will have access
-			 *  to the user-defined OS color theme preference: 'light', 'dark', 'no-preference'. */}
-			<Provider>
-				<SafeAreaView style={styles.container}>
-					<Route ref={navRef => NavigationService.setTopLevelNavigator(navRef)} />
-					<TheAlertModal />
-					<IncompleteFormAlert />
-					<ComingSoonModal />
-					<CancelDonationModal />
-				</SafeAreaView>
-			</Provider>
-		</AppearanceProvider>
+		// <AppearanceProvider>
+		<Provider>
+			<SafeAreaView style={styles.container}>
+				<Route ref={navRef => NavigationService.setTopLevelNavigator(navRef)} />
+				<TheAlertModal />
+				<IncompleteFormAlert />
+				<ComingSoonModal />
+				<CancelDonationModal />
+			</SafeAreaView>
+		</Provider>
+		// </AppearanceProvider>
 	);
 }
