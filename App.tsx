@@ -38,7 +38,7 @@ export default function App() {
 		loadFonts();
 	}, []);
 
-	if (![ 'donor', 'client' ].includes(Constants.manifest.extra.variant)) {
+	if (![ 'donor', 'client' ].includes(Constants?.manifest?.extra?.variant)) {
 		return (
 			<View style={styles.container}>
 				<Text style={styles.heading}>INCORRECT VARIANT SPECIFIED</Text>
