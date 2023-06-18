@@ -14,7 +14,7 @@
     "test": "jest"
   },
   "expo": {
-    "sdkVersion": "42.0.0"
+    "sdkVersion": "43.0.0"
   },
   "dependencies": {
     "@babel/runtime": "^7.7.2",
