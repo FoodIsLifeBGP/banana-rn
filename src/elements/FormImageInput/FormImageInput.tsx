@@ -11,12 +11,11 @@ import {
 	ViewStyle,
 } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import { ImageInfo } from 'expo-image-picker/build/ImagePicker.types';
+import { ImagePickerAsset } from 'expo-image-picker/build/ImagePicker.types';
+import GenericTouchable from 'react-native-gesture-handler/lib/typescript/components/touchables/GenericTouchable';
 
-import {
-	Icon,
-	InputLabel,
-} from '@elements';
+import { InputLabel } from '@elements/FormTextInput/InputLabel';
+import { Icon } from '@elements/Icon';
 import { sourceImage } from '@util/ImageSourcer';
 import styles from './FormImageInput.styles';
 
@@ -27,10 +26,10 @@ interface FormImageInputProps {
 	label: string;
 
 	/** ImageInfo chosen from the image picker. */
-	value: ImageInfo | null;
+	value: ImagePickerAsset | null;
 
 	/** Callback for when an image is chosen from the image picker. */
-	setValue: (img: ImageInfo) => void;
+	setValue: (img: ImagePickerAsset) => void;
 
 	/* Status message of the image upload. */
 	status?: UploadStatus;
@@ -69,12 +68,12 @@ const FormImageInput = (
 		errorMessage,
 		shape = 'rectangular',
 	}: FormImageInputProps,
-	ref: Ref<TouchableWithoutFeedback>,
+	ref: Ref<GenericTouchable>,
 ) => {
 	const pickImage = async () => {
 		const imageResult = await sourceImage('cameraRoll');
-		if (imageResult && !imageResult.cancelled) {
-			setValue(imageResult as ImageInfo);
+		if (imageResult && !imageResult.canceled) {
+			setValue(imageResult.assets[0]);
 		}
 	};
 	return (
@@ -120,4 +119,4 @@ const FormImageInput = (
 	);
 };
 
-export default forwardRef<TouchableWithoutFeedback, FormImageInputProps & { ref?: RefObject<TouchableWithoutFeedback> }>(FormImageInput);
+export default forwardRef< GenericTouchable, FormImageInputProps & { ref?: RefObject<GenericTouchable> }>(FormImageInput);

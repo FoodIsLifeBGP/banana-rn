@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigation } from 'react-navigation-hooks';
 import { TouchableOpacity } from 'react-native';
-import { Icon } from '@elements';
+import { Icon } from '@elements/Icon';
 import { NAVBAR_ICON_SIZE } from '@util/constants';
 
 

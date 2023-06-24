@@ -1,8 +1,9 @@
 import React from 'react';
 import { useNavigation } from 'react-navigation-hooks';
 import { View } from 'react-native';
-import { Button, Icon } from '@elements';
-import { ButtonStyle } from '@elements/Button';
+
+import { Icon } from '@elements/Icon';
+import { Button, ButtonStyle } from '@elements/Button';
 import * as colors from '@util/colors';
 import Selector from '@elements/NavBar/Selector';
 import useGlobal from '@state';

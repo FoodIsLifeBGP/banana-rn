@@ -3,7 +3,7 @@ import {
 } from 'react-native';
 import React, { Ref } from 'react';
 import RNPickerSelect, { Item } from 'react-native-picker-select';
-import { Icon } from '@elements';
+import { Icon } from '@elements/Icon';
 import * as colors from '@util/colors';
 import defaultStyle from './DropdownInput.styles';
 
@@ -59,9 +59,7 @@ const DropdownInput = (props: DropdownInputProps) => {
 				}
 			}}
 			items={formattedData}
-			Icon={() => (
-				<Icon color={colors.NAVY_BLUE} name="dropdown" size={18} />
-			)}
+			Icon={<Icon color={colors.NAVY_BLUE} name="dropdown" size={18} />}
 		/>
 	);
 };

@@ -1,6 +1,8 @@
-import { Paragraph, SpacerInline } from '@elements';
 import React, { FunctionComponent } from 'react';
 import { Image, View, Platform } from 'react-native';
+
+import { Paragraph } from '@elements/Paragraph';
+import { SpacerInline } from '@elements/SpacerInline';
 import styles from './EmptyStateView.styles';
 
 interface EmptyStateViewProps {
