@@ -1,7 +1,9 @@
 import React from 'react';
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
-import { createDrawerNavigator } from 'react-navigation-drawer';
+// import { createAppContainer } from 'react-navigation';
+// import { createStackNavigator } from 'react-navigation-stack';
+// import { createDrawerNavigator } from 'react-navigation-drawer';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import * as colors from '@util/colors';
 import getEnv from '@util/environment';
@@ -29,125 +31,28 @@ import ClaimDetailsScreen from '../screens/ClaimDetailsScreen/ClaimDetailsScreen
 import ClientClaimsScreen from '../screens/ClientClaimsScreen';
 import ClientHistoryScreen from '../screens/ClientHistoryScreen';
 
-// Logged-In Screens for Drawer Navigator
-export const MainStack = createStackNavigator(
-	{
-		DashboardScreen,
-		ClientClaimsScreen,
-		ClientHistoryScreen,
-		DonorDashboardScreen,
-		LoginSuccessScreen,
-		DonationScreen,
-		DonorDonationScreen,
-		DonorHistoryScreen,
-		QRCodeScannerScreen,
-		ClaimDetailsScreen,
-		MakeClaimScreen,
-		DonationsDetailScreen,
-		ContactScreen,
-		LogoutScreen,
-		MapScreen,
-	},
-	{
-		headerMode: 'none',
-		initialRouteName: 'LoginSuccessScreen',
-	},
-);
+const MainStack = createStackNavigator();
 
-const donorOrClientDrawer = () => {
-	const { USER_IDENTITY } = getEnv();
+export default function MainStackNavigator() {
+	return (
+		<MainStack.Navigator initialRouteName="LoginScreen" screenOptions={{ headerShown: false }}>
+			<MainStack.Screen name="Login" component={LoginScreen} />
+			<MainStack.Screen name="ClientClaims" component={ClientClaimsScreen} />
+			<MainStack.Screen name="ClientHistory" component={ClientHistoryScreen} />
+			<MainStack.Screen name="DonorDashboard" component={DonorDashboardScreen} />
+			<MainStack.Screen name="LoginSuccess" component={LoginSuccessScreen} />
+			<MainStack.Screen name="Donation" component={DonationScreen} />
+			<MainStack.Screen name="DonorDonation" component={DonorDonationScreen} />
+			<MainStack.Screen name="DonorHistory" component={DonorHistoryScreen} />
+			<MainStack.Screen name="QRCodeScanner" component={QRCodeScannerScreen} />
+			<MainStack.Screen name="ClaimDetails" component={ClaimDetailsScreen} />
+			<MainStack.Screen name="MakeClaim" component={MakeClaimScreen} />
+			<MainStack.Screen name="DonationsDetail" component={DonationsDetailScreen} />
+			<MainStack.Screen name="Contact" component={ContactScreen} />
+			<MainStack.Screen name="Logout" component={LogoutScreen} />
+			<MainStack.Screen name="Map" component={MapScreen} />
+		</MainStack.Navigator>
+	);
+}
 
-	const DONOR_MENU = {
-		QRCodeScannerScreen: {
-			screen: MainStack,
-			navigationOptions: {
-				drawerLabel: <MainOption text="Scan QR Code" icon="qrCode" />,
-			},
-		},
-		DonorDashboardScreen: {
-			screen: MainStack,
-			navigationOptions: {
-				drawerLabel: <MainOption text="Donations" icon="claims" />,
-			},
-		},
-		DonorHistoryScreen: {
-			screen: MainStack,
-			navigationOptions: {
-				drawerLabel: <SubOption text="History" />,
-			},
-		},
-	};
-
-	const CLIENT_MENU = {
-		DashboardScreen: {
-			screen: MainStack,
-			navigationOptions: {
-				drawerLabel: <MainOption text="Donations" icon="donations" />,
-			},
-		},
-
-		ClientClaimsScreen: {
-			screen: MainStack,
-			navigationOptions: {
-				drawerLabel: <MainOption text="Claims" icon="claims" />,
-			},
-		},
-		ClientHistoryScreen: {
-			screen: MainStack,
-			navigationOptions: {
-				drawerLabel: <SubOption text="History" />,
-			},
-		},
-	};
-
-	const COMMON_MENU = {
-		// HelpScreen: {
-		// screen: MainStack,
-		// navigationOptions: {
-		// drawerLabel: <MainOption text="Contact Us" icon="help" />,
-		// },
-		// },
-		ContactScreen: {
-			screen: ContactScreen,
-			navigationOptions: {
-				drawerLabel: <MainOption text="Contact Us" icon="help" />,
-			},
-		},
-	};
-
-	return USER_IDENTITY === 'donor'
-		? { ...DONOR_MENU, ...COMMON_MENU }
-		: { ...CLIENT_MENU, ...COMMON_MENU };
-};
-
-// Drawer Navigator
-export const Drawer = createDrawerNavigator(
-	donorOrClientDrawer(),
-	{
-		contentComponent: MenuDrawer,
-		drawerPosition: 'right',
-		drawerBackgroundColor: colors.NAVY_BLUE,
-	},
-);
-
-// Full App Navigation - Includes Non-Logged in Screens
-export const FullAppStack = createStackNavigator(
-	{
-		LoginScreen,
-		RegistrationScreen,
-		TermsScreen,
-		ContactScreen,
-		Drawer,
-	},
-	{
-		defaultNavigationOptions: {
-			gestureEnabled: false,
-		},
-		headerMode: 'none',
-		initialRouteName: 'LoginScreen',
-	},
-);
-
-const DonorRoute = createAppContainer(FullAppStack);
-
-export default DonorRoute;
+// const Drawer = createDrawerNavigator();

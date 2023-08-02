@@ -1,5 +1,7 @@
-import { NavigationActions } from 'react-navigation';
-import { DrawerActions } from 'react-navigation-drawer';
+// import { NavigationActions } from 'react-navigation';
+// import { DrawerActions } from 'react-navigation-drawer';
+import { CommonActions } from '@react-navigation/native';
+import { DrawerActions } from '@react-navigation/drawer';
 
 let navigator;
 
@@ -9,8 +11,8 @@ function setTopLevelNavigator(navigatorRef) {
 
 function navigate(routeName, params?) {
 	navigator.dispatch(
-		NavigationActions.navigate({
-			routeName,
+		CommonActions.navigate({
+			name: routeName,
 			params,
 		}),
 	);
@@ -18,7 +20,7 @@ function navigate(routeName, params?) {
 
 function goBack() {
 	navigator.dispatch(
-		NavigationActions.back(),
+		CommonActions.goBack(),
 	);
 }
 

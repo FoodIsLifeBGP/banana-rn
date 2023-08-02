@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useIsFocused, useNavigation } from 'react-navigation-hooks';
+// import { useIsFocused, useNavigation } from 'react-navigation-hooks';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { ScrollView, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { EmptyStateView, NavBar, Title } from '@elements';

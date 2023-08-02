@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as colors from '@util/colors';
-import { useNavigation } from 'react-navigation-hooks';
+// import { useNavigation } from 'react-navigation-hooks';
+import { useNavigation } from '@react-navigation/native';
 import {
 	Text,
 	View,

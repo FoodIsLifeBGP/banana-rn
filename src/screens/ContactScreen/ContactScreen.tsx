@@ -14,7 +14,8 @@ import {
 	Icon,
 } from '@elements';
 import { IconName } from '@elements/Icon';
-import { useNavigation } from 'react-navigation-hooks';
+// import { useNavigation } from 'react-navigation-hooks';
+import { useNavigation } from '@react-navigation/native';
 import useGlobal from '@state';
 import styles, { ListItem } from './ContactScreen.styles';
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
-import { useIsFocused, useNavigation } from 'react-navigation-hooks';
+// import { useIsFocused, useNavigation } from 'react-navigation-hooks';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import Donation from '@library/DonationClientView/Donation';
 import useGlobal from '@state';
 import {

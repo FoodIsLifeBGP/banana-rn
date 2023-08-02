@@ -1,7 +1,8 @@
 import React, {
 	useState, RefObject, createRef, useEffect,
 } from 'react';
-import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
+// import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import {
 	ScrollView,
 	View,
@@ -30,8 +31,10 @@ export default () => {
 	const { userIdentity } = state;
 	const { logIn } = actions;
 	const passwordInputRef: RefObject<TextInput> = createRef();
-	const [ email, setEmail ] = useState(useNavigationParam('email') ?? '');
-	const [ password, setPassword ] = useState(useNavigationParam('password') ?? '');
+	const route = useRoute();
+	const { email: initialEmail = '', password: initialPassword = '' } = route.params ?? {};
+	const [ email, setEmail ] = useState(initialEmail);
+	const [ password, setPassword ] = useState(initialPassword);
 	const clearEmailAndPassword = () => { setEmail(''); setPassword(''); };
 	const handleEmailInputSubmit = () => passwordInputRef.current?.focus();
 	const [ showModal, setShowModal ] = useState(false);
@@ -71,7 +74,7 @@ export default () => {
 			case 202: {
 				await clearEmailAndPassword();
 				clearPasswordResetStage();
-				navigate('LoginSuccessScreen');
+				navigate('LoginSuccess');
 				return;
 			}
 			case 401: Alert.alert('Incorrect email or password'); return;

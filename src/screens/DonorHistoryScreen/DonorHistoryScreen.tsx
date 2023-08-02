@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView } from 'react-native';
-import { useIsFocused } from 'react-navigation-hooks';
+// import { useIsFocused } from 'react-navigation-hooks';
+import { useIsFocused } from '@react-navigation/native';
 
 import { Title, NavBar, EmptyStateView } from '@elements';
 

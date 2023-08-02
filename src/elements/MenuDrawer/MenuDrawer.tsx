@@ -6,8 +6,9 @@ import {
 	SafeAreaView,
 	TouchableOpacity,
 } from 'react-native';
-import { DrawerItems } from 'react-navigation-drawer';
-import { useNavigation } from 'react-navigation-hooks';
+// import { DrawerItems } from 'react-navigation-drawer';
+// import { useNavigation } from 'react-navigation-hooks';
+import { useNavigation } from '@react-navigation/native';
 import useGlobal from '@state';
 import MainOption from './MainOption/MainOption';
 import styles from './MenuDrawer.styles';
