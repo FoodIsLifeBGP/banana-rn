@@ -1,9 +1,9 @@
-import { askAsync, LOCATION_FOREGROUND, PermissionStatus } from 'expo-permissions';
-import { getCurrentPositionAsync } from 'expo-location';
+import { PermissionStatus, getCurrentPositionAsync, requestForegroundPermissionsAsync } from 'expo-location';
 import Constants from 'expo-constants';
 
 export const getLocation = async store => {
-	const { status }: { status: PermissionStatus } = await askAsync(LOCATION_FOREGROUND);
+	const { status }: { status: PermissionStatus } = await requestForegroundPermissionsAsync();
+
 	if (status === 'granted') {
 		try {
 			const { coords } = await getCurrentPositionAsync({});
