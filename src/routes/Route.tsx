@@ -29,6 +29,7 @@ import ClientClaimsScreen from '../screens/ClientClaimsScreen';
 import ClientHistoryScreen from '../screens/ClientHistoryScreen';
 
 const MainStack = createStackNavigator();
+// TODO: Delete MainStack and MainStackNavigator if it is unnecessary
 const Drawer = createDrawerNavigator();
 const FullStack = createStackNavigator();
 
@@ -58,11 +59,12 @@ export const DonorOrClientDrawer = () => {
 
 	return (
 		<Drawer.Navigator
-			// initialRouteName={USER_IDENTITY === 'donor' ? 'DonorDashboardScreen' : 'DashboardScreen'}
 			initialRouteName={LoginSuccessScreen}
-			drawerPosition='right'
 			drawerStyle={{ backgroundColor: colors.NAVY_BLUE }}
-			screenOptions={{ headerShown: false }}
+			screenOptions={{
+				headerShown: false,
+				drawerPosition: 'right',
+			}}
 			drawerContent={props => <MenuDrawer {...props} />}
 		>
 			<Drawer.Screen
