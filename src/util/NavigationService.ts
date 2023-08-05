@@ -1,11 +1,10 @@
-// import { NavigationActions } from 'react-navigation';
-// import { DrawerActions } from 'react-navigation-drawer';
-import { CommonActions } from '@react-navigation/native';
-import { DrawerActions } from '@react-navigation/drawer';
+import { CommonActions, DrawerActions } from '@react-navigation/native';
 
 let navigator;
+console.log('Navigation Service entrance');
 
 function setTopLevelNavigator(navigatorRef) {
+	console.log('setTopLevelNavigator');
 	navigator = navigatorRef;
 }
 
@@ -27,6 +26,7 @@ function goBack() {
 function toggleDrawer() {
 	navigator.dispatch(
 		DrawerActions.toggleDrawer(),
+		console.log(DrawerActions.toggleDrawer()),
 	);
 }
 

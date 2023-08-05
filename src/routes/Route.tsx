@@ -1,13 +1,11 @@
 import React from 'react';
-// import { createAppContainer } from 'react-navigation';
-// import { createStackNavigator } from 'react-navigation-stack';
-// import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import * as colors from '@util/colors';
 import getEnv from '@util/environment';
 
+import HamburgerPopupMenu from '@elements/HamburgerPopupMenu';
 import MakeClaimScreen from '../screens/MakeClaimScreen/MakeClaimScreen';
 import LoginScreen from '../screens/LoginScreen';
 import DashboardScreen from '../screens/DashboardScreen';
@@ -23,7 +21,6 @@ import DonationsDetailScreen from '../screens/DonationsDetailScreen/DonationsDet
 import DonorDonationScreen from '../screens/DonorDashboardScreen/DonorDonationScreen';
 import DonorHistoryScreen from '../screens/DonorHistoryScreen/DonorHistoryScreen';
 import MapScreen from '../screens/MapScreen/MapScreen';
-
 import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
 import MainOption from '../elements/MenuDrawer/MainOption/MainOption';
 import SubOption from '../elements/MenuDrawer/SubOption/SubOption';
@@ -32,11 +29,12 @@ import ClientClaimsScreen from '../screens/ClientClaimsScreen';
 import ClientHistoryScreen from '../screens/ClientHistoryScreen';
 
 const MainStack = createStackNavigator();
+const Drawer = createDrawerNavigator();
+const FullStack = createStackNavigator();
 
 export default function MainStackNavigator() {
 	return (
-		<MainStack.Navigator initialRouteName="LoginScreen" screenOptions={{ headerShown: false }}>
-			<MainStack.Screen name="Login" component={LoginScreen} />
+		<MainStack.Navigator initialRouteName="ClientClaims" screenOptions={{ headerShown: false }}>
 			<MainStack.Screen name="ClientClaims" component={ClientClaimsScreen} />
 			<MainStack.Screen name="ClientHistory" component={ClientHistoryScreen} />
 			<MainStack.Screen name="DonorDashboard" component={DonorDashboardScreen} />
@@ -55,4 +53,77 @@ export default function MainStackNavigator() {
 	);
 }
 
-// const Drawer = createDrawerNavigator();
+export const DonorOrClientDrawer = () => {
+	const { USER_IDENTITY } = getEnv();
+
+	return (
+		<Drawer.Navigator
+			// initialRouteName={USER_IDENTITY === 'donor' ? 'DonorDashboardScreen' : 'DashboardScreen'}
+			initialRouteName={LoginSuccessScreen}
+			drawerPosition='right'
+			drawerStyle={{ backgroundColor: colors.NAVY_BLUE }}
+			screenOptions={{ headerShown: false }}
+			drawerContent={props => <MenuDrawer {...props} />}
+		>
+			<Drawer.Screen
+				name="LoginSuccess"
+				component={LoginSuccessScreen}
+				options={{ drawerLabel: () => null }}
+			/>
+			{USER_IDENTITY === 'donor' && (
+				<>
+					<Drawer.Screen
+						name="QRCodeScannerScreen"
+						component={QRCodeScannerScreen}
+						options={{ drawerLabel: () => <MainOption text="Scan QR Code" icon="qrCode" /> }}
+					/>
+					<Drawer.Screen
+						name="DonorDashboardScreen"
+						component={DonorDashboardScreen}
+						options={{ drawerLabel: () => <MainOption text="Donations" icon="claims" /> }}
+					/>
+					<Drawer.Screen
+						name="DonorHistoryScreen"
+						component={DonorHistoryScreen}
+						options={{ drawerLabel: () => <SubOption text="History" /> }}
+					/>
+				</>
+			)}
+			{USER_IDENTITY === 'client' && (
+				<>
+					<Drawer.Screen
+						name="DashboardScreen"
+						component={DashboardScreen}
+						options={{ drawerLabel: () => <MainOption text="Donations" icon="donations" /> }}
+					/>
+					<Drawer.Screen
+						name="ClientClaimsScreen"
+						component={ClientClaimsScreen}
+						options={{ drawerLabel: () => <MainOption text="Claims" icon="claims" /> }}
+					/>
+					<Drawer.Screen
+						name="ClientHistoryScreen"
+						component={ClientHistoryScreen}
+						options={{ drawerLabel: () => <SubOption text="History" /> }}
+					/>
+				</>
+			)}
+			<Drawer.Screen
+				name="ContactScreen"
+				component={ContactScreen}
+				options={{ drawerLabel: () => <MainOption text="Contact Us" icon="help" /> }}
+			/>
+		</Drawer.Navigator>
+	);
+};
+
+export function FullStackNavigator() {
+	return (
+		<FullStack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
+			<FullStack.Screen name="Login" component={LoginScreen} />
+			<FullStack.Screen name="Drawer" component={DonorOrClientDrawer} />
+			<FullStack.Screen name="Logout" component={LogoutScreen} />
+		</FullStack.Navigator>
+	);
+}
+

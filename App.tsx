@@ -4,16 +4,16 @@ import {
 	SafeAreaView, Text, View,
 } from 'react-native';
 import { Provider } from 'react-native-paper';
-// import { AppearanceProvider } from 'react-native-appearance';
 import Constants from 'expo-constants';
 import * as Font from 'expo-font';
-// import NavigationService from '@util/NavigationService';
 import {
 	TheAlertModal, IncompleteFormAlert, ComingSoonModal, CancelDonationModal,
 } from '@elements';
+import NavigationService from '@util/NavigationService';
 import { NavigationContainer } from '@react-navigation/native';
-import MainStackNavigator from './src/routes/Route';
+import MainStackNavigator, { FullStackNavigator } from './src/routes/Route';
 import styles from './App.styles';
+
 
 if (Platform.OS !== 'web') {
 	LogBox.ignoreLogs([
@@ -58,8 +58,12 @@ export default function App() {
 		// <AppearanceProvider>
 		<Provider>
 			<SafeAreaView style={styles.container}>
-				<NavigationContainer>
-					<MainStackNavigator />
+				<NavigationContainer
+					ref={navigatorRef => {
+						NavigationService.setTopLevelNavigator(navigatorRef);
+					}}
+				>
+					<FullStackNavigator />
 				</NavigationContainer>
 				<TheAlertModal />
 				<IncompleteFormAlert />

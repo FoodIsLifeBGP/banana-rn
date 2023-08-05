@@ -74,7 +74,7 @@ export default () => {
 			case 202: {
 				await clearEmailAndPassword();
 				clearPasswordResetStage();
-				navigate('LoginSuccess');
+				navigate('Drawer');
 				return;
 			}
 			case 401: Alert.alert('Incorrect email or password'); return;

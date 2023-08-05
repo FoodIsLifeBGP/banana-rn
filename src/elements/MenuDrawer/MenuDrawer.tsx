@@ -6,10 +6,9 @@ import {
 	SafeAreaView,
 	TouchableOpacity,
 } from 'react-native';
-// import { DrawerItems } from 'react-navigation-drawer';
-// import { useNavigation } from 'react-navigation-hooks';
 import { useNavigation } from '@react-navigation/native';
 import useGlobal from '@state';
+import { DrawerItem, DrawerItemList } from '@react-navigation/drawer';
 import MainOption from './MainOption/MainOption';
 import styles from './MenuDrawer.styles';
 
@@ -28,7 +27,30 @@ const MenuDrawer = props => {
 			<SafeAreaView
 				style={styles.container}
 			>
-				<DrawerItems
+				<DrawerItemList
+					{... props}
+					labelStyle={styles.labelText}
+					itemStyle={styles.menuItem}
+					onItemPress={() => console.log('Hailey Bieber')}
+				/>
+				<TouchableOpacity
+					style={styles.menuItem}
+					onPress={async () => {
+						toggleDrawer();
+						navigate('LogoutScreen');
+						await logOut();
+					}}
+				>
+					<MainOption
+						icon="logout"
+						text="Log Out"
+					/>
+				</TouchableOpacity>
+			</SafeAreaView>
+			{/* <SafeAreaView
+				style={styles.container}
+			>
+				<DrawerItem
 					{...props}
 					labelStyle={styles.labelText}
 					itemStyle={styles.menuItem}
@@ -50,7 +72,7 @@ const MenuDrawer = props => {
 					icon="logout"
 					text="Log Out"
 				/>
-			</TouchableOpacity>
+			</TouchableOpacity> */}
 		</ScrollView>
 	);
 };
