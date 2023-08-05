@@ -1,16 +1,17 @@
-import { NavigationActions } from 'react-navigation';
-import { DrawerActions } from 'react-navigation-drawer';
+import { CommonActions, DrawerActions } from '@react-navigation/native';
 
 let navigator;
+console.log('Navigation Service entrance');
 
 function setTopLevelNavigator(navigatorRef) {
+	console.log('setTopLevelNavigator');
 	navigator = navigatorRef;
 }
 
 function navigate(routeName, params?) {
 	navigator.dispatch(
-		NavigationActions.navigate({
-			routeName,
+		CommonActions.navigate({
+			name: routeName,
 			params,
 		}),
 	);
@@ -18,13 +19,14 @@ function navigate(routeName, params?) {
 
 function goBack() {
 	navigator.dispatch(
-		NavigationActions.back(),
+		CommonActions.goBack(),
 	);
 }
 
 function toggleDrawer() {
 	navigator.dispatch(
 		DrawerActions.toggleDrawer(),
+		console.log(DrawerActions.toggleDrawer()),
 	);
 }
 

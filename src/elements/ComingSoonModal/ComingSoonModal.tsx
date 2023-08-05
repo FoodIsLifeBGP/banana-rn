@@ -4,11 +4,9 @@ import {
 	View,
 } from 'react-native';
 import useGlobal from '@state';
-import {
-	TextButton,
-	Modal,
-	Icon,
-} from '@elements';
+import { Icon } from '@elements/Icon';
+import { Modal } from '@elements/Modal';
+import { TextButton } from '@elements/Button/TextButton';
 import { Alert } from '@state/index.types';
 import { useScheme } from '@util/colorSchemes';
 import typography from '@util/typography';

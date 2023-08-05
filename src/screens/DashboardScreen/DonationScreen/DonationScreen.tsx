@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
-import { useNavigation } from 'react-navigation-hooks';
+// import { useNavigation } from 'react-navigation-hooks';
+import { useNavigation } from '@react-navigation/native';
 import {
 	View,
 	KeyboardAvoidingView, ScrollView, Platform, Text, Image, TextInput,

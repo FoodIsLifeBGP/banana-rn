@@ -1,5 +1,6 @@
 import React from 'react';
-import { useNavigationParam, useNavigation } from 'react-navigation-hooks';
+// import { useNavigationParam, useNavigation } from 'react-navigation-hooks';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import {
 	Dimensions, ImageBackground, ScrollView, Text, View, Platform, Linking,
 } from 'react-native';

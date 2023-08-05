@@ -1,6 +1,7 @@
 /* eslint-disable no-tabs */
 import React, { useRef, useState } from 'react';
-import { useNavigation } from 'react-navigation-hooks';
+// import { useNavigation } from 'react-navigation-hooks';
+import { useNavigation } from '@react-navigation/native';
 import {
 	KeyboardAvoidingView,
 	ScrollView,

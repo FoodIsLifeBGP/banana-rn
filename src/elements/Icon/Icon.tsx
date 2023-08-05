@@ -8,10 +8,12 @@ import { NAVY_BLUE } from '@util/colors';
 import {
 	deprecatedIconMap,
 	iconImports,
+} from './icons';
+import {
 	DeprecatedIconName,
-	IconName,
 	IconImport,
-} from './index';
+	IconName,
+} from './Icon.types';
 
 interface IconProps {
 	name: IconName | DeprecatedIconName;

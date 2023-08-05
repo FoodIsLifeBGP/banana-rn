@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import * as colors from '@util/colors';
-import { useNavigation } from 'react-navigation-hooks';
+import { useNavigation } from '@react-navigation/native';
 import {
 	Text,
 	View,
 	StyleSheet,
 	Image,
 } from 'react-native';
-import * as Permissions from 'expo-permissions';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
 import useGlobal from '@state';
@@ -53,7 +52,7 @@ export default () => {
 		.join('/');
 
 	const getPermissions = async () => {
-		const { status } = await Permissions.askAsync(Permissions.CAMERA);
+		const { status } = await BarCodeScanner.requestPermissionsAsync();
 		setHasCameraPermission(status === 'granted');
 	};
 

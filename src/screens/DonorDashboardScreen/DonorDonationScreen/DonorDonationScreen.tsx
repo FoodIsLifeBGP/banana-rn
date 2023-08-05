@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
+// import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import {
 	View,
 	Text,

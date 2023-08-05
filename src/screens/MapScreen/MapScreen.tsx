@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import {
 	Dimensions, View,
 } from 'react-native';
-import { useIsFocused, useNavigation } from 'react-navigation-hooks';
+// import { useIsFocused, useNavigation } from 'react-navigation-hooks';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import useGlobal from '@state';
 import {
 	BananaMap,

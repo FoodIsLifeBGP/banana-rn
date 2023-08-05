@@ -1,5 +1,6 @@
 import React from 'react';
-import { useNavigation } from 'react-navigation-hooks';
+// import { useNavigation } from 'react-navigation-hooks';
+import { useNavigation } from '@react-navigation/native';
 import { View, Text, TouchableOpacity } from 'react-native';
 import * as colors from '@util/colors';
 import styles from './LinkButton.styles';

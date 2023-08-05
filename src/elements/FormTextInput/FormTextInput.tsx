@@ -14,10 +14,8 @@ import {
 	TextStyle,
 	TextInputProps,
 } from 'react-native';
-import {
-	Icon,
-	InputLabel,
-} from '@elements';
+import { InputLabel } from '@elements/FormTextInput/InputLabel';
+import { Icon } from '@elements/Icon';
 import { LIGHT_BLUE } from '@util/colors';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { AsYouType } from 'libphonenumber-js';

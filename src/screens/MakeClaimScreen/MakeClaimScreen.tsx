@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useIsFocused, useNavigation, useNavigationParam } from 'react-navigation-hooks';
+// import { useIsFocused, useNavigation, useNavigationParam } from 'react-navigation-hooks';
+import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import {
 	ImageBackground, ScrollView, Text, View,
 } from 'react-native';
@@ -17,7 +18,8 @@ const MakeClaimScreen = () => {
 	const [ globalState, globalActions ] = useGlobal() as any;
 	const { claimDonation, getTravelTimes } = globalActions;
 	const { user } = globalState;
-	const donation = useNavigationParam('donation');
+	// const donation = useNavigationParam('donation');
+	const donation = useRoute();
 	const { donor } = donation;
 	const pendingTravelTimes = { pedestrian: 'calculating..', publicTransport: 'calculating..', bicycle: 'calculating..' };
 	const unavailableTravelTimes = { pedestrian: 'not available', publicTransport: 'not available', bicycle: 'not available' };

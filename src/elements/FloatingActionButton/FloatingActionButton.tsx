@@ -5,8 +5,8 @@ import {
 	TouchableOpacity,
 	Alert,
 } from 'react-native';
-import { Button, Icon } from '@elements';
-import { ButtonStyle } from '@elements/Button';
+import { Icon } from '@elements/Icon';
+import { Button, ButtonStyle } from '@elements/Button';
 import * as colors from '@util/colors';
 import styles from './FloatingActionButton.styles';
 import { IconName } from '../Icon/Icon.types';
