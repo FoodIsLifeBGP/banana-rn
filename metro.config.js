@@ -1,15 +1,11 @@
+const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
 /**
  * Configuration file for the React Native bundler, Metro.
 */
 
-// Learn more https://docs.expo.io/guides/customizing-metro
-const { getDefaultConfig } = require('expo/metro-config');
+const getDefaultExpoConfig = async () => {
+	const { resolver: { sourceExts, assetExts } } = await getDefaultConfig(__dirname);
 
-// extra config is needed to enable `react-native-svg-transformer`
-module.exports = (async () => {
-	const {
-		resolver: { sourceExts, assetExts },
-	} = await getDefaultConfig(__dirname);
 	return {
 		transformer: {
 			babelTransformerPath: require.resolve('react-native-svg-transformer'),
@@ -20,4 +16,10 @@ module.exports = (async () => {
 			sourceExts: [ ...sourceExts, 'svg' ],
 		},
 	};
+};
+
+// Merge the default React Native Metro configuration  with the default Expo
+module.exports = (async () => {
+	const customConfig = await getDefaultExpoConfig();
+	return mergeConfig(getDefaultConfig(__dirname), customConfig);
 })();
