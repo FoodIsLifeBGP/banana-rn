@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 // import { useIsFocused, useNavigation } from 'react-navigation-hooks';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { ScrollView, Text, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native';
 import { EmptyStateView, NavBar, Title } from '@elements';
 import useGlobal from '@state';
 import Donation from '@library/Donations/Donation';
