@@ -1,7 +1,6 @@
 import React, {
 	useState, RefObject, createRef, useEffect,
 } from 'react';
-// import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import {
 	ScrollView,
