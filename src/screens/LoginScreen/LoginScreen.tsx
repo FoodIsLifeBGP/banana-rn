@@ -24,7 +24,7 @@ import ResetPassword from './ResetPassword';
 import { PasswordResetStage } from './ResetPassword/ResetPassword';
 
 
-export default () => {
+export default function () {
 	const { navigate } = useNavigation();
 	const [ state, actions ] = useGlobal() as any;
 	const { userIdentity } = state;
@@ -159,4 +159,4 @@ export default () => {
 			)}
 		</KeyboardAvoidingView>
 	);
-};
+}
