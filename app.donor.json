@@ -8,7 +8,7 @@
       "android",
       "web"
     ],
-    "version": "0.1.8",
+    "version": "0.1.9",
     "orientation": "portrait",
     "icon": "./assets/iconDonor.png",
     "splash": {
@@ -53,7 +53,7 @@
 			"variant": "donor",
             "productionBuild": true,
 			"eas": {
-				"projectId": "6e99b5a9-0159-4e48-9f89-ddf791cc461c"
+				"projectId": "b9e23e31-4093-4ee5-ad22-b726a36ffb48"
 			}
 		}
 	}

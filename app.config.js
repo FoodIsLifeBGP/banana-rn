@@ -25,10 +25,11 @@ export default ({ config }) => {
 
 	// Merge teh configurations
 	return {
-		...donorConfig.expo,
 		...config,
+		...donorConfig.expo,
 		...dynamicConfig,
 		extra: {
+			...config.extra,
 			...donorConfig.expo.extra,
 			...dynamicConfig.extra,
 		},
