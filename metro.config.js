@@ -1,7 +1,17 @@
+const path = require('path');
 const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
 /**
  * Configuration file for the React Native bundler, Metro.
 */
+
+const customResolver = {
+	'@assets': path.resolve(__dirname, './assets'),
+	'@elements': path.resolve(__dirname, './src/elements'),
+	'@screens': path.resolve(__dirname, './src/screens'),
+	'@state': path.resolve(__dirname, './src/state'),
+	'@library': path.resolve(__dirname, './src/library'),
+	'@util': path.resolve(__dirname, './src/util'),
+};
 
 const getDefaultExpoConfig = async () => {
 	const { resolver: { sourceExts, assetExts } } = await getDefaultConfig(__dirname);
@@ -14,6 +24,7 @@ const getDefaultExpoConfig = async () => {
 		resolver: {
 			assetExts: assetExts.filter(ext => ext !== 'svg'),
 			sourceExts: [ ...sourceExts, 'svg' ],
+			extraNodeModules: customResolver,
 		},
 	};
 };
