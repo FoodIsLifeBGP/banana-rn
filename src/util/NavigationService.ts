@@ -1,7 +1,6 @@
 import { CommonActions, DrawerActions } from '@react-navigation/native';
 
 let navigator;
-console.log('Navigation Service entrance');
 
 function setTopLevelNavigator(navigatorRef) {
 	console.log('setTopLevelNavigator');
