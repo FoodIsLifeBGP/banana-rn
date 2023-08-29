@@ -11,7 +11,7 @@ import {
 } from '@elements';
 import NavigationService from '@util/NavigationService';
 import { NavigationContainer } from '@react-navigation/native';
-import MainStackNavigator, { FullStackNavigator } from './src/routes/Route';
+import { FullStackNavigator } from './src/routes/Route';
 import styles from './App.styles';
 
 
