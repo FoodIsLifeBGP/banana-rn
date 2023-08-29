@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import * as colors from '@util/colors';
+import { Tiger } from '@util/tiger';
 // import getEnv from '@util/environment';
 import getEnv from '../util/environment';
 
