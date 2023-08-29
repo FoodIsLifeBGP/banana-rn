@@ -19,7 +19,8 @@ const getServerEndPoint = () => {
 };
 
 const getEnv = () => {
-	const variant = process.env.EXPO_APP_VARIANT;
+	const variant = Constants?.expoConfig?.extra?.variant;
+	// console.log('VARIANT, VARIANT, VARIANT', variant);
 	const variantSpecificProperties = variant === 'donor'
 		? DONOR
 		: CLIENT;
