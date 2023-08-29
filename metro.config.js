@@ -1,8 +1,5 @@
 const path = require('path');
 const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
-/**
- * Configuration file for the React Native bundler, Metro.
-*/
 
 const customResolver = {
 	'@assets': path.resolve(__dirname, './assets'),
