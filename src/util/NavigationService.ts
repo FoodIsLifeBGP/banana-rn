@@ -3,7 +3,6 @@ import { CommonActions, DrawerActions } from '@react-navigation/native';
 let navigator;
 
 function setTopLevelNavigator(navigatorRef) {
-	console.log('setTopLevelNavigator');
 	navigator = navigatorRef;
 }
 
@@ -25,7 +24,6 @@ function goBack() {
 function toggleDrawer() {
 	navigator.dispatch(
 		DrawerActions.toggleDrawer(),
-		console.log(DrawerActions.toggleDrawer()),
 	);
 }
 
