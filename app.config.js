@@ -1,4 +1,5 @@
 import donorConfig from './app.donor.json';
+import clientConfig from './app.client.json';
 
 export default ({ config }) => {
 	require('dotenv').config();
@@ -17,11 +18,13 @@ export default ({ config }) => {
 	// Merge teh configurations
 	return {
 		...config,
-		...donorConfig.expo,
+		// ...donorConfig.expo,
+		...clientConfig.expo,
 		...dynamicConfig,
 		extra: {
 			...config.extra,
-			...donorConfig.expo.extra,
+			// ...donorConfig.expo.extra,
+			...clientConfig.expo.extra,
 			...dynamicConfig.extra,
 		},
 	};
