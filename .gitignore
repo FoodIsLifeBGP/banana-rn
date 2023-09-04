@@ -13,7 +13,7 @@ web-report/
 
 # macOS
 .DS_Store
-src/util/environment.ts
+# src/util/environment.ts
 
 # idea
 .idea/*
