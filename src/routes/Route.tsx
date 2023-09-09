@@ -3,7 +3,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import * as colors from '@util/colors';
-import getEnv from '@util/environment';
+// import getEnv from '@util/environment';
+import getEnv from '../util/environment';
 
 import HamburgerPopupMenu from '@elements/HamburgerPopupMenu';
 import MakeClaimScreen from '../screens/MakeClaimScreen/MakeClaimScreen';
@@ -54,7 +55,7 @@ export default function MainStackNavigator() {
 	);
 }
 
-export const DonorOrClientDrawer = () => {
+export function DonorOrClientDrawer() {
 	const { USER_IDENTITY } = getEnv();
 
 	return (

@@ -8,7 +8,7 @@
       "android",
       "web"
     ],
-    "version": "0.1.5",
+    "version": "0.1.9",
     "orientation": "portrait",
     "icon": "./assets/iconClient.png",
     "splash": {
@@ -56,7 +56,10 @@
 		"description": "The Banana App provides donors (supermarkets, groceries, produce stands, restaurants) a time-sensitive platform to donate items that are considered not aesthetically-pleasing for market display or sale but still edible and in good condition. Items will be given directly to verified clients (low-income family, homeless individuals) upon successful application.",
 		"extra": {
 			"variant": "client",
-            "productionBuild": true
+            "productionBuild": true,
+			"eas": {
+				"projectId": "4e52e09e-00c0-412c-b6e2-a6825ccda80c"
+			}
 		}
   }
 }

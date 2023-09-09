@@ -104,7 +104,7 @@ node version--sorry!
 
 Take note of `app.config.js` in the root.  This is where we specify whether to compile the donor or client app.
 You can most easily switch between donor and client by creating a `.env` file in the project root and adding an entry
-for EXPO_APP_VARIANT e.g. `EXPO_APP_VARIANT=client` this way you can make this change locally without editing a file that's under
+for EXPO_PUBLIC_APP_VARIANT e.g. `EXPO_PUBLIC_APP_VARIANT=client` this way you can make this change locally without editing a file that's under
 git control.  Note that all variables in `.env` will need to be prefixed with EXPO_ since expo restricts things
 [that way](https://docs.expo.io/guides/environment-variables/).
 
