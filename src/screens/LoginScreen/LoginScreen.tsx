@@ -1,7 +1,6 @@
 import React, {
 	useState, RefObject, createRef, useEffect,
 } from 'react';
-// import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import {
 	ScrollView,
@@ -25,7 +24,7 @@ import ResetPassword from './ResetPassword';
 import { PasswordResetStage } from './ResetPassword/ResetPassword';
 
 
-export default () => {
+export default function () {
 	const { navigate } = useNavigation();
 	const [ state, actions ] = useGlobal() as any;
 	const { userIdentity } = state;
@@ -160,4 +159,4 @@ export default () => {
 			)}
 		</KeyboardAvoidingView>
 	);
-};
+}
