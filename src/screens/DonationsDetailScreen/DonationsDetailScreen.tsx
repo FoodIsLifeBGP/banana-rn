@@ -14,7 +14,7 @@ import * as colors from '@util/colors';
 import styles from './DonationsDetailScreen.styles';
 
 
-const DonationsDetailScreen = () => {
+function DonationsDetailScreen() {
 	const { navigate } = useNavigation();
 	const [ globalState, globalActions ] = useGlobal() as any;
 	const { cancelDonation } = globalActions;
@@ -89,6 +89,6 @@ const DonationsDetailScreen = () => {
 			/>
 		</ScrollView>
 	);
-};
+}
 
 export default DonationsDetailScreen;

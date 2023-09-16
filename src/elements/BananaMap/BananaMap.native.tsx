@@ -1,15 +1,14 @@
 import React from 'react';
 import { DonationMarker } from '@elements/DonationMarker';
 import MapView, { Marker } from 'react-native-maps';
-// import { useNavigation } from 'react-navigation-hooks';
 import { useNavigation } from '@react-navigation/native';
 import styles from './BananaMap.styles';
 import { BananaMapProps } from './BananaMapProps';
 
 
-const BananaMap = ({
+function BananaMap({
 	donations, markerSize, clientLocation, mapRegion,
-}: BananaMapProps) => {
+}: BananaMapProps) {
 	const { navigate } = useNavigation();
 	return (
 		<MapView
@@ -36,7 +35,7 @@ const BananaMap = ({
 			/>
 		</MapView>
 	);
-};
+}
 
 
 export default BananaMap;

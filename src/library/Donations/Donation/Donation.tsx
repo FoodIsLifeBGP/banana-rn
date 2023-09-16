@@ -14,7 +14,7 @@ import { Icon } from '@elements';
 import { Donation } from './Donation.type';
 import styles from './Donation.styles';
 
-export default ({ donation, isHistory }: Donation) => {
+export default function ({ donation, isHistory }: Donation) {
 	const { navigate } = useNavigation();
 	const {
 		food_name,
@@ -54,4 +54,4 @@ export default ({ donation, isHistory }: Donation) => {
 			</View>
 		</TouchableOpacity>
 	);
-};
+}

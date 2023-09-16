@@ -13,38 +13,41 @@ import CenterView from '../Decorators/CenterView';
 const story = storiesOf('Button', module)
 	.addDecorator(getStory => <CenterView>{getStory()}</CenterView>)
 	.addDecorator(withKnobs)
-	.add('with text', () => {
-		const buttonStyle = {
-			default: {
-				background: text('background', 'yellow'),
-				foreground: text('foreground', 'blue'),
-			},
-			pressed: {
-				background: 'blue',
-				foreground: 'pink',
-			},
-			disabled: {
-				background: 'grey',
-				foreground: 'white',
-			},
-		};
-		return (
-			<Button
-				buttonStyle={buttonStyle}
-				onPress={() => alert('test')}
-			>
-				{
-					foregroundColor => (
-						<Text style={{ color: foregroundColor }}>
+	.add(
+		'with text',
+		() => {
+			const buttonStyle = {
+				default: {
+					background: text('background', 'yellow'),
+					foreground: text('foreground', 'blue'),
+				},
+				pressed: {
+					background: 'blue',
+					foreground: 'pink',
+				},
+				disabled: {
+					background: 'grey',
+					foreground: 'white',
+				},
+			};
+			return (
+				<Button
+					buttonStyle={buttonStyle}
+					onPress={() => alert('test')}
+				>
+					{
+						foregroundColor => (
+							<Text style={{ color: foregroundColor }}>
                     Open Modal
-						</Text>
-					)
-				}
-			</Button>
-		);
-	},
-	{
-		notes: 'https://github.com/FoodIsLifeBGP/banana-rn/wiki/Button',
-	});
+							</Text>
+						)
+					}
+				</Button>
+			);
+		},
+		{
+			notes: 'https://github.com/FoodIsLifeBGP/banana-rn/wiki/Button',
+		},
+	);
 
 export default story;

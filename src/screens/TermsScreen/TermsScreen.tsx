@@ -11,7 +11,7 @@ import Terms from '@assets/documents/SampleToS';
 import ScrollContainer from '../../elements/ScrollContainer/ScrollContainer';
 import styles from './TermsScreen.styles';
 
-export default () => {
+export default function () {
 	const [ button, setButton ] = useState(true);
 	return (
 		<>
@@ -35,4 +35,4 @@ export default () => {
 			</View>
 		</>
 	);
-};
+}

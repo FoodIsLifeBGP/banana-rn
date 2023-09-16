@@ -9,7 +9,7 @@ import ApplicationIncompleteScreen from '../ApplicationIncompleteScreen';
 import DashboardScreen from '../DashboardScreen';
 import DonorDashboardScreen from '../DonorDashboardScreen';
 
-export default () => {
+export default function () {
 	const [ state ] = useGlobal();
 	const { user = {} as any, jwt = '', userIdentity } = state;
 	const { id } = user;
@@ -23,4 +23,4 @@ export default () => {
 		case 'active': return userIdentity === 'client' ? <DashboardScreen /> : <DonorDashboardScreen />;
 		default: return <InfoScreen title="Login error" nextScreenDestination="LoginScreen" nextScreenTitle="Login" />;
 	}
-};
+}

@@ -11,7 +11,7 @@ import { useScheme } from '@util/colorSchemes';
 import typography from '@util/typography';
 import styles from './TheAlertModal.styles';
 
-export default () => {
+export default function () {
 	const [ globalState, globalActions ] = useGlobal() as any;
 	const { alert }: { alert: Alert } = globalState;
 	const { clearAlert } = globalActions;
@@ -57,4 +57,4 @@ export default () => {
 			</View>
 		</Modal>
 	);
-};
+}

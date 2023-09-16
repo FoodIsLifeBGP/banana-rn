@@ -11,7 +11,7 @@ import {
 } from '@elements';
 
 
-const MapScreen = () => {
+function MapScreen() {
 	const isFocused = useIsFocused();
 	const [ state, actions ] = useGlobal() as any;
 	const { navigate } = useNavigation();
@@ -54,6 +54,6 @@ const MapScreen = () => {
 			<BananaMap donations={donations} mapRegion={location} clientLocation={{ latitude, longitude }} markerSize={24} />
 		</View>
 	);
-};
+}
 
 export default MapScreen;

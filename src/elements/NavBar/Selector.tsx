@@ -8,40 +8,42 @@ interface SelectorProps {
 	onMap?: () => any | undefined;
 	onList?: () => any | undefined;
 }
-export default (({ position, onMap, onList }: SelectorProps) => (
-	<View style={styles.selectorContainer}>
-		<TouchableOpacity
-			style={[
-				styles.selector,
-				position === 'map' ? styles.selectorSelected : {},
-			]}
-			onPress={() => {
-				onMap && onMap();
-			}}
-		>
-			<Text style={
-				position === 'map' ? styles.textSelected : styles.text
-			}
+export default (function ({ position, onMap, onList }: SelectorProps) {
+	return (
+		<View style={styles.selectorContainer}>
+			<TouchableOpacity
+				style={[
+					styles.selector,
+					position === 'map' ? styles.selectorSelected : {},
+				]}
+				onPress={() => {
+					onMap && onMap();
+				}}
 			>
+				<Text style={
+					position === 'map' ? styles.textSelected : styles.text
+				}
+				>
 				map
-			</Text>
-		</TouchableOpacity>
-		<TouchableOpacity
-			style={[
-				styles.selector,
-				position === 'list' ? styles.selectorSelected : {},
-			]}
-			onPress={() => {
-				onList && onList();
-			}}
-		>
-			<Text style={
-				position === 'list' ? styles.textSelected : styles.text
-			}
+				</Text>
+			</TouchableOpacity>
+			<TouchableOpacity
+				style={[
+					styles.selector,
+					position === 'list' ? styles.selectorSelected : {},
+				]}
+				onPress={() => {
+					onList && onList();
+				}}
 			>
+				<Text style={
+					position === 'list' ? styles.textSelected : styles.text
+				}
+				>
 				list
-			</Text>
-		</TouchableOpacity>
-	</View>
-));
+				</Text>
+			</TouchableOpacity>
+		</View>
+	);
+});
 

@@ -32,13 +32,13 @@ interface ClaimingProgressBarProps {
  * @param left number of donations remaining.
  * @param style style of ClaimingProgressBar.
  * */
-export default ({
+export default function ({
 	width = '100%',
 	pickedUp,
 	reserved,
 	left,
 	style,
-}: ClaimingProgressBarProps) => {
+}: ClaimingProgressBarProps) {
 	const num2Str = (num, places) => String(num).padStart(places, '0');
 	const total = pickedUp + reserved + left;
 	return (
@@ -76,5 +76,5 @@ export default ({
 			</View>
 		</View>
 	);
-};
+}
 

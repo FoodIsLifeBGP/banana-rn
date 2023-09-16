@@ -3,7 +3,7 @@ import useGlobal from '@state';
 import DonorRegistrationScreen from './DonorRegistrationScreen';
 import ClientRegistrationScreen from './ClientRegistrationScreen';
 
-export default () => {
+export default function () {
 	const [ state ] = useGlobal();
 	const { userIdentity } = state;
 	switch (userIdentity) {
@@ -11,4 +11,4 @@ export default () => {
 		case 'client':
 		default: return <ClientRegistrationScreen />;
 	}
-};
+}

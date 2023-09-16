@@ -8,7 +8,7 @@ import QRCode from 'react-native-qrcode-svg';
 
 import styles from './QRCodeScreen.styles';
 
-export default ({ QRString }: { QRString?: string }) => {
+export default function ({ QRString }: { QRString?: string }) {
 	const [ text, setText ] = useState(QRString || 'Food Donation');
 	return (
 		<View style={styles.container}>
@@ -23,4 +23,4 @@ export default ({ QRString }: { QRString?: string }) => {
 			/>
 		</View>
 	);
-};
+}

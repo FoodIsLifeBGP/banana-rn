@@ -14,14 +14,14 @@ interface LinkButtonProps {
 	onPress?: (any) => void;
 }
 
-export default ({
+export default function ({
 	text,
 	destination,
 	textColor = colors.NAVY_BLUE,
 	borderColor = colors.BANANA_YELLOW,
 	disabled = false,
 	onPress = () => {},
-}: LinkButtonProps) => {
+}: LinkButtonProps) {
 	const { navigate } = useNavigation();
 	const buttonFunction = destination
 		? () => navigate(destination)
@@ -51,4 +51,4 @@ export default ({
 			</TouchableOpacity>
 		</View>
 	);
-};
+}

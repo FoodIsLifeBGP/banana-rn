@@ -6,7 +6,7 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Icon } from '@elements';
 import styles from './BarCodeMask.styles';
 
-export default () => {
+export default function () {
 	const { goBack } = useNavigation();
 	return (
 		<>
@@ -33,4 +33,4 @@ export default () => {
 			</View>
 		</>
 	);
-};
+}

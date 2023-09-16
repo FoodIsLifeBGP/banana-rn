@@ -13,7 +13,7 @@ import claimStyles from '@util/claimStyles';
 import styles from './ClaimDetailsScreen.styles';
 
 
-export default () => {
+export default function () {
 	const { goBack } = useNavigation();
 	const donation = useNavigationParam('donation');
 	let { claim } = donation;
@@ -114,4 +114,4 @@ export default () => {
 			</ScrollView>
 		</View>
 	);
-};
+}

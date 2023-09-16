@@ -28,7 +28,7 @@ import { Alert } from '@state/index.types';
 import styles from './RegistrationScreen.styles';
 
 
-export default () => {
+export default function () {
 	const { navigate, goBack } = useNavigation();
 	const [state, actions] = useGlobal() as any;
 	const { register, updateAlert } = actions;
@@ -209,4 +209,4 @@ export default () => {
 			</ScrollView>
 		</KeyboardAvoidingView>
 	);
-};
+}

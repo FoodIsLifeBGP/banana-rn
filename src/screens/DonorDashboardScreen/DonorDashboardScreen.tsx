@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 // import { useIsFocused, useNavigation } from 'react-navigation-hooks';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
-import { ScrollView, Text, View } from 'react-native';
-import { TouchableOpacity } from 'react-native';
+import {
+	ScrollView, Text, View, TouchableOpacity,
+} from 'react-native';
 import { EmptyStateView, NavBar, Title } from '@elements';
 import useGlobal from '@state';
 import Donation from '@library/Donations/Donation';
 import styles from './DonorDashboardScreen.styles';
 
-const DonorDashboardScreen = () => {
+function DonorDashboardScreen() {
 	const { navigate } = useNavigation();
 	const isFocused = useIsFocused();
 	const [ state, actions ] = useGlobal() as any;
@@ -77,6 +78,6 @@ const DonorDashboardScreen = () => {
 
 		</View>
 	);
-};
+}
 
 export default DonorDashboardScreen;

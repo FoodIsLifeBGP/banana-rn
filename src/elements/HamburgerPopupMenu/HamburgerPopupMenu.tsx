@@ -6,7 +6,7 @@ import { NAVBAR_ICON_SIZE } from '@util/constants';
 import { useDrawerStatus } from '@react-navigation/drawer';
 import NavigationService from '@util/NavigationService';
 
-export default () => {
+export default function () {
 	// const { toggleDrawer } = useNavigation() as any;
 	// console.log(useNavigation());
 	const navigation = useNavigation();
@@ -18,4 +18,4 @@ export default () => {
 			<Icon name="menu" size={NAVBAR_ICON_SIZE} />
 		</TouchableOpacity>
 	);
-};
+}

@@ -19,13 +19,13 @@ interface FloatingActionProps {
 	onPress?: (any) => void;
 }
 
-export default ({
+export default function ({
 	iconName,
 	top = 525,
 	left = 273,
 	size = 28.5,
 	onPress = () => {},
-}: FloatingActionProps) => {
+}: FloatingActionProps) {
 	const buttonFunction = onPress && (func => onPress(func));
 	const buttonStyle: ButtonStyle = {
 		default: {
@@ -46,4 +46,4 @@ export default ({
 			</View>
 		</View>
 	);
-};
+}

@@ -12,7 +12,7 @@ import { ButtonStyle } from '@elements/Button';
 import claimStyles from '@util/claimStyles';
 import styles from './MakeClaimScreen.styles';
 
-const MakeClaimScreen = () => {
+function MakeClaimScreen() {
 	const isFocused = useIsFocused();
 	const { navigate, goBack } = useNavigation();
 	const [ globalState, globalActions ] = useGlobal() as any;
@@ -139,7 +139,7 @@ const MakeClaimScreen = () => {
 
 
 	);
-};
+}
 
 
 export default MakeClaimScreen;

@@ -21,11 +21,11 @@ interface IconProps {
 	color?: string;
 }
 
-export default ({
+export default function ({
 	name,
 	size,
 	color = NAVY_BLUE,
-}: IconProps) => {
+}: IconProps) {
 	const nameIsDeprecated = Object.keys(deprecatedIconMap).includes(name);
 	const validIconName = nameIsDeprecated
 		? (deprecatedIconMap[name] || '')
@@ -115,4 +115,4 @@ export default ({
 			}
 		</View>
 	);
-};
+}

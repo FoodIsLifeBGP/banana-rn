@@ -9,7 +9,7 @@ import useGlobal from '@state';
 
 import styles from './ClientHistoryScreen.styles';
 
-const ClientHistoryScreen = () => {
+function ClientHistoryScreen() {
 	const isFocused = useIsFocused();
 	const [ state, actions ] = useGlobal() as any;
 	const [ claims, setClaims ] = useState([]);
@@ -66,6 +66,6 @@ const ClientHistoryScreen = () => {
 			</View>
 		</View>
 	);
-};
+}
 
 export default ClientHistoryScreen;

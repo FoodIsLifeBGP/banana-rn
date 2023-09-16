@@ -50,7 +50,7 @@ interface ContactScreenParams {
 	backDestination?: string;
 }
 
-export default ({ backDestination }: ContactScreenParams) => {
+export default function ({ backDestination }: ContactScreenParams) {
 	const { navigate, goBack } = useNavigation();
 	const [ state, { updateAlert } ] = useGlobal() as any;
 
@@ -118,4 +118,4 @@ export default ({ backDestination }: ContactScreenParams) => {
 			</ScrollView>
 		</View>
 	);
-};
+}

@@ -30,7 +30,7 @@ interface ModalProps {
 	children: JSX.Element | Array<JSX.Element>;
 }
 
-export default ({
+export default function ({
 	title,
 	open,
 	style = {},
@@ -38,7 +38,7 @@ export default ({
 	palette = 'secondary',
 	onDismiss,
 	children,
-}: ModalProps) => {
+}: ModalProps) {
 	const scheme = useScheme();
 	const colorPalette = scheme[palette];
 
@@ -90,4 +90,4 @@ export default ({
 			</View>
 		</View>
 	);
-};
+}

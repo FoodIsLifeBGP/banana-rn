@@ -20,7 +20,7 @@ import {
 import * as colors from '@util/colors';
 import styles from './DonorDonationScreen.styles';
 
-export default () => {
+export default function() {
 	const [ state, actions ] = useGlobal() as any;
 	const { user, jwt } = state;
 	const { postDonation, logOut, getDonationsOrClaims } = actions;
@@ -96,7 +96,7 @@ export default () => {
 					</View>
 					<FormTextInput
 						label="Donating:"
-						value={name}
+						value=
 						setValue={setName}
 						style={{ width: '50%' }}
 					/>

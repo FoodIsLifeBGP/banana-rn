@@ -18,7 +18,7 @@ import donationConstraints from '@util/constraints/donation';
 import { categoryImage } from '@util/donationCategory';
 import styles from './DonationScreen.styles';
 
-export default () => {
+export default function () {
 	const [ state, actions ] = useGlobal() as any;
 	const { updateAlert } = actions;
 	const { user } = state;
@@ -134,4 +134,4 @@ export default () => {
 		</KeyboardAvoidingView>
 
 	);
-};
+}

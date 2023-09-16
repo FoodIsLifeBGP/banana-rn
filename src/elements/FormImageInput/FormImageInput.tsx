@@ -57,7 +57,7 @@ const MessageFromStatus = {
 /**
  * Input component for a form to select an image from storage to upload.
  */
-const FormImageInput = (
+function FormImageInput(
 	{
 		label,
 		value,
@@ -69,7 +69,7 @@ const FormImageInput = (
 		shape = 'rectangular',
 	}: FormImageInputProps,
 	ref: Ref<GenericTouchable>,
-) => {
+) {
 	const pickImage = async () => {
 		const imageResult = await sourceImage('cameraRoll');
 		if (imageResult && !imageResult.canceled) {
@@ -117,6 +117,6 @@ const FormImageInput = (
 			) }
 		</View>
 	);
-};
+}
 
 export default forwardRef< GenericTouchable, FormImageInputProps & { ref?: RefObject<GenericTouchable> }>(FormImageInput);

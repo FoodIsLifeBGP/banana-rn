@@ -16,10 +16,10 @@ interface IncompleteFormAlertProps {
 	onNo?: () => void;
 }
 
-export default ({
+export default function ({
 	onYes = () => {},
 	onNo = () => {},
-}: IncompleteFormAlertProps) => {
+}: IncompleteFormAlertProps) {
 	const [ globalState, globalActions ] = useGlobal() as any;
 	const { alert: alertObj }: { alert: Alert } = globalState;
 	const { clearAlert } = globalActions;
@@ -131,4 +131,4 @@ export default ({
 		);
 	}
 	return null;
-};
+}

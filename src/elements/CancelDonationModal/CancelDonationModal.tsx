@@ -17,12 +17,12 @@ interface CancelDonationModalProps {
 	okay?: () => void;
 }
 
-export default ({
+export default function ({
 	onYes = () => {},
 	onNo = () => {},
 	okay = () => {},
 
-}: CancelDonationModalProps) => {
+}: CancelDonationModalProps) {
 	const [ globalState, globalActions ] = useGlobal() as any;
 	const { alert: alertObj }: { alert: Alert } = globalState;
 	const { clearAlert } = globalActions;
@@ -175,4 +175,4 @@ export default ({
 		);
 	}
 	return null;
-};
+}

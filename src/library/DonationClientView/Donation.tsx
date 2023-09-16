@@ -20,7 +20,7 @@ interface ClientDonationProps {
 	donation: Donation;
 }
 
-export default ({ donation, isClaim, isHistory }: ClientDonationProps) => {
+export default function ({ donation, isClaim, isHistory }: ClientDonationProps) {
 	const { navigate } = useNavigation();
 	const {
 		category,
@@ -61,4 +61,4 @@ export default ({ donation, isClaim, isHistory }: ClientDonationProps) => {
 			</View>
 		</TouchableOpacity>
 	);
-};
+}

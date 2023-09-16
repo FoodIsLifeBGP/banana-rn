@@ -10,7 +10,7 @@ interface TimeBoardProps {
 	deadline: Date;
 	style?: StyleProp<TextStyle>;
 }
-export default ({ deadline, style }: TimeBoardProps) => {
+export default function ({ deadline, style }: TimeBoardProps) {
 	const calcRemainingMin = (futureTime: Date) => Math.floor((futureTime.getTime() - Date.now()) / 60000);
 	const calcRemainingSec = (futureTime: Date) => Math.floor(((futureTime.getTime() - Date.now()) % 60000) / 1000);
 	const [ min, setMin ] = useState(calcRemainingMin(deadline));
@@ -46,4 +46,4 @@ export default ({ deadline, style }: TimeBoardProps) => {
 			</View>
 		</View>
 	);
-};
+}

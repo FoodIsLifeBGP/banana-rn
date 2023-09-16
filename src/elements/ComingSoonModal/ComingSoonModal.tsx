@@ -12,7 +12,7 @@ import { useScheme } from '@util/colorSchemes';
 import typography from '@util/typography';
 import styles from './ComingSoonModal.styles';
 
-export default () => {
+export default function () {
 	const [ globalState, globalActions ] = useGlobal() as any;
 	const { alert: alertObj }: { alert: Alert } = globalState;
 	const { clearAlert } = globalActions;
@@ -101,4 +101,4 @@ export default () => {
 		);
 	}
 	return null;
-};
+}

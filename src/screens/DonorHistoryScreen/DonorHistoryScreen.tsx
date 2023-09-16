@@ -11,7 +11,7 @@ import useGlobal from '@state';
 
 import styles from './DonorHistoryScreen.styles';
 
-const DonorHistoryScreen = () => {
+function DonorHistoryScreen() {
 	const isFocused = useIsFocused();
 	const [ state, actions ] = useGlobal() as any;
 	const [ donations, setDonations ] = useState([]);
@@ -57,6 +57,6 @@ const DonorHistoryScreen = () => {
 			</View>
 		</View>
 	);
-};
+}
 
 export default DonorHistoryScreen;

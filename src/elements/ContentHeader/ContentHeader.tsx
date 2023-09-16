@@ -19,12 +19,12 @@ interface ContentHeaderProps {
 	headerSize?: HeaderSize;
 }
 
-export default ({
+export default function ({
 	title,
 	style,
 	textStyle,
 	headerSize = 'small',
-}: ContentHeaderProps) => {
+}: ContentHeaderProps) {
 	const sizedContainerStyle = headerSize === 'small'
 		? styles.smallHeaderContainer
 		: styles.largeHeaderContainer;
@@ -40,4 +40,4 @@ export default ({
 			</Text>
 		</View>
 	);
-};
+}

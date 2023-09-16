@@ -54,7 +54,7 @@ export default function MainStackNavigator() {
 	);
 }
 
-export const DonorOrClientDrawer = () => {
+export function DonorOrClientDrawer() {
 	const { USER_IDENTITY } = getEnv();
 
 	return (
@@ -117,7 +117,7 @@ export const DonorOrClientDrawer = () => {
 			/>
 		</Drawer.Navigator>
 	);
-};
+}
 
 export function FullStackNavigator() {
 	return (

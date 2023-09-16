@@ -15,14 +15,16 @@ interface DonationMarkerProps{
 	size: number;
 }
 
-export default ({
+export default function ({
 	coordinate, onPress, size,
-}: DonationMarkerProps) => (
-	<Marker
-		coordinate={coordinate}
-		onPress={onPress}
-		style={styles.container}
-	>
-		<Icon name="bananaMarker" size={size} />
-	</Marker>
-);
+}: DonationMarkerProps) {
+	return (
+		<Marker
+			coordinate={coordinate}
+			onPress={onPress}
+			style={styles.container}
+		>
+			<Icon name="bananaMarker" size={size} />
+		</Marker>
+	);
+}

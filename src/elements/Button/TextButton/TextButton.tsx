@@ -20,7 +20,7 @@ type TextButtonProps = {
 	textStyle?: StyleProp<TextStyle>;
 } & Omit<ButtonProps, 'children'>;
 
-export default ({
+export default function ({
 	text,
 	textStyle,
 	style,
@@ -28,31 +28,33 @@ export default ({
 	outlined = false,
 	disabled = false,
 	...props
-}: TextButtonProps) => (
-	<Button
-		style={style}
-		buttonStyle={buttonStyle}
-		outlined={outlined}
-		disabled={disabled}
-		{...props}
-	>
-		{
-			foregroundColor => (
-				<Text
-					style={[
-						{
-							...typography.h4,
-							textAlign: 'center',
-							color: foregroundColor,
-						},
-						textStyle,
-					]}
-					allowFontScaling={false}
-				>
-					{text}
-				</Text>
-			)
-		}
+}: TextButtonProps) {
+	return (
+		<Button
+			style={style}
+			buttonStyle={buttonStyle}
+			outlined={outlined}
+			disabled={disabled}
+			{...props}
+		>
+			{
+				foregroundColor => (
+					<Text
+						style={[
+							{
+								...typography.h4,
+								textAlign: 'center',
+								color: foregroundColor,
+							},
+							textStyle,
+						]}
+						allowFontScaling={false}
+					>
+						{text}
+					</Text>
+				)
+			}
 
-	</Button>
-);
+		</Button>
+	);
+}

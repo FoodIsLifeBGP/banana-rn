@@ -7,7 +7,7 @@ import * as colors from '@util/colors';
 
 import styles from './MainOption.styles';
 
-const MainOption = ({ icon, text }) => {
+function MainOption({ icon, text }) {
 	let menuStyle = {};
 	console.log('Main Option: ', text);
 
@@ -38,6 +38,6 @@ const MainOption = ({ icon, text }) => {
 			</View>
 		</View>
 	);
-};
+}
 
 export default MainOption;
