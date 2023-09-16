@@ -8,6 +8,7 @@
       "android",
       "web"
     ],
+	"owner": "brendan903",
     "version": "0.1.0-alpha",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

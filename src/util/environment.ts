@@ -10,8 +10,17 @@ const CLIENT = {
 	CREATE_URL: '/clients/create',
 };
 
+const getServerEndPoint = () => {
+	if (Constants?.expoConfig?.extra?.productionBuild) {
+		return 'https://api.thebegoodproject.org';
+	}
+	return Constants?.expoConfig?.extra?.ipAddress ? `http://${Constants.expoConfig.extra.ipAddress}:3000`
+		: 'https://api.thebegoodproject.org';
+};
+
 const getEnv = () => {
-	const { variant } = Constants?.expoConfig?.extra;
+	const variant = Constants?.expoConfig?.extra?.variant;
+	// console.log('VARIANT, VARIANT, VARIANT', variant);
 	const variantSpecificProperties = variant === 'donor'
 		? DONOR
 		: CLIENT;
@@ -22,11 +31,4 @@ const getEnv = () => {
 	});
 };
 
-const getServerEndPoint = () => {
-	if (Constants?.expoConfig?.extra?.productionBuild) {
-		return 'https://api.thebegoodproject.org';
-	}
-	return Constants?.expoConfig?.extra?.ipAddress ? `http://${Constants.expoConfig.extra.ipAddress}:3000`
-		: 'https://api.thebegoodproject.org';
-};
 export default getEnv;
