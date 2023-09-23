@@ -50,11 +50,7 @@
     },
     "description": "The Banana App provides donors (supermarkets, groceries, produce stands, restaurants) a time-sensitive platform to donate items that are considered not aesthetically-pleasing for market display or sale but still edible and in good condition. Items will be given directly to verified clients (low-income family, homeless individuals) upon successful application.",
 	"extra": {
-		"variant": "donor",
-        "productionBuild": true,
-		"eas": {
-			"projectId": "b9e23e31-4093-4ee5-ad22-b726a36ffb48"
-		}
+		"variant": "donor"
 	}
 	}
 }
