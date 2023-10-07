@@ -32,7 +32,7 @@ export default ({ config }) => {
 		configVariant = donorConfig;
 	}
 
-	// TODO: Delete later. 
+	// FOR TROUBLESHOOTING PURPOSES: Console logs the app.json object that gets generated. 
 	// console.log({
 	// 	...config,
 	// 	...configVariant.expo,
