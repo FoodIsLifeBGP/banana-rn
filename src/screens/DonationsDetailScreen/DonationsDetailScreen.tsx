@@ -1,5 +1,4 @@
 import React from 'react';
-// import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import {
 	Image, ScrollView, Text, View,
@@ -14,11 +13,12 @@ import * as colors from '@util/colors';
 import styles from './DonationsDetailScreen.styles';
 
 
-const DonationsDetailScreen = () => {
+function DonationsDetailScreen() {
 	const { navigate } = useNavigation();
 	const [ globalState, globalActions ] = useGlobal() as any;
 	const { cancelDonation } = globalActions;
-	const donation = useNavigationParam('donation');
+	const route = useRoute();
+	const { donation } = route.params;
 	const hasClaim = !!donation.claim;
 	const [ state, { updateAlert } ] = useGlobal() as any;
 

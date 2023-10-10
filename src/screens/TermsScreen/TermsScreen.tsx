@@ -11,7 +11,7 @@ import Terms from '@assets/documents/SampleToS';
 import ScrollContainer from '../../elements/ScrollContainer/ScrollContainer';
 import styles from './TermsScreen.styles';
 
-export default () => {
+function TermsScreen() {
 	const [ button, setButton ] = useState(true);
 	return (
 		<>
@@ -30,9 +30,11 @@ export default () => {
 				<LinkButton
 					text="back"
 					disabled={button}
-					destination="RegistrationScreen"
+					destination="Register"
 				/>
 			</View>
 		</>
 	);
-};
+}
+
+export default TermsScreen;

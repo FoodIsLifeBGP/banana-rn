@@ -9,7 +9,7 @@ import {
 } from '@elements';
 import styles from './DashboardScreen.styles';
 
-const DashboardScreen = () => {
+function DashboardScreen() {
 	const isFocused = useIsFocused();
 	const [ state, actions ] = useGlobal() as any;
 	const { navigate } = useNavigation();
@@ -79,6 +79,6 @@ const DashboardScreen = () => {
 
 		</View>
 	);
-};
+}
 
 export default DashboardScreen;

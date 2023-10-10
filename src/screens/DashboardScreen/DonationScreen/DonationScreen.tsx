@@ -1,9 +1,8 @@
 import React, { useRef, useState } from 'react';
-// import { useNavigation } from 'react-navigation-hooks';
 import { useNavigation } from '@react-navigation/native';
 import {
 	View,
-	KeyboardAvoidingView, ScrollView, Platform, Text, Image, TextInput,
+	KeyboardAvoidingView, ScrollView, Platform, Text, Image, Alert,
 } from 'react-native';
 import useGlobal from '@state';
 import {
@@ -18,16 +17,16 @@ import donationConstraints from '@util/constraints/donation';
 import { categoryImage } from '@util/donationCategory';
 import styles from './DonationScreen.styles';
 
-export default () => {
+function DonationScreen() {
 	const [ state, actions ] = useGlobal() as any;
 	const { updateAlert } = actions;
 	const { user } = state;
 	const foodCategories: Array<string> = [ 'Bread', 'Dairy', 'Hot Meal', 'Produce', 'Protein', 'Others' ];
 	const emptyDonation: NewDonation = {
-		pickupAddress: `${user.address_street} ${user.address_city}, ${user.address_state} ${user.address_zip}`,
-		category: foodCategories[0],
+		pickupAddress: `${user?.address_street} ${user?.address_city}, ${user?.address_state} ${user?.address_zip}`,
+		category: foodCategories[3],
 		itemName: '',
-		pickupInstructions: user.pickup_instructions,
+		pickupInstructions: user?.pickup_instructions,
 		totalAmount: '',
 	};
 
@@ -49,7 +48,7 @@ export default () => {
 			setValidateError({});
 			const result = await postDonation(newDonation);
 			if (result === 201) {
-				updateAlert({ type: 'donation published', dismissable: false });
+				// updateAlert({ type: 'donation published', dismissable: false });
 				setNewDonation(emptyDonation);
 				navigate('DonorDashboardScreen');
 			} else {
@@ -58,6 +57,7 @@ export default () => {
 			}
 		}
 	};
+
 	return (
 		<KeyboardAvoidingView
 			style={styles.keyboardAvoidContainer}
@@ -90,10 +90,10 @@ export default () => {
 					label="Food Category"
 					dropdownData={foodCategories}
 					setValue={s => setNewDonation({ ...newDonation, category: s })}
-					defaultValue={foodCategories[0]}
+					defaultValue={foodCategories[2]}
 					value={newDonation.category}
-					type="dropdown"
-					error={!!validateError.category}
+					// type="dropdown"
+					error={validateError.category}
 					errorMessage={validateError.category}
 				/>
 
@@ -132,6 +132,7 @@ export default () => {
 				</View>
 			</ScrollView>
 		</KeyboardAvoidingView>
-
 	);
-};
+}
+
+export default DonationScreen;

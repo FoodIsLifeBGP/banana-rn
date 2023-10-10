@@ -12,7 +12,7 @@ import { DrawerItem, DrawerItemList } from '@react-navigation/drawer';
 import MainOption from './MainOption/MainOption';
 import styles from './MenuDrawer.styles';
 
-const MenuDrawer = props => {
+function MenuDrawer(props) {
 	const [ state, actions ] = useGlobal() as any;
 	const { navigate, toggleDrawer } = useNavigation() as any;
 	const { logOut } = actions;
@@ -75,6 +75,6 @@ const MenuDrawer = props => {
 			</TouchableOpacity> */}
 		</ScrollView>
 	);
-};
+}
 
 export default MenuDrawer;

@@ -6,7 +6,7 @@ export default () => (
 	<InfoScreen
 		title="You are logged out."
 		nextScreenTitle="Log In"
-		nextScreenDestination="LoginScreen"
+		nextScreenDestination="Login"
 		showBackButton={false}
 	>
 		<Paragraph fontSize={20}>We hope to see you soon!</Paragraph>

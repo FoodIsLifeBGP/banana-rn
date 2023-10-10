@@ -145,7 +145,7 @@ export default function () {
 
 				<View style={styles.buttonContainer}>
 					<LinkButton text="Log In" onPress={handleLogin} />
-					<LinkButton text="Register" destination="RegistrationScreen" />
+					<LinkButton text="Register" onPress={() => navigate('Register')} />
 				</View>
 			</ScrollView>
 			{showModal && (

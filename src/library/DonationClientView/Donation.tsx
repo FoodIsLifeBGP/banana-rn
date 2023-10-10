@@ -1,5 +1,4 @@
 import React from 'react';
-// import { useNavigation } from 'react-navigation-hooks';
 import { useNavigation } from '@react-navigation/native';
 import {
 	View,
@@ -35,8 +34,8 @@ export default ({ donation, isClaim, isHistory }: ClientDonationProps) => {
 
 	return (
 		<TouchableOpacity
-			onPress={() => (!isClaim ? navigate('MakeClaimScreen', { donation, id })
-				: navigate('ClaimDetailsScreen', { donation }))}
+			onPress={() => (!isClaim ? navigate('MakeClaim', { donation, id })
+				: navigate('ClaimDetails', { donation }))}
 		>
 			<View style={[ styles.card, { backgroundColor: !isClaim || isHistory ? '#F0EEEE' : '#FFE145' } ]}>
 				<View style={styles.categoryText}>

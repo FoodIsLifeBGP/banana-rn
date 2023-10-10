@@ -12,14 +12,14 @@ import { ButtonStyle } from '@elements/Button';
 import claimStyles from '@util/claimStyles';
 import styles from './MakeClaimScreen.styles';
 
-const MakeClaimScreen = () => {
+function MakeClaimScreen() {
 	const isFocused = useIsFocused();
 	const { navigate, goBack } = useNavigation();
 	const [ globalState, globalActions ] = useGlobal() as any;
 	const { claimDonation, getTravelTimes } = globalActions;
 	const { user } = globalState;
-	// const donation = useNavigationParam('donation');
-	const donation = useRoute();
+	const route = useRoute();
+	const { donation } = route.params;
 	const { donor } = donation;
 	const pendingTravelTimes = { pedestrian: 'calculating..', publicTransport: 'calculating..', bicycle: 'calculating..' };
 	const unavailableTravelTimes = { pedestrian: 'not available', publicTransport: 'not available', bicycle: 'not available' };
@@ -41,10 +41,11 @@ const MakeClaimScreen = () => {
 
 	const handleClaim = async () => {
 		const response = await claimDonation(donation.id, user.id);
+		console.log('RESPONSE: ', response);
 		if (response.status !== 202) {
 			console.log('Handle this error better');
 		} else {
-			navigate('ClaimDetailsScreen', { claim: response.claim, donation });
+			navigate('ClaimDetails', { claim: response.claim, donation });
 		}
 	};
 
@@ -63,13 +64,13 @@ const MakeClaimScreen = () => {
 
 	useEffect(() => {
 		if (isFocused) {
+			console.log('I came in here');
 			fetchTravelTimes();
 		}
 	}, [ isFocused ]);
 
 
 	return (
-
 		<View style={claimStyles.outerContainer}>
 			<ScrollView>
 				<View>
@@ -136,10 +137,7 @@ const MakeClaimScreen = () => {
 				<TextButton text="Claim" buttonStyle={claimBtnStyle} onPress={handleClaim} />
 			</View>
 		</View>
-
-
 	);
-};
-
+}
 
 export default MakeClaimScreen;

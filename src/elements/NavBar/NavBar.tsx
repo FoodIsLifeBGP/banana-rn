@@ -24,7 +24,7 @@ interface NavBarProps {
 	backButtonFn?: () => void;
 }
 
-export default ({
+function NavBar({
 	showMenu = true,
 	showBackButton = true,
 	leftButton = 'back',
@@ -35,7 +35,7 @@ export default ({
 	onList,
 	backButtonFn,
 
-}: NavBarProps) => {
+}: NavBarProps) {
 	const { navigate, goBack } = useNavigation();
 	const buttonStyle: ButtonStyle = {
 		default: {
@@ -49,6 +49,8 @@ export default ({
 		<View style={styles.contentContainer}>
 			<View style={styles.backContainer}>
 				{
+					// console.log('###LEFT BUTTON === back')
+					// console.log(leftButton === 'back');
 					leftButton === 'back' && showBackButton && (
 						<Button
 							buttonStyle={buttonStyle}
@@ -84,4 +86,6 @@ export default ({
 			</View>
 		</View>
 	);
-};
+}
+
+export default NavBar;

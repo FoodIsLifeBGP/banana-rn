@@ -20,14 +20,15 @@ import {
 import * as colors from '@util/colors';
 import styles from './DonorDonationScreen.styles';
 
-export default () => {
+function DonorDonationScreen() {
 	const [ state, actions ] = useGlobal() as any;
 	const { user, jwt } = state;
 	const { postDonation, logOut, getDonationsOrClaims } = actions;
 	const { navigate } = useNavigation();
-	const donation = useNavigationParam('donation');
-	const edit = useNavigationParam('edit');
-	const donationId = useNavigationParam('id') || null;
+	const route = useRoute();
+	const donation = route.params?.donation;
+	const edit = route.params?.edit;
+	const donationId = route.params?.id;
 
 	const {
 		claims = '',
@@ -136,28 +137,28 @@ export default () => {
 						label="Serving name (bunch, etc.)"
 						value={servingName}
 						setValue={setServingName}
-						style={{ width: '40%' }}
+						style={{ width: '100%' }}
 					/>
 
 					<FormTextInput
 						label="# per person"
 						value={perPerson && perPerson.toString()}
 						setValue={setPerPerson}
-						style={{ width: '20%' }}
+						style={{ width: '100%' }}
 					/>
 
 					<FormTextInput
 						label="Total # of servings"
 						value={totalServings && totalServings.toString()}
 						setValue={setTotalServings}
-						style={{ width: '20%' }}
+						style={{ width: '100%' }}
 					/>
 
 					<FormTextInput
 						label="Pickup spot"
 						value={pickupLocation}
 						setValue={setPickupLocation}
-						style={{ width: '60%' }}
+						style={{ width: '100%' }}
 					/>
 				</View>
 			</View>
@@ -203,4 +204,6 @@ export default () => {
 			</View>
 		</View>
 	);
-};
+}
+
+export default DonorDonationScreen;

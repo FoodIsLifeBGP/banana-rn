@@ -24,7 +24,7 @@ import { DonorRegisterProps } from '@state/actions/register';
 import { Alert } from '@state/index.types';
 import styles from './RegistrationScreen.styles';
 
-export default () => {
+function DonorRegistrationScreen() {
 	const { navigate, goBack } = useNavigation();
 	const [ _state, actions ] = useGlobal() as any;
 	const { register, updateAlert } = actions;
@@ -52,15 +52,20 @@ export default () => {
 	const validateInputs = async () => {
 		const validateResults = validate(newDonor, donorConstraints);
 		if (validateResults) {
+			console.log('VALIDATE RESULTS');
 			setValidationErrors(validateResults);
+			console.log(validationErrors);
 		} else {
+			console.log('INTO THE ELSE');
 			const statusCode = await register(newDonor);
 			switch (statusCode) {
 				case 201: {
+					console.log('INTO THE SUCCESS');
 					navigate('LoginSuccessScreen');
 					break;
 				}
 				case 409: {
+					console.log('INTO THE 409');
 					updateAlert({
 						title: 'Error',
 						message: `This email address has already been used (Error code:${statusCode})`,
@@ -69,6 +74,7 @@ export default () => {
 					break;
 				}
 				case 500: {
+					console.log('INTO THE 500');
 					updateAlert({
 						title: 'Error',
 						message: `Network Issues (Error code:${statusCode})`,
@@ -77,6 +83,7 @@ export default () => {
 					break;
 				}
 				default: {
+					console.log('INTO THE DEFAULT');
 					updateAlert({
 						title: 'Error',
 						message: `Unknown Error (Error code:${statusCode})`,
@@ -199,7 +206,7 @@ export default () => {
 					/>
 					<FormTextInput
 						label="State"
-						type="dropdown"
+						// type="dropdown"
 						dropdownData={stateList}
 						value={newDonor.state}
 						setValue={s => setNewDonor({ ...newDonor, state: s })}
@@ -271,5 +278,7 @@ export default () => {
 			</ScrollView>
 		</KeyboardAvoidingView>
 	);
-};
+}
+
+export default DonorRegistrationScreen;
 
