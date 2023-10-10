@@ -14,14 +14,10 @@ import styles from './ClaimDetailsScreen.styles';
 
 function ClaimDetailsScreen() {
 	const { goBack } = useNavigation();
-	// const donation = useNavigationParam('donation');
 	const route = useRoute();
 	const { donation } = route.params;
-	let { claim } = donation;
+	let { claim } = route.params;
 	const { donor } = donation;
-	// if (!claim) {
-	// 	claim = useNavigationParam('claim');
-	// }
 
 	const claimBtnStyle: ButtonStyle = {
 		default: {

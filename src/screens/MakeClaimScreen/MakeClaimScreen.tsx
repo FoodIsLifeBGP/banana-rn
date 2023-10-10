@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import { useIsFocused, useNavigation, useNavigationParam } from 'react-navigation-hooks';
 import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import {
 	ImageBackground, ScrollView, Text, View,
@@ -41,7 +40,6 @@ function MakeClaimScreen() {
 
 	const handleClaim = async () => {
 		const response = await claimDonation(donation.id, user.id);
-		console.log('RESPONSE: ', response);
 		if (response.status !== 202) {
 			console.log('Handle this error better');
 		} else {
@@ -54,8 +52,10 @@ function MakeClaimScreen() {
 	};
 
 	const fetchTravelTimes = async () => {
-		const result = await getTravelTimes(donation.donor_id, user.coords.latitude, user.coords.longitude);
-		if (result.status === 200) {
+		// const result = await getTravelTimes(donation.donor_id, user.coords.latitude, user.coords.longitude);
+		// TODO: Fix getTravelTimes
+		const result = { status: 500 };
+		if (result?.status === 200) {
 			setTravelTimes(result.times);
 		} else {
 			setTravelTimes(unavailableTravelTimes);
@@ -64,7 +64,6 @@ function MakeClaimScreen() {
 
 	useEffect(() => {
 		if (isFocused) {
-			console.log('I came in here');
 			fetchTravelTimes();
 		}
 	}, [ isFocused ]);
