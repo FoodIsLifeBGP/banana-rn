@@ -92,7 +92,7 @@ function DonationScreen() {
 					setValue={s => setNewDonation({ ...newDonation, category: s })}
 					defaultValue={foodCategories[2]}
 					value={newDonation.category}
-					// type="dropdown"
+					type="dropdown"
 					error={validateError.category}
 					errorMessage={validateError.category}
 				/>
