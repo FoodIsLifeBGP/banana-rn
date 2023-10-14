@@ -23,7 +23,7 @@ interface DropdownInputProps extends TextInputProps {
 
 }
 
-const DropdownInput = (props: DropdownInputProps) => {
+function DropdownInput(props: DropdownInputProps) {
 	const {
 		style, value, setValue, dropdownData, placeholder,
 	} = props;
@@ -59,8 +59,10 @@ const DropdownInput = (props: DropdownInputProps) => {
 				}
 			}}
 			items={formattedData}
-			Icon={<Icon color={colors.NAVY_BLUE} name="dropdown" size={18} />}
+			Icon={() => {
+				return <Icon color={colors.NAVY_BLUE} name="dropdown" size={18} />
+			}}
 		/>
 	);
-};
+}
 export default DropdownInput;
