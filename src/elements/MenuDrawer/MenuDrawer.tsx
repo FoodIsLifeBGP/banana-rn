@@ -3,18 +3,16 @@ import {
 	Text,
 	View,
 	ScrollView,
-	SafeAreaView,
 	TouchableOpacity,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import useGlobal from '@state';
-import { DrawerItem, DrawerItemList } from '@react-navigation/drawer';
 import getEnv from '../../util/environment';
 import MainOption from './MainOption/MainOption';
 import SubOption from './SubOption/SubOption';
 import styles from './MenuDrawer.styles';
 
-function MenuDrawer(props) {
+function MenuDrawer() {
 	const [ state, actions ] = useGlobal() as any;
 	const { navigate } = useNavigation() as any;
 	const { USER_IDENTITY } = getEnv();
