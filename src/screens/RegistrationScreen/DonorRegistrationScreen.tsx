@@ -1,6 +1,5 @@
 /* eslint-disable no-tabs */
 import React, { useRef, useState } from 'react';
-// import { useNavigation } from 'react-navigation-hooks';
 import { useNavigation } from '@react-navigation/native';
 import {
 	KeyboardAvoidingView,
@@ -83,7 +82,6 @@ function DonorRegistrationScreen() {
 					break;
 				}
 				default: {
-					console.log('INTO THE DEFAULT');
 					updateAlert({
 						title: 'Error',
 						message: `Unknown Error (Error code:${statusCode})`,
@@ -206,7 +204,7 @@ function DonorRegistrationScreen() {
 					/>
 					<FormTextInput
 						label="State"
-						// type="dropdown"
+						type="dropdown"
 						dropdownData={stateList}
 						value={newDonor.state}
 						setValue={s => setNewDonor({ ...newDonor, state: s })}
