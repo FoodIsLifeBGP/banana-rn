@@ -116,7 +116,7 @@ function MenuDrawer() {
 				/>
 			</TouchableOpacity>
 			<TouchableOpacity
-				style={styles.menuItem}
+				style={styles.logoutMenuItem}
 				onPress={async () => {
 					navigate('LogoutScreen');
 					await logOut();
