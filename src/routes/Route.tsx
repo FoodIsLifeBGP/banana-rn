@@ -1,4 +1,5 @@
 import React from 'react';
+import { View, Text } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
@@ -23,8 +24,8 @@ import DonorDonationScreen from '../screens/DonorDashboardScreen/DonorDonationSc
 import DonorHistoryScreen from '../screens/DonorHistoryScreen/DonorHistoryScreen';
 import MapScreen from '../screens/MapScreen/MapScreen';
 import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
-import MainOption from '../elements/MenuDrawer/MainOption/MainOption';
-import SubOption from '../elements/MenuDrawer/SubOption/SubOption';
+// import MainOption from '../elements/MenuDrawer/MainOption/MainOption';
+// import SubOption from '../elements/MenuDrawer/SubOption/SubOption';
 import ClaimDetailsScreen from '../screens/ClaimDetailsScreen/ClaimDetailsScreen';
 import ClientClaimsScreen from '../screens/ClientClaimsScreen';
 import ClientHistoryScreen from '../screens/ClientHistoryScreen';
@@ -32,47 +33,77 @@ import ClientHistoryScreen from '../screens/ClientHistoryScreen';
 const Drawer = createDrawerNavigator();
 const FullStack = createStackNavigator();
 
+function CustomDrawerContent() {
+	return (
+		<View>
+			<Text>Hello</Text>
+		</View>
+	);
+}
+
 export function DonorOrClientDrawer() {
 	const { USER_IDENTITY } = getEnv();
 
 	return (
 		<Drawer.Navigator
 			initialRouteName="LoginSuccess"
+			drawerContent={MenuDrawer}
 			screenOptions={{
 				headerShown: false,
 				drawerPosition: 'right',
+				drawerStyle: {
+					backgroundColor: colors.NAVY_BLUE,
+				},
 			}}
 		>
 			<Drawer.Screen
 				name="LoginSuccess"
 				component={LoginSuccessScreen}
-				options={{ drawerLabel: () => null }}
+				options={{
+					drawerLabel: () => null,
+				}}
 			/>
 			{USER_IDENTITY === 'donor' && (
 				<>
 					<Drawer.Screen
 						name="QRCodeScannerScreen"
 						component={QRCodeScannerScreen}
-						// options={{ drawerLabel: () => <MainOption text="Scan QR Code" icon="qrCode" /> }}
-						options={{ drawerLabel: 'Scan QR Code' }}
+						options={{
+							drawerLabel: 'Scan QR Code',
+							drawerLabelStyle: {
+								color: colors.WHITE,
+							},
+						}}
 					/>
 					<Drawer.Screen
 						name="DonorDashboardScreen"
 						component={DonorDashboardScreen}
-						// options={{ drawerLabel: () => <MainOption text="Donations" icon="claims" /> }}
-						options={{ drawerLabel: 'Donations' }}
+						options={{
+							drawerLabel: 'Donations',
+							drawerLabelStyle: {
+								color: colors.WHITE,
+							},
+						}}
 					/>
 					<Drawer.Screen
 						name="DonorHistoryScreen"
 						component={DonorHistoryScreen}
-						// options={{ drawerLabel: () => <SubOption text="History" /> }}
-						options={{ drawerLabel: 'History' }}
+						options={{
+							drawerLabel: 'History',
+							drawerLabelStyle: {
+								color: colors.WHITE,
+							},
+						}}
 					/>
 					<Drawer.Screen
 						name="DonorDonationScreen"
 						component={DonationScreen}
-						// options={{ drawerLabel: () => <SubOption text="History" /> }}
-						options={{ drawerLabel: 'Make Donation' }}
+						options={{
+							drawerLabel: 'Make Donation',
+							drawerLabelStyle: {
+								color: colors.WHITE,
+							},
+						}}
 					/>
 				</>
 			)}
@@ -81,34 +112,84 @@ export function DonorOrClientDrawer() {
 					<Drawer.Screen
 						name="DashboardScreen"
 						component={DashboardScreen}
-						// options={{ drawerLabel: () => <MainOption text="Donations" icon="donations" /> }}
-						options={{ drawerLabel: 'Donations' }}
+						options={{
+							drawerLabel: 'Donations',
+							drawerLabelStyle: {
+								color: colors.WHITE,
+								textTransform: 'uppercase',
+								marginLeft: 'auto',
+								marginRight: 5,
+								fontWeight: 'bold',
+								fontSize: 20,
+								borderTopWidth: 1,
+								borderTopColor: colors.WHITE,
+							},
+						}}
 					/>
 					<Drawer.Screen
 						name="ClientClaimsScreen"
 						component={ClientClaimsScreen}
-						// options={{ drawerLabel: () => <MainOption text="Claims" icon="claims" /> }}
-						options={{ drawerLabel: 'Claims' }}
+						options={{
+							drawerLabel: 'Claims',
+							drawerLabelStyle: {
+								color: colors.WHITE,
+								textTransform: 'uppercase',
+								fontWeight: 'bold',
+								fontSize: 20,
+								marginLeft: 'auto',
+								marginRight: 5,
+								letterSpacing: 0.5,
+								marginBottom: 10,
+							},
+						}}
 					/>
 					<Drawer.Screen
 						name="ClientHistoryScreen"
 						component={ClientHistoryScreen}
-						// options={{ drawerLabel: () => <SubOption text="History" /> }}
-						options={{ drawerLabel: 'History' }}
+						options={{
+							drawerLabel: 'History',
+							drawerLabelStyle: {
+								color: colors.WHITE,
+								textTransform: 'uppercase',
+								fontSize: 20,
+								marginLeft: 'auto',
+								marginRight: 5,
+								letterSpacing: 0.5,
+								marginBottom: 10,
+							},
+						}}
 					/>
 				</>
 			)}
 			<Drawer.Screen
 				name="ContactScreen"
 				component={ContactScreen}
-				// options={{ drawerLabel: () => <MainOption text="Contact Us" icon="help" /> }}
-				options={{ drawerLabel: 'Contact Us' }}
+				options={{
+					drawerLabel: 'Contact Us',
+					drawerLabelStyle: {
+						color: colors.WHITE,
+						textTransform: 'uppercase',
+						marginLeft: 'auto',
+						marginRight: 5,
+						fontWeight: 'bold',
+						fontSize: 20,
+					},
+				}}
 			/>
 			<Drawer.Screen
 				name="LogoutScreen"
 				component={LogoutScreen}
-				// options={{ drawerLabel: () => <MainOption text="Contact Us" icon="help" /> }}
-				options={{ drawerLabel: 'Logout' }}
+				options={{
+					drawerLabel: 'Logout',
+					drawerLabelStyle: {
+						color: colors.WHITE,
+						textTransform: 'uppercase',
+						marginLeft: 'auto',
+						marginRight: 5,
+						fontWeight: 'bold',
+						fontSize: 20,
+					},
+				}}
 			/>
 		</Drawer.Navigator>
 	);
