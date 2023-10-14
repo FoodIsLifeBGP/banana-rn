@@ -1,12 +1,9 @@
 import React from 'react';
-import { View, Text } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import useGlobal from '@state';
 import * as colors from '@util/colors';
-import HamburgerPopupMenu from '@elements/HamburgerPopupMenu';
-// import getEnv from '@util/environment';
 import getEnv from '../util/environment';
 import MakeClaimScreen from '../screens/MakeClaimScreen/MakeClaimScreen';
 import LoginScreen from '../screens/LoginScreen';
@@ -24,22 +21,12 @@ import DonorDonationScreen from '../screens/DonorDashboardScreen/DonorDonationSc
 import DonorHistoryScreen from '../screens/DonorHistoryScreen/DonorHistoryScreen';
 import MapScreen from '../screens/MapScreen/MapScreen';
 import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
-// import MainOption from '../elements/MenuDrawer/MainOption/MainOption';
-// import SubOption from '../elements/MenuDrawer/SubOption/SubOption';
 import ClaimDetailsScreen from '../screens/ClaimDetailsScreen/ClaimDetailsScreen';
 import ClientClaimsScreen from '../screens/ClientClaimsScreen';
 import ClientHistoryScreen from '../screens/ClientHistoryScreen';
 
 const Drawer = createDrawerNavigator();
 const FullStack = createStackNavigator();
-
-function CustomDrawerContent() {
-	return (
-		<View>
-			<Text>Hello</Text>
-		</View>
-	);
-}
 
 export function DonorOrClientDrawer() {
 	const { USER_IDENTITY } = getEnv();
