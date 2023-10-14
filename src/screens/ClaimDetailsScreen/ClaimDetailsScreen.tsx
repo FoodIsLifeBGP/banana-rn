@@ -16,7 +16,13 @@ function ClaimDetailsScreen() {
 	const { goBack } = useNavigation();
 	const route = useRoute();
 	const { donation } = route.params;
-	let { claim } = route.params;
+	// let claim;
+	// if (route.params.claim) {
+	// 	claim = route.params.claim;
+	// } else {
+	// 	claim = route.params.donation.claim;
+	// }
+	let claim = route.params.claim ? route.params.claim : route.params.donation.claim;
 	const { donor } = donation;
 
 	const claimBtnStyle: ButtonStyle = {
