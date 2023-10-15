@@ -23,5 +23,8 @@ export const logIn = async (store, { email, password }) => {
 };
 
 export const logOut = async store => {
-	await store.setState(initialState);
+	await store.setState({
+		jwt: null,
+		user: {},
+	});
 };
