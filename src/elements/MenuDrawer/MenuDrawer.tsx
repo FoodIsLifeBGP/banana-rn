@@ -31,7 +31,6 @@ function MenuDrawer() {
 						style={styles.menuItem}
 						onPress={async () => {
 							navigate('QRCodeScannerScreen');
-							await logOut();
 						}}
 					>
 						<MainOption
@@ -43,7 +42,6 @@ function MenuDrawer() {
 						style={styles.menuItem}
 						onPress={async () => {
 							navigate('DonorDashboardScreen');
-							await logOut();
 						}}
 					>
 						<MainOption
@@ -55,7 +53,6 @@ function MenuDrawer() {
 						style={styles.menuItem}
 						onPress={async () => {
 							navigate('DonorHistoryScreen');
-							await logOut();
 						}}
 					>
 						<SubOption
@@ -70,7 +67,6 @@ function MenuDrawer() {
 						style={styles.menuItem}
 						onPress={async () => {
 							navigate('DashboardScreen');
-							await logOut();
 						}}
 					>
 						<MainOption
@@ -82,7 +78,6 @@ function MenuDrawer() {
 						style={styles.menuItem}
 						onPress={async () => {
 							navigate('ClientClaimsScreen');
-							await logOut();
 						}}
 					>
 						<MainOption
@@ -94,7 +89,6 @@ function MenuDrawer() {
 						style={styles.menuItem}
 						onPress={async () => {
 							navigate('ClientHistoryScreen');
-							await logOut();
 						}}
 					>
 						<SubOption
@@ -107,7 +101,6 @@ function MenuDrawer() {
 				style={styles.menuItem}
 				onPress={async () => {
 					navigate('ContactScreen');
-					await logOut();
 				}}
 			>
 				<MainOption
@@ -119,7 +112,6 @@ function MenuDrawer() {
 				style={styles.logoutMenuItem}
 				onPress={async () => {
 					navigate('LogoutScreen');
-					await logOut();
 				}}
 			>
 				<MainOption
