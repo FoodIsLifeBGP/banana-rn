@@ -14,7 +14,6 @@ import {
 	Icon,
 } from '@elements';
 import { IconName } from '@elements/Icon';
-// import { useNavigation } from 'react-navigation-hooks';
 import { useNavigation } from '@react-navigation/native';
 import useGlobal from '@state';
 import styles, { ListItem } from './ContactScreen.styles';
@@ -27,15 +26,15 @@ const contactList: Array<{
 }> = [
 	{
 		title: 'website',
-		message: 'www.bananaapp.org',
-		link: 'https://www.bananaapp.org',
+		message: 'www.thebegoodproject.org',
+		link: 'https://www.thebegoodproject.org',
 		iconName: 'website',
 	},
 	{
 		title: 'email',
-		message: 'info@bananapp.org',
+		message: 'info@thebegoodproject.org',
 		// TODO: When the default iOS email app is uninstalled, this fails.
-		link: 'mailto:info@bananapp.org',
+		link: 'mailto:info@thebegoodproject.org',
 		iconName: 'email',
 	},
 	{
