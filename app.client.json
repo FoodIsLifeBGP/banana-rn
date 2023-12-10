@@ -27,7 +27,7 @@
       "bundleIdentifier": "com.thebegoodproject.org.bananaapp-client"
     },
     "android": {
-      "package": "com.thebegoodproject.org.bananaapp-client",
+      "package": "com.thebegoodproject.org.bananaapp__client",
       "versionCode": 4,
       "config": {
         "googleMaps": {
