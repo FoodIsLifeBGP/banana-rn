@@ -8,7 +8,7 @@
       "android",
       "web"
     ],
-    "version": "0.1.10",
+    "version": "0.1.13",
     "orientation": "portrait",
     "icon": "./assets/iconDonor.png",
     "splash": {
