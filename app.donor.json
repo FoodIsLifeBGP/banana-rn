@@ -24,7 +24,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.thebegoodproject.org.bananaapp"
+      "bundleIdentifier": "com.thebegoodproject.org.bananaapp__donor"
     },
     "android": {
       "package": "com.thebegoodproject.org.bananaapp",
