@@ -43,6 +43,12 @@ const contactList: Array<{
 		link: 'https://facebook.com/BeGoodProject',
 		iconName: 'facebook',
 	},
+	{
+		title: 'privacy',
+		message: 'https://thebegoodproject.org/privacy-notice',
+		link: 'https://thebegoodproject.org/privacy-notice',
+		iconName: 'more',
+	},
 ];
 
 interface ContactScreenParams {
