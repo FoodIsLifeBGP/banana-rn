@@ -51,20 +51,15 @@ function DonorRegistrationScreen() {
 	const validateInputs = async () => {
 		const validateResults = validate(newDonor, donorConstraints);
 		if (validateResults) {
-			console.log('VALIDATE RESULTS');
 			setValidationErrors(validateResults);
-			console.log(validationErrors);
 		} else {
-			console.log('INTO THE ELSE');
 			const statusCode = await register(newDonor);
 			switch (statusCode) {
 				case 201: {
-					console.log('INTO THE SUCCESS');
 					navigate('LoginSuccessScreen');
 					break;
 				}
 				case 409: {
-					console.log('INTO THE 409');
 					updateAlert({
 						title: 'Error',
 						message: `This email address has already been used (Error code:${statusCode})`,
@@ -73,7 +68,6 @@ function DonorRegistrationScreen() {
 					break;
 				}
 				case 500: {
-					console.log('INTO THE 500');
 					updateAlert({
 						title: 'Error',
 						message: `Network Issues (Error code:${statusCode})`,
@@ -202,6 +196,8 @@ function DonorRegistrationScreen() {
 						ref={cityRef}
 						onSubmitEditing={() => zipRef?.current?.focus()}
 					/>
+					{/*
+					// TODO: Brendan working on fixing the dropdown menu
 					<FormTextInput
 						label="State"
 						type="dropdown"
@@ -212,6 +208,7 @@ function DonorRegistrationScreen() {
 						error={!!validationErrors.state}
 						errorMessage={validationErrors.state}
 					/>
+					*/}
 					<FormTextInput
 						label="Zip"
 						value={newDonor.zip}

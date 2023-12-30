@@ -1,8 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import {
 	View,
-	KeyboardAvoidingView, ScrollView, Platform, Text, Image, Alert,
+	KeyboardAvoidingView, ScrollView, Platform, Text, Image,
 } from 'react-native';
 import useGlobal from '@state';
 import {
