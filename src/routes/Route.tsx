@@ -83,7 +83,7 @@ export function DonorOrClientDrawer() {
 						}}
 					/>
 					<Drawer.Screen
-						name="DonorDonationScreen"
+						name="DonationScreen"
 						component={DonationScreen}
 						options={{
 							drawerLabel: 'Make Donation',
