@@ -1,7 +1,7 @@
 import React from 'react';
 import getEnv from '@util/environment';
 import useGlobalHook from 'use-global-hook';
-import { Actions, InitialState, UseGlobalType } from './index.types';
+import { Actions, InitialState } from './index.types';
 
 import * as actions from './actions';
 
@@ -29,8 +29,8 @@ export const initialState: InitialState = {
 // const [ state, actions ] = useGlobal;
 
 console.log('###ACTIONS FROM IMPORT: ', actions);
-const actionFunctions: Actions = actions as Actions;
+const actionFunctions: Actions = actions as unknown as Actions;
 
-const useGlobal: UseGlobalType = useGlobalHook(React, initialState, actionFunctions);
+const useGlobal = useGlobalHook<InitialState, Actions>(React, initialState, actionFunctions);
 
 export default useGlobal;
