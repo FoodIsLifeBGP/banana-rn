@@ -196,8 +196,6 @@ function DonorRegistrationScreen() {
 						ref={cityRef}
 						onSubmitEditing={() => zipRef?.current?.focus()}
 					/>
-					{/*
-					// TODO: Brendan working on fixing the dropdown menu
 					<FormTextInput
 						label="State"
 						type="dropdown"
@@ -208,7 +206,6 @@ function DonorRegistrationScreen() {
 						error={!!validationErrors.state}
 						errorMessage={validationErrors.state}
 					/>
-					*/}
 					<FormTextInput
 						label="Zip"
 						value={newDonor.zip}
