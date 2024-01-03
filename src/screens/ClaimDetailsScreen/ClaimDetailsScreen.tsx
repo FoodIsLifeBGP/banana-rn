@@ -1,5 +1,4 @@
 import React from 'react';
-// import { useNavigationParam, useNavigation } from 'react-navigation-hooks';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import {
 	Dimensions, ImageBackground, ScrollView, Text, View, Platform, Linking,
@@ -13,14 +12,18 @@ import claimStyles from '@util/claimStyles';
 import styles from './ClaimDetailsScreen.styles';
 
 
-export default () => {
+function ClaimDetailsScreen() {
 	const { goBack } = useNavigation();
-	const donation = useNavigationParam('donation');
-	let { claim } = donation;
+	const route = useRoute();
+	const { donation } = route.params;
+	// let claim;
+	// if (route.params.claim) {
+	// 	claim = route.params.claim;
+	// } else {
+	// 	claim = route.params.donation.claim;
+	// }
+	let claim = route.params.claim ? route.params.claim : route.params.donation.claim;
 	const { donor } = donation;
-	if (!claim) {
-		claim = useNavigationParam('claim');
-	}
 
 	const claimBtnStyle: ButtonStyle = {
 		default: {
@@ -114,4 +117,6 @@ export default () => {
 			</ScrollView>
 		</View>
 	);
-};
+}
+
+export default ClaimDetailsScreen;

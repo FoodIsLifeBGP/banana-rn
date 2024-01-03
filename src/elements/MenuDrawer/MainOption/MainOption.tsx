@@ -7,9 +7,8 @@ import * as colors from '@util/colors';
 
 import styles from './MainOption.styles';
 
-const MainOption = ({ icon, text }) => {
+export function MainOption({ icon, text }) {
 	let menuStyle = {};
-	console.log('Main Option: ', text);
 
 	const DrawerIcon = (name: IconName) => Icon({
 		name,
@@ -18,13 +17,11 @@ const MainOption = ({ icon, text }) => {
 	});
 
 	if (text === 'Log Out' || text === 'Scan QR Code') {
-		console.log(`I came in to the IF block because text = ${text}`);
 		menuStyle = {
 			...styles.mainOption,
 			...styles.logOut,
 		};
 	} else {
-		console.log(`I came into the ELSE block because text= ${text}`);
 		menuStyle = styles.mainOption;
 	}
 

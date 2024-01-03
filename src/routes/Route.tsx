@@ -2,11 +2,9 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
+import useGlobal from '@state';
 import * as colors from '@util/colors';
-// import getEnv from '@util/environment';
 import getEnv from '../util/environment';
-
-import HamburgerPopupMenu from '@elements/HamburgerPopupMenu';
 import MakeClaimScreen from '../screens/MakeClaimScreen/MakeClaimScreen';
 import LoginScreen from '../screens/LoginScreen';
 import DashboardScreen from '../screens/DashboardScreen';
@@ -23,72 +21,76 @@ import DonorDonationScreen from '../screens/DonorDashboardScreen/DonorDonationSc
 import DonorHistoryScreen from '../screens/DonorHistoryScreen/DonorHistoryScreen';
 import MapScreen from '../screens/MapScreen/MapScreen';
 import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
-import MainOption from '../elements/MenuDrawer/MainOption/MainOption';
-import SubOption from '../elements/MenuDrawer/SubOption/SubOption';
 import ClaimDetailsScreen from '../screens/ClaimDetailsScreen/ClaimDetailsScreen';
 import ClientClaimsScreen from '../screens/ClientClaimsScreen';
 import ClientHistoryScreen from '../screens/ClientHistoryScreen';
 
-const MainStack = createStackNavigator();
-// TODO: Delete MainStack and MainStackNavigator if it is unnecessary
 const Drawer = createDrawerNavigator();
 const FullStack = createStackNavigator();
-
-export default function MainStackNavigator() {
-	return (
-		<MainStack.Navigator initialRouteName="ClientClaims" screenOptions={{ headerShown: false }}>
-			<MainStack.Screen name="ClientClaims" component={ClientClaimsScreen} />
-			<MainStack.Screen name="ClientHistory" component={ClientHistoryScreen} />
-			<MainStack.Screen name="DonorDashboard" component={DonorDashboardScreen} />
-			<MainStack.Screen name="LoginSuccess" component={LoginSuccessScreen} />
-			<MainStack.Screen name="Donation" component={DonationScreen} />
-			<MainStack.Screen name="DonorDonation" component={DonorDonationScreen} />
-			<MainStack.Screen name="DonorHistory" component={DonorHistoryScreen} />
-			<MainStack.Screen name="QRCodeScanner" component={QRCodeScannerScreen} />
-			<MainStack.Screen name="ClaimDetails" component={ClaimDetailsScreen} />
-			<MainStack.Screen name="MakeClaim" component={MakeClaimScreen} />
-			<MainStack.Screen name="DonationsDetail" component={DonationsDetailScreen} />
-			<MainStack.Screen name="Contact" component={ContactScreen} />
-			<MainStack.Screen name="Logout" component={LogoutScreen} />
-			<MainStack.Screen name="Map" component={MapScreen} />
-		</MainStack.Navigator>
-	);
-}
 
 export function DonorOrClientDrawer() {
 	const { USER_IDENTITY } = getEnv();
 
 	return (
 		<Drawer.Navigator
-			initialRouteName={LoginSuccessScreen}
-			drawerStyle={{ backgroundColor: colors.NAVY_BLUE }}
+			initialRouteName="LoginSuccess"
+			drawerContent={MenuDrawer}
 			screenOptions={{
 				headerShown: false,
 				drawerPosition: 'right',
+				drawerStyle: {
+					backgroundColor: colors.NAVY_BLUE,
+				},
 			}}
-			drawerContent={props => <MenuDrawer {...props} />}
 		>
 			<Drawer.Screen
 				name="LoginSuccess"
 				component={LoginSuccessScreen}
-				options={{ drawerLabel: () => null }}
+				options={{
+					drawerLabel: () => null,
+				}}
 			/>
 			{USER_IDENTITY === 'donor' && (
 				<>
 					<Drawer.Screen
 						name="QRCodeScannerScreen"
 						component={QRCodeScannerScreen}
-						options={{ drawerLabel: () => <MainOption text="Scan QR Code" icon="qrCode" /> }}
+						options={{
+							drawerLabel: 'Scan QR Code',
+							drawerLabelStyle: {
+								color: colors.WHITE,
+							},
+						}}
 					/>
 					<Drawer.Screen
 						name="DonorDashboardScreen"
 						component={DonorDashboardScreen}
-						options={{ drawerLabel: () => <MainOption text="Donations" icon="claims" /> }}
+						options={{
+							drawerLabel: 'Donations',
+							drawerLabelStyle: {
+								color: colors.WHITE,
+							},
+						}}
 					/>
 					<Drawer.Screen
 						name="DonorHistoryScreen"
 						component={DonorHistoryScreen}
-						options={{ drawerLabel: () => <SubOption text="History" /> }}
+						options={{
+							drawerLabel: 'History',
+							drawerLabelStyle: {
+								color: colors.WHITE,
+							},
+						}}
+					/>
+					<Drawer.Screen
+						name="DonationScreen"
+						component={DonationScreen}
+						options={{
+							drawerLabel: 'Make Donation',
+							drawerLabelStyle: {
+								color: colors.WHITE,
+							},
+						}}
 					/>
 				</>
 			)}
@@ -97,35 +99,112 @@ export function DonorOrClientDrawer() {
 					<Drawer.Screen
 						name="DashboardScreen"
 						component={DashboardScreen}
-						options={{ drawerLabel: () => <MainOption text="Donations" icon="donations" /> }}
+						options={{
+							drawerLabel: 'Donations',
+							drawerLabelStyle: {
+								color: colors.WHITE,
+								textTransform: 'uppercase',
+								marginLeft: 'auto',
+								marginRight: 5,
+								fontWeight: 'bold',
+								fontSize: 20,
+								borderTopWidth: 1,
+								borderTopColor: colors.WHITE,
+							},
+						}}
 					/>
 					<Drawer.Screen
 						name="ClientClaimsScreen"
 						component={ClientClaimsScreen}
-						options={{ drawerLabel: () => <MainOption text="Claims" icon="claims" /> }}
+						options={{
+							drawerLabel: 'Claims',
+							drawerLabelStyle: {
+								color: colors.WHITE,
+								textTransform: 'uppercase',
+								fontWeight: 'bold',
+								fontSize: 20,
+								marginLeft: 'auto',
+								marginRight: 5,
+								letterSpacing: 0.5,
+								marginBottom: 10,
+							},
+						}}
 					/>
 					<Drawer.Screen
 						name="ClientHistoryScreen"
 						component={ClientHistoryScreen}
-						options={{ drawerLabel: () => <SubOption text="History" /> }}
+						options={{
+							drawerLabel: 'History',
+							drawerLabelStyle: {
+								color: colors.WHITE,
+								textTransform: 'uppercase',
+								fontSize: 20,
+								marginLeft: 'auto',
+								marginRight: 5,
+								letterSpacing: 0.5,
+								marginBottom: 10,
+							},
+						}}
 					/>
 				</>
 			)}
 			<Drawer.Screen
 				name="ContactScreen"
 				component={ContactScreen}
-				options={{ drawerLabel: () => <MainOption text="Contact Us" icon="help" /> }}
+				options={{
+					drawerLabel: 'Contact Us',
+					drawerLabelStyle: {
+						color: colors.WHITE,
+						textTransform: 'uppercase',
+						marginLeft: 'auto',
+						marginRight: 5,
+						fontWeight: 'bold',
+						fontSize: 20,
+					},
+				}}
+			/>
+			<Drawer.Screen
+				name="LogoutScreen"
+				component={LogoutScreen}
+				options={{
+					drawerLabel: 'Logout',
+					drawerLabelStyle: {
+						color: colors.WHITE,
+						textTransform: 'uppercase',
+						marginLeft: 'auto',
+						marginRight: 5,
+						fontWeight: 'bold',
+						fontSize: 20,
+					},
+				}}
 			/>
 		</Drawer.Navigator>
 	);
-};
+}
 
 export function FullStackNavigator() {
+	const [ state ] = useGlobal();
 	return (
 		<FullStack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
 			<FullStack.Screen name="Login" component={LoginScreen} />
-			<FullStack.Screen name="Drawer" component={DonorOrClientDrawer} />
-			<FullStack.Screen name="Logout" component={LogoutScreen} />
+			{state.jwt ? (
+				<FullStack.Group>
+					<FullStack.Screen name="Drawer" component={DonorOrClientDrawer} />
+					<FullStack.Screen name="DonorDonation" component={DonorDonationScreen} />
+					<FullStack.Screen name="DonationScreen" component={DonationScreen} />
+					<FullStack.Screen name="MapScreen" component={MapScreen} />
+					<FullStack.Screen name="MakeClaim" component={MakeClaimScreen} />
+					<FullStack.Screen name="Logout" component={LogoutScreen} />
+					<FullStack.Screen name="ClaimDetails" component={ClaimDetailsScreen} />
+					<FullStack.Screen name="DonationsDetailScreen" component={DonationsDetailScreen} />
+				</FullStack.Group>
+			) : (
+				<FullStack.Group>
+					<FullStack.Screen name="Register" component={RegistrationScreen} />
+					<FullStack.Screen name="TermsScreen" component={TermsScreen} />
+				</FullStack.Group>
+			)}
+			<FullStack.Screen name="ContactScreen" component={ContactScreen} />
 		</FullStack.Navigator>
 	);
 }

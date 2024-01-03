@@ -1,6 +1,5 @@
 /* eslint-disable no-tabs */
 import React, { useRef, useState } from 'react';
-// import { useNavigation } from 'react-navigation-hooks';
 import { useNavigation } from '@react-navigation/native';
 import {
 	KeyboardAvoidingView,
@@ -24,7 +23,7 @@ import { DonorRegisterProps } from '@state/actions/register';
 import { Alert } from '@state/index.types';
 import styles from './RegistrationScreen.styles';
 
-export default () => {
+function DonorRegistrationScreen() {
 	const { navigate, goBack } = useNavigation();
 	const [ _state, actions ] = useGlobal() as any;
 	const { register, updateAlert } = actions;
@@ -271,5 +270,7 @@ export default () => {
 			</ScrollView>
 		</KeyboardAvoidingView>
 	);
-};
+}
+
+export default DonorRegistrationScreen;
 

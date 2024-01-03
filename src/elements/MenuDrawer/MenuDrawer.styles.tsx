@@ -41,6 +41,12 @@ export default StyleSheet.create({
 		marginRight: 30,
 		backgroundColor: colors.NAVY_BLUE,
 	},
+	logoutMenuItem: {
+		marginLeft: 30,
+		marginRight: 30,
+		backgroundColor: colors.NAVY_BLUE,
+		marginTop: 300, // TODO: Find more dynamic styling option
+	},
 	labelText: {
 		color: colors.WHITE,
 		textTransform: 'uppercase',

@@ -3,18 +3,19 @@ import {
 	Text,
 	View,
 	ScrollView,
-	SafeAreaView,
 	TouchableOpacity,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import useGlobal from '@state';
-import { DrawerItem, DrawerItemList } from '@react-navigation/drawer';
+import getEnv from '../../util/environment';
 import MainOption from './MainOption/MainOption';
+import SubOption from './SubOption/SubOption';
 import styles from './MenuDrawer.styles';
 
-const MenuDrawer = props => {
+function MenuDrawer() {
 	const [ state, actions ] = useGlobal() as any;
-	const { navigate, toggleDrawer } = useNavigation() as any;
+	const { navigate } = useNavigation() as any;
+	const { USER_IDENTITY } = getEnv();
 	const { logOut } = actions;
 	const name = state.user.organization_name ? state.user.organization_name : state.user.first_name;
 
@@ -24,57 +25,102 @@ const MenuDrawer = props => {
 				<Text style={{ ...styles.username, marginBottom: 0 }}>Hello,</Text>
 				<Text style={styles.username}>{name}</Text>
 			</View>
-			<SafeAreaView
-				style={styles.container}
-			>
-				<DrawerItemList
-					{... props}
-					labelStyle={styles.labelText}
-					itemStyle={styles.menuItem}
-					onItemPress={() => console.log('Hailey Bieber')}
-				/>
-				<TouchableOpacity
-					style={styles.menuItem}
-					onPress={async () => {
-						toggleDrawer();
-						navigate('LogoutScreen');
-						await logOut();
-					}}
-				>
-					<MainOption
-						icon="logout"
-						text="Log Out"
-					/>
-				</TouchableOpacity>
-			</SafeAreaView>
-			{/* <SafeAreaView
-				style={styles.container}
-			>
-				<DrawerItem
-					{...props}
-					labelStyle={styles.labelText}
-					itemStyle={styles.menuItem}
-					onItemPress={async ({ route }) => {
-						toggleDrawer();
-						navigate(route.routeName);
-					}}
-				/>
-			</SafeAreaView>
+			{ USER_IDENTITY === 'donor' && (
+				<>
+					<TouchableOpacity
+						style={styles.menuItem}
+						onPress={async () => {
+							navigate('QRCodeScannerScreen');
+						}}
+					>
+						<MainOption
+							icon="qrCode"
+							text="Scan QR Code"
+						/>
+					</TouchableOpacity>
+					<TouchableOpacity
+						style={styles.menuItem}
+						onPress={async () => {
+							navigate('DonorDashboardScreen');
+						}}
+					>
+						<MainOption
+							icon="donations"
+							text="Donations"
+						/>
+					</TouchableOpacity>
+					<TouchableOpacity
+						style={styles.menuItem}
+						onPress={async () => {
+							navigate('DonorHistoryScreen');
+						}}
+					>
+						<SubOption
+							text="History"
+						/>
+					</TouchableOpacity>
+				</>
+			)}
+			{ USER_IDENTITY === 'client' && (
+				<>
+					<TouchableOpacity
+						style={styles.menuItem}
+						onPress={async () => {
+							navigate('DashboardScreen');
+						}}
+					>
+						<MainOption
+							icon="donations"
+							text="Donations"
+						/>
+					</TouchableOpacity>
+					<TouchableOpacity
+						style={styles.menuItem}
+						onPress={async () => {
+							navigate('ClientClaimsScreen');
+						}}
+					>
+						<MainOption
+							icon="claims"
+							text="Claims"
+						/>
+					</TouchableOpacity>
+					<TouchableOpacity
+						style={styles.menuItem}
+						onPress={async () => {
+							navigate('ClientHistoryScreen');
+						}}
+					>
+						<SubOption
+							text="History"
+						/>
+					</TouchableOpacity>
+				</>
+			)}
 			<TouchableOpacity
 				style={styles.menuItem}
 				onPress={async () => {
-					toggleDrawer();
+					navigate('ContactScreen');
+				}}
+			>
+				<MainOption
+					icon="help"
+					text="Contact Us"
+				/>
+			</TouchableOpacity>
+			<TouchableOpacity
+				style={styles.logoutMenuItem}
+				onPress={async () => {
 					navigate('LogoutScreen');
-					await logOut();
 				}}
 			>
 				<MainOption
 					icon="logout"
 					text="Log Out"
 				/>
-			</TouchableOpacity> */}
+			</TouchableOpacity>
 		</ScrollView>
 	);
-};
+}
 
 export default MenuDrawer;

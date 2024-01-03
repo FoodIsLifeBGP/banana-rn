@@ -9,7 +9,7 @@ import {
 } from '@elements';
 import styles from './ClientClaimsScreen.styles';
 
-const ClientClaimsScreen = () => {
+function ClientClaimsScreen() {
 	const isFocused = useIsFocused();
 	const [ state, actions ] = useGlobal() as any;
 
@@ -69,6 +69,6 @@ const ClientClaimsScreen = () => {
 
 		</View>
 	);
-};
+}
 
 export default ClientClaimsScreen;
