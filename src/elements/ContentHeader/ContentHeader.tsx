@@ -34,8 +34,8 @@ export default ({
 		: styles.largeHeaderText;
 
 	return (
-		<View style={[styles.headerContainer, sizedContainerStyle, style]}>
-			<Text style={[sizedTextStyle, textStyle]}>
+		<View style={[ styles.headerContainer, sizedContainerStyle, style ]}>
+			<Text style={[ sizedTextStyle, textStyle ]}>
 				{title}
 			</Text>
 		</View>

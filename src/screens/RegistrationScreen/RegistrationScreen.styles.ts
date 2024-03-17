@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
-import * as colors from '@util/colors';
+import * as colors from '@util/constants/colors';
 
 const inputHeight = 35;
 

@@ -16,8 +16,8 @@ import {
 	Title, Icon,
 } from '@elements';
 import useGlobal from '@state';
-import { getStateList } from '@util/statesAbbr';
-import donorConstraints from '@util/constraints/donorRegistration';
+import { getStateList } from '@util/constants/statesAbbr';
+import donorConstraints from '@util/validators/donorRegistration';
 import validate from 'validate.js';
 import { DonorRegisterProps } from '@state/actions/register';
 import { Alert } from '@state/index.types';

@@ -16,7 +16,7 @@ import GenericTouchable from 'react-native-gesture-handler/lib/typescript/compon
 
 import { InputLabel } from '@elements/FormTextInput/InputLabel';
 import { Icon } from '@elements/Icon';
-import { sourceImage } from '@util/ImageSourcer';
+import { sourceImage } from '@util/imageSourcer';
 import styles from './FormImageInput.styles';
 
 type UploadStatus = 'none' | 'pending' | 'success' | 'failure';
@@ -119,4 +119,4 @@ const FormImageInput = (
 	);
 };
 
-export default forwardRef< GenericTouchable, FormImageInputProps & { ref?: RefObject<GenericTouchable> }>(FormImageInput);
+export default forwardRef<GenericTouchable, FormImageInputProps & { ref?: RefObject<GenericTouchable> }>(FormImageInput);

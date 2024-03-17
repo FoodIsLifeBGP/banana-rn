@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { FC } from 'react';
 import {
 	Image,
 	Platform,
 	View,
 } from 'react-native';
-import { NAVY_BLUE } from '@util/colors';
+import { NAVY_BLUE } from '@util/constants/colors';
 import {
 	deprecatedIconMap,
 	iconImports,
@@ -21,11 +21,11 @@ interface IconProps {
 	color?: string;
 }
 
-function Icon({
+const Icon: FC<IconProps> = ({
 	name,
 	size,
 	color = NAVY_BLUE,
-}: IconProps) {
+}: IconProps) => {
 	const nameIsDeprecated = Object.keys(deprecatedIconMap).includes(name);
 	const validIconName = nameIsDeprecated
 		? (deprecatedIconMap[name] || '')
@@ -115,6 +115,6 @@ function Icon({
 			}
 		</View>
 	);
-}
+};
 
 export default Icon;

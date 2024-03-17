@@ -1,8 +1,8 @@
 import React from 'react';
-// import { useNavigation } from 'react-navigation-hooks';
-import { useNavigation } from '@react-navigation/native';
-import { View, Text, TouchableOpacity } from 'react-native';
-import * as colors from '@util/colors';
+import {
+	Text, TouchableOpacity, View,
+} from 'react-native';
+import * as colors from '@util/constants/colors';
 import styles from './LinkButton.styles';
 
 interface LinkButtonProps {
@@ -12,20 +12,21 @@ interface LinkButtonProps {
 	disabled?: boolean;
 	destination?: string;
 	onPress?: (any) => void;
+	navigate?: (any) => void;
 }
 
-export default ({
+export default function LinkButton({
 	text,
 	destination,
 	textColor = colors.NAVY_BLUE,
 	borderColor = colors.BANANA_YELLOW,
 	disabled = false,
 	onPress = () => {},
-}: LinkButtonProps) => {
-	const { navigate } = useNavigation();
-	const buttonFunction = destination
-		? () => navigate(destination)
-		: onPress && (func => onPress(func));
+	navigate,
+}: LinkButtonProps) {
+	const buttonFunction = destination && navigate
+    	? () => navigate(destination)
+    	: onPress && (func => onPress(func));
 
 	return (
 		<View style={styles.container}>
@@ -51,4 +52,4 @@ export default ({
 			</TouchableOpacity>
 		</View>
 	);
-};
+}

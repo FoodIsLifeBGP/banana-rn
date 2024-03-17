@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import typography from '@util/typography';
-import * as colors from '@util/colors';
+import * as colors from '@util/constants/colors';
 
 const ERROR_PADDING_HORIZONTAL = 10;
 

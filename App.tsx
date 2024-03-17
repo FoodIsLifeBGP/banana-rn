@@ -9,7 +9,7 @@ import * as Font from 'expo-font';
 import {
 	TheAlertModal, IncompleteFormAlert, ComingSoonModal, CancelDonationModal,
 } from '@elements';
-import NavigationService from '@util/NavigationService';
+import NavigationService from '@util/navigationService';
 import { NavigationContainer } from '@react-navigation/native';
 import { FullStackNavigator } from './src/routes/Route';
 import styles from './App.styles';
@@ -54,6 +54,15 @@ export default function App() {
 		);
 	}
 
+	const linkConfig = {
+		prefixes: [ 'banana-app://' ],
+		config: {
+			screens: {
+				PasswordReset: 'reset-password/:token',
+			},
+		},
+	};
+
 	return fontsLoaded && (
 		// <AppearanceProvider>
 		<Provider>
@@ -62,6 +71,7 @@ export default function App() {
 					ref={navigatorRef => {
 						NavigationService.setTopLevelNavigator(navigatorRef);
 					}}
+					linking={linkConfig}
 				>
 					<FullStackNavigator />
 				</NavigationContainer>

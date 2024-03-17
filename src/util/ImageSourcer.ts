@@ -1,31 +1,26 @@
 import * as ImagePicker from 'expo-image-picker';
 
-type ImageSourcingMethod = 'camera' | 'cameraRoll';
+export type ImageSourcingMethod = 'camera' | 'cameraRoll';
 
-// Configuration for an image sourcing method.
 interface ImageSourcingConfig {
-	permissionsRequester: Function; // Function to request permissions for an image source.
-	launchImageSourcingMethod: Function; // Native launcher for the image source.
+	launchImageSourcingMethod: () => Promise<ImagePicker.ImagePickerResult>; // native launcher for the image source.
 }
 
-// The possible methods of retreiving an image from the device mapped to their unique configs.
-const IMAGE_SOURCE_METHODS: Record<ImageSourcingMethod, ImageSourcingConfig> = {
-	camera: {
-		permissionsRequester: ImagePicker.requestCameraPermissionsAsync,
-		launchImageSourcingMethod: ImagePicker.launchCameraAsync,
-	},
-	cameraRoll: {
-		permissionsRequester: ImagePicker.requestCameraPermissionsAsync,
-		launchImageSourcingMethod: ImagePicker.launchImageLibraryAsync,
-	},
-};
-
-// Generic options for images, no matter the image source.
+// generic options for images, no matter the image source.
 const IMAGE_OPTIONS: ImagePicker.ImagePickerOptions = {
 	mediaTypes: ImagePicker.MediaTypeOptions.Images,
 	allowsEditing: true,
 	aspect: [ 16, 9 ],
 	quality: 1,
+};
+
+const IMAGE_SOURCE_METHODS: Record<ImageSourcingMethod, ImageSourcingConfig> = {
+	camera: {
+		launchImageSourcingMethod: () => ImagePicker.launchCameraAsync(IMAGE_OPTIONS),
+	},
+	cameraRoll: {
+		launchImageSourcingMethod: () => ImagePicker.launchImageLibraryAsync(IMAGE_OPTIONS),
+	},
 };
 
 /**
@@ -37,27 +32,28 @@ const IMAGE_OPTIONS: ImagePicker.ImagePickerOptions = {
  * @returns The user-selected image result, if successful.
  */
 export async function sourceImage(imageSource: ImageSourcingMethod): Promise<ImagePicker.ImagePickerResult | null> {
-	let pickedImage = {} as ImagePicker.ImagePickerResult;
-
-	const getImageFromSource = async ({
-		permissionsRequester,
-		launchImageSourcingMethod,
-	}: ImageSourcingConfig): Promise<ImagePicker.ImagePickerResult> => {
-		const { status } = await permissionsRequester();
-
-		if (status !== 'granted') {
-			throw new Error('Permission not granted.');
-		}
-
-		return launchImageSourcingMethod(IMAGE_OPTIONS);
-	};
+	let pickedImage = {} as ImagePicker.ImagePickerResult; // The user selected image.
 
 	try {
-		pickedImage = await getImageFromSource(IMAGE_SOURCE_METHODS[imageSource]);
-	} catch (err) {
-		console.log(err.message);
+		// Check and request the necessary permissions before launching the image source method.
+		if (imageSource === 'camera') {
+			const cameraPermission = await ImagePicker.requestCameraPermissionsAsync();
+			if (cameraPermission.status !== 'granted') {
+				throw new Error('Camera permission not granted.');
+			}
+		} else if (imageSource === 'cameraRoll') {
+			const cameraRollPermission = await ImagePicker.requestMediaLibraryPermissionsAsync();
+			if (cameraRollPermission.status !== 'granted') {
+				throw new Error('Camera roll permission not granted.');
+			}
+		}
+
+		pickedImage = await IMAGE_SOURCE_METHODS[imageSource].launchImageSourcingMethod();
+	} catch (err: unknown) {
+		console.error((err as Error).message);
 		// TODO: display alert with error message
+		return null;
 	}
 
-	return pickedImage?.cancelled ? null : pickedImage;
+	return pickedImage?.canceled ? null : pickedImage;
 }

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import * as colors from '@util/colors';
+import * as colors from '@util/constants/colors';
 import typography from '@util/typography';
 
 const SCREEN_HORIZONTAL_OFFSET = '5%';
@@ -49,5 +49,35 @@ export default StyleSheet.create({
 	},
 	forgotPasswordText: {
 		...typography.body3,
+	},
+	linkButtonText: {
+		...typography.body3,
+		color: colors.NAVY_BLUE,
+	},
+	centeredView: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	text: {
+		...typography.body1,
+		textAlign: 'center',
+	},
+	successText: {
+		...typography.body1,
+		textAlign: 'center',
+		color: 'magenta',
+	},
+	smallText: {
+		...typography.body4,
+		textAlign: 'center',
+	},
+	errors: {
+		color: 'red',
+		flex: 1,
+		flexWrap: 'wrap',
+	},
+	errorContainer: {
+		flexDirection: 'row',
 	},
 });

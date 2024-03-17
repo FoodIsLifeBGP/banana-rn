@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import typography from '@util/typography';
-import * as Colors from '@util/colors';
+import * as Colors from '@util/constants/colors';
 
 export default StyleSheet.create({
 	headerContainer: {

@@ -1,12 +1,14 @@
-import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import React, { useRef, useEffect } from 'react';
+import getEnv from '@util/environment';
+import navigationService from '@util/navigationService';
 
-import useGlobal from '@state';
-import * as colors from '@util/colors';
-import getEnv from '../util/environment';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 import MakeClaimScreen from '../screens/MakeClaimScreen/MakeClaimScreen';
 import LoginScreen from '../screens/LoginScreen';
+import PasswordResetScreen from '../screens/PasswordResetScreen';
 import DashboardScreen from '../screens/DashboardScreen';
 import DonorDashboardScreen from '../screens/DonorDashboardScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
@@ -20,192 +22,203 @@ import DonationsDetailScreen from '../screens/DonationsDetailScreen/DonationsDet
 import DonorDonationScreen from '../screens/DonorDashboardScreen/DonorDonationScreen';
 import DonorHistoryScreen from '../screens/DonorHistoryScreen/DonorHistoryScreen';
 import MapScreen from '../screens/MapScreen/MapScreen';
-import MenuDrawer from '../elements/MenuDrawer/MenuDrawer';
+
+import MainOption from '../elements/MenuDrawer/MainOption/MainOption';
+import SubOption from '../elements/MenuDrawer/SubOption/SubOption';
 import ClaimDetailsScreen from '../screens/ClaimDetailsScreen/ClaimDetailsScreen';
 import ClientClaimsScreen from '../screens/ClientClaimsScreen';
 import ClientHistoryScreen from '../screens/ClientHistoryScreen';
 
-const Drawer = createDrawerNavigator();
-const FullStack = createStackNavigator();
+// Logged-In Screens for Drawer Navigator
+const Stack = createNativeStackNavigator();
 
-export function DonorOrClientDrawer() {
+function StackNavigator() {
+	return (
+		<Stack.Navigator
+			screenOptions={{ headerShown: false }}
+			initialRouteName="LoginSuccessScreen"
+		>
+			<Stack.Screen
+				name="DashboardScreen"
+				component={DashboardScreen}
+			/>
+			<Stack.Screen
+				name="ClientClaimsScreen"
+				component={ClientClaimsScreen}
+			/>
+			<Stack.Screen
+				name="ClientHistoryScreen"
+				component={ClientHistoryScreen}
+			/>
+			<Stack.Screen
+				name="DonorDashboardScreen"
+				component={DonorDashboardScreen}
+			/>
+			<Stack.Screen
+				name="LoginSuccessScreen"
+				component={LoginSuccessScreen}
+			/>
+			<Stack.Screen
+				name="DonationScreen"
+				component={DonationScreen}
+			/>
+			<Stack.Screen
+				name="DonorDonationScreen"
+				component={DonorDonationScreen}
+			/>
+			<Stack.Screen
+				name="DonorHistoryScreen"
+				component={DonorHistoryScreen}
+			/>
+			<Stack.Screen
+				name="QRCodeScannerScreen"
+				component={QRCodeScannerScreen}
+			/>
+			<Stack.Screen
+				name="ClaimDetailsScreen"
+				component={ClaimDetailsScreen}
+			/>
+			<Stack.Screen
+				name="MakeClaimScreen"
+				component={MakeClaimScreen}
+			/>
+			<Stack.Screen
+				name="DonationsDetailScreen"
+				component={DonationsDetailScreen}
+			/>
+			<Stack.Screen name="ContactScreen" component={ContactScreen} />
+			<Stack.Screen name="LogoutScreen" component={LogoutScreen} />
+			<Stack.Screen name="MapScreen" component={MapScreen} />
+		</Stack.Navigator>
+	);
+}
+
+function donorOrClientDrawer() {
 	const { USER_IDENTITY } = getEnv();
 
+	const DONOR_MENU = {
+		QRCodeScannerScreen: {
+			component: StackNavigator,
+			options: { drawerLabel: () => <MainOption text="Scan QR Code" icon="qrCode" /> },
+		},
+		DonorDashboardScreen: {
+			component: StackNavigator,
+			options: { drawerLabel: () => <MainOption text="Donations" icon="claims" /> },
+		},
+		DonorHistoryScreen: {
+			component: StackNavigator,
+			options: { drawerLabel: () => <SubOption text="History" /> },
+		},
+	};
+
+	const CLIENT_MENU = {
+		DashboardScreen: {
+			component: StackNavigator,
+			options: { drawerLabel: () => <MainOption text="Donations" icon="donations" /> },
+		},
+		ClientClaimsScreen: {
+			component: StackNavigator,
+			options: { drawerLabel: () => <MainOption text="Claims" icon="claims" /> },
+		},
+		ClientHistoryScreen: {
+			component: StackNavigator,
+			options: { drawerLabel: () => <SubOption text="History" /> },
+		},
+	};
+
+	const COMMON_MENU = {
+		ContactScreen: {
+			component: ContactScreen,
+			options: { drawerLabel: () => <MainOption text="Contact Us" icon="help" /> },
+		},
+	};
+
+	return USER_IDENTITY === 'donor'
+		? {
+			...DONOR_MENU,
+			...COMMON_MENU,
+		}
+		: {
+			...CLIENT_MENU,
+			...COMMON_MENU,
+		};
+}
+
+/* Drawer Navigator */
+const Drawer = createDrawerNavigator();
+
+function DrawerNavigator() {
+	const menuOptions = donorOrClientDrawer();
+
 	return (
-		<Drawer.Navigator
-			initialRouteName="LoginSuccess"
-			drawerContent={MenuDrawer}
-			screenOptions={{
-				headerShown: false,
-				drawerPosition: 'right',
-				drawerStyle: {
-					backgroundColor: colors.NAVY_BLUE,
-				},
-			}}
-		>
-			<Drawer.Screen
-				name="LoginSuccess"
-				component={LoginSuccessScreen}
-				options={{
-					drawerLabel: () => null,
-				}}
-			/>
-			{USER_IDENTITY === 'donor' && (
-				<>
-					<Drawer.Screen
-						name="QRCodeScannerScreen"
-						component={QRCodeScannerScreen}
-						options={{
-							drawerLabel: 'Scan QR Code',
-							drawerLabelStyle: {
-								color: colors.WHITE,
-							},
-						}}
-					/>
-					<Drawer.Screen
-						name="DonorDashboardScreen"
-						component={DonorDashboardScreen}
-						options={{
-							drawerLabel: 'Donations',
-							drawerLabelStyle: {
-								color: colors.WHITE,
-							},
-						}}
-					/>
-					<Drawer.Screen
-						name="DonorHistoryScreen"
-						component={DonorHistoryScreen}
-						options={{
-							drawerLabel: 'History',
-							drawerLabelStyle: {
-								color: colors.WHITE,
-							},
-						}}
-					/>
-					<Drawer.Screen
-						name="DonationScreen"
-						component={DonationScreen}
-						options={{
-							drawerLabel: 'Make Donation',
-							drawerLabelStyle: {
-								color: colors.WHITE,
-							},
-						}}
-					/>
-				</>
-			)}
-			{USER_IDENTITY === 'client' && (
-				<>
-					<Drawer.Screen
-						name="DashboardScreen"
-						component={DashboardScreen}
-						options={{
-							drawerLabel: 'Donations',
-							drawerLabelStyle: {
-								color: colors.WHITE,
-								textTransform: 'uppercase',
-								marginLeft: 'auto',
-								marginRight: 5,
-								fontWeight: 'bold',
-								fontSize: 20,
-								borderTopWidth: 1,
-								borderTopColor: colors.WHITE,
-							},
-						}}
-					/>
-					<Drawer.Screen
-						name="ClientClaimsScreen"
-						component={ClientClaimsScreen}
-						options={{
-							drawerLabel: 'Claims',
-							drawerLabelStyle: {
-								color: colors.WHITE,
-								textTransform: 'uppercase',
-								fontWeight: 'bold',
-								fontSize: 20,
-								marginLeft: 'auto',
-								marginRight: 5,
-								letterSpacing: 0.5,
-								marginBottom: 10,
-							},
-						}}
-					/>
-					<Drawer.Screen
-						name="ClientHistoryScreen"
-						component={ClientHistoryScreen}
-						options={{
-							drawerLabel: 'History',
-							drawerLabelStyle: {
-								color: colors.WHITE,
-								textTransform: 'uppercase',
-								fontSize: 20,
-								marginLeft: 'auto',
-								marginRight: 5,
-								letterSpacing: 0.5,
-								marginBottom: 10,
-							},
-						}}
-					/>
-				</>
-			)}
-			<Drawer.Screen
-				name="ContactScreen"
-				component={ContactScreen}
-				options={{
-					drawerLabel: 'Contact Us',
-					drawerLabelStyle: {
-						color: colors.WHITE,
-						textTransform: 'uppercase',
-						marginLeft: 'auto',
-						marginRight: 5,
-						fontWeight: 'bold',
-						fontSize: 20,
-					},
-				}}
-			/>
-			<Drawer.Screen
-				name="LogoutScreen"
-				component={LogoutScreen}
-				options={{
-					drawerLabel: 'Logout',
-					drawerLabelStyle: {
-						color: colors.WHITE,
-						textTransform: 'uppercase',
-						marginLeft: 'auto',
-						marginRight: 5,
-						fontWeight: 'bold',
-						fontSize: 20,
-					},
-				}}
-			/>
+		<Drawer.Navigator>
+			{/*
+         Create a Screen for each side drawer menu option.
+         The name and component are taken from the key-value pairs in menuOptions.
+         The options object is passed as is.
+      */}
+			{Object.entries(menuOptions).map(([ name, config ]) => (
+				<Drawer.Screen
+					key={name}
+					name={name}
+					component={config.component}
+					options={config.options}
+				/>
+			))}
 		</Drawer.Navigator>
 	);
 }
 
-export function FullStackNavigator() {
-	const [ state ] = useGlobal();
+/* Full App Navigation - Includes Non-Logged in Screens */
+const FullAppStack = createNativeStackNavigator();
+
+function FullAppStackNavigator() {
 	return (
-		<FullStack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
-			<FullStack.Screen name="Login" component={LoginScreen} />
-			{state.jwt ? (
-				<FullStack.Group>
-					<FullStack.Screen name="Drawer" component={DonorOrClientDrawer} />
-					<FullStack.Screen name="DonorDonation" component={DonorDonationScreen} />
-					<FullStack.Screen name="DonationScreen" component={DonationScreen} />
-					<FullStack.Screen name="MapScreen" component={MapScreen} />
-					<FullStack.Screen name="MakeClaim" component={MakeClaimScreen} />
-					<FullStack.Screen name="Logout" component={LogoutScreen} />
-					<FullStack.Screen name="ClaimDetails" component={ClaimDetailsScreen} />
-					<FullStack.Screen name="DonationsDetailScreen" component={DonationsDetailScreen} />
-				</FullStack.Group>
-			) : (
-				<FullStack.Group>
-					<FullStack.Screen name="Register" component={RegistrationScreen} />
-					<FullStack.Screen name="TermsScreen" component={TermsScreen} />
-				</FullStack.Group>
-			)}
-			<FullStack.Screen name="ContactScreen" component={ContactScreen} />
-		</FullStack.Navigator>
+		<FullAppStack.Navigator
+			screenOptions={{
+				headerShown: false,
+				gestureEnabled: false,
+			}}
+			initialRouteName="LoginScreen"
+		>
+			<FullAppStack.Screen
+				name="LoginScreen"
+				component={LoginScreen}
+			/>
+			<FullAppStack.Screen
+				name="PasswordResetScreen"
+				component={PasswordResetScreen}
+			/>
+			<FullAppStack.Screen
+				name="RegistrationScreen"
+				component={RegistrationScreen}
+			/>
+			<FullAppStack.Screen
+				name="TermsScreen"
+				component={TermsScreen}
+			/>
+			<FullAppStack.Screen
+				name="ContactScreen"
+				component={ContactScreen}
+			/>
+			<FullAppStack.Screen
+				name="Drawer"
+				component={DrawerNavigator}
+			/>
+		</FullAppStack.Navigator>
 	);
 }
 
+export default function AppNavigator() {
+	const navigationRef = useRef(null);
+
+	useEffect(() => {
+		navigationService.setTopLevelNavigator(navigationRef.current);
+	}, []);
+
+	return (
+		<NavigationContainer ref={navigationRef}>
+			<FullAppStackNavigator />
+		</NavigationContainer>
+	);
+}

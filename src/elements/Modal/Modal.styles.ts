@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import * as colors from '@util/colors';
+import * as colors from '@util/constants/colors';
 
 // TODO: container shadow does not show iOS with required hidden overflow
 

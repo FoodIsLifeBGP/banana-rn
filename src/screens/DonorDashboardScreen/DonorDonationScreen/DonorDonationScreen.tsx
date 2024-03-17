@@ -17,7 +17,7 @@ import {
 	LinkButton,
 	InputLabel,
 } from '@elements';
-import * as colors from '@util/colors';
+import * as colors from '@util/constants/colors';
 import styles from './DonorDonationScreen.styles';
 
 function DonorDonationScreen() {

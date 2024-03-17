@@ -53,7 +53,7 @@ export default ({ donation, isClaim, isHistory }: ClientDonationProps) => {
 							<Icon name={isHistory ? 'time' : 'distance'} size={18} />
 							{!isHistory
 								? <Text style={[ typography.body3, { fontSize: 18, marginHorizontal: 4 } ]}>{distance && `${distance.toFixed(1)} mi`}</Text>
-								: <Text style={[typography.body3, { fontSize: 18, marginHorizontal: 4 } ]}>{updatedAt}</Text>}
+								: <Text style={[ typography.body3, { fontSize: 18, marginHorizontal: 4 } ]}>{updatedAt}</Text>}
 						</View>
 					</View>
 				</View>

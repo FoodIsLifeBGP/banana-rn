@@ -83,10 +83,14 @@ module.exports = {
 		'prefer-object-spread': 1,
 		quotes: [ 2, 'single', 'avoid-escape' ],
 		'react/destructuring-assignment': [ 1 ],
-		"react/function-component-definition": [2, {
-      "namedComponents": "function-declaration|arrow-function",
-      "unnamedComponents": "function-expression|arrow-function"
-    }],
+		'react/function-component-definition': [
+			2,
+			{
+				namedComponents: [ 'function-declaration', 'arrow-function' ],
+				unnamedComponents: [ 'function-expression', 'arrow-function' ],
+			},
+		],
+
 		'react/jsx-indent': [ 1, 'tab' ],
 		'react/jsx-indent-props': [ 1, 'tab' ],
 		'react/jsx-boolean-value': [ 1, 'always' ],

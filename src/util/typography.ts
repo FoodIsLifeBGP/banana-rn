@@ -4,8 +4,8 @@
  * @packageDocumentation
  */
 
+import { LIGHT_BLUE, NAVY_BLUE } from '@util/constants/colors';
 import { TextStyle } from 'react-native';
-import { NAVY_BLUE, LIGHT_BLUE } from '@util/colors';
 
 const heading: TextStyle = {
 	fontFamily: 'open-sans-bold',

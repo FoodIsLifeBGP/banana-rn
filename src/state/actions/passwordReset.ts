@@ -13,35 +13,21 @@ export const requestResetToken = async (store, {
 	onComplete, input, setIsSubmitting, setError,
 }: RequestResetTokenProps) => {
 	const { userIdentity } = store.state;
-	const endpoint = `/password_resets/${userIdentity}/`;
-	const email = JSON.stringify({ email: input });
+	const endpoint = '/password/reset';
+
+	const payload = {
+		[userIdentity]: {
+			email: input,
+		},
+	};
 	try {
-		await railsAxios().post(endpoint, email);
+		await railsAxios().post(endpoint, payload);
 		setIsSubmitting(false);
 		onComplete();
-	} catch (e) {
-		setIsSubmitting(false);
+	} catch (e: any) {
 		setError(e.response ? e.response.data.message : "We're sorry, but there was an error.  Please try again.");
-	}
-};
-
-export interface SubmitResetTokenProps extends ResetPasswordPropsBase {
-	setToken: (value: string) => void;
-}
-
-export const submitResetToken = async (store, {
-	onComplete, input, setIsSubmitting, setError, setToken,
-}: SubmitResetTokenProps) => {
-	const { userIdentity } = store.state;
-	const endpoint = `/password_resets/${userIdentity}/${input}/`;
-	try {
-		await railsAxios().get(endpoint);
+	} finally {
 		setIsSubmitting(false);
-		setToken(input);
-		onComplete();
-	} catch (e) {
-		setIsSubmitting(false);
-		setError(e.response ? e.response.data.message : "We're sorry, but there was an error.  Please try again.");
 	}
 };
 
@@ -50,17 +36,30 @@ export interface SubmitNewPasswordProps extends ResetPasswordPropsBase {
 }
 
 export const submitNewPassword = async (store, {
-	input, token, setIsSubmitting, onComplete, setError,
+	input,
+	token,
+	setIsSubmitting,
+	onComplete,
+	setError,
 }: SubmitNewPasswordProps) => {
 	const { userIdentity } = store.state;
-	const password = JSON.stringify({ password: input });
-	const endpoint = `/password_resets/${userIdentity}/${token}`;
+	const endpoint = '/password/reset';
+
+	const payload = {
+		[userIdentity]: {
+			token,
+			password: input,
+		},
+	};
+
 	try {
-		await railsAxios().patch(endpoint, password);
+		const response = await railsAxios().patch(endpoint, payload);
 		setIsSubmitting(false);
 		onComplete();
-	} catch (e) {
+		// TODO: perhaps we should do something with the response?
+		console.log(response.data);
+	} catch (e: any) {
+		setError(e.response ? e.response.data.message : "We're sorry, but there was an error. Please try again.");
 		setIsSubmitting(false);
-		setError(e.response ? e.response.data.message : "We're sorry, but there was an error.  Please try again.");
 	}
 };

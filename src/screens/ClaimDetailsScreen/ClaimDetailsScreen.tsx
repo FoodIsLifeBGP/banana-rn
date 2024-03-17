@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 import { Icon, SpacerInline, TextButton } from '@elements';
 import QRCode from 'react-native-qrcode-svg';
-import * as colors from '@util/colors';
+import * as colors from '@util/constants/colors';
 import typography from '@util/typography';
 import { ButtonStyle } from '@elements/Button';
 import claimStyles from '@util/claimStyles';
@@ -22,7 +22,7 @@ function ClaimDetailsScreen() {
 	// } else {
 	// 	claim = route.params.donation.claim;
 	// }
-	let claim = route.params.claim ? route.params.claim : route.params.donation.claim;
+	const claim = route.params.claim ? route.params.claim : route.params.donation.claim;
 	const { donor } = donation;
 
 	const claimBtnStyle: ButtonStyle = {

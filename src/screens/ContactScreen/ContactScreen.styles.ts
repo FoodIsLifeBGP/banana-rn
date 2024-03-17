@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import * as Colors from '@util/colors';
+import * as Colors from '@util/constants/colors';
 import typography from '@util/typography';
 
 const GRID_MARGIN = 20; // Grid One from Style Guide TODO: make grid constants global

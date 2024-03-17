@@ -1,3 +1,36 @@
+// import React, { useState, FunctionComponent } from 'react';
+// import { View, Text } from 'react-native';
+// import { ResetForm, NewPasswordForm } from './Forms';
+// import styles from './ResetPassword.styles';
+
+// interface ResetPasswordProps {
+//   onSuccess: () => void;
+//   onDismiss: () => void;
+//   initialStage?: PasswordResetStage;
+//   onRequest: (value: PasswordResetStage) => void;
+//   onBack: () => void;
+// }
+
+// export const ResetPassword: FunctionComponent<ResetPasswordProps> = ({
+//   onDismiss, initialStage, onSuccess,
+// }) => {
+//   const [token, setToken] = useState('');
+
+//   return (
+//     <View style={styles.centeredView}>
+//       {stage === PasswordResetStage.REQUEST_LINK && (
+//         <ResetForm onComplete={handleComplete} />
+//       )}
+//       {stage === PasswordResetStage.RESET && (
+//         <NewPasswordForm onComplete={handleComplete} token={token} />
+//       )}
+//       {stage === PasswordResetStage.SUCCESS && (
+//         <Text style={styles.successText}>Your password has been successfully reset. Please login.</Text>
+//       )}
+//     </View>
+//   );
+// };
+
 import React, {
 	useState, RefObject, createRef, FunctionComponent,
 } from 'react';
@@ -6,16 +39,14 @@ import {
 } from 'react-native';
 import { FormTextInput, LinkButton, SpacerInline } from '@elements';
 import useGlobal from '@state';
-import styles from '../ResetPassword.styles';
+import styles from './PasswordResetScreen.styles';
 
-interface NewPasswordFormProps {
+interface PasswordResetScreenProps {
 	onComplete: () => void;
 	token: string;
 }
 
-const NewPasswordForm: FunctionComponent<NewPasswordFormProps> = ({
-	onComplete, token,
-}) => {
+export default function ({ onComplete, token }: PasswordResetScreenProps) {
 	const [ isSubmitting, setIsSubmitting ] = useState(false);
 	const [ formData, setFormData ] = useState({
 		password: '',
@@ -67,7 +98,7 @@ const NewPasswordForm: FunctionComponent<NewPasswordFormProps> = ({
 					setFormData({ ...formData, password: text });
 				}}
 				ref={passwordInputRef}
-				autoCompleteType="password"
+				autoComplete="password"
 				blurOnSubmit={false}
 			/>
 			<SpacerInline height={20} />
@@ -80,7 +111,7 @@ const NewPasswordForm: FunctionComponent<NewPasswordFormProps> = ({
 					setFormData({ ...formData, confirmPassword: text });
 				}}
 				ref={passwordInputRef}
-				autoCompleteType="password"
+				autoComplete="password"
 				blurOnSubmit={false}
 			/>
 			<Text style={styles.errors}>{error || null}</Text>
@@ -90,6 +121,4 @@ const NewPasswordForm: FunctionComponent<NewPasswordFormProps> = ({
 			</View>
 		</View>
 	);
-};
-
-export default NewPasswordForm;
+}

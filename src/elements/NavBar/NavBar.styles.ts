@@ -1,16 +1,12 @@
-import { Platform, StyleSheet, Dimensions } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
-import * as colors from '@util/colors';
+import * as colors from '@util/constants/colors';
 
 const screenWidth = Math.round(Dimensions.get('window').width);
 
 export default StyleSheet.create({
-	text: {
-		color: colors.NAVY_BLUE,
-	},
-	textSelected: {
-		color: colors.LIGHT_GRAY,
-	},
+	text: { color: colors.NAVY_BLUE },
+	textSelected: { color: colors.LIGHT_GRAY },
 	contentContainer: {
 		backgroundColor: colors.LIGHT_GRAY,
 		height: 56 + Constants.statusBarHeight,
@@ -21,7 +17,6 @@ export default StyleSheet.create({
 		paddingTop: Constants.statusBarHeight,
 		borderBottomWidth: 2,
 		borderColor: colors.NAVY_BLUE,
-
 	},
 	backContainer: {
 		flexDirection: 'row',
@@ -35,7 +30,7 @@ export default StyleSheet.create({
 		fontSize: 17,
 		color: colors.NAVY_BLUE,
 	},
-	notiContainer: {
+	notificationContainer: {
 		flexDirection: 'row',
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -56,11 +51,6 @@ export default StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
-	selectorLast: {
-		marginLeft: -2,
-	},
-	selectorSelected: {
-		backgroundColor: colors.NAVY_BLUE,
-	},
-
+	selectorLast: { marginLeft: -2 },
+	selectorSelected: { backgroundColor: colors.NAVY_BLUE },
 });

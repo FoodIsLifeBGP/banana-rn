@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import * as colors from '@util/colors';
+import * as colors from '@util/constants/colors';
 
 const INPUT_PADDING_HORIZONTAL = 10;
 const INPUT_HEIGHT = 48;

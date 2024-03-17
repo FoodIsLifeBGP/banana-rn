@@ -11,23 +11,30 @@ const CLIENT = {
 };
 
 const getServerEndPoint = () => {
-	if (Constants?.expoConfig?.extra?.productionBuild) {
-		return 'https://api.thebegoodproject.org';
+	if (Constants.manifest && Constants.manifest.extra) {
+		if (Constants.manifest.extra.productionBuild) {
+			return 'https://api.bananaapp.org';
+		}
+		return Constants.manifest.extra.ipAddress
+			? `http://${Constants.manifest.extra.ipAddress}:3000`
+			: 'https://dev.bananaapp.org';
 	}
-	return Constants?.expoConfig?.extra?.ipAddress ? `http://${Constants.expoConfig.extra.ipAddress}:3000`
-		: 'https://api.thebegoodproject.org';
+	return 'https://dev.bananaapp.org';
 };
 
 const getEnv = () => {
-	const variant = Constants?.expoConfig?.extra?.variant;
-	const variantSpecificProperties = variant === 'donor'
-		? DONOR
-		: CLIENT;
-	return ({
+	let variant;
+
+	if (Constants.manifest && Constants.manifest.extra) {
+		variant = Constants.manifest.extra.variant;
+	}
+	const variantSpecificProperties = variant === 'donor' ? DONOR : CLIENT;
+
+	return {
 		...variantSpecificProperties,
 		USER_IDENTITY: variant,
 		API_BASE_URL: getServerEndPoint(),
-	});
+	};
 };
 
 export default getEnv;

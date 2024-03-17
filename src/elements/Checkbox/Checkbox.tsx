@@ -4,7 +4,7 @@ import { Icon } from '@elements';
 import {
 	NAVY_BLUE,
 	LIGHT_GRAY_DISABLED,
-} from '@util/colors';
+} from '@util/constants/colors';
 
 interface CheckboxProps {
 	/**

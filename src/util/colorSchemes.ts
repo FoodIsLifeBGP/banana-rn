@@ -2,9 +2,8 @@
  * Provides infrastructure for color scheme and palette declaration.
  */
 
-// import { ColorSchemeName, useColorScheme } from 'react-native-appearance';
-import { useColorScheme } from 'react-native';
-import * as colors from '@util/colors';
+import { Appearance } from 'react-native';
+import * as colors from '@util/constants/colors';
 
 /**
  * | PaletteName | Background  | Foreground  |
@@ -16,7 +15,14 @@ import * as colors from '@util/colors';
  * | accent      | red         | white       |
  * | disabled    | light grey  | white       |
  */
-export type ColorPaletteName = 'default' | 'primary' | 'secondary' | 'tertiary' | 'accent' | 'disabled';
+export type ColorSchemeName = 'light' | 'dark' | 'no-preference';
+export type ColorPaletteName =
+  | 'default'
+  | 'primary'
+  | 'secondary'
+  | 'tertiary'
+  | 'accent'
+  | 'disabled';
 export type ColorPalette = {
 	background: string;
 	foreground: string;
@@ -50,15 +56,10 @@ const lightScheme: ColorScheme = {
 	},
 };
 
-/* eslint-disable no-tabs */
-// export const COLOR_SCHEMES: Record<ColorScheme, ColorScheme> = {
-// 	light: lightScheme,
-// 	dark: lightScheme, // TODO: Add dark theme when available
-// 	'no-preference': lightScheme,
-// };
-const COLOR_SCHEMES = {
+export const COLOR_SCHEMES: Record<ColorSchemeName, ColorScheme> = {
 	light: lightScheme,
-	dark: lightScheme, // TODO: Add dark theme when available
+	dark: lightScheme /* TODO: Add dark theme when available */,
+	'no-preference': lightScheme,
 };
 
 /**
@@ -66,6 +67,7 @@ const COLOR_SCHEMES = {
  * OS-defined color scheme.
  */
 export function useScheme(): ColorScheme {
-	const colorScheme = useColorScheme();
-	return COLOR_SCHEMES[colorScheme || 'no-preference'];
+	return COLOR_SCHEMES[
+		Appearance.getColorScheme() || 'no-preference'
+	];
 }

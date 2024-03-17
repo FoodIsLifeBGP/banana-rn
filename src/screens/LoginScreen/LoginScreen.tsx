@@ -11,96 +11,96 @@ import {
 	KeyboardAvoidingView,
 	Platform,
 } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import useGlobal from '@state';
 import {
-	Title,
-	LinkButton,
-	FormTextInput,
+	Title, LinkButton, FormTextInput, Button,
 } from '@elements';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { ButtonStyle } from '@elements/Button';
+import { LIGHT_GRAY, NAVY_BLUE } from '@util/constants/colors';
+import ButtonStyles from '@elements/Button/Button.styles';
 import styles from './LoginScreen.styles';
-import ResetPassword from './ResetPassword';
-import { PasswordResetStage } from './ResetPassword/ResetPassword';
+import ResetForm from './ResetRequestForm';
 
+type LoginFormFields = { email?: string; password?: string };
 
-export default function () {
-	const { navigate } = useNavigation();
-	const [ state, actions ] = useGlobal() as any;
-	const { userIdentity } = state;
-	const { logIn } = actions;
+const buttonStyle: ButtonStyle = {
+	default: {
+		background: LIGHT_GRAY,
+		foreground: NAVY_BLUE,
+	},
+};
+
+export default function ({ navigation, route }) {
+	const [ { userIdentity }, { logIn } ] = useGlobal() as any;
+
 	const passwordInputRef: RefObject<TextInput> = createRef();
-	const route = useRoute();
-	const { email: initialEmail = '', password: initialPassword = '' } = route.params ?? {};
+	const {
+		email: initialEmail = '',
+		password: initialPassword = '',
+	}: LoginFormFields = route.params ?? {};
+
 	const [ email, setEmail ] = useState(initialEmail);
 	const [ password, setPassword ] = useState(initialPassword);
-	const clearEmailAndPassword = () => { setEmail(''); setPassword(''); };
-	const handleEmailInputSubmit = () => passwordInputRef.current?.focus();
 	const [ showModal, setShowModal ] = useState(false);
-	const [ passwordResetStage, setPasswordResetStage ] = useState<PasswordResetStage | undefined>(undefined);
 
-	useEffect(() => {
-		const retrievePasswordResetStage = async () => {
-			try {
-				const value = await AsyncStorage.getItem('PASSWORD RESET STAGE') as PasswordResetStage;
-				if (value === PasswordResetStage.VERIFY) {
-					setPasswordResetStage(value);
-				}
-			} catch (error) {
-				// Not important error
-			}
-		};
-		retrievePasswordResetStage();
-	}, []);
-
-	const storePasswordResetStage = async (newStage: PasswordResetStage) => {
-		try {
-			await AsyncStorage.setItem('PASSWORD RESET STAGE', newStage);
-			setPasswordResetStage(newStage);
-		} catch (error) {
-			// Not important error
-		}
+	const clearEmailAndPassword = () => {
+		setEmail('');
+		setPassword('');
 	};
+	const handleEmailInputSubmit = () => passwordInputRef.current?.focus();
 
-	const clearPasswordResetStage = () => {
-		setPasswordResetStage(undefined);
-		AsyncStorage.removeItem('PASSWORD RESET STAGE');
-	};
 
 	const handleLogin = async () => {
 		const statusCode = await logIn({ email, password });
 		switch (statusCode) {
 			case 202: {
 				await clearEmailAndPassword();
-				clearPasswordResetStage();
-				navigate('Drawer');
+				// TODO: is this how we navigate?
+				navigation.navigate('Drawer', { screen: 'LoginSuccessScreen' });
 				return;
 			}
-			case 401: Alert.alert('Incorrect email or password'); return;
-			case 404: Alert.alert('Server not found - please try again'); return;
-			case 500: Alert.alert('Network error - please try again'); return;
-			default: Alert.alert(`Server replied with ${statusCode} status code`);
+			case 401:
+				Alert.alert('Incorrect email or password');
+				return;
+			case 404:
+				Alert.alert('Server not found - please try again');
+				return;
+			case 500:
+				Alert.alert('Network error - please try again');
+				return;
+			default:
+				Alert.alert(`Server replied with ${statusCode} status code`);
 		}
 	};
 
 	const handleForgotPassword = () => {
 		setShowModal(true);
 	};
+
 	const handleDismissModal = () => {
 		setShowModal(false);
 	};
 
+	const handleResetRequest = () => {
+		alert('TODO: handle passowrd reset request!');
+	};
+
 	return (
-		<KeyboardAvoidingView style={styles.outerContainer} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+		<KeyboardAvoidingView
+			style={styles.outerContainer}
+			behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+		>
 			<View style={styles.header}>
 				{/* TODO: use ContentHeader component when available */}
 				<Title text={`banana \n${userIdentity}`} />
 			</View>
 
-			<ScrollView style={styles.bodyContainer} contentContainerStyle={styles.bodyContentContainer}>
-				<View
-					style={styles.form}
-				>
+			<ScrollView
+				style={styles.bodyContainer}
+				contentContainerStyle={styles.bodyContentContainer}
+			>
+				<View style={styles.form}>
 					<FormTextInput
 						label="email"
 						placeholder="info@bananaapp.org"
@@ -111,7 +111,7 @@ export default function () {
 						autoCorrect={false}
 						enablesReturnKeyAutomatically={true}
 						autoCapitalize="none"
-						autoCompleteType="username"
+						autoComplete="username"
 						textContentType="username"
 						keyboardType="email-address"
 						returnKeyType="next"
@@ -126,35 +126,35 @@ export default function () {
 						ref={passwordInputRef}
 						onSubmitEditing={handleLogin}
 						enablesReturnKeyAutomatically={true}
-						autoCompleteType="password"
+						autoComplete="password"
 						returnKeyType="go"
 						blurOnSubmit={false}
 					/>
 
 					<View style={styles.forgotPassword}>
 						{/* View wrapper required to constrain clickable area of button */}
-						<TouchableWithoutFeedback
+						<Button
+							buttonStyle={buttonStyle}
 							onPress={handleForgotPassword}
-						>
-							<Text style={styles.forgotPasswordText}>
-								Forgot Password?
-							</Text>
-						</TouchableWithoutFeedback>
+							children={() => (
+								<Text style={styles.forgotPasswordText}>Forgot Password? </Text>
+							)}
+						/>
 					</View>
 				</View>
 
 				<View style={styles.buttonContainer}>
 					<LinkButton text="Log In" onPress={handleLogin} />
-					<LinkButton text="Register" onPress={() => navigate('Register')} />
+					<LinkButton
+						text="Register"
+						onPress={() => navigation.navigate('Register')}
+					/>
 				</View>
 			</ScrollView>
 			{showModal && (
-				<ResetPassword
-					onSuccess={clearPasswordResetStage}
+				<ResetForm
 					onDismiss={handleDismissModal}
-					initialStage={passwordResetStage}
-					onRequest={storePasswordResetStage}
-					onBack={clearPasswordResetStage}
+					onComplete={handleResetRequest}
 				/>
 			)}
 		</KeyboardAvoidingView>

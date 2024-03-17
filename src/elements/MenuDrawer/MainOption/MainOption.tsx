@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 
 import { Icon } from '@elements';
 import { IconName } from '@elements/Icon';
-import * as colors from '@util/colors';
+import * as colors from '@util/constants/colors';
 
 import styles from './MainOption.styles';
 
@@ -35,6 +35,6 @@ export function MainOption({ icon, text }) {
 			</View>
 		</View>
 	);
-};
+}
 
 export default MainOption;

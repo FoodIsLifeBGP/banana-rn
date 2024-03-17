@@ -9,7 +9,7 @@ import {
 } from '@elements';
 import typography from '@util/typography';
 import { categoryImage } from '@util/donationCategory';
-import * as colors from '@util/colors';
+import * as colors from '@util/constants/colors';
 import styles from './DonationsDetailScreen.styles';
 
 
@@ -89,6 +89,6 @@ function DonationsDetailScreen() {
 			/>
 		</ScrollView>
 	);
-};
+}
 
 export default DonationsDetailScreen;

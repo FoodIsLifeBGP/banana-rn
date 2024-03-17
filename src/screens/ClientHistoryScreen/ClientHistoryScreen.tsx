@@ -66,6 +66,6 @@ function ClientHistoryScreen() {
 			</View>
 		</View>
 	);
-};
+}
 
 export default ClientHistoryScreen;

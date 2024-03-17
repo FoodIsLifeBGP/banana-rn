@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import * as colors from '@util/colors';
+import * as colors from '@util/constants/colors';
 import { useNavigation } from '@react-navigation/native';
 import {
 	Text,
@@ -87,57 +87,53 @@ export default () => {
 		let content;
 		if (claimedDonation.food_name) {
 			content = (
-				<>
-					<Modal title="ITEM DONATED" open={modalOn} onDismiss={handleDismiss} palette="secondary">
-						<View style={styles.content}>
-							<Image source={icon} style={styles.icon} />
-							<Text style={styles.claimTitle}>
-								{claimedDonation.food_name}
+				<Modal title="ITEM DONATED" open={modalOn} onDismiss={handleDismiss} palette="secondary">
+					<View style={styles.content}>
+						<Image source={icon} style={styles.icon} />
+						<Text style={styles.claimTitle}>
+							{claimedDonation.food_name}
+						</Text>
+						<View style={{ ...styles.textContainer, marginBottom: -100 }}>
+							<Icon name="user" color="blue" size={20} />
+							<Text style={styles.textStyle}>
+								{claimedDonation.claim.client_name}
 							</Text>
-							<View style={{ ...styles.textContainer, marginBottom: -100 }}>
-								<Icon name="user" color="blue" size={20} />
-								<Text style={styles.textStyle}>
-									{claimedDonation.claim.client_name}
-								</Text>
-							</View>
-							<View style={{ ...styles.textContainer, marginTop: 'auto', marginBottom: -80 }}>
-								<Icon name="time" color="blue" size={20} />
-								<Text style={styles.textStyle}>
-									{getTime()}
-									{getDate()}
-								</Text>
-							</View>
-							<TextButton
-								text="OK"
-								textStyle={styles.buttonTextStyle}
-								buttonStyle={buttonStyle}
-								onPress={handleDismiss}
-							/>
 						</View>
-					</Modal>
-				</>
+						<View style={{ ...styles.textContainer, marginTop: 'auto', marginBottom: -80 }}>
+							<Icon name="time" color="blue" size={20} />
+							<Text style={styles.textStyle}>
+								{getTime()}
+								{getDate()}
+							</Text>
+						</View>
+						<TextButton
+							text="OK"
+							textStyle={styles.buttonTextStyle}
+							buttonStyle={buttonStyle}
+							onPress={handleDismiss}
+						/>
+					</View>
+				</Modal>
 			);
 		} else {
 			content = (
-				<>
-					<Modal title="SOMETHING WENT WRONG" open={modalOn} onDismiss={handleDismiss} palette="secondary">
-						<View style={styles.content}>
-							<Image source={icon} style={styles.icon} />
-							<Text style={{ ...styles.textStyle, fontWeight: 'bold' }}>PLEASE TRY AGAIN</Text>
-							<View style={{ ...styles.errorContainer, marginVertical: 20 }}>
-								<Text style={styles.errorStyle}>QR Code Scan was not successful.</Text>
-								<Text style={styles.errorStyle}>If this issue is not resolved,</Text>
-								<Text style={styles.errorStyle}>Please contact us.</Text>
-							</View>
-							<TextButton
-								text="OK"
-								textStyle={styles.buttonTextStyle}
-								buttonStyle={buttonStyle}
-								onPress={handleDismiss}
-							/>
+				<Modal title="SOMETHING WENT WRONG" open={modalOn} onDismiss={handleDismiss} palette="secondary">
+					<View style={styles.content}>
+						<Image source={icon} style={styles.icon} />
+						<Text style={{ ...styles.textStyle, fontWeight: 'bold' }}>PLEASE TRY AGAIN</Text>
+						<View style={{ ...styles.errorContainer, marginVertical: 20 }}>
+							<Text style={styles.errorStyle}>QR Code Scan was not successful.</Text>
+							<Text style={styles.errorStyle}>If this issue is not resolved,</Text>
+							<Text style={styles.errorStyle}>Please contact us.</Text>
 						</View>
-					</Modal>
-				</>
+						<TextButton
+							text="OK"
+							textStyle={styles.buttonTextStyle}
+							buttonStyle={buttonStyle}
+							onPress={handleDismiss}
+						/>
+					</View>
+				</Modal>
 			);
 		}
 		return content;

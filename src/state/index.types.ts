@@ -111,7 +111,6 @@ export interface Actions {
 	register: () => Promise<StatusCode>;
 	scan: () => Promise<StatusCode>;
 	requestResetToken: () => Promise<StatusCode>;
-	submitResetToken: () => Promise<StatusCode>;
 	submitNewPassword: () => Promise<StatusCode>;
 	getTravelTimes: () => Promise<{status: StatusCode; times: object}>;
 }

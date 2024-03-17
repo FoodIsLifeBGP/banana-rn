@@ -1,19 +1,21 @@
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 import getEnv from './environment';
 
-export default (jwt?: string) => {
+const railsAxios = (jwt?: string): AxiosInstance => {
 	const JSON_HEADERS = {
 		Accept: 'application/json',
 		'Content-Type': 'application/json',
 	};
-	const AUTH_HEADER = {
-		Authorization: `Bearer ${jwt}`,
-	};
+	const AUTH_HEADER = jwt ? { Authorization: `Bearer ${jwt}` } : {};
 	const { API_BASE_URL } = getEnv();
+
 	return axios.create({
-		headers: jwt
-			? { ...JSON_HEADERS, ...AUTH_HEADER }
-			: { ...JSON_HEADERS },
+		headers: {
+			...JSON_HEADERS,
+			...AUTH_HEADER,
+		},
 		baseURL: API_BASE_URL,
 	});
 };
+
+export default railsAxios;

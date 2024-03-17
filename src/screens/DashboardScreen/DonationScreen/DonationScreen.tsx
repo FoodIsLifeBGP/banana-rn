@@ -13,7 +13,7 @@ import {
 } from '@elements';
 import validate from 'validate.js';
 import { NewDonation } from '@screens/DashboardScreen/DonationScreen/DonationScreen.type';
-import donationConstraints from '@util/constraints/donation';
+import donationConstraints from '@util/validators/donation';
 import { categoryImage } from '@util/donationCategory';
 import styles from './DonationScreen.styles';
 

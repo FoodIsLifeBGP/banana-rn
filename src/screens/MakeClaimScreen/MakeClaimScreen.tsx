@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 import useGlobal from '@state';
 import { Icon, SpacerInline, TextButton } from '@elements';
-import * as colors from '@util/colors';
+import * as colors from '@util/constants/colors';
 import typography from '@util/typography';
 import { ButtonStyle } from '@elements/Button';
 import claimStyles from '@util/claimStyles';
