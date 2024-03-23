@@ -4,9 +4,10 @@ function setTopLevelNavigator(navigatorRef) {
 	navigator = navigatorRef;
 }
 
-function navigate(name, params?) {
-	navigator?.navigate({
-		name,
+function navigate(screen, params?) {
+	console.log('navigating to', screen);
+	navigator.navigate({
+		screen,
 		params,
 	});
 }
@@ -15,7 +16,7 @@ function goBack() {
 	navigator?.goBack();
 }
 
-export default {
+export {
 	navigate,
 	setTopLevelNavigator,
 	goBack,
