@@ -9,7 +9,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "lint": "eslint --quiet --ext .tsx,.ts,.js .",
+    "lint": "eslint --ext .tsx,.ts,.js .",
     "typechecking": "tsc --noEmit",
     "test": "jest"
   },

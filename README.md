@@ -42,12 +42,14 @@ Banana App is an open-source, not-for-profit project of The Be Good Foundation. 
 
 Step 0 is to [install the backend](https://github.com/FoodIsLifeBGP/banana-rails).  Follow those instructions to make sure you have everything needed to install this repo (like the Xcode command line tools).
 
-Step 1 is to navigate to your project's root folder in the terminal (e.g. `cd ~/Projects/banana-rn`)
+Then if you havent already done so, clone the repository to your desired project folder and install dependencies: `git clone https://github.com/FoodIsLifeBGP/banana-rn && cd banana-rn && npm i`
+
+otherwise you can just navigate to your project's root folder in the terminal (e.g. `cd ~/Projects/banana-rn`)
 
 # Installation (Mac/OSX)
 
 First we install NVM and Node
-- `npm i -g nvm` OR `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash`
+- `npm i -g nvm` **OR** `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash`
 
 Install Xcode for the iOS simulator.  This takes a while.
 - https://developer.apple.com/xcode/
@@ -55,17 +57,16 @@ Install Xcode for the iOS simulator.  This takes a while.
 # Installation (Windows)
 
 - Go to [this website](https://github.com/coreybutler/nvm-windows) and follow the instructions for installing Node Version Manager for Windows
-***NOTE: This is necessary as the Banana app uses an older version of Node. This is also very convenient as it will let you switch between previous (or current) versions of Node depending on which project you're working on.***
+
+- ***NOTE: This is necessary as the Banana app uses an older version of Node. This is also very convenient as it will let you switch between previous (or current) versions of Node depending on which project you're working on.***
 #### **SETTING UP CODE ENVIRONMENT (OS AGNOSTIC)**
 
 1) To confirm installation on either mac or windows, open up your Command Prompt and run `nvm --version` and it should return the version of your NVM and a list of its usage.
 
 2) Once that's done, run `nvm use` (Banana App's config are compatible with Node version <= 12.10.0) and if you dont have the necessary version follow the prompt to install it (e.g. `nvm install 12.13.0`).
-   [NOTE: Run `nvm list` or `nvm ls` to see all of your saved versions of Node. You can use the same command `nvm use [version]` to switch].
+   - [NOTE: Run `nvm list` or `nvm ls` to see all of your saved versions of Node. You can use the same command `nvm use [version]` to switch].
 
 3) Run `npm i -g expo-cli` to enable expo cli globally.
-
-4) Make sure you've traversed to your desired project directory and run `git clone https://github.com/FoodIsLifeBGP/banana-rn && cd banana-rn && npm i`
 
 
 #### **SETTING UP ANDROID SIMULATOR**
