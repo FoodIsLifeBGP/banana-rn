@@ -1,33 +1,16 @@
-const path = require('path');
-const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
+/**
+ * Configuration file for the React Native bundler, Metro.
+ */
 
-const customResolver = {
-	'@assets': path.resolve(__dirname, './assets'),
-	'@elements': path.resolve(__dirname, './src/elements'),
-	'@screens': path.resolve(__dirname, './src/screens'),
-	'@state': path.resolve(__dirname, './src/state'),
-	'@library': path.resolve(__dirname, './src/library'),
-	'@util': path.resolve(__dirname, './src/util'),
-};
+const { getDefaultConfig } = require('metro-config');
 
-const getDefaultExpoConfig = async () => {
-	const { resolver: { sourceExts, assetExts } } = await getDefaultConfig(__dirname);
-
-	return {
-		transformer: {
-			babelTransformerPath: require.resolve('react-native-svg-transformer'),
-			assetPlugins: [ 'expo-asset/tools/hashAssetFiles' ],
-		},
-		resolver: {
-			assetExts: assetExts.filter(ext => ext !== 'svg'),
-			sourceExts: [ ...sourceExts, 'svg' ],
-			extraNodeModules: customResolver,
-		},
-	};
-};
-
-// Merge the default React Native Metro configuration  with the default Expo
 module.exports = (async () => {
-	const customConfig = await getDefaultExpoConfig();
-	return mergeConfig(getDefaultConfig(__dirname), customConfig);
+  const { resolver: { sourceExts, assetExts } } = await getDefaultConfig();
+  return {
+    transformer: { babelTransformerPath: require.resolve('react-native-svg-transformer') },
+    resolver: {
+      assetExts: assetExts.filter(ext => ext !== 'svg'),
+      sourceExts: [ ...sourceExts, 'svg' ],
+    },
+  };
 })();

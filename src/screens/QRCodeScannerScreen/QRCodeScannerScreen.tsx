@@ -1,179 +1,93 @@
-import React, { useState, useEffect } from 'react';
-import * as colors from '@util/constants/colors';
-import { useNavigation } from '@react-navigation/native';
-import {
-	Text,
-	View,
-	StyleSheet,
-	Image,
-} from 'react-native';
-import { BarCodeScanner } from 'expo-barcode-scanner';
+import React, { useEffect, useState } from 'react';
+import { View } from 'react-native';
+import * as Permissions from 'expo-permissions';
 
-import useGlobal from '@state';
-
-import {
-	Modal, TextButton, Icon, LinkButton,
-} from '@elements';
-import { ButtonStyle } from '@elements/Button';
+import useGlobalStore from '@state';
 import { categoryImage } from '@util/donationCategory';
 import openAppSettings from '@util/openAppSettings';
+import { goBack } from '@util/navigationService';
 
-import BarCodeMask from './BarCodeMask';
 import styles from './QRCodeScannerScreen.styles';
+import ScannerContent from './ScannerContent';
+import ScannerModal from './ScannerModal';
 
-export default () => {
-	const { goBack } = useNavigation();
-	const [ state, actions ] = useGlobal() as any;
-	const { scan } = actions;
-	const [ hasCameraPermission, setHasCameraPermission ] = useState<boolean | null>(null);
-	const [ modalOn, setModalOn ] = useState(false);
-	const [ claimedDonation, setClaimedDonation ] = useState({ food_name: '', claim: { client_name: '' } });
-	// TBD.
-	// const [ scannerActive, setScannerActive ] = useState(true);
-	const [ icon, setIcon ] = useState(() => categoryImage(''));
+/*
+  TODO: pretty sure this is a Donor Screen-- in the future we should probably
+  break these out into respective folders.
+  [e.g. `Donor/DonorDashboardScreen`, `Client/ClientClaimsScreen`, `Common/ContactScreen`] etc.
+*/
+export default function QRCodeScannerScreen(props) {
+  const scanQrCode = useGlobalStore(state => state.scanQrCode);
+  const jwt = useGlobalStore(state => state.jwt);
+  const responseStatus = useGlobalStore(state => state.responseStatus);
+  const claimedDonationsForClient = useGlobalStore(state => state.claimedDonationsForClient);
+  const claimedDonation = useGlobalStore(state => state.claimedDonation);
+  const setClaimedDonation = useGlobalStore(state => state.setClaimedDonation);
 
+  const [ hasCameraPermission, setHasCameraPermission ] = useState<boolean | null>(null);
+  const [ modalOn, setModalOn ] = useState(false);
 
-	const buttonStyle: ButtonStyle = {
-		default: {
-			background: colors.NAVY_BLUE,
-			foreground: colors.WHITE,
-		},
-	};
+  const getPermissions = async () => {
+    const { status } = await Permissions.askAsync(Permissions.CAMERA);
+    setHasCameraPermission(status === 'granted');
+  };
 
-	const getTime = () => {
-		const date = new Date();
-		const hh = date.getHours();
-		const mm = date.getMinutes();
-		const AMPM = (hh > 12) ? 'PM' : 'AM';
-		return `${(hh > 12) ? hh % 12 : hh}: ${(mm < 10) ? '0'.concat(mm.toString()) : mm} ${AMPM} `;
-	};
+  useEffect(() => {
+    getPermissions();
+  }, []);
 
-	const getDate = () => new Date().toDateString().slice(4).split(' ')
-		.join('/');
+  const openSettings = () => openAppSettings().then(getPermissions);
 
-	const getPermissions = async () => {
-		const { status } = await BarCodeScanner.requestPermissionsAsync();
-		setHasCameraPermission(status === 'granted');
-	};
+  // TODO: implement
+  // const [ scannerActive, setScannerActive ] = useState(true);
+  const [ icon, setIcon ] = useState(() => categoryImage(''));
 
-	const handleBarCodeScanned = barcode => {
-		const match = state.donationsOrClaims.filter(d => d.status === 'claimed' && d.claim.qr_code === barcode.data);
-		if (match[0]) {
-			// TBD
-			// setScannerActive(false);
-			scan(barcode.data).then(res => {
-				if (res === 202) {
-					setClaimedDonation(match[0]);
-					setIcon(categoryImage(match[0].category));
-					setModalOn(true);
-				}
-			});
-		} else {
-			setModalOn(true);
-			console.log('No match found');
-		}
-	};
+  const handleBarCodeScanned = async barcode => {
+    if (claimedDonationsForClient) {
+      const match = claimedDonationsForClient.filter(
+        donation => (donation.status === 'claimed' && donation.claim.qr_code === barcode.data),
+      );
 
-	// Triggers when user clicks outside of modal.
-	// Resets value of scanned, and sets modalOn to false.
-	const handleDismiss = () => {
-		setClaimedDonation({ food_name: '', claim: { client_name: '' } });
-		setModalOn(false);
-		goBack();
-	};
+      if (match[0] && jwt) {
+        // TODO: setScannerActive(false);
+        try {
+          scanQrCode(jwt, barcode.data);
+          if (responseStatus && responseStatus.code === 202) {
+            setClaimedDonation(match[0]);
+            setIcon(categoryImage(match[0].category));
+            setModalOn(true);
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      } else {
+        setModalOn(true);
+        console.log('No match found');
+      }
+    }
+  };
 
-	// Switch for Modal Content.
-	const ModalContent = () => {
-		let content;
-		if (claimedDonation.food_name) {
-			content = (
-				<Modal title="ITEM DONATED" open={modalOn} onDismiss={handleDismiss} palette="secondary">
-					<View style={styles.content}>
-						<Image source={icon} style={styles.icon} />
-						<Text style={styles.claimTitle}>
-							{claimedDonation.food_name}
-						</Text>
-						<View style={{ ...styles.textContainer, marginBottom: -100 }}>
-							<Icon name="user" color="blue" size={20} />
-							<Text style={styles.textStyle}>
-								{claimedDonation.claim.client_name}
-							</Text>
-						</View>
-						<View style={{ ...styles.textContainer, marginTop: 'auto', marginBottom: -80 }}>
-							<Icon name="time" color="blue" size={20} />
-							<Text style={styles.textStyle}>
-								{getTime()}
-								{getDate()}
-							</Text>
-						</View>
-						<TextButton
-							text="OK"
-							textStyle={styles.buttonTextStyle}
-							buttonStyle={buttonStyle}
-							onPress={handleDismiss}
-						/>
-					</View>
-				</Modal>
-			);
-		} else {
-			content = (
-				<Modal title="SOMETHING WENT WRONG" open={modalOn} onDismiss={handleDismiss} palette="secondary">
-					<View style={styles.content}>
-						<Image source={icon} style={styles.icon} />
-						<Text style={{ ...styles.textStyle, fontWeight: 'bold' }}>PLEASE TRY AGAIN</Text>
-						<View style={{ ...styles.errorContainer, marginVertical: 20 }}>
-							<Text style={styles.errorStyle}>QR Code Scan was not successful.</Text>
-							<Text style={styles.errorStyle}>If this issue is not resolved,</Text>
-							<Text style={styles.errorStyle}>Please contact us.</Text>
-						</View>
-						<TextButton
-							text="OK"
-							textStyle={styles.buttonTextStyle}
-							buttonStyle={buttonStyle}
-							onPress={handleDismiss}
-						/>
-					</View>
-				</Modal>
-			);
-		}
-		return content;
-	};
+  // Triggers when user clicks outside of modal.
+  // Resets value of scanned, and sets modalOn to false.
+  const handleDismiss = () => {
+    setClaimedDonation(undefined);
+    setModalOn(false);
+    goBack();
+  };
 
-	const ScannerContent = () => {
-		switch (hasCameraPermission) {
-			case true: return (
-				<>
-					{/* scannerActive conditional goes here  */}
-					<BarCodeScanner
-						onBarCodeScanned={handleBarCodeScanned}
-						style={StyleSheet.absoluteFillObject}
-					/>
-					<BarCodeMask />
-					<ModalContent />
-				</>
-			);
-			case false: return (
-				<>
-					<Text>No access to camera</Text>
-					<Text>The app needs access to the camera to scan QR codes.</Text>
-					<LinkButton
-						text="Open Settings"
-						onPress={() => openAppSettings().then(getPermissions)}
-					/>
-					<LinkButton text="Go Back" onPress={() => goBack()} />
-				</>
-			);
-			default: return <Text>Requesting permission to access camera</Text>;
-		}
-	};
+  const { navigation } = props;
 
-	useEffect(() => {
-		getPermissions();
-	}, []);
-
-	return (
-		<View style={styles.container}>
-			<ScannerContent />
-		</View>
-	);
-};
+  return (
+    <View style={styles.container}>
+      <ScannerContent
+        hasCameraPermission={hasCameraPermission}
+        handleBarCodeScanned={handleBarCodeScanned}
+        modalContent={ScannerModal({
+          claimedDonation, modalOn, handleDismiss, icon,
+        })}
+        navigation={navigation}
+        openSettings={openSettings}
+      />
+    </View>
+  );
+}

@@ -1,9 +1,8 @@
-import { Alert } from '../index.types';
+import { Alert } from '@state/index.types';
+import { ResponseStatus } from '../index.types';
 
-export const updateAlert = (store, alert: Alert) => {
-	store.setState({ alert });
-};
+export const updateAlert = (alert: Alert) => ({ alert });
 
-export const clearAlert = (store => {
-	store.setState({ alert: undefined });
-});
+export const clearAlert = () => ({ alert: undefined });
+
+export const setResponseStatus = (responseStatus: ResponseStatus) => ({ responseStatus });

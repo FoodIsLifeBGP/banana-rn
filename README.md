@@ -1,4 +1,4 @@
-# BANANA APP: Donor/Client Apps (React Native/Typescript)
+# Banana App v2: Donor/Client Apps (React Native/Typescript)
 
 Banana App is an open-source, not-for-profit project of The Be Good Foundation.  We can reduce hunger by simplifying food donation.  We make it easy for grocery stores and restaurants to donate good food that would otherwise be disposed of.  Users will be able to find active donations, view the business's food rating, and claim a portion.
 
@@ -32,9 +32,12 @@ Banana App is an open-source, not-for-profit project of The Be Good Foundation. 
 	- [Google Play](#google-play)
 ---
 
+## NOTE: If you notice any outdated information or instructions in this README, please don't hesitate to open a PR and fix any discrepancies!
+
 # View them on the App Store
+_(NOTE: unclear if these still are accurate..)_
 * Client App
-[![Client App](https://github.com/FoodIsLifeBGP/banana-rn/blob/prealpha/main/assets/iconClient.png?raw=true)](https://apps.apple.com/tt/app/banana-app-client/id1528875793?ign-mpt=uo=2)
+[![Client App](https://github.com/FoodIsLifeBGP/banana-rn-v2/blob/prealpha/main/assets/iconClient.png?raw=true)](https://apps.apple.com/tt/app/banana-app-client/id1528875793?ign-mpt=uo=2)
 
 * Donor App
 [![Donor App](https://github.com/FoodIsLifeBGP/banana-rn/blob/prealpha/main/assets/iconDonor.png?raw=true)](https://apps.apple.com/tt/app/banana-app-donor/id1528276436)
@@ -42,14 +45,12 @@ Banana App is an open-source, not-for-profit project of The Be Good Foundation. 
 
 Step 0 is to [install the backend](https://github.com/FoodIsLifeBGP/banana-rails).  Follow those instructions to make sure you have everything needed to install this repo (like the Xcode command line tools).
 
-Then if you havent already done so, clone the repository to your desired project folder and install dependencies: `git clone https://github.com/FoodIsLifeBGP/banana-rn && cd banana-rn && npm i`
-
-otherwise you can just navigate to your project's root folder in the terminal (e.g. `cd ~/Projects/banana-rn`)
+Step 1 is to navigate to your project's root folder in the terminal (e.g. `cd ~/Projects/banana-rn`)
 
 # Installation (Mac/OSX)
 
 First we install NVM and Node
-- `npm i -g nvm` **OR** `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash`
+- `npm i -g nvm` OR `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash`
 
 Install Xcode for the iOS simulator.  This takes a while.
 - https://developer.apple.com/xcode/
@@ -57,16 +58,17 @@ Install Xcode for the iOS simulator.  This takes a while.
 # Installation (Windows)
 
 - Go to [this website](https://github.com/coreybutler/nvm-windows) and follow the instructions for installing Node Version Manager for Windows
-
-- ***NOTE: This is necessary as the Banana app uses an older version of Node. This is also very convenient as it will let you switch between previous (or current) versions of Node depending on which project you're working on.***
+***NOTE: This is necessary as the Banana app uses an older version of Node. This is also very convenient as it will let you switch between previous (or current) versions of Node depending on which project you're working on.***
 #### **SETTING UP CODE ENVIRONMENT (OS AGNOSTIC)**
 
 1) To confirm installation on either mac or windows, open up your Command Prompt and run `nvm --version` and it should return the version of your NVM and a list of its usage.
 
 2) Once that's done, run `nvm use` (Banana App's config are compatible with Node version <= 12.10.0) and if you dont have the necessary version follow the prompt to install it (e.g. `nvm install 12.13.0`).
-   - [NOTE: Run `nvm list` or `nvm ls` to see all of your saved versions of Node. You can use the same command `nvm use [version]` to switch].
+   [NOTE: Run `nvm list` or `nvm ls` to see all of your saved versions of Node. You can use the same command `nvm use [version]` to switch].
 
 3) Run `npm i -g expo-cli` to enable expo cli globally.
+
+4) Make sure you've traversed to your desired project directory and run `git clone https://github.com/FoodIsLifeBGP/banana-rn && cd banana-rn && npm i`
 
 
 #### **SETTING UP ANDROID SIMULATOR**
@@ -105,7 +107,7 @@ node version--sorry!
 
 Take note of `app.config.js` in the root.  This is where we specify whether to compile the donor or client app.
 You can most easily switch between donor and client by creating a `.env` file in the project root and adding an entry
-for EXPO_PUBLIC_APP_VARIANT e.g. `EXPO_PUBLIC_APP_VARIANT=client` this way you can make this change locally without editing a file that's under
+for EXPO_APP_VARIANT e.g. `EXPO_APP_VARIANT=client` this way you can make this change locally without editing a file that's under
 git control.  Note that all variables in `.env` will need to be prefixed with EXPO_ since expo restricts things
 [that way](https://docs.expo.io/guides/environment-variables/).
 
@@ -137,26 +139,11 @@ or create a new account.
 - `environments.ts` controls what rails server the app will try to talk to.
 - The default is an AWS server running the latest [banana rails](https://github.com/FoodIsLifeBGP/banana-rails) from the `prealpha/main` branch.
 - If you would like to talk to a different rails server (most likely your own in the event you have changes you want to test), create a file called
-`.env` in your project root and add `IP_ADDRESS=<your internal network ip>` to the file (you can also change the variant to client in the `.env` file.
+`.env` in your project root and add `IP_ADDRESS=<your internal network ip>` to the file (you can also change the variant to client in the `.env` file)
 
 #### **Possible gotchas for new developers**
 - If you elect to use your web browser to test your changes, Firefox may just render a blank page.  Switching to
 another browser should resolve the issue.
-
-- If you run into an error like this:
-```
-error Invalid regular expression: /(.*\\__fixtures__\\.*|node_modules[\\\]react[\\\]dist[\\\].*|website\\node_modules\\.*|heapCapture\\bundle\.js|.*\\__tests__\\.*)$/: Unterminated character class. Run CLI with --verbose flag for more details.
-
-Metro Bundler process exited with code 1
-Error: Metro Bundler process exited with code 1
-    at ChildProcess.<anonymous> (C:\@expo\xdl@56.2.7\src\Project.ts:1804:16)
-    at Object.onceWrapper (events.js:300:26)
-    at ChildProcess.emit (events.js:210:5)
-    at Process.ChildProcess._handle.onexit (internal/child_process.js:272:12)
-error Command failed with exit code 1.
-```
-Try to update the expo package `npm install -g expo-cli`
-Or try switching node versions (`12.10.0 => 12.9.0`)
 
 # The rest of The Banana App family:
 
@@ -166,25 +153,19 @@ Or try switching node versions (`12.10.0 => 12.9.0`)
 
 # Contributing
 
-Fork the repo, make your changes on `master`, and submit a PR.  Add all the contributors as reviewers so we are notified.
+1. Clone the repo,
+2. Checkout a new branch from your local copy of main
+3. Make your changes using the pattern: `feature/my-great-feature`, `fix/my-great-fix`
+4. Push your changes and create a pull request
+5. Tag a reviewer when your code is ready
+6. Once your review has been approved, make sure you squash and merge so as not to pollute the commit history with a bunch of extraneous commits
 
 In order to merge your PR, the code will need to pass linting and typechecking.  The style guide is extended from AirBnB's.  To check your branch before making a pull request, run the following:
-- `npm i -g eslint`
-- `npm i -g typescript` (>= 3.7.3)
-
-  - If you are upgrading Typescript in VS Code, make sure to select which TS you're using:
-    1. Open a .ts or .tsx file
-    2. Locate the "Typescript React" notation in the bottom right of the screen (the blue bar)
-    3. Click the version number to the right of that.
-
-Then, you can run
 - `npm run lint`
+- `npm run lint:fix` (changes/fixes are made if possible)
 - `npm run typechecking`
 
-from root.  These will give detailed descriptions of any errors. If you want a more verbose output including warnings, run
-- `eslint --ext .tsx,.ts,.js .`
-
-Warnings will not prevent a merge.
+Warnings should not prevent a merge.
 
 # Dev notes
 
@@ -218,44 +199,43 @@ TODO: make absolute imports work for the MenuDrawer.  Any new elements should be
 
 ## State Management
 
-[useGlobalHook](https://github.com/andregardi/use-global-hook#readme) is a light but powerful (<1kb) state management tool, built on React Hooks.  It's a lot like a simplified version of Redux + Redux-Sagas.  However, it makes no effort to separate the functionally pure Redux from the side-effecty Sagas, if you care about that sort of thing.
+[zustand](https://github.com/pmndrs/zustand) is a small (~1kb) state management solution for React that is also simple and fast. It is built upon the concept of state atoms and allows us to use hooks as the primary means to subscribe to state changes.
 
-There are some excellent usage samples by the author [here](https://codesandbox.io/s/v6zz2nwow5) and [here](https://codesandbox.io/s/wqvykj5497), and a small example below.
-
-- Lives in `@state/index.ts`.  Initial state comes from the helpfully named `initialState` constant.
-- Calling the hook returns the `store` array: `[ state, actions ]`.
+The state management file is located in @state/index.ts. The initial state is defined in the initialState constant.
+The usage of zustand involves calling a hook that returns the store, which includes the state and all actions that can be called.
 
 ### Writing Actions
 
-1. Set `counter: 0` in `initialState`.
-2. Create a new file in `@state/actions`, for example `increase.ts`.  (No imports are required.)
-3. The hook passes the store to the function when your action is called, so that will always be the first argument in your new action.  Your `store` includes the `setState` function.  The action can be written as below.
-```ts
-export const increase = async (store, amount) => {
-	await store.setState({
-		counter: counter + amount,
-	});
-};
+1. Define `counter: 0` in initialState.
+2. All properties should be defined in the state file additionally actions should be defined an actions file in the @state/actions directory and then imported into the state file.
+3. Here's an example of an action, increase, that adds a certain amount to the counter value.
+
+```tsx
+//@state/index.ts
+
+const useGlobalStore = create<GlobalState>((set) => ({
+  ...initialState,
+  increase: (amount) => set((state) => ({ counter: state.counter + amount })),
+  // other actions...
+}));
 ```
 4. Import & access the store in your component:
-```ts
-const [ state, actions ] = useGlobal();
-```
-5. Use as desired.  Example component:
-```ts
-import useGlobal from '@state';
-import { Button } from 'react-native'
+```tsx
+import useGlobalStore from '@state';
 
 const ExampleComponent = () => {
-	const [ state, actions ] = useGlobal();
-	return (
-		<Button
-			onPress={state.increase(1)}
-		/>
-	);
+  const increase = useGlobalStore((state) => state.increase);
+  const count = useGlobalStore((state) => state.count);
+
+  return (
+      <Button
+        onPress={() => increase(1)}
+      />
+      `Count: ${count}`
+    </Button>
+  );
 }
 ```
-   - Remember, useGlobalHook takes care of passing the state, so only put what you're updating in the arguments here.
 
 ## Environment Variables
 
@@ -370,7 +350,7 @@ expo build:ios --config app.donor.json
 ```
 * Choose “archive” when asked to “Choose the build type you would like”
 * Follow prompts
-* The build could take a while depending on how many builds are already in the queue - **Average time in my experience is 15 - 60 minutes**
+* The build could take a while depending on how many builds are already in the queue - **Average time around 15~60 minutes**
 * If the build was successful, you will see a message stating “Successfully built standalone app: https://expo.io/artifacts/xxxxxxxx-xxxxxxx-xxxxx-xxxxxxxx”
 6. Download the build file from the expo link
 7. Launch Xcode

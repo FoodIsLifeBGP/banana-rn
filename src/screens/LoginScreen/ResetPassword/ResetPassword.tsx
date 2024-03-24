@@ -1,19 +1,19 @@
-import React, { FunctionComponent, useState } from "react";
-import { Text, View } from "react-native";
-import { Modal } from "@elements";
+import React, { FunctionComponent, useState } from 'react';
+import { Text, View } from 'react-native';
+import { Modal } from '@elements';
 import {
   CodeForm, NewPasswordForm, ResetForm,
-} from "./Forms";
-import styles from "./ResetPassword.styles";
+} from './Forms';
+import styles from './ResetPassword.styles';
 
 // TODO: fix this error and remove the comment below
 // eslint-disable-next-line no-shadow
 export enum PasswordResetStage {
-  NONE = "NONE",
-  REQUEST_LINK = "REQUEST_LINK",
-  VERIFY = "VERIFY",
-  RESET = "RESET",
-  SUCCESS = "SUCCESS",
+  NONE = 'NONE',
+  REQUEST_LINK = 'REQUEST_LINK',
+  VERIFY = 'VERIFY',
+  RESET = 'RESET',
+  SUCCESS = 'SUCCESS',
 }
 
 interface ResetPasswordProps {
@@ -31,8 +31,8 @@ export const ResetPassword: FunctionComponent<ResetPasswordProps> = ({
   onRequest,
   onBack,
 }) => {
-  const [stage, setStage] = useState(initialStage || PasswordResetStage.REQUEST_LINK);
-  const [token, setToken] = useState("");
+  const [ stage, setStage ] = useState(initialStage || PasswordResetStage.REQUEST_LINK);
+  const [ token, setToken ] = useState('');
 
   const handleComplete = () => {
     switch (stage) {
@@ -51,7 +51,7 @@ export const ResetPassword: FunctionComponent<ResetPasswordProps> = ({
       setStage(PasswordResetStage.REQUEST_LINK);
       break;
     default:
-      console.log("Unexpected passwordResetStage: ", stage);
+      console.log('Unexpected passwordResetStage: ', stage);
     }
   };
 
@@ -62,7 +62,7 @@ export const ResetPassword: FunctionComponent<ResetPasswordProps> = ({
       onBack();
       break;
     default:
-      console.log("Unexpected passwordResetStage: ", stage);
+      console.log('Unexpected passwordResetStage: ', stage);
     }
   };
 
@@ -74,7 +74,7 @@ export const ResetPassword: FunctionComponent<ResetPasswordProps> = ({
         if (stage === PasswordResetStage.SUCCESS) handleComplete();
         onDismiss();
       }}
-      style={{ position: "absolute" }}
+      style={{ position: 'absolute' }}
     >
       <View>
         {stage === PasswordResetStage.REQUEST_LINK && (

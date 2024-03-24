@@ -1,11 +1,9 @@
 {
+  "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",
-    "lib": [
-      "dom",
-      "esnext"
-    ],
+    "lib": ["dom", "esnext"],
     "moduleResolution": "node",
     "noEmit": true,
     "skipLibCheck": true,
@@ -18,38 +16,19 @@
     "experimentalDecorators": true,
     "baseUrl": ".",
     "paths": {
-      "@assets/*": [
-        "./assets/*"
-      ],
-      "@elements": [
-        "./src/elements"
-      ],
-      "@elements/*": [
-        "./src/elements/*"
-      ],
-      "@screens/*": [
-        "./src/screens/*"
-      ],
-      "@state": [
-        "./src/state"
-      ],
-      "@state/*": [
-        "./src/state/*"
-      ],
-      "@library": [
-        "./src/library"
-      ],
-      "@library/*": [
-        "./src/library/*"
-      ],
-      "@util/*": [
-        "./src/util/*"
-      ]
+      "@assets/*": ["./assets/*"],
+      "@elements": ["./src/elements"],
+      "@elements/*": ["./src/elements/*"],
+      "@screens/*": ["./src/screens/*"],
+      "@state": ["./src/state"],
+      "@state/*": ["./src/state/*"],
+      "@library": ["./src/library"],
+      "@library/*": ["./src/library/*"],
+      "@util/*": ["./src/util/*"]
     },
     "removeComments": true,
     "sourceMap": true,
     "strict": true,
     "target": "esnext"
-  },
-  "extends": "expo/tsconfig.base"
+  }
 }

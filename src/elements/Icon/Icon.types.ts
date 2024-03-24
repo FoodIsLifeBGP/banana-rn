@@ -1,3 +1,4 @@
+import React from 'react';
 import { ImageURISource } from 'react-native';
 import { SvgProps } from 'react-native-svg';
 
@@ -11,50 +12,50 @@ import { SvgProps } from 'react-native-svg';
  * dynamic react components.
  */
 export type IconImport = ImageURISource & {
-	default: React.FC<SvgProps>;
+  default: React.FC<SvgProps>;
 };
 
 export type DeprecatedIconName =
-	| 'chevron-down'
-	| 'chevron-left'
-	| 'image'
-	| 'lock'
-	| 'unlock';
+  | 'chevron-down'
+  | 'chevron-left'
+  | 'image'
+  | 'lock'
+  | 'unlock';
 
 export type IconName =
-	| 'arrowDown'
-	| 'arrowUp'
-	| 'back'
-	| 'bananaMarker'
-	| 'bell'
-	| 'bellOn'
-	| 'bike'
-	| 'camera'
-	| 'checkboxOff'
-	| 'checkboxOn'
-	| 'claims'
-	| 'close'
-	| 'condense'
-	| 'distance'
-	| 'donations'
-	| 'dropdown'
-	| 'email'
-	| 'expand'
-	| 'eyeOff'
-	| 'eyeOn'
-	| 'facebook'
-	| 'help'
-	| 'location'
-	| 'logout'
-	| 'menu'
-	| 'menuOn'
-	| 'more'
-	| 'qrCode'
-	| 'settings'
-	| 'smile'
-	| 'time'
-	| 'transit'
-	| 'user'
-	| 'vector'
-	| 'walk'
-	| 'website';
+  | 'arrowDown'
+  | 'arrowUp'
+  | 'back'
+  | 'bananaMarker'
+  | 'bell'
+  | 'bellOn'
+  | 'bike'
+  | 'camera'
+  | 'checkboxOff'
+  | 'checkboxOn'
+  | 'claims'
+  | 'close'
+  | 'condense'
+  | 'distance'
+  | 'donations'
+  | 'dropdown'
+  | 'email'
+  | 'expand'
+  | 'eyeOff'
+  | 'eyeOn'
+  | 'facebook'
+  | 'help'
+  | 'location'
+  | 'logout'
+  | 'menu'
+  | 'menuOn'
+  | 'more'
+  | 'qrCode'
+  | 'settings'
+  | 'smile'
+  | 'time'
+  | 'transit'
+  | 'user'
+  | 'vector'
+  | 'walk'
+  | 'website';

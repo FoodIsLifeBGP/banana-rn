@@ -1,178 +1,164 @@
 import React from 'react';
-import {
-	Text,
-	View,
-} from 'react-native';
-import useGlobal from '@state';
-import { TextButton } from '@elements/Button/TextButton';
-import { Modal } from '@elements/Modal';
-import { Alert } from '@state/index.types';
+import { Text, View } from 'react-native';
+import useGlobalStore from '@state';
+import { Modal, TextButton } from '@elements';
 import { useScheme } from '@util/colorSchemes';
 import typography from '@util/typography';
 import styles from './CancelDonationModal.styles';
 
 interface CancelDonationModalProps {
-	onYes?: () => void;
-	onNo?: () => void;
-	okay?: () => void;
+  onYes?: () => void;
+  onNo?: () => void;
+  okay?: () => void;
 }
 
-export default ({
-	onYes = () => {},
-	onNo = () => {},
-	okay = () => {},
+export default function CancelDonationModal({
+  onYes = () => {},
+  onNo = () => {},
+  okay = () => {},
+}: CancelDonationModalProps) {
+  const clearAlert = useGlobalStore(state => state.clearAlert);
+  const alert = useGlobalStore(state => state.alert);
 
-}: CancelDonationModalProps) => {
-	const [ globalState, globalActions ] = useGlobal() as any;
-	const { alert: alertObj }: { alert: Alert } = globalState;
-	const { clearAlert } = globalActions;
-	const scheme = useScheme();
-	const [ state, { updateAlert } ] = useGlobal() as any;
+  const scheme = useScheme();
 
-	const handleNo = () => {
-		clearAlert();
-		onNo();
-		alertObj.cancelFn && alertObj.cancelFn();
-	};
+  const handleNo = () => {
+    clearAlert();
+    onNo();
+    alert && alert.cancelFn && alert.cancelFn();
+  };
 
-	const handleYes = () => {
-		clearAlert();
-		onYes();
-		alertObj.confirmFn && alertObj.confirmFn();
-	};
+  const handleYes = () => {
+    clearAlert();
+    onYes();
+    alert && alert.confirmFn && alert.confirmFn();
+  };
 
-	const handleCloseButtonPress = () => {
-		clearAlert();
-	};
+  const handleCloseButtonPress = () => {
+    clearAlert();
+  };
 
-	const handleDismiss = () => {
-		if (alertObj.dismissable) {
-			clearAlert();
-		}
-	};
+  const handleDismiss = () => {
+    if (alert && alert.dismissible) {
+      clearAlert();
+    }
+  };
 
-	const handleOkay = () => {
-		clearAlert();
-		okay();
-		alertObj.confirmFn && alertObj.confirmFn();
-	};
+  const handleOkay = () => {
+    clearAlert();
+    okay();
+    alert && alert.confirmFn && alert.confirmFn();
+  };
 
-	if (!alertObj) return null;
-	if (!alertObj.type || alertObj.type === 'default') {
-		return (
-			<Modal
-				style={styles.container}
-				title={alertObj?.title || 'Alert'}
-				palette="accent"
-				open={alertObj !== undefined}
-				onDismiss={handleDismiss}
-			>
-				<View style={styles.body}>
-					<View style={styles.textContainer}>
-						<Text style={typography.body1}>
-							{alertObj?.message || 'Uh oh, an unknown error occurred!'}
-						</Text>
-					</View>
+  if (!alert) return null;
+  if (!alert.type || alert.type === 'default') {
+    return (
+      <Modal
+        style={styles.container}
+        title={alert?.title || 'Alert'}
+        palette="accent"
+        open={alert !== undefined}
+        onDismiss={handleDismiss}
+      >
+        <View style={styles.body}>
+          <View style={styles.textContainer}>
+            <Text style={typography.body1}>
+              {alert?.message || 'Uh oh, an unknown error occurred!'}
+            </Text>
+          </View>
 
-					<TextButton
-						text="OK"
-						style={{
-							width: 104,
-						}}
-						buttonStyle={{
-							default: scheme.primary,
-							pressed: scheme.secondary,
-							disabled: scheme.disabled,
-						}}
-						onPress={handleCloseButtonPress}
-					/>
-				</View>
-			</Modal>
-		);
-	}
-	if (alertObj.type === 'cancel donation') {
-		return (
-			<Modal
-				style={styles.container}
-				title={alertObj?.title || 'ARE YOU SURE?'}
-				palette="secondary"
-				open={alertObj !== undefined}
-				onDismiss={handleDismiss}
-			>
-				<View style={styles.body}>
-					<View style={styles.textContainer}>
-						<Text style={typography.body1}>
-							{alertObj?.message || 'This donation will be cancelled.'}
-						</Text>
-					</View>
-					<View style={styles.buttonWrapper}>
-						<View style={styles.leftButton}>
-							<TextButton
-								text="NO, KEEP IT"
-								style={{
-									width: 120,
-								}}
-								buttonStyle={{
-									default: scheme.tertiary,
-									pressed: scheme.secondary,
-									disabled: scheme.disabled,
-								}}
-								onPress={handleNo}
-							/>
-						</View>
-						<View style={styles.rightButton}>
-							<TextButton
-								text="YES, CANCEL"
-								style={{
-									width: 120,
-								}}
-								buttonStyle={{
-									default: scheme.primary,
-									pressed: scheme.secondary,
-									disabled: scheme.disabled,
-								}}
-								onPress={handleYes}
-							/>
-						</View>
-					</View>
-				</View>
-			</Modal>
-		);
-	}
-	if (alertObj.type === 'donation published') {
-		return (
-			<Modal
-				style={styles.container}
-				title={alertObj?.title || 'DONATION PUBLISHED'}
-				palette="secondary"
-				open={alertObj !== undefined}
-				onDismiss={handleDismiss}
-			>
-				<View style={styles.body}>
-					<View style={styles.textContainer}>
-						<Text style={typography.body1}>
-							{alertObj?.message || 'Donation was published successfully. Thanks for your participation.'}
-						</Text>
-					</View>
-					<View style={styles.buttonWrapper}>
-						<View style={styles.leftButton}>
-							<TextButton
-								text="OKAY"
-								style={{
-									width: 120,
-								}}
-								buttonStyle={{
-									default: scheme.tertiary,
-									pressed: scheme.secondary,
-									disabled: scheme.disabled,
-								}}
-								onPress={handleOkay}
-							/>
-						</View>
-					</View>
-				</View>
-			</Modal>
-		);
-	}
-	return null;
-};
+          <TextButton
+            text="OK"
+            style={{ width: 104 }}
+            buttonStyle={{
+              default: scheme.primary,
+              pressed: scheme.secondary,
+              disabled: scheme.disabled,
+            }}
+            onPress={handleCloseButtonPress}
+          />
+        </View>
+      </Modal>
+    );
+  }
+  if (alert.type === 'cancel donation') {
+    return (
+      <Modal
+        style={styles.container}
+        title={alert?.title || 'ARE YOU SURE?'}
+        palette="secondary"
+        open={alert !== undefined}
+        onDismiss={handleDismiss}
+      >
+        <View style={styles.body}>
+          <View style={styles.textContainer}>
+            <Text style={typography.body1}>
+              {alert?.message || 'This donation will be cancelled.'}
+            </Text>
+          </View>
+          <View style={styles.buttonWrapper}>
+            <View style={styles.leftButton}>
+              <TextButton
+                text="NO, KEEP IT"
+                style={{ width: 120 }}
+                buttonStyle={{
+                  default: scheme.tertiary,
+                  pressed: scheme.secondary,
+                  disabled: scheme.disabled,
+                }}
+                onPress={handleNo}
+              />
+            </View>
+            <View style={styles.rightButton}>
+              <TextButton
+                text="YES, CANCEL"
+                style={{ width: 120 }}
+                buttonStyle={{
+                  default: scheme.primary,
+                  pressed: scheme.secondary,
+                  disabled: scheme.disabled,
+                }}
+                onPress={handleYes}
+              />
+            </View>
+          </View>
+        </View>
+      </Modal>
+    );
+  }
+  if (alert.type === 'donation published') {
+    return (
+      <Modal
+        style={styles.container}
+        title={alert?.title || 'DONATION PUBLISHED'}
+        palette="secondary"
+        open={alert !== undefined}
+        onDismiss={handleDismiss}
+      >
+        <View style={styles.body}>
+          <View style={styles.textContainer}>
+            <Text style={typography.body1}>
+              {alert?.message
+                || 'Donation was published successfully. Thanks for your participation.'}
+            </Text>
+          </View>
+          <View style={styles.buttonWrapper}>
+            <View style={styles.leftButton}>
+              <TextButton
+                text="OKAY"
+                style={{ width: 120 }}
+                buttonStyle={{
+                  default: scheme.tertiary,
+                  pressed: scheme.secondary,
+                  disabled: scheme.disabled,
+                }}
+                onPress={handleOkay}
+              />
+            </View>
+          </View>
+        </View>
+      </Modal>
+    );
+  }
+  return null;
+}

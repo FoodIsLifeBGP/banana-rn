@@ -1,3 +1,3 @@
-import { ResetPassword } from "./ResetPassword";
+import { ResetPassword } from './ResetPassword';
 
 export default ResetPassword;

@@ -7,34 +7,32 @@ import * as colors from '@util/constants/colors';
 
 import styles from './MainOption.styles';
 
-export function MainOption({ icon, text }) {
-	let menuStyle = {};
+function MainOption({ icon, text }) {
+  let menuStyle = {};
 
-	const DrawerIcon = (name: IconName) => Icon({
-		name,
-		size: 24,
-		color: colors.WHITE,
-	});
+  const DrawerIcon = (name: IconName) => Icon({
+    name,
+    size: 24,
+    color: colors.WHITE,
+  });
 
-	if (text === 'Log Out' || text === 'Scan QR Code') {
-		menuStyle = {
-			...styles.mainOption,
-			...styles.logOut,
-		};
-	} else {
-		menuStyle = styles.mainOption;
-	}
+  if (text === 'Log Out' || text === 'Scan QR Code') {
+    menuStyle = {
+      ...styles.mainOption,
+      ...styles.logOut,
+    };
+  } else {
+    menuStyle = styles.mainOption;
+  }
 
-	return (
-		<View style={menuStyle}>
-			<View>
-				{DrawerIcon(icon)}
-			</View>
-			<View>
-				<Text style={styles.optionText}>{text}</Text>
-			</View>
-		</View>
-	);
+  return (
+    <View style={menuStyle}>
+      <View>{DrawerIcon(icon)}</View>
+      <View>
+        <Text style={styles.optionText}>{text}</Text>
+      </View>
+    </View>
+  );
 }
 
 export default MainOption;

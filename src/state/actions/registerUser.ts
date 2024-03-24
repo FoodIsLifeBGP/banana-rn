@@ -1,6 +1,5 @@
-import railsAxios from "@util/railsAxios";
-import { UserIdentity } from "@state/index.types";
-import { DonorRegisterProps, ClientRegisterProps } from "@state/index.types";
+import railsAxios from '@util/railsAxios';
+import { UserIdentity, DonorRegisterProps, ClientRegisterProps } from '@state/index.types';
 
 export const registerDonor = async (createUrl, userIdentity: UserIdentity, donor: DonorRegisterProps) => {
   const {
@@ -17,7 +16,8 @@ export const registerDonor = async (createUrl, userIdentity: UserIdentity, donor
   } = donor;
 
   try {
-    const { data, status, statusText } = await railsAxios().post(createUrl,
+    const { data, status, statusText } = await railsAxios().post(
+      createUrl,
       JSON.stringify({
         [userIdentity]: {
           email,
@@ -31,10 +31,11 @@ export const registerDonor = async (createUrl, userIdentity: UserIdentity, donor
           address_zip: zip,
           pickup_instructions: pickupInstructions,
         },
-      }));
+      }),
+    );
 
     return {
-      jwt: data?.jwt || "",
+      jwt: data?.jwt || '',
       user: data?.client || {},
       responseStatus: {
         code: status,
@@ -60,7 +61,8 @@ export const registerClient = async (createUrl, userIdentity: UserIdentity, clie
   } = client;
 
   try {
-    const { data, status, statusText } = await railsAxios().post(createUrl,
+    const { data, status, statusText } = await railsAxios().post(
+      createUrl,
       JSON.stringify({
         [userIdentity]: {
           email,
@@ -68,10 +70,11 @@ export const registerClient = async (createUrl, userIdentity: UserIdentity, clie
           first_name: firstName,
           last_name: lastName,
         },
-      }));
+      }),
+    );
 
     return {
-      jwt: data?.jwt || "",
+      jwt: data?.jwt || '',
       user: data?.client || {},
       responseStatus: {
         code: status,
@@ -88,10 +91,8 @@ export const registerClient = async (createUrl, userIdentity: UserIdentity, clie
   }
 };
 
-const registerUser = (createUrl, userIdentity, userToRegister) => {
-  return userIdentity === "donor"
-    ? registerDonor(createUrl, userIdentity, userToRegister)
-    : registerClient(createUrl, userIdentity, userToRegister);
-};
+const registerUser = (createUrl, userIdentity, userToRegister) => (userIdentity === 'donor'
+  ? registerDonor(createUrl, userIdentity, userToRegister)
+  : registerClient(createUrl, userIdentity, userToRegister));
 
 export { registerUser };

@@ -1,26 +1,26 @@
-import React, { FunctionComponent, useState } from "react";
-import { Text, View } from "react-native";
+import React, { FunctionComponent, useState } from 'react';
+import { Text, View } from 'react-native';
 import {
   FormTextInput, LinkButton, SpacerInline,
-} from "@elements";
-import { requestResetToken } from "@state/actions";
-import useGlobalStore from "@state";
-import styles from "../ResetPassword.styles";
+} from '@elements';
+import { requestResetToken } from '@state/actions';
+import useGlobalStore from '@state';
+import styles from '../ResetPassword.styles';
 
 interface ResetFormProps {
   onComplete: () => void;
 }
 
 const ResetForm: FunctionComponent<ResetFormProps> = ({ onComplete }) => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState("");
-  const [error, setError] = useState("");
-  const userIdentity = useGlobalStore((state) => state.userIdentity);
+  const [ isSubmitting, setIsSubmitting ] = useState(false);
+  const [ formData, setFormData ] = useState('');
+  const [ error, setError ] = useState('');
+  const userIdentity = useGlobalStore(state => state.userIdentity);
 
   /* TODO: update to use actual validator (i believe we are using `validator.js` plugin) */
   const isValidEmail = () => {
-    if (!formData.includes("@") || !formData.includes(".")) {
-      setError("Must be a valid email address.");
+    if (!formData.includes('@') || !formData.includes('.')) {
+      setError('Must be a valid email address.');
       return false;
     }
     return true;
@@ -54,8 +54,8 @@ const ResetForm: FunctionComponent<ResetFormProps> = ({ onComplete }) => {
         label="email"
         placeholder="info@bananaapp.org"
         value={formData}
-        setValue={(text) => {
-          setError("");
+        setValue={text => {
+          setError('');
           setFormData(text);
         }}
         autoCorrect={false}

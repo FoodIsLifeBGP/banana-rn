@@ -1,71 +1,71 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, ScrollView } from 'react-native';
-// import { useIsFocused } from 'react-navigation-hooks';
+import React, { useEffect } from 'react';
+import {
+  ScrollView, Text, View,
+} from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
-import { Title, NavBar, EmptyStateView } from '@elements';
+import {
+  EmptyStateView, NavBar, Title,
+} from '@elements';
 
 import Donation from '@library/DonationClientView/Donation';
-import useGlobal from '@state';
+import useGlobalStore from '@state';
 
 import styles from './ClientHistoryScreen.styles';
 
-function ClientHistoryScreen() {
-	const isFocused = useIsFocused();
-	const [ state, actions ] = useGlobal() as any;
-	const [ claims, setClaims ] = useState([]);
-	const [ loaded, setLoaded ] = useState(false);
+function ClientHistoryScreen(props) {
+  const isFocused = useIsFocused();
 
-	const getClaims = async () => {
-		const { getClaimHistoryForClient } = actions;
-		const data = await getClaimHistoryForClient();
-		if (data) {
-			setClaims(data);
-			setLoaded(true);
-		}
-	};
+  const getClaimedDonationHistoryForClient = useGlobalStore(state => state.getClaimedDonationHistoryForClient);
+  const claimedDonationHistory = useGlobalStore(state => state.claimedDonationHistoryForClient);
+  const jwt = useGlobalStore(state => state.jwt);
+  const user = useGlobalStore(state => state.user);
 
-	useEffect(() => {
-		if (isFocused) {
-			getClaims();
-		}
-	}, [ isFocused ]);
+  useEffect(() => {
+    if (isFocused && jwt && user) {
+      getClaimedDonationHistoryForClient(jwt, user);
+    }
+  }, [ isFocused ]);
 
-	return (
-		<View style={styles.outerContainer}>
-			<NavBar showBackButton={false} />
-
-			<View style={styles.contentContainer}>
-				<Title text="Claims" />
-				<View style={{
-					flexDirection: 'row',
-					justifyContent: 'space-between',
-					alignItems: 'center',
-				}}
-				>
-					<View>
-						<Text style={styles.activeHeader}>History</Text>
-					</View>
-				</View>
-				{ !loaded && <Text>Loading...</Text> }
-				{(claims && claims.length > 0) ? (
-					<ScrollView>
-						{(claims as any).sort((a, b) => a.created_at > b.created_at).map(claim => (
-							<View key={claim.id}>
-								<Donation
-									donation={claim}
-									key={claim.id}
-									isHistory={true}
-									isClaim={true}
-								/>
-							</View>
-						))}
-					</ScrollView>
-				) : (
-					<EmptyStateView lowerText="You don't have a history of claims." />
-				)}
-			</View>
-		</View>
-	);
+  return (
+    <View style={styles.outerContainer}>
+      <NavBar
+        showBackButton={true}
+        goBack={() => props.navigation.goBack()}
+      />
+      <View style={styles.contentContainer}>
+        <Title text="Claims" />
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <View>
+            <Text style={styles.activeHeader}>History</Text>
+          </View>
+        </View>
+        {!claimedDonationHistory && <Text>Loading...</Text>}
+        {claimedDonationHistory && claimedDonationHistory.length > 0 ? (
+          <ScrollView>
+            {claimedDonationHistory.map(claim => (
+              <View key={claim.id}>
+                <Donation
+                  donation={claim}
+                  key={claim.id}
+                  isHistory={true}
+                  isClaim={true}
+                  navigation={props.navigation}
+                />
+              </View>
+            ))}
+          </ScrollView>
+        ) : (
+          <EmptyStateView lowerText="You don't have a history of claims." />
+        )}
+      </View>
+    </View>
+  );
 }
 
 export default ClientHistoryScreen;

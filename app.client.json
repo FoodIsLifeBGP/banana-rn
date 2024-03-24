@@ -3,12 +3,8 @@
     "name": "Banana App - Client",
     "slug": "banana-app-client",
     "privacy": "public",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
-    "version": "0.1.12",
+    "platforms": ["ios", "android", "web"],
+    "version": "0.1.5",
     "orientation": "portrait",
     "icon": "./assets/iconClient.png",
     "splash": {
@@ -19,15 +15,13 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.thebegoodproject.org.bananaapp-client"
     },
     "android": {
-      "package": "com.thebegoodproject.org.bananaapp__client",
+      "package": "com.thebegoodproject.org.bananaapp_client",
       "versionCode": 4,
       "config": {
         "googleMaps": {
@@ -53,9 +47,10 @@
         "md"
       ]
     },
-		"description": "The Banana App provides donors (supermarkets, groceries, produce stands, restaurants) a time-sensitive platform to donate items that are considered not aesthetically-pleasing for market display or sale but still edible and in good condition. Items will be given directly to verified clients (low-income family, homeless individuals) upon successful application.",
-		"extra": {
-			"variant": "client"
-		}
+    "description": "The Banana App provides donors (supermarkets, groceries, produce stands, restaurants) a time-sensitive platform to donate items that are considered not aesthetically-pleasing for market display or sale but still edible and in good condition. Items will be given directly to verified clients (low-income family, homeless individuals) upon successful application.",
+    "extra": {
+      "variant": "client",
+      "productionBuild": true
+    }
   }
 }

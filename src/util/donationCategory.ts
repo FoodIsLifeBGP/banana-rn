@@ -1,16 +1,16 @@
 export const categoryImage = (donationCategory: string) => {
-	switch (donationCategory) {
-		case 'Produce':
-			return require('@assets/images/produce-stock-image.png');
-		case 'Bread':
-			return require('@assets/images/bread-stock-image.png');
-		case 'Hot Meal':
-			return require('@assets/images/meals-stock-image.png');
-		case 'Protein':
-			return require('@assets/images/protein-stock-image.png');
-		case 'Dairy':
-			return require('@assets/images/dairy-stock-image.png');
-		default:
-			return require('@assets/images/others-stock-image.png');
-	}
+  switch (donationCategory) {
+  case 'Produce':
+    return require('@assets/images/image-stock-produce.png');
+  case 'Bread':
+    return require('@assets/images/image-stock-bread.png');
+  case 'Hot Meal':
+    return require('@assets/images/image-stock-meals.png');
+  case 'Protein':
+    return require('@assets/images/image-stock-protein.png');
+  case 'Dairy':
+    return require('@assets/images/image-stock-dairy.png');
+  default:
+    return require('@assets/images/image-stock-others.png');
+  }
 };

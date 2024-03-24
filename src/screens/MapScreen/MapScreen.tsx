@@ -1,59 +1,68 @@
 import React, { useEffect, useState } from 'react';
-import {
-	Dimensions, View,
-} from 'react-native';
-// import { useIsFocused, useNavigation } from 'react-navigation-hooks';
-import { useIsFocused, useNavigation } from '@react-navigation/native';
-import useGlobal from '@state';
-import {
-	BananaMap,
-	NavBar,
-} from '@elements';
+import { Dimensions, View } from 'react-native';
+import { useIsFocused } from '@react-navigation/native';
+import useGlobalStore from '@state';
+import { BananaMap, NavBar } from '@elements';
 
+function MapScreen(props) {
+  const isFocused = useIsFocused();
+  const { width, height } = Dimensions.get('window');
 
-const MapScreen = () => {
-	const isFocused = useIsFocused();
-	const [ state, actions ] = useGlobal() as any;
-	const { navigate } = useNavigation();
-	const [ donations, setDonations ] = useState([]);
-	const { width, height } = Dimensions.get('window');
-	const { latitude, longitude } = state.user.coords;
-	const ASPECT_RATIO = width / height;
-	const LATITUDE_DELTA = 0.05;
+  const activeDonationsForClient = useGlobalStore(state => state.activeDonationsForClient);
+  const getActiveDonationsForClient = useGlobalStore(state => state.getActiveDonationsForClient);
 
-	// in case of virtual device, the position of client would be center of seattle.
-	const [ location ] = useState(
-		{
-			latitude,
-			longitude,
-			latitudeDelta: LATITUDE_DELTA,
-			longitudeDelta: LATITUDE_DELTA * ASPECT_RATIO,
-		},
-	);
+  const jwt = useGlobalStore(state => state.jwt);
+  const user = useGlobalStore(state => state.user);
 
-	const getDonationsFromAPI = async () => {
-		const { getActiveDonationsForClient } = actions;
-		const data = await getActiveDonationsForClient();
-		if (data) {
-			setDonations(data);
-		}
-	};
-	useEffect(() => {
-		if (isFocused) {
-			getDonationsFromAPI();
-		}
-	}, [ isFocused ]);
-	return (
-		<View>
-			<NavBar
-				showBackButton={false}
-				showSelector={true}
-				onList={() => { navigate('DashboardScreen'); }}
-				position="map"
-			/>
-			<BananaMap donations={donations} mapRegion={location} clientLocation={{ latitude, longitude }} markerSize={24} />
-		</View>
-	);
-};
+  const { latitude, longitude } = useGlobalStore(state => {
+    if (state.user && state.user.coords) {
+      return state.user.coords;
+    }
+    /* center of seattle */
+    return {
+      latitude: 47.617004,
+      longitude: -122.343506,
+    };
+  });
+  const ASPECT_RATIO = width / height;
+  const LATITUDE_DELTA = 0.05;
+
+  // in case of virtual device, the position of client would be center of seattle.
+  const [ location ] = useState({
+    latitude: latitude || 47.617004,
+    longitude: longitude || -122.343506,
+    latitudeDelta: LATITUDE_DELTA,
+    longitudeDelta: LATITUDE_DELTA * ASPECT_RATIO,
+  });
+
+  useEffect(() => {
+    if (isFocused && jwt && user) {
+      getActiveDonationsForClient(jwt, user);
+    }
+  }, [ isFocused ]);
+  return (
+    <View>
+      <NavBar
+        showBackButton={false}
+        showSelector={true}
+        onList={() => {
+          props.navigation.navigate('ClientDashboardScreen');
+        }}
+        goBack={props.navigation.goBack}
+        position="map"
+      />
+      <BananaMap
+        navigation={props.navigation}
+        donations={activeDonationsForClient || []}
+        mapRegion={location}
+        clientLocation={{
+          latitude: location.latitude,
+          longitude: location.longitude,
+        }}
+        markerSize={24}
+      />
+    </View>
+  );
+}
 
 export default MapScreen;

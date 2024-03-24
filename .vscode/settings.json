@@ -1,26 +1,14 @@
 {
 	"eslint.validate": [
-		{
-			"language": "javascript",
-			"autoFix": false
-		},
-		{
-			"language": "javascriptreact",
-			"autoFix": false
-		},
-		{
-			"language": "typescript",
-			"autoFix": false
-		},
-		{
-			"language": "typescriptreact",
-			"autoFix": false
-		}
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact"
 	],
 	"cSpell.words": [
 		"dismissable",
 		"ethnicities",
 	],
-	"editor.insertSpaces": false,
-	"editor.detectIndentation": false,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2
 }

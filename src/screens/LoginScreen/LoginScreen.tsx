@@ -1,162 +1,188 @@
 import React, {
-	useState, RefObject, createRef, useEffect,
+  RefObject,
+  createRef,
+  useEffect,
+  useState,
 } from 'react';
-import { useNavigation, useRoute } from '@react-navigation/native';
 import {
-	ScrollView,
-	View,
-	Alert,
-	Text,
-	TextInput,
-	KeyboardAvoidingView,
-	Platform,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  Text,
+  TextInput,
+  View,
 } from 'react-native';
-
-import useGlobal from '@state';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import useGlobalStore from '@state';
+import { navigate } from '@util/navigationService';
 import {
-	Title, LinkButton, FormTextInput, Button,
+  FormTextInput, LinkButton, Title,
 } from '@elements';
-import { ButtonStyle } from '@elements/Button';
-import { LIGHT_GRAY, NAVY_BLUE } from '@util/constants/colors';
-import ButtonStyles from '@elements/Button/Button.styles';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import getEnv from '@util/environment';
 import styles from './LoginScreen.styles';
-import ResetForm from './ResetRequestForm';
+import ResetPassword from './ResetPassword';
+import { PasswordResetStage } from './ResetPassword/ResetPassword';
 
-type LoginFormFields = { email?: string; password?: string };
+export default function LoginScreen(props) {
+  const { USER_IDENTITY } = getEnv();
+  const responseStatus = useGlobalStore(state => state.responseStatus);
+  const userIdentity = useGlobalStore(state => state.userIdentity);
+  const loginUrl = useGlobalStore(state => state.loginUrl);
 
-const buttonStyle: ButtonStyle = {
-	default: {
-		background: LIGHT_GRAY,
-		foreground: NAVY_BLUE,
-	},
-};
+  const email = (props.route.params && props.route.params.email) ?? useGlobalStore(state => state.email);
+  const password = (props.route.params && props.route.params.password) ?? useGlobalStore(state => state.password);
 
-export default function ({ navigation, route }) {
-	const [ { userIdentity }, { logIn } ] = useGlobal() as any;
+  const logIn = useGlobalStore(state => state.logIn);
+  const setEmail = useGlobalStore(state => state.setEmail);
+  const setPassword = useGlobalStore(state => state.setPassword);
+  const clearEmailAndPassword = useGlobalStore(state => state.clearEmailAndPassword);
 
-	const passwordInputRef: RefObject<TextInput> = createRef();
-	const {
-		email: initialEmail = '',
-		password: initialPassword = '',
-	}: LoginFormFields = route.params ?? {};
+  const passwordInputRef: RefObject<TextInput> = createRef();
+  const handleEmailInputSubmit = () => passwordInputRef.current?.focus();
 
-	const [ email, setEmail ] = useState(initialEmail);
-	const [ password, setPassword ] = useState(initialPassword);
-	const [ showModal, setShowModal ] = useState(false);
+  const [ showModal, setShowModal ] = useState(false);
+  const [ passwordResetStage, setPasswordResetStage ] = useState(PasswordResetStage.NONE);
 
-	const clearEmailAndPassword = () => {
-		setEmail('');
-		setPassword('');
-	};
-	const handleEmailInputSubmit = () => passwordInputRef.current?.focus();
+  const clearPasswordResetStage = () => {
+    setPasswordResetStage(PasswordResetStage.NONE);
+    AsyncStorage.removeItem('PASSWORD RESET STAGE');
+  };
 
+  useEffect(() => {
+    const reactToStatusCode = async () => {
+      if (responseStatus !== undefined && responseStatus.code === 202) {
+        // TODO: set user and jwt to async storage
 
-	const handleLogin = async () => {
-		const statusCode = await logIn({ email, password });
-		switch (statusCode) {
-			case 202: {
-				await clearEmailAndPassword();
-				// TODO: is this how we navigate?
-				navigation.navigate('Drawer', { screen: 'LoginSuccessScreen' });
-				return;
-			}
-			case 401:
-				Alert.alert('Incorrect email or password');
-				return;
-			case 404:
-				Alert.alert('Server not found - please try again');
-				return;
-			case 500:
-				Alert.alert('Network error - please try again');
-				return;
-			default:
-				Alert.alert(`Server replied with ${statusCode} status code`);
-		}
-	};
+        clearEmailAndPassword();
+        clearPasswordResetStage();
+        /* TODO: i believe this how we are supposed to navigate now,
+          look at the react docs for more info: https://reactnavigation.org/docs/nesting-navigators/
+          please remove and replace all `props.navigation.navigate()` calls
+        */
 
-	const handleForgotPassword = () => {
-		setShowModal(true);
-	};
+        navigate('LoginSuccessScreen');
 
-	const handleDismissModal = () => {
-		setShowModal(false);
-	};
+        // if (USER_IDENTITY === 'donor') {
+        // props.navigation.navigate('Drawer', { screen: 'LoginSuccessScreen' });
+        // } else if (USER_IDENTITY === 'client') {
+        // props.navigation.navigate('Drawer', { screen: 'LoginSuccessScreen' });
+        // }
+      }
+    };
+    reactToStatusCode();
 
-	const handleResetRequest = () => {
-		alert('TODO: handle passowrd reset request!');
-	};
+    const retrievePasswordResetStage = async () => {
+      try {
+        const value = await AsyncStorage.getItem('PASSWORD RESET STAGE');
+        if (value === 'VERIFY') {
+          setPasswordResetStage(PasswordResetStage[value]);
+        }
+      } catch (error) {
+        // Not important error
+      }
+    };
+    retrievePasswordResetStage();
+  }, [ responseStatus ]);
 
-	return (
-		<KeyboardAvoidingView
-			style={styles.outerContainer}
-			behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-		>
-			<View style={styles.header}>
-				{/* TODO: use ContentHeader component when available */}
-				<Title text={`banana \n${userIdentity}`} />
-			</View>
+  const storePasswordResetStage = async newStage => {
+    try {
+      await AsyncStorage.setItem('PASSWORD RESET STAGE', newStage);
+      setPasswordResetStage(newStage);
+    } catch (error) {
+      // Not important error
+    }
+  };
 
-			<ScrollView
-				style={styles.bodyContainer}
-				contentContainerStyle={styles.bodyContentContainer}
-			>
-				<View style={styles.form}>
-					<FormTextInput
-						label="email"
-						placeholder="info@bananaapp.org"
-						value={email}
-						setValue={setEmail}
-						style={styles.inputEmail}
-						onSubmitEditing={handleEmailInputSubmit}
-						autoCorrect={false}
-						enablesReturnKeyAutomatically={true}
-						autoCapitalize="none"
-						autoComplete="username"
-						textContentType="username"
-						keyboardType="email-address"
-						returnKeyType="next"
-						blurOnSubmit={true} // Necessary to prevent focus from 'flickering'
-					/>
+  const handleForgotPassword = () => {
+    setShowModal(true);
+  };
 
-					<FormTextInput
-						label="password"
-						type="password"
-						value={password}
-						setValue={setPassword}
-						ref={passwordInputRef}
-						onSubmitEditing={handleLogin}
-						enablesReturnKeyAutomatically={true}
-						autoComplete="password"
-						returnKeyType="go"
-						blurOnSubmit={false}
-					/>
+  const handleDismissModal = () => {
+    setShowModal(false);
+  };
 
-					<View style={styles.forgotPassword}>
-						{/* View wrapper required to constrain clickable area of button */}
-						<Button
-							buttonStyle={buttonStyle}
-							onPress={handleForgotPassword}
-							children={() => (
-								<Text style={styles.forgotPasswordText}>Forgot Password? </Text>
-							)}
-						/>
-					</View>
-				</View>
+  const handleSetEmail = (newEmail: string) => {
+    setEmail(newEmail);
+  };
 
-				<View style={styles.buttonContainer}>
-					<LinkButton text="Log In" onPress={handleLogin} />
-					<LinkButton
-						text="Register"
-						onPress={() => navigation.navigate('Register')}
-					/>
-				</View>
-			</ScrollView>
-			{showModal && (
-				<ResetForm
-					onDismiss={handleDismissModal}
-					onComplete={handleResetRequest}
-				/>
-			)}
-		</KeyboardAvoidingView>
-	);
+  const handleSetPassword = (newPassword: string) => {
+    setPassword(newPassword);
+  };
+
+  return (
+    <KeyboardAvoidingView
+      style={styles.outerContainer}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <View style={styles.header}>
+        {/* TODO: use ContentHeader component when available */}
+        <Title text={`banana \n${userIdentity}`} />
+      </View>
+
+      <ScrollView
+        style={styles.bodyContainer}
+        contentContainerStyle={styles.bodyContentContainer}
+      >
+        <View style={styles.form}>
+          <FormTextInput
+            label="email"
+            placeholder="info@bananaapp.org"
+            value={email}
+            setValue={handleSetEmail}
+            style={styles.inputEmail}
+            onSubmitEditing={handleEmailInputSubmit}
+            autoCorrect={false}
+            enablesReturnKeyAutomatically={true}
+            autoCapitalize="none"
+            textContentType="username"
+            keyboardType="email-address"
+            returnKeyType="next"
+            blurOnSubmit={true}
+          />
+
+          <FormTextInput
+            label="password"
+            type="password"
+            value={password}
+            setValue={handleSetPassword}
+            ref={passwordInputRef}
+            onSubmitEditing={() => logIn(loginUrl, userIdentity, email, password)}
+            enablesReturnKeyAutomatically={true}
+            returnKeyType="go"
+            blurOnSubmit={false}
+          />
+
+          <View style={styles.forgotPassword}>
+            {/* View wrapper required to constrain clickable area of button */}
+            <TouchableWithoutFeedback onPress={handleForgotPassword}>
+              <Text style={styles.forgotPasswordText}>
+                Forgot Password?
+              </Text>
+            </TouchableWithoutFeedback>
+          </View>
+        </View>
+
+        <View style={styles.buttonContainer}>
+          <LinkButton
+            text="Log In"
+            onPress={() => logIn(loginUrl, userIdentity, email, password)}
+          />
+          <LinkButton
+            text="Register"
+            destination="RegistrationScreen"
+          />
+        </View>
+      </ScrollView>
+      {showModal && (
+        <ResetPassword
+          onSuccess={clearPasswordResetStage}
+          onDismiss={handleDismissModal}
+          initialStage={passwordResetStage}
+          onRequest={storePasswordResetStage}
+          onBack={clearPasswordResetStage}
+        />
+      )}
+    </KeyboardAvoidingView>
+  );
 }

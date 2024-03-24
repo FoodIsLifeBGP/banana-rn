@@ -1,11 +1,11 @@
-import React, { FunctionComponent, useState } from "react";
-import { Text, View } from "react-native";
+import React, { FunctionComponent, useState } from 'react';
+import { Text, View } from 'react-native';
 import {
   FormTextInput, LinkButton, SpacerInline,
-} from "@elements";
-import useGlobalStore from "@state";
-import { submitResetToken } from "@state/actions";
-import styles from "../ResetPassword.styles";
+} from '@elements';
+import useGlobalStore from '@state';
+import { submitResetToken } from '@state/actions';
+import styles from '../ResetPassword.styles';
 
 interface CodeFormProps {
   onComplete: () => void;
@@ -18,10 +18,10 @@ const CodeForm: FunctionComponent<CodeFormProps> = ({
   setToken,
   onBack,
 }) => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState("");
-  const [error, setError] = useState("");
-  const userIdentity = useGlobalStore((state) => state.userIdentity);
+  const [ isSubmitting, setIsSubmitting ] = useState(false);
+  const [ formData, setFormData ] = useState('');
+  const [ error, setError ] = useState('');
+  const userIdentity = useGlobalStore(state => state.userIdentity);
 
   const submitTokenProps = {
     formInput: formData,
@@ -34,11 +34,11 @@ const CodeForm: FunctionComponent<CodeFormProps> = ({
 
   const handleSubmit = async () => {
     if (formData && !isSubmitting) {
-      setError("");
+      setError('');
       setIsSubmitting(true);
       submitResetToken(submitTokenProps);
     } else {
-      setError("Please enter a value.");
+      setError('Please enter a value.');
     }
   };
 
@@ -52,8 +52,8 @@ const CodeForm: FunctionComponent<CodeFormProps> = ({
       <FormTextInput
         label="Token"
         value={formData}
-        setValue={(text) => {
-          setError("");
+        setValue={text => {
+          setError('');
           setFormData(text);
         }}
       />

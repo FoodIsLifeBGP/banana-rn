@@ -35,7 +35,7 @@
 
 In `app.json` under root directory, you could see setting below:
 
-``` json
+```json
 "extra": {
 			"variant": "donor"
 		}
@@ -55,7 +55,7 @@ to visit client side.
 
 #### Basic structure of a component
 
-We would use an example of  `Title` as example:
+We would use an example of `Title` as example:
 
 A component should have 3 files. In example of `Title`, a directory called `Title` should be placed under `src->elements` and has structure as below:
 
@@ -69,7 +69,7 @@ Title
 - Index.ts (export the component)
 
   ```tsx
-  import Title from './Title';
+  import Title from "./Title";
 
   export { Title };
   ```
@@ -77,129 +77,115 @@ Title
 - Title.styles.ts (contains style rules for the component)
 
   ```tsx
-  import { StyleSheet } from 'react-native';
-  import * as colors from '@util/constants/colors';
+  import { StyleSheet } from "react-native";
+  import * as colors from "@util/constants/colors";
 
   export default StyleSheet.create({
-  	text: {
-  		fontFamily: 'open-sans-bold',
-  		fontSize: 38,
-  		lineHeight: 50,
-  		color: colors.NAVY_BLUE,
-  	},
+    text: {
+      fontFamily: "open-sans-bold",
+      fontSize: 38,
+      lineHeight: 50,
+      color: colors.NAVY_BLUE,
+    },
   });
   ```
 
 - Title.tsx (contains functional React component)
 
   ```tsx
-  import React from 'react';
-  import { View, Text } from 'react-native';
-  import styles from './Title.styles';
+  import React from "react";
+  import { View, Text } from "react-native";
+  import styles from "./Title.styles";
 
   export default ({ text }: { text: string }) => (
-  	<View>
-  		<Text style={styles.text}>{text.toUpperCase()}</Text>
-  	</View>
+    <View>
+      <Text style={styles.text}>{text.toUpperCase()}</Text>
+    </View>
   );
   ```
 
   Note that for more complicated component that needs to receive multiple properties, we need to define an interface of the parameter and use it when initializing the functional component. Below is an example of `ClaimingProgressBar` which presents the claim statuses of a donation.
 
   ```tsx
-  import React from 'react';
-  import {
-  	StyleProp, Text, TextStyle,
-  	View,
-  } from 'react-native';
-  import styles from './ClaimingProgressBar.styles';
+  import React from "react";
+  import { StyleProp, Text, TextStyle, View } from "react-native";
+  import styles from "./ClaimingProgressBar.styles";
 
   // DEFINE INTERFACE HERE
 
   interface ClaimingProgressBarProps {
-	/** Width for ClaimingProgressBar. */
-	width?: number | string;
+    /** Width for ClaimingProgressBar. */
+    width?: number | string;
 
-	/** Number of donations has been picked up. */
-	pickedUp: number;
+    /** Number of donations has been picked up. */
+    pickedUp: number;
 
-	/** Number of donations has been reserved. */
-	reserved: number;
+    /** Number of donations has been reserved. */
+    reserved: number;
 
-	/** Number of donations remaining. */
-	left: number;
+    /** Number of donations remaining. */
+    left: number;
 
-	/** Style of ClaimingProgressBar. */
-	style?: StyleProp<TextStyle>;
+    /** Style of ClaimingProgressBar. */
+    style?: StyleProp<TextStyle>;
   }
 
   /**
    * Data visualization that shows the total number of picked-up, reserved, and available
    * servings within a single donation.
    */
-  export default ({
-  	width = '100%',
-  	pickedUp,
-  	reserved,
-  	left,
-  	style,
-  }: ClaimingProgressBarProps) => {
-  	const num2Str = (num, places) => String(num).padStart(places, '0');
-  	const total = pickedUp + reserved + left;
-  	return (
-  		<View style={[ styles.claimProgressBar, { width }, style ]}>
-  		  /*implementation logic*/
-  		</View>
-  	);
+  export default ({ width = "100%", pickedUp, reserved, left, style }: ClaimingProgressBarProps) => {
+    const num2Str = (num, places) => String(num).padStart(places, "0");
+    const total = pickedUp + reserved + left;
+    return <View style={[styles.claimProgressBar, { width }, style]}>/*implementation logic*/</View>;
   };
   ```
 
-***It's recommended to build a skeleton of a component and add that component to `index.ts` under `elements`, so you can more easily use it within screens to test and debug it.***
+**_It's recommended to build a skeleton of a component and add that component to `index.ts` under `elements`, so you can more easily use it within screens to test and debug it._**
 
 #### Add component to element module and use it
 
 After you set up the skeleton of you component, export your component in `index.ts` under `elements`.
 
 ```tsx
-export { FormTextInput } from './FormTextInput';
-export { Header } from './Header';
-export { Icon } from './Icon';
-export { InputLabel } from './FormTextInput/InputLabel';
-export { Button } from './Button';
-export { TextButton } from './Button/TextButton';
-export { LinkButton } from './LinkButton';
-export { SpacerInline } from './SpacerInline';
-export { Paragraph } from './Paragraph';
-export { Modal } from './Modal';
-export { TheAlertModal } from './TheAlertModal';
+export { FormTextInput } from "./FormTextInput";
+export { Header } from "./Header";
+export { Icon } from "./Icon";
+export { InputLabel } from "./FormTextInput/InputLabel";
+export { Button } from "./Button";
+export { TextButton } from "./Button/TextButton";
+export { LinkButton } from "./LinkButton";
+export { SpacerInline } from "./SpacerInline";
+export { Paragraph } from "./Paragraph";
+export { Modal } from "./Modal";
+export { TheAlertModal } from "./TheAlertModal";
 // add export clause
-export { Title } from './Title';
+export { Title } from "./Title";
 ```
 
 After that, you could use your component in screen, as the code below:
 
+TODO: this is outdated-- needs to be fixed
+
 ```tsx
-import React, { useState } from 'react';
-import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
-import { View, Alert, TextInput } from 'react-native';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import useGlobal from '@state';
-import {
-	Title,
-} from '@elements';
+import React, { useState } from "react";
+import { useNavigation, useNavigationParam } from "";
+import { View, Alert, TextInput } from "react-native";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import useGlobalStore from "@state";
+import { Title } from "@elements";
 
 export default () => {
-	const { navigate } = useNavigation();
-	const [ state, actions ] = useGlobal() as any;
-	const { userIdentity } = state;
-	return (
-		<View style={styles.outerContainer}>
-			<SpacerInline height={140} />
-			<Title text={`I am a ${userIdentity}.`} />
-		</View>
-	);
+  const { navigate } = useNavigation();
+  const [state, actions] = useGlobal() as any;
+  const { userIdentity } = state;
+  return (
+    <View style={styles.outerContainer}>
+      <SpacerInline height={140} />
+      <Title text={`I am a ${userIdentity}.`} />
+    </View>
+  );
 };
-
 ```
 
 ### How to Create a PR and Use PR Templates

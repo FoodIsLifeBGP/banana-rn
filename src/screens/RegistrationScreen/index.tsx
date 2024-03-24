@@ -1,14 +1,14 @@
 import React from 'react';
-import useGlobal from '@state';
+import useGlobalStore from '@state';
 import DonorRegistrationScreen from './DonorRegistrationScreen';
 import ClientRegistrationScreen from './ClientRegistrationScreen';
 
-export default () => {
-	const [ state ] = useGlobal();
-	const { userIdentity } = state;
-	switch (userIdentity) {
-		case 'donor': return <DonorRegistrationScreen />;
-		case 'client':
-		default: return <ClientRegistrationScreen />;
-	}
-};
+export default function RegistrationScreen(props) {
+  const userIdentity = useGlobalStore(state => state.userIdentity);
+
+  return userIdentity === 'donor' ? (
+    <DonorRegistrationScreen {...props} />
+  ) : (
+    <ClientRegistrationScreen {...props} />
+  );
+}

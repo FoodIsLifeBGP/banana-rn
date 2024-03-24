@@ -1,25 +1,25 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 // import * as colors from "@util/constants/colors";
-import typography from "@util/typography";
+import typography from '@util/typography';
 
 export default StyleSheet.create({
   text: {
     ...typography.body1,
-    textAlign: "center",
+    textAlign: 'center',
   },
   smallText: {
     ...typography.body4,
-    textAlign: "center",
+    textAlign: 'center',
   },
   errors: {
-    color: "red",
+    color: 'red',
     flex: 1,
-    flexWrap: "wrap",
+    flexWrap: 'wrap',
   },
-  errorContainer: { flexDirection: "row" },
+  errorContainer: { flexDirection: 'row' },
   buttonContainer: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-evenly",
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
   },
 });

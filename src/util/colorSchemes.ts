@@ -24,42 +24,42 @@ export type ColorPaletteName =
   | 'accent'
   | 'disabled';
 export type ColorPalette = {
-	background: string;
-	foreground: string;
+  background: string;
+  foreground: string;
 };
 export type ColorScheme = Record<ColorPaletteName, ColorPalette>;
 
 const lightScheme: ColorScheme = {
-	default: {
-		background: colors.GRAY,
-		foreground: colors.NAVY_BLUE,
-	},
-	primary: {
-		background: colors.NAVY_BLUE,
-		foreground: colors.WHITE,
-	},
-	secondary: {
-		background: colors.BANANA_YELLOW,
-		foreground: colors.NAVY_BLUE,
-	},
-	tertiary: {
-		background: 'transparent',
-		foreground: colors.NAVY_BLUE,
-	},
-	accent: {
-		background: colors.RED,
-		foreground: colors.WHITE,
-	},
-	disabled: {
-		background: colors.LIGHT_GRAY_DISABLED,
-		foreground: colors.WHITE,
-	},
+  default: {
+    background: colors.GRAY,
+    foreground: colors.NAVY_BLUE,
+  },
+  primary: {
+    background: colors.NAVY_BLUE,
+    foreground: colors.WHITE,
+  },
+  secondary: {
+    background: colors.BANANA_YELLOW,
+    foreground: colors.NAVY_BLUE,
+  },
+  tertiary: {
+    background: 'transparent',
+    foreground: colors.NAVY_BLUE,
+  },
+  accent: {
+    background: colors.RED,
+    foreground: colors.WHITE,
+  },
+  disabled: {
+    background: colors.LIGHT_GRAY_DISABLED,
+    foreground: colors.WHITE,
+  },
 };
 
 export const COLOR_SCHEMES: Record<ColorSchemeName, ColorScheme> = {
-	light: lightScheme,
-	dark: lightScheme /* TODO: Add dark theme when available */,
-	'no-preference': lightScheme,
+  light: lightScheme,
+  dark: lightScheme /* TODO: Add dark theme when available */,
+  'no-preference': lightScheme,
 };
 
 /**
@@ -67,7 +67,7 @@ export const COLOR_SCHEMES: Record<ColorSchemeName, ColorScheme> = {
  * OS-defined color scheme.
  */
 export function useScheme(): ColorScheme {
-	return COLOR_SCHEMES[
-		Appearance.getColorScheme() || 'no-preference'
-	];
+  return COLOR_SCHEMES[
+    Appearance.getColorScheme() || 'no-preference'
+  ];
 }

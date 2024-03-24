@@ -1,11 +1,11 @@
-import * as ImagePicker from "expo-image-picker";
-import * as Permissions from "expo-permissions";
+import * as ImagePicker from 'expo-image-picker';
+import * as Permissions from 'expo-permissions';
 
 // Creates a type that is a subset (U) of the set (T).
 type Extends<T, U extends T> = U;
 export type ImageSourcingMethod = Extends<
-  Permissions.PermissionType,
-  "camera" | "cameraRoll"
+Permissions.PermissionType,
+'camera' | 'cameraRoll'
 >;
 
 // Configuration for an image sourcing method.
@@ -18,15 +18,15 @@ interface ImageSourcingConfig {
 // The possible methods of retrieving an image from the device mapped to their unique configs.
 /* ?? TODO: If request for camera roll is too annoying, only request on required devices (iOS 10 & Android). */
 const IMAGE_SOURCE_METHODS: Record<
-  ImageSourcingMethod,
-  ImageSourcingConfig
+ImageSourcingMethod,
+ImageSourcingConfig
 > = {
   camera: {
-    permissions: ["camera", "cameraRoll"],
+    permissions: [ 'camera', 'cameraRoll' ],
     launchImageSourcingMethod: ImagePicker.launchCameraAsync,
   },
   cameraRoll: {
-    permissions: ["cameraRoll"],
+    permissions: [ 'cameraRoll' ],
     launchImageSourcingMethod: ImagePicker.launchImageLibraryAsync,
   },
 };
@@ -35,7 +35,7 @@ const IMAGE_SOURCE_METHODS: Record<
 const IMAGE_OPTIONS: ImagePicker.ImagePickerOptions = {
   mediaTypes: ImagePicker.MediaTypeOptions.Images,
   allowsEditing: true,
-  aspect: [16, 9],
+  aspect: [ 16, 9 ],
   quality: 1,
 };
 
@@ -63,8 +63,8 @@ export async function sourceImage(imageSource: Permissions.PermissionType): Prom
     const permissionResponses = await Permissions.askAsync(...permissions);
 
     // Any unsuccessful permissions status will propogate to this 'status' property.
-    if (permissionResponses.status !== "granted") {
-      throw new Error("Permission(s) not granted.");
+    if (permissionResponses.status !== 'granted') {
+      throw new Error('Permission(s) not granted.');
     }
 
     return launchImageSourcingMethod(IMAGE_OPTIONS);
@@ -72,8 +72,10 @@ export async function sourceImage(imageSource: Permissions.PermissionType): Prom
 
   try {
     pickedImage = await getImageFromSource(IMAGE_SOURCE_METHODS[imageSource]);
+    // TODO: add proper type for error
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
-    console.log(err.msg);
+    console.log(err.message);
     // TODO: display alert with error message
   }
 

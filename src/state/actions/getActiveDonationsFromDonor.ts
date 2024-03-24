@@ -1,4 +1,4 @@
-import railsAxios from "@util/railsAxios";
+import railsAxios from '@util/railsAxios';
 
 export const getActiveDonationsFromDonor = async (jwt, user) => {
   const endpoint = `/donors/${user.id}/get_active_donations`;
@@ -13,7 +13,6 @@ export const getActiveDonationsFromDonor = async (jwt, user) => {
         message: statusText,
       },
     };
-
   } catch (error: any) {
     console.log(error);
     return {

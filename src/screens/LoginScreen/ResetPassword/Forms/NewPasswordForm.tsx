@@ -3,16 +3,16 @@ import React, {
   RefObject,
   createRef,
   useState,
-} from "react";
+} from 'react';
 import {
   Text, TextInput, View,
-} from "react-native";
+} from 'react-native';
 import {
   FormTextInput, LinkButton, SpacerInline,
-} from "@elements";
-import useGlobalStore from "@state";
-import { submitNewPassword } from "@state/actions";
-import styles from "../ResetPassword.styles";
+} from '@elements';
+import useGlobalStore from '@state';
+import { submitNewPassword } from '@state/actions';
+import styles from '../ResetPassword.styles';
 
 interface NewPasswordFormProps {
   onComplete: () => void;
@@ -23,22 +23,22 @@ const NewPasswordForm: FunctionComponent<NewPasswordFormProps> = ({
   onComplete,
   token,
 }) => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
-    password: "",
-    confirmPassword: "",
+  const [ isSubmitting, setIsSubmitting ] = useState(false);
+  const [ formData, setFormData ] = useState({
+    password: '',
+    confirmPassword: '',
   });
-  const [error, setError] = useState("");
+  const [ error, setError ] = useState('');
   const passwordInputRef: RefObject<TextInput> = createRef();
-  const userIdentity = useGlobalStore((state) => state.userIdentity);
+  const userIdentity = useGlobalStore(state => state.userIdentity);
 
   const isPasswordValid = () => {
     if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match.");
+      setError('Passwords do not match.');
       return false;
     }
     if (formData.password.length < 8) {
-      setError("Password must be at least 8 characters.");
+      setError('Password must be at least 8 characters.');
       return false;
     }
     return true;
@@ -55,7 +55,7 @@ const NewPasswordForm: FunctionComponent<NewPasswordFormProps> = ({
 
   const handleSubmit = () => {
     if (isPasswordValid() && !isSubmitting) {
-      setError("");
+      setError('');
       setIsSubmitting(true);
       submitNewPassword(submitPasswordProps);
     }
@@ -71,8 +71,8 @@ const NewPasswordForm: FunctionComponent<NewPasswordFormProps> = ({
         label="Password"
         type="password"
         value={formData.password}
-        setValue={(text) => {
-          setError("");
+        setValue={text => {
+          setError('');
           setFormData({
             ...formData,
             password: text,
@@ -87,8 +87,8 @@ const NewPasswordForm: FunctionComponent<NewPasswordFormProps> = ({
         label="Confirm Password"
         type="password"
         value={formData.confirmPassword}
-        setValue={(text) => {
-          setError("");
+        setValue={text => {
+          setError('');
           setFormData({
             ...formData,
             confirmPassword: text,

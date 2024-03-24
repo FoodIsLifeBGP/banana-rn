@@ -1,86 +1,79 @@
 import React, { useEffect, useState } from 'react';
 import {
-	LogBox, Platform,
-	SafeAreaView, Text, View,
+  // LogBox,
+  // Platform,
+  SafeAreaView,
+  Text,
+  View,
 } from 'react-native';
-import { Provider } from 'react-native-paper';
+import { Provider as PaperProvider } from 'react-native-paper';
 import Constants from 'expo-constants';
 import * as Font from 'expo-font';
 import {
-	TheAlertModal, IncompleteFormAlert, ComingSoonModal, CancelDonationModal,
+  CancelDonationModal,
+  ComingSoonModal,
+  IncompleteFormAlert,
+  TheAlertModal,
 } from '@elements';
-import NavigationService from '@util/navigationService';
-import { NavigationContainer } from '@react-navigation/native';
-import { FullStackNavigator } from './src/routes/Route';
+import Route from './src/routes/Route';
 import styles from './App.styles';
 
-
-if (Platform.OS !== 'web') {
-	LogBox.ignoreLogs([
-		'Warning: componentWillReceiveProps has been renamed',
-		'Require cycle',
-	]);
-}
+// TODO: is this needed? if not, remove.
+// if (Platform.OS !== "web") {
+//   LogBox.ignoreLogs([
+//     "Warning: componentWillReceiveProps has been renamed",
+//     "Require cycle",
+//   ]);
+// }
 
 export default function App() {
-	// const theme = useColorScheme();
-	// const isLightTheme = theme === 'light';
-	const [ fontsLoaded, setFontsLoaded ] = useState(false);
+  const [ fontsLoaded, setFontsLoaded ] = useState(false);
 
-	const loadFonts = async () => {
-		await Font.loadAsync({
-			// Expo doesn't currently (v36.0.0) support fontWeight or fontStyle
-			'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
-			'open-sans-regular': require('./assets/fonts/OpenSans-Regular.ttf'),
-			'open-sans-light': require('./assets/fonts/OpenSans-Light.ttf'),
-		});
-		setFontsLoaded(true);
-	};
+  const loadFonts = async () => {
+    await Font.loadAsync({
+      // TODO: is this still tru? (we're on expo 48 now)
+      // Expo doesn't currently (v36.0.0) support fontWeight or fontStyle
+      'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
+      'open-sans-regular': require('./assets/fonts/OpenSans-Regular.ttf'),
+      'open-sans-light': require('./assets/fonts/OpenSans-Light.ttf'),
+    });
+    setFontsLoaded(true);
+  };
 
-	useEffect(() => {
-		loadFonts();
-	}, []);
+  useEffect(() => {
+    loadFonts();
+  }, []);
 
-	if (![ 'donor', 'client' ].includes(Constants?.expoConfig?.extra?.variant)) {
-		return (
-			<View style={styles.container}>
-				<Text style={styles.heading}>INCORRECT VARIANT SPECIFIED</Text>
-				<Text style={styles.text}>
-					You must specify 'donor' or 'client' in app.json
-					(expo.extra.variant).
-				</Text>
-				<Text style={styles.text}>Refresh the app to see your changes.</Text>
-			</View>
-		);
-	}
+  if (
+    ![ 'donor', 'client' ].includes(Constants.manifest?.extra?.variant)
+  ) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.heading}>
+          INCORRECT VARIANT SPECIFIED
+        </Text>
+        <Text style={styles.text}>
+          You must specify 'donor' or 'client' in app.json
+          (expo.extra.variant).
+        </Text>
+        <Text style={styles.text}>
+          Refresh the app to see your changes.
+        </Text>
+      </View>
+    );
+  }
 
-	const linkConfig = {
-		prefixes: [ 'banana-app://' ],
-		config: {
-			screens: {
-				PasswordReset: 'reset-password/:token',
-			},
-		},
-	};
-
-	return fontsLoaded && (
-		// <AppearanceProvider>
-		<Provider>
-			<SafeAreaView style={styles.container}>
-				<NavigationContainer
-					ref={navigatorRef => {
-						NavigationService.setTopLevelNavigator(navigatorRef);
-					}}
-					linking={linkConfig}
-				>
-					<FullStackNavigator />
-				</NavigationContainer>
-				<TheAlertModal />
-				<IncompleteFormAlert />
-				<ComingSoonModal />
-				<CancelDonationModal />
-			</SafeAreaView>
-		</Provider>
-		// </AppearanceProvider>
-	);
+  return (
+    fontsLoaded && (
+      <PaperProvider>
+        <SafeAreaView style={styles.container}>
+          <Route />
+          <TheAlertModal />
+          <IncompleteFormAlert />
+          <ComingSoonModal />
+          <CancelDonationModal />
+        </SafeAreaView>
+      </PaperProvider>
+    )
+  );
 }

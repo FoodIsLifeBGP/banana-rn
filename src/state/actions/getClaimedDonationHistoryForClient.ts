@@ -1,5 +1,5 @@
-import railsAxios from "@util/railsAxios";
-import { User } from "@state/index.types";
+import railsAxios from '@util/railsAxios';
+import { User } from '@state/index.types';
 
 export const getClaimedDonationHistoryForClient = async (jwt: string, user: User) => {
   const endpoint = `/clients/${user.id}/claims_history`;
