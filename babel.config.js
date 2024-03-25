@@ -15,6 +15,7 @@ module.exports = function (api) {
             '@library': './src/library/',
             '@state': './src/state/',
             '@util': './src/util/',
+            '@contexts': './src/contexts/',
           },
           cwd: 'packagejson',
         },

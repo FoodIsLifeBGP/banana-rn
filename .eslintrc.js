@@ -46,6 +46,7 @@ module.exports = {
           '@library',
           '@util',
           '@state',
+          '@contexts',
           '../',
           './',
         ],
