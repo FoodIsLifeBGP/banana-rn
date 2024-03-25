@@ -24,7 +24,8 @@
       "@state/*": ["./src/state/*"],
       "@library": ["./src/library"],
       "@library/*": ["./src/library/*"],
-      "@util/*": ["./src/util/*"]
+      "@util/*": ["./src/util/*"],
+      "@contexts/*": ["./src/contexts/*"]
     },
     "removeComments": true,
     "sourceMap": true,
