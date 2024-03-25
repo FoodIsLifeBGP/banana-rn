@@ -36,7 +36,7 @@ function DonorDashboardScreen({ navigation }) {
 
   const toggleDrawer = () => {
     navigation.dispatch(DrawerActions.toggleDrawer());
-  }
+  };
 
   return (
     <View style={styles.outerContainer}>
