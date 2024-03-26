@@ -1,4 +1,4 @@
-//TODO: this may be obsolete
+// TODO: this may be obsolete
 import { DrawerActions } from '@react-navigation/native';
 
 let navigator;

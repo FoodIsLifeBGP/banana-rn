@@ -34,18 +34,23 @@ function DonorDashboardScreen({ navigation }) {
     }
   }, [ isFocused ]);
 
+  // const toggleDrawer = () => {
+  //   navigation.dispatch(DrawerActions.toggleDrawer());
+  // };
+
   const toggleDrawer = () => {
-    navigation.dispatch(DrawerActions.toggleDrawer());
+    navigation.navigate('DrawerNavigator');
+    console.log('navigation', navigation);
   };
 
   return (
     <View style={styles.outerContainer}>
-      <NavBar
+      {/* <NavBar
         navigate={navigation.navigate}
-        goBack={navigation.navigate.goBack}
+        goBack={navigation.goBack}
         toggleDrawer={toggleDrawer}
         showBackButton={false}
-      />
+      /> */}
 
       <View style={styles.contentContainer}>
         <Title text="Donations" />

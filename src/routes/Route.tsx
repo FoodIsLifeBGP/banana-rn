@@ -83,23 +83,45 @@ function donorOrClientDrawer() {
 const Drawer = createDrawerNavigator();
 
 function DrawerNavigator() {
-  const menuOptions = donorOrClientDrawer();
+  const { USER_IDENTITY } = getEnv();
 
   return (
-    <Drawer.Navigator>
-      {/*
-         Create a Screen for each side drawer menu option.
-         The name and component are taken from the key-value pairs in menuOptions.
-         The options object is passed as is.
-      */}
-      {Object.entries(menuOptions).map(([ name, config ]) => (
-        <Drawer.Screen
-          key={name}
-          name={name}
-          component={config.component}
-          options={config.options}
-        />
-      ))}
+    <Drawer.Navigator initialRouteName="LoginScreen">
+      {/* Common screens TODO: verify that these are correct */}
+      <Drawer.Screen name="LoginSuccessScreen" component={LoginSuccessScreen} />
+      <Drawer.Screen name="ContactScreen" component={ContactScreen} />
+      <Drawer.Screen
+        name="LoginScreen"
+        component={LoginScreen}
+        options={{ headerShown: false }}
+      />
+      <Drawer.Screen name="LogoutScreen" component={LogoutScreen} />
+      <Drawer.Screen name="MapScreen" component={MapScreen} />
+      <Drawer.Screen name="RegistrationScreen" component={RegistrationScreen} />
+      <Drawer.Screen name="TermsScreen" component={TermsScreen} />
+
+      {/* Donor-specific screens */}
+      {USER_IDENTITY === 'donor' && (
+        <>
+          <Drawer.Screen name="DonorDashboardScreen" component={DonorDashboardScreen} />
+          <Drawer.Screen name="DonorDonationScreen" component={DonorDonationScreen} />
+          <Drawer.Screen name="DonorHistoryScreen" component={DonorHistoryScreen} />
+        </>
+      )}
+
+      {/* Client-specific screens */}
+      {USER_IDENTITY === 'client' && (
+        <>
+          <Drawer.Screen name="ClientDashboardScreen" component={ClientDashboardScreen} />
+          <Drawer.Screen name="ClientClaimsScreen" component={ClientClaimsScreen} />
+          <Drawer.Screen name="ClientHistoryScreen" component={ClientHistoryScreen} />
+          <Drawer.Screen name="DonationScreen" component={DonationScreen} />
+          <Drawer.Screen name="QRCodeScannerScreen" component={QRCodeScannerScreen} />
+          <Drawer.Screen name="ClaimDetailsScreen" component={ClaimDetailsScreen} />
+          <Drawer.Screen name="MakeClaimScreen" component={MakeClaimScreen} />
+          <Drawer.Screen name="DonationsDetailScreen" component={DonationsDetailScreen} />
+        </>
+      )}
     </Drawer.Navigator>
   );
 }
@@ -108,48 +130,12 @@ function DrawerNavigator() {
 const Stack = createNativeStackNavigator();
 
 function StackNavigator() {
-  const { USER_IDENTITY } = getEnv();
-
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false, gestureEnabled: false }}
-      initialRouteName="LoginScreen"
+      initialRouteName="DrawerNavigator"
     >
-      {/* Common screens TODO: verify that these are correct */}
-      <Stack.Screen name="LoginSuccessScreen" component={LoginSuccessScreen} />
-      <Stack.Screen name="ContactScreen" component={ContactScreen} />
-      <Stack.Screen name="LoginScreen" component={LoginScreen} />
-      <Stack.Screen name="LogoutScreen" component={LogoutScreen} />
-      <Stack.Screen name="MapScreen" component={MapScreen} />
-      <Stack.Screen name="RegistrationScreen" component={RegistrationScreen} />
-      <Stack.Screen name="TermsScreen" component={TermsScreen} />
-      <Stack.Screen
-        name="Drawer"
-        component={DrawerNavigator}
-      />
-
-      {/* Donor-specific screens */}
-      {USER_IDENTITY === 'donor' && (
-        <>
-          <Stack.Screen name="DonorDashboardScreen" component={DonorDashboardScreen} />
-          <Stack.Screen name="DonorDonationScreen" component={DonorDonationScreen} />
-          <Stack.Screen name="DonorHistoryScreen" component={DonorHistoryScreen} />
-        </>
-      )}
-
-      {/* Client-specific screens */}
-      {USER_IDENTITY === 'client' && (
-        <>
-          <Stack.Screen name="ClientDashboardScreen" component={ClientDashboardScreen} />
-          <Stack.Screen name="ClientClaimsScreen" component={ClientClaimsScreen} />
-          <Stack.Screen name="ClientHistoryScreen" component={ClientHistoryScreen} />
-          <Stack.Screen name="DonationScreen" component={DonationScreen} />
-          <Stack.Screen name="QRCodeScannerScreen" component={QRCodeScannerScreen} />
-          <Stack.Screen name="ClaimDetailsScreen" component={ClaimDetailsScreen} />
-          <Stack.Screen name="MakeClaimScreen" component={MakeClaimScreen} />
-          <Stack.Screen name="DonationsDetailScreen" component={DonationsDetailScreen} />
-        </>
-      )}
+      <Stack.Screen name="DrawerNavigator" component={DrawerNavigator} />
     </Stack.Navigator>
   );
 }
